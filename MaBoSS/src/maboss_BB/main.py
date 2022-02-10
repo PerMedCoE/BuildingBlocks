@@ -8,9 +8,9 @@ from permedcoe import DIRECTORY_IN
 from permedcoe import FILE_OUT
 
 # Import single container and assets definitions
-from maboss.definitions import MABOSS_CONTAINER
-from maboss.definitions import MABOSS_ASSETS
-from maboss.definitions import COMPUTING_UNITS
+from maboss_BB.definitions import MABOSS_CONTAINER
+from maboss_BB.definitions import MABOSS_ASSETS
+from maboss_BB.definitions import COMPUTING_UNITS
 
 # Globals
 MABOSS_BINARY = os.path.join(MABOSS_ASSETS, "MaBoSS_analysis.sh")

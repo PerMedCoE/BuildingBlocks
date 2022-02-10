@@ -3,4 +3,4 @@ NOTE: Do not modify this file unless you want to change the name
       of the main.py file. Then it is necessary to adapt the import.
 """
 
-from single_cell_processing.main import *
+from physiboss_BB.main import *

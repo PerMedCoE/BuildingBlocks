@@ -4,7 +4,7 @@ NOTE: Do not modify this file unless you want to change the name
 """
 
 from permedcoe import invoker
-from physiboss.main import invoke
+from single_cell_processing_BB.main import invoke
 
 
 def main():

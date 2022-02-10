@@ -10,9 +10,9 @@ from permedcoe import DIRECTORY_IN
 from permedcoe import DIRECTORY_OUT
 
 # Import single container and assets definitions
-from physiboss.definitions import PHYSIBOSS_CONTAINER
-from physiboss.definitions import PHYSIBOSS_ASSETS
-from physiboss.definitions import COMPUTING_UNITS
+from physiboss_BB.definitions import PHYSIBOSS_CONTAINER
+from physiboss_BB.definitions import PHYSIBOSS_ASSETS
+from physiboss_BB.definitions import COMPUTING_UNITS
 
 # Globals# Globals
 PHYSIBOSS_BINARY = os.path.join(PHYSIBOSS_ASSETS, "PhysiBoSS.sh")

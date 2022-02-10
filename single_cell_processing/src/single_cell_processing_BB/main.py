@@ -9,9 +9,9 @@ from permedcoe import FILE_OUT
 from permedcoe import DIRECTORY_OUT
 
 # Import single container and assets definitions
-from single_cell_processing.definitions import SINGLE_CELL_PROCESSING_CONTAINER
-from single_cell_processing.definitions import SINGLE_CELL_PROCESSING_ASSETS
-from single_cell_processing.definitions import COMPUTING_UNITS
+from single_cell_processing_BB.definitions import SINGLE_CELL_PROCESSING_CONTAINER
+from single_cell_processing_BB.definitions import SINGLE_CELL_PROCESSING_ASSETS
+from single_cell_processing_BB.definitions import COMPUTING_UNITS
 
 # Globals
 SINGLE_CELL_PROCESSING_BINARY = os.path.join(SINGLE_CELL_PROCESSING_ASSETS,
