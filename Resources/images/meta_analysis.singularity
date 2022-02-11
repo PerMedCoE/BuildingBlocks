@@ -1,0 +1,10 @@
+Bootstrap: localimage
+From: ./single_cell.sif
+
+%files
+    rmatio_0.15.0.tar.gz
+    XML_3.99-0.7.tar.gz
+
+%post
+    R CMD INSTALL -- build rmatio_0.15.0.tar.gz
+    R CMD INSTALL -- build XML_3.99-0.7.tar.gz 
