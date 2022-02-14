@@ -1,0 +1,17 @@
+Bootstrap: docker
+From: ubuntu
+Stage: build
+
+%environment
+    export PATH="/usr/local/bin:$PATH"
+
+%post
+    apt-get update -y
+    apt-get install -y r-base default-jre
+
+%files
+    assets/MaBoSS /usr/local/bin
+
+%runscript
+    exec /bin/bash "$@"
+

@@ -1,0 +1,20 @@
+Bootstrap: docker
+From: ubuntu:groovy
+Stage: build
+
+%environment
+    export PATH="/usr/local/bin:$PATH"
+
+%post
+    apt-get update -y
+    apt-get install -y r-base libhdf5-dev libhdf5-103-1 libxml2-dev libssl-dev libcurl4-openssl-dev
+    echo "install.packages('pacman', repos='http://cran.us.r-project.org')" | Rscript --vanilla  -
+    echo "install.packages('BiocManager', repos='http://cran.us.r-project.org')" | Rscript --vanilla  -
+    echo 'BiocManager::install("SingleR")' | Rscript --vanilla -
+    echo 'BiocManager::install("limma")' | Rscript --vanilla -
+    echo 'BiocManager::install("SingleCellExperiment")' | Rscript --vanilla -
+    echo 'list.p=c("dplyr","Matrix","Seurat","future","pheatmap","ggplot2","optparse","hdf5r");pacman::p_load(list.p, character.only = TRUE)' | Rscript --vanilla -
+
+%runscript
+    exec /bin/bash "$@"
+

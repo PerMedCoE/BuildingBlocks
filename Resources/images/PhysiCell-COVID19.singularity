@@ -1,0 +1,25 @@
+Bootstrap: docker
+From: ubuntu
+Stage: build
+
+%environment
+    export PATH="/usr/local/bin:$PATH"
+
+%post
+    apt-get update -y
+    apt-get install -y build-essential flex bison git r-base  libxml2-dev libssl-dev libcurl4-openssl-dev
+	mkdir -p /usr/local/scm/
+	cd /usr/local/scm/
+    git clone https://github.com/vincent-noel/COVID19.git
+    cd COVID19/PhysiCell
+	make
+	ln -s /usr/local/scm/COVID19/PhysiCell/myproj /usr/local/bin/myproj
+    echo "install.packages('pacman', repos='http://cran.us.r-project.org')" | Rscript --vanilla  -
+    echo 'pacman::p_load(c("dplyr","tidyverse","diptest","mclust","moments","pheatmap","optparse"), character.only = TRUE)' | Rscript --vanilla -
+
+%files
+    assets/MaBoSS /usr/local/bin
+
+%runscript
+    exec /usr/local/bin/myproj "$@"
+
