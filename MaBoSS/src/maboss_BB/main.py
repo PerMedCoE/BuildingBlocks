@@ -5,15 +5,18 @@ from permedcoe import container
 from permedcoe import binary
 from permedcoe import task
 from permedcoe import DIRECTORY_IN
+from permedcoe import FILE_IN
 from permedcoe import FILE_OUT
 
 # Import single container and assets definitions
 from maboss_BB.definitions import MABOSS_CONTAINER
+from maboss_BB.definitions import MABOSS_SENSITIVITY_CONTAINER
 from maboss_BB.definitions import MABOSS_ASSETS
 from maboss_BB.definitions import COMPUTING_UNITS
 
 # Globals
 MABOSS_BINARY = os.path.join(MABOSS_ASSETS, "MaBoSS_analysis.sh")
+MABOSS_SENSITIVIY_ANALYSIS_BINARY = os.path.join(MABOSS_ASSETS, "MaBoSS_sensitivity_analysis.sh")
 
 
 @constraint(computing_units=COMPUTING_UNITS)
@@ -35,6 +38,24 @@ def MaBoSS_analysis(model="epithelial_cell_2",
     pass
 
 
+@container(engine="SINGULARITY", image=MABOSS_SENSITIVITY_CONTAINER)
+@binary(binary=MABOSS_SENSITIVIY_ANALYSIS_BINARY)
+@task(model_folder=DIRECTORY_IN, genes_druggable=FILE_IN, genes_target=FILE_IN, result_file=FILE_OUT)
+def MaBoSS_sensitivity_analysis(model_folder=None,
+                                genes_druggable=None,
+                                genes_target=None,
+                                result_file=None):
+    """
+    Performs the MaBoSS analysis.
+    Produces the ko file, containing the set of selected gene candidates.
+
+    The Definition is equal to:
+        ./MaBoSS_sensitivity_analysis.sh <model_folder> <genes_druggable> <genes_target> <result_file>
+    """
+    # Empty function since it represents a binary execution:
+    pass
+
+
 def invoke(input, output, config):
     """ Common interface.
 
@@ -45,13 +66,26 @@ def invoke(input, output, config):
     Returns:
         None
     """
-    # Process parameters
-    model = input[0]
-    data_folder = input[1]
-    parallel = input[2]
-    ko_file = output[0]
-    # Building block invokation
-    MaBoSS_analysis(model=model,
-                    data_folder=data_folder,
-                    ko_file=ko_file,
-                    parallel=parallel)
+    if ("uc2" in config.keys() and config["uc2"]):
+        # Process parameters
+        model_folder = input[0]
+        genes_druggable = input[1]
+        genes_target = input[2]
+        result_file = output[0]
+        # Building block invokation
+        MaBoSS_sensitivity_analysis(model_folder=model_folder,
+                        genes_druggable=genes_druggable,
+                        genes_target=genes_target,
+                        result_file=result_file)
+
+    else:
+        # Process parameters
+        model = input[0]
+        data_folder = input[1]
+        parallel = input[2]
+        ko_file = output[0]
+        # Building block invokation
+        MaBoSS_analysis(model=model,
+                        data_folder=data_folder,
+                        ko_file=ko_file,
+                        parallel=parallel)

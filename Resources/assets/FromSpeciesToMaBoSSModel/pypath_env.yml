@@ -1,0 +1,19 @@
+name: pypath_env
+channels:
+  - colomoto
+  - conda-forge
+
+dependencies:
+  - python==3.9.9
+  - pip
+  - cairo
+  - maboss
+  - pycairo
+  - pycurl
+  - python-igraph
+  - pip:
+    - pysftp
+    - omnipath
+    - pypath-omnipath
+    - maboss  
+    - pyyaml
