@@ -12,7 +12,7 @@ Stage: build
     pip install permedcoe
 
 %files
-    ../../uc2_BBs/src/* /usr/local/lib/python3.8/dist-packages
+    ../../print_drug_results/src/print_drug_results_BB/* /usr/local/lib/python3.8/dist-packages/print_drug_results_BB
 
 %runscript
     exec /bin/bash "$@"
