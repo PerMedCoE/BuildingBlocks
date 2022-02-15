@@ -1,0 +1,14 @@
+Bootstrap: docker
+
+From: condaforge/mambaforge:4.10.3-10
+
+%environment
+    export PATH=/opt/conda/envs/pypath_env/bin/:$PATH
+
+%files
+    assets/FromSpeciesToMaBoSSModel /opt
+    
+%post
+    ln -s /opt/FromSpeciesToMaBoSSModel/FromSpeciesToMaBoSSModel.sh /usr/local/bin/FromSpeciesToMaBoSSModel.sh 
+    /opt/conda/bin/mamba env create -f /opt/FromSpeciesToMaBoSSModel/pypath_env.yml
+    /opt/conda/envs/pypath_env/bin/python /opt/FromSpeciesToMaBoSSModel/download_database.py /opt/FromSpeciesToMaBoSSModel/cache /opt/FromSpeciesToMaBoSSModel/network.pickle

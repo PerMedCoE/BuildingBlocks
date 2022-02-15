@@ -1,13 +1,12 @@
 import os
 
-# Assets folder for MaBoSS Building Block
+# Assets folder for From Species To MaBoSS Model Building Block
 ASSETS_PATH = os.environ["PERMEDCOE_ASSETS"]
-MABOSS_ASSETS = os.path.join(ASSETS_PATH, "MaBoSS")
+BUILD_MODEL_FROM_SPECIES_ASSETS = os.path.join(ASSETS_PATH, "FromSpeciesToMaBoSSModel")
 
-# Container definition for MaBoSS Building Block
+# Container definition for From Species To MaBoSS Model Building Block
 CONTAINER_PATH = os.environ["PERMEDCOE_IMAGES"]
-MABOSS_CONTAINER = CONTAINER_PATH + "MaBoSS.sif"
-MABOSS_SENSITIVITY_CONTAINER = CONTAINER_PATH + "MaBoSS_sensitivity.sif"
+BUILD_MODEL_FROM_SPECIES_CONTAINER = CONTAINER_PATH + "FromSpeciesToMaBoSSModel.sif"
 
 # Computing units
 COMPUTING_UNITS_VARIABLE_NAME = "COMPUTING_UNITS"

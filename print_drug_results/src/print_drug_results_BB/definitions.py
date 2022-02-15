@@ -1,13 +1,12 @@
 import os
 
-# Assets folder for MaBoSS Building Block
+# Assets folder for Print Drug Results Building Block
 ASSETS_PATH = os.environ["PERMEDCOE_ASSETS"]
-MABOSS_ASSETS = os.path.join(ASSETS_PATH, "MaBoSS")
+PRINT_DRUG_RESULTS_ASSETS = os.path.join(ASSETS_PATH, "print_drug_results")
 
-# Container definition for MaBoSS Building Block
+# Container definition for Print Drug Results Building Block
 CONTAINER_PATH = os.environ["PERMEDCOE_IMAGES"]
-MABOSS_CONTAINER = CONTAINER_PATH + "MaBoSS.sif"
-MABOSS_SENSITIVITY_CONTAINER = CONTAINER_PATH + "MaBoSS_sensitivity.sif"
+PRINT_DRUG_RESULTS_CONTAINER = CONTAINER_PATH + "printResults.sif"
 
 # Computing units
 COMPUTING_UNITS_VARIABLE_NAME = "COMPUTING_UNITS"
