@@ -1,26 +1,23 @@
-# HPC/Exascale Centre of Excellence in Personalised Medicine
+# PhysiBoSS Building Block
 
-## PhysiBoSS Building Block
-
-This package provides the PhysiBoSS **Building Blocks (BB)**.
+This package provides the PhysiBoSS **Building Block (BB)**.
 
 ## Table of Contents
 
-- [HPC/Exascale Centre of Excellence in Personalised Medicine](#hpcexascale-centre-of-excellence-in-personalised-medicine)
-  - [PhysiBoSS Pilot Building Block](#PhysiBoSS-building-block)
-  - [Table of Contents](#table-of-contents)
-  - [Description](#description)
-  - [User instructions](#user-instructions)
-    - [Requirements](#requirements)
-    - [Installation](#installation)
-    - [Usage](#usage)
-    - [Uninstall](#uninstall)
-  - [License](#license)
-  - [Contact](#contact)
+  - [PhysiBoSS Building Block](#physiboss-building-block)
+    - [Table of Contents](#table-of-contents)
+    - [Description](#description)
+    - [User instructions](#user-instructions)
+        - [Requirements](#requirements)
+        - [Installation](#installation)
+        - [Usage](#usage)
+        - [Uninstall](#uninstall)
+    - [License](#license)
+    - [Contact](#contact)
 
 ## Description
 
-TO BE COMPLETED
+[TO BE COMPLETED]
 
 ## User instructions
 
@@ -28,78 +25,72 @@ TO BE COMPLETED
 
 - Python >= 3.6
 - [Singularity](https://singularity.lbl.gov/docs-installation)
+- `permedcoe` base package: `python3 -m pip install permedcoe`
 
-In addtion to the dependencies, it is necessary to download the singularity
-image and the building block asset.
-They must be available and exported in the following environment variables:
+In addtion to the dependencies, it is necessary to generate the associated
+singularity image ([`PhysiCell-COVID19.singularity`](path/to/singularity.file))
+and the building block asset ([`PhysiBoSS`](path/to/asset.folder)
+folder), located in the **Resources** folder of this repository.
+
+They **MUST be available and exported in the following environment variables**
+before its usage:
 
 ```bash
 export PERMEDCOE_IMAGES="/path/to/images/"
-export PERMEDCOE_ASSETS="/path/to/assets/"
+ export PERMEDCOE_ASSETS="/path/to/assets/"
 ```
 
 ### Installation
 
-There are two ways to install this package (from Pypi and manually):
+This package provides an automatic installation script:
 
-- From Pypi:
+```bash
+./install.sh
+```
 
-  This package is **NOT YET** publicly available in Pypi:
-
-  ```bash
-  pip install PhysiBoSS_BB
-  ```
-
-  or more specifically:
-
-  ```bash
-  python3 -m pip install PhysiBoSS_BB
-  ```
-
-- From source code:
-
-  This package provides an automatic installation script:
-
-  ```bash
-  ./install.sh
-  ```
-
-  This script creates a file `installation_files.txt` to keep track of the
-  installed files.
-  It is used with the `uninstall.sh` script to clean up the system.
+This script creates a file `installation_files.txt` to keep track of the
+installed files.
+It is used with the `uninstall.sh` script to uninstall the Building Block
+from the system.
 
 ### Usage
 
-The `PhysiBoSS_BB` package provides a clear interface that allows it to be
-used with multiple workflow managers (e.g. PyCOMPSs, NextFlow and Snakemake).
+The `PhysiBoSS` package provides a clear interface that allows
+it to be used with multiple workflow managers (e.g. PyCOMPSs, NextFlow and
+Snakemake).
 
-It imported from python and invoked directly from a **PyCOMPSs** application,
-or through the binaries from other workflow managers (e.g. Snakemake and
-NextFlow).
+It can be imported from python and invoked directly from a **PyCOMPSs**
+application, or through the command line for other workflow managers
+(e.g. Snakemake and NextFlow).
 
-The binary is:
+The command line is:
 
-  ```bash
-  physiboss -d \
-        -i <sample> <repetition> <prefix> <bnd_file> <cfg_file> \
-        -o  <out_file> <err_file>\
-        --mount_points ${COVID19_BB_ASSETS}/PhysiBoSS/:${COVID19_BB_ASSETS}/PhysiBoSS/
-  ```
+```bash
+physiboss_BB -d \
+      -i <sample> <repetition> <prefix> <bnd_file> <cfg_file> \
+      -o  <out_file> <err_file>\
+      --mount_points ${COVID19_BB_ASSETS}/PhysiBoSS/:${COVID19_BB_ASSETS}/PhysiBoSS/
+```
 
+Where the parameters are:
+
+|        | Parameter      | Type   | Description                                             |
+|--------|----------------|--------|---------------------------------------------------------|
+| Input  | \<sample>      | String | [TO BE COMPLETED]                                       |
+| Input  | \<repetition>  | Int    | [TO BE COMPLETED]                                       |
+| Input  | \<prefix>      | String | [TO BE COMPLETED]                                       |
+| Input  | \<bnd_file>    | File   | [TO BE COMPLETED]                                       |
+| Input  | \<cfg_file>    | File   | [TO BE COMPLETED]                                       |
+| Output | \<out_file>    | File   | [TO BE COMPLETED]                                       |
+| Output | \<err_file>    | File   | [TO BE COMPLETED]                                       |
 
 ### Uninstall
 
-Uninstall can be done as usual `pip` packages:
-
-```bash
-pip uninstall PhysiBoSS_BB
-```
-
-or more specifically:
+Uninstall can be achieved by executing the following scripts:
 
 ```bash
 ./uninstall.sh
-./clean.sh
+ ./clean.sh
 ```
 
 ## License
