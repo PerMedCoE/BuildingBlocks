@@ -1,26 +1,23 @@
-# HPC/Exascale Centre of Excellence in Personalised Medicine
+# Meta Analysis Building Block
 
-## Meta Analysis Building Block
-
-This package provides the meta_analysis **Building Blocks (BB)**.
+This package provides the Meta Analysis **Building Block (BB)**.
 
 ## Table of Contents
 
-- [HPC/Exascale Centre of Excellence in Personalised Medicine](#hpcexascale-centre-of-excellence-in-personalised-medicine)
-  - [Meta Analysis Pilot Building Block](#meta-analysis-building-block)
-  - [Table of Contents](#table-of-contents)
-  - [Description](#description)
-  - [User instructions](#user-instructions)
-    - [Requirements](#requirements)
-    - [Installation](#installation)
-    - [Usage](#usage)
-    - [Uninstall](#uninstall)
-  - [License](#license)
-  - [Contact](#contact)
+  - [Meta Analysis Building Block](#meta-analysis-building-block)
+    - [Table of Contents](#table-of-contents)
+    - [Description](#description)
+    - [User instructions](#user-instructions)
+        - [Requirements](#requirements)
+        - [Installation](#installation)
+        - [Usage](#usage)
+        - [Uninstall](#uninstall)
+    - [License](#license)
+    - [Contact](#contact)
 
 ## Description
 
-TO BE COMPLETED
+[TO BE COMPLETED]
 
 ## User instructions
 
@@ -28,74 +25,72 @@ TO BE COMPLETED
 
 - Python >= 3.6
 - [Singularity](https://singularity.lbl.gov/docs-installation)
+- `permedcoe` base package: `python3 -m pip install permedcoe`
 
-In addtion to the dependencies, it is necessary to download the singularity
-image and the building block asset.
-They must be available and exported in the following environment variables:
+In addtion to the dependencies, it is necessary to generate the associated
+singularity image ([`meta_analysis.singularity`](path/to/singularity.file))
+and the building block asset ([`meta_analysis`](path/to/asset.folder)
+folder), located in the **Resources** folder of this repository.
+
+They **MUST be available and exported in the following environment variables**
+before its usage:
 
 ```bash
 export PERMEDCOE_IMAGES="/path/to/images/"
-export PERMEDCOE_ASSETS="/path/to/assets/"
+ export PERMEDCOE_ASSETS="/path/to/assets/"
 ```
 
 ### Installation
 
-There are two ways to install this package (from Pypi and manually):
+This package provides an automatic installation script:
 
-- From Pypi:
+```bash
+./install.sh
+```
 
-  This package is **NOT YET** publicly available in Pypi:
-
-  ```bash
-  pip install meta_analysis_BB
-  ```
-
-  or more specifically:
-
-  ```bash
-  python3 -m pip install meta_analysis_BB
-  ```
-
-- From source code:
-
-  This package provides an automatic installation script:
-
-  ```bash
-  ./install.sh
-  ```
-
-  This script creates a file `installation_files.txt` to keep track of the
-  installed files.
-  It is used with the `uninstall.sh` script to clean up the system.
+This script creates a file `installation_files.txt` to keep track of the
+installed files.
+It is used with the `uninstall.sh` script to uninstall the Building Block
+from the system.
 
 ### Usage
 
-The `meta_analysis_BB` package provides a clear interface that allows it to be
-used with multiple workflow managers (e.g. PyCOMPSs, NextFlow and Snakemake).
+The `meta_analysis` package provides a clear interface that allows
+it to be used with multiple workflow managers (e.g. PyCOMPSs, NextFlow and
+Snakemake).
 
-It imported from python and invoked directly from a **PyCOMPSs** application,
-or through the binaries from other workflow managers (e.g. Snakemake and
-NextFlow).
+It can be imported from python and invoked directly from a **PyCOMPSs**
+application, or through the command line for other workflow managers
+(e.g. Snakemake and NextFlow).
 
-The binary is:
+The command line is:
 
-  ```bash
-  meta_analysis -d {TO BE COMPLETED}
-  ```
+```bash
+meta_analysis_BB -d \
+    -i <meta_file> <out_dir> <model_prefix> <ko_file> <reps> <verbose> \
+    -o <result_folder> \
+    --mount_point ${PERMEDCOE_ASSETS}/meta_analysis:${PERMEDCOE_ASSETS}/meta_analysis
+```
+
+Where the parameters are:
+
+|        | Parameter          | Type      | Description                                             |
+|--------|--------------------|-----------|---------------------------------------------------------|
+| Input  | \<meta_file>       | File      | [TO BE COMPLETED]                                       |
+| Input  | \<out_dir>         | Directory | [TO BE COMPLETED]                                       |
+| Input  | \<model_prefix>    | String    | [TO BE COMPLETED]                                       |
+| Input  | \<ko_file>         | File      | [TO BE COMPLETED]                                       |
+| Input  | \<reps>            | Int       | [TO BE COMPLETED]                                       |
+| Input  | \<verbose>         | String    | [TO BE COMPLETED]                                       |
+| Output | \<result_folder>   | Directory | [TO BE COMPLETED]                                       |
 
 ### Uninstall
 
-Uninstall can be done as usual `pip` packages:
-
-```bash
-pip uninstall meta_analysis_BB
-```
-
-or more specifically:
+Uninstall can be achieved by executing the following scripts:
 
 ```bash
 ./uninstall.sh
-./clean.sh
+ ./clean.sh
 ```
 
 ## License
