@@ -38,6 +38,7 @@ def MaBoSS_analysis(model="epithelial_cell_2",
     pass
 
 
+@constraint(computing_units=COMPUTING_UNITS)
 @container(engine="SINGULARITY", image=MABOSS_SENSITIVITY_CONTAINER)
 @binary(binary=MABOSS_SENSITIVIY_ANALYSIS_BINARY)
 @task(model_folder=DIRECTORY_IN, genes_druggable=FILE_IN, genes_target=FILE_IN, result_file=FILE_OUT)
