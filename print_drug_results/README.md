@@ -4,16 +4,16 @@ This package provides the Print Drug Results **Building Block (BB)**.
 
 ## Table of Contents
 
-  - [Print Drug Results Building Block](#print-drug-results-building-block)
-    - [Table of Contents](#table-of-contents)
-    - [Description](#description)
-    - [User instructions](#user-instructions)
-        - [Requirements](#requirements)
-        - [Installation](#installation)
-        - [Usage](#usage)
-        - [Uninstall](#uninstall)
-    - [License](#license)
-    - [Contact](#contact)
+- [Print Drug Results Building Block](#print-drug-results-building-block)
+  - [Table of Contents](#table-of-contents)
+  - [Description](#description)
+  - [User instructions](#user-instructions)
+    - [Requirements](#requirements)
+    - [Installation](#installation)
+    - [Usage](#usage)
+    - [Uninstall](#uninstall)
+  - [License](#license)
+  - [Contact](#contact)
 
 ## Description
 
@@ -28,16 +28,16 @@ This package provides the Print Drug Results **Building Block (BB)**.
 - `permedcoe` base package: `python3 -m pip install permedcoe`
 
 In addtion to the dependencies, it is necessary to generate the associated
-singularity image ([`printResults.singularity`](path/to/singularity.file))
-and the building block asset ([`print_drug_results`](path/to/asset.folder)
-folder), located in the **Resources** folder of this repository.
+singularity image ([`printResults.singularity`](../Resources/images/printResults.singularity))
+and the building block asset folder ([`print_drug_results`](../Resources/assets/print_drug_results)),
+located in the **Resources** folder of this repository.
 
 They **MUST be available and exported in the following environment variables**
 before its usage:
 
 ```bash
 export PERMEDCOE_IMAGES="/path/to/images/"
- export PERMEDCOE_ASSETS="/path/to/assets/"
+export PERMEDCOE_ASSETS="/path/to/assets/"
 ```
 
 ### Installation
@@ -85,7 +85,7 @@ Uninstall can be achieved by executing the following scripts:
 
 ```bash
 ./uninstall.sh
- ./clean.sh
+./clean.sh
 ```
 
 ## License

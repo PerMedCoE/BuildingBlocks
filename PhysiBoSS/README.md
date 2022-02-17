@@ -4,16 +4,16 @@ This package provides the PhysiBoSS **Building Block (BB)**.
 
 ## Table of Contents
 
-  - [PhysiBoSS Building Block](#physiboss-building-block)
-    - [Table of Contents](#table-of-contents)
-    - [Description](#description)
-    - [User instructions](#user-instructions)
-        - [Requirements](#requirements)
-        - [Installation](#installation)
-        - [Usage](#usage)
-        - [Uninstall](#uninstall)
-    - [License](#license)
-    - [Contact](#contact)
+- [PhysiBoSS Building Block](#physiboss-building-block)
+  - [Table of Contents](#table-of-contents)
+  - [Description](#description)
+  - [User instructions](#user-instructions)
+    - [Requirements](#requirements)
+    - [Installation](#installation)
+    - [Usage](#usage)
+    - [Uninstall](#uninstall)
+  - [License](#license)
+  - [Contact](#contact)
 
 ## Description
 
@@ -28,16 +28,16 @@ This package provides the PhysiBoSS **Building Block (BB)**.
 - `permedcoe` base package: `python3 -m pip install permedcoe`
 
 In addtion to the dependencies, it is necessary to generate the associated
-singularity image ([`PhysiCell-COVID19.singularity`](path/to/singularity.file))
-and the building block asset ([`PhysiBoSS`](path/to/asset.folder)
-folder), located in the **Resources** folder of this repository.
+singularity image ([`PhysiCell-COVID19.singularity`](../Resources/images/PhysiCell-COVID19.singularity))
+and the building block asset folder ([`PhysiBoSS`](../Resources/assets/PhysiBoSS)),
+located in the **Resources** folder of this repository.
 
 They **MUST be available and exported in the following environment variables**
 before its usage:
 
 ```bash
 export PERMEDCOE_IMAGES="/path/to/images/"
- export PERMEDCOE_ASSETS="/path/to/assets/"
+export PERMEDCOE_ASSETS="/path/to/assets/"
 ```
 
 ### Installation
@@ -90,7 +90,7 @@ Uninstall can be achieved by executing the following scripts:
 
 ```bash
 ./uninstall.sh
- ./clean.sh
+./clean.sh
 ```
 
 ## License

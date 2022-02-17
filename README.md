@@ -5,13 +5,15 @@ This repository contains the **Building Blocks** developed within the
 
 ## Table of Contents
 
-- [List of Building Blocks](#list-of-building-blocks)
-- [License](#license)
-- [Contact](#contact)
+- [PerMedCoE Building Blocks' Catalogue](#permedcoe-building-blocks-catalogue)
+  - [Table of Contents](#table-of-contents)
+  - [List of Building Blocks](#list-of-building-blocks)
+  - [License](#license)
+  - [Contact](#contact)
 
 ## List of Building Blocks
 
-1. [**Build Model From Species**](build_maboss_from_species/)
+1. [**Build Model From Species**](build_model_from_species/)
 
     [One line description]
 
