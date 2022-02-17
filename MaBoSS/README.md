@@ -4,16 +4,16 @@ This package provides the MaBoSS **Building Block (BB)**.
 
 ## Table of Contents
 
-  - [MaBoSS Building Block](#maboss-building-block)
-    - [Table of Contents](#table-of-contents)
-    - [Description](#description)
-    - [User instructions](#user-instructions)
-        - [Requirements](#requirements)
-        - [Installation](#installation)
-        - [Usage](#usage)
-        - [Uninstall](#uninstall)
-    - [License](#license)
-    - [Contact](#contact)
+- [MaBoSS Building Block](#maboss-building-block)
+  - [Table of Contents](#table-of-contents)
+  - [Description](#description)
+  - [User instructions](#user-instructions)
+    - [Requirements](#requirements)
+    - [Installation](#installation)
+    - [Usage](#usage)
+    - [Uninstall](#uninstall)
+  - [License](#license)
+  - [Contact](#contact)
 
 ## Description
 
@@ -28,16 +28,16 @@ This package provides the MaBoSS **Building Block (BB)**.
 - `permedcoe` base package: `python3 -m pip install permedcoe`
 
 In addtion to the dependencies, it is necessary to generate the associated
-singularity image ([`MaBoSS.singularity`](path/to/singularity.file))
-and the building block asset ([`MaBoSS`](path/to/asset.folder)
-folder), located in the **Resources** folder of this repository.
+singularity images ([`MaBoSS.singularity`](../Resources/images/MaBoSS.singularity) and [MaBoSS_sensitivity.singularity](../Resources/images/MaBoSS_sensitivity.singularity))
+and the building block asset folder ([`MaBoSS`](../Resources/assets/MaBoSS)),
+located in the **Resources** folder of this repository.
 
-They **MUST be available and exported in the following environment variables**
+They **MUST be available and exported respectively in the following environment variables**
 before its usage:
 
 ```bash
 export PERMEDCOE_IMAGES="/path/to/images/"
- export PERMEDCOE_ASSETS="/path/to/assets/"
+export PERMEDCOE_ASSETS="/path/to/assets/"
 ```
 
 ### Installation
@@ -86,7 +86,7 @@ Uninstall can be achieved by executing the following scripts:
 
 ```bash
 ./uninstall.sh
- ./clean.sh
+./clean.sh
 ```
 
 ## License
