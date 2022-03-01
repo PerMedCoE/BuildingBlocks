@@ -15,7 +15,8 @@ results_dir=$8
 parallel=$9
 
 # Do a copy of PhysiBoSS folder for the current execution
-physiboss_folder="PhysiBoSS_${sample}_${prefix}_${repetition}"
+user=$(whoami)
+physiboss_folder="PhysiBoSS_${sample}_${prefix}_${repetition}_${user}"
 cp -r PhysiBoSS ${physiboss_folder}
 
 # Update the number of threads
