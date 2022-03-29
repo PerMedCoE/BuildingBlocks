@@ -17,7 +17,10 @@ This package provides the Personalize Patient **Building Block (BB)**.
 
 ## Description
 
-[TO BE COMPLETED]
+This building block tailors a given MaBoSS Boolean model to a given RNAseq dataset of interest.
+This RNAseq dataset can come from the "Single cell processing" buildig block  needs to be normalised as described in ["Béal, J. et al. (2019) Personalization of logical models with multi-omics data allows clinical stratification of patients. Front. Physiol., 9, 1965."](https://www.frontiersin.org/articles/10.3389/fphys.2018.01965/full?field=&journalName=Frontiers_in_Physiology&id=369984) and in the [PROFILE's GitHub repository](https://github.com/sysbio-curie/PROFILE).
+
+Future uses of this building block may include other data sources such as mutations, Copy Number Alterations and proteomics counts.
 
 ## User instructions
 
@@ -76,13 +79,13 @@ Where the parameters are:
 
 |        | Parameter               | File      | Description                                             |
 |--------|-------------------------|-----------|---------------------------------------------------------|
-| Input  | \<normalized_data_file> | File      | tsv [TO BE COMPLETED]                                   |
-| Input  | \<cells_metadata>       | File      | tsv [TO BE COMPLETED]                                   |
-| Input  | \<data_folder>          | Directory | [TO BE COMPLETED]                                       |
-| Input  | \<model_prefix>         | String    | [TO BE COMPLETED]                                       |
-| Input  | \<prefix>               | String    | [TO BE COMPLETED]                                       |
-| Input  | \<ko_file>              | File      | [TO BE COMPLETED]                                       |
-| Output | \<result_folder>        | Directory | [TO BE COMPLETED]                                       |
+| Input  | \<normalized_data_file> | File      | tsv of the normalized RNAseq data |
+| Input  | \<cells_metadata>       | File      | tsv of the different patients to be analysed with their clinical information|
+| Input  | \<data_folder>          | Directory | folder where the source data is located |
+| Input  | \<model_prefix>         | String    | prefix that describes the model |
+| Input  | \<prefix>               | String    | prefix that describe the patient |
+| Input  | \<ko_file>              | File      | file result of the "High-throughput mutant analysis" (aka MaBoSS) building block |
+| Output | \<result_folder>        | Directory | folder where the results will be located |
 
 ### Uninstall
 

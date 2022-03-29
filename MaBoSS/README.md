@@ -1,4 +1,4 @@
-# MaBoSS Building Block
+# High-throughput mutant analysis Building Block
 
 This package provides the MaBoSS **Building Block (BB)**.
 
@@ -17,7 +17,8 @@ This package provides the MaBoSS **Building Block (BB)**.
 
 ## Description
 
-[TO BE COMPLETED]
+This building block uses MaBoSS to screen all the possible knock outs of a given Boolean model.
+More information in MaBoSS can be found in the work [Stoll, G. et al. (2017) MaBoSS 2.0: an environment for stochastic Boolean modeling. Bioinformatics, 33, 2226–2228.](https://academic.oup.com/bioinformatics/article-lookup/doi/10.1093/bioinformatics/btx123) and in the dedicated [GitHub repository](https://github.com/maboss-bkmc/MaBoSS-env-2.0).
 
 ## User instructions
 
@@ -76,9 +77,9 @@ Where the parameters are:
 
 |        | Parameter          | Type      | Description                                             |
 |--------|--------------------|-----------|---------------------------------------------------------|
-| Input  | \<prefix>          | String    | [TO BE COMPLETED]                                       |
-| Input  | \<data_folder>     | Directory | [TO BE COMPLETED]                                       |
-| Output | \<ko_file>         | File      | [TO BE COMPLETED]                                       |
+| Input  | \<prefix>          | String    | name of the model                                       |
+| Input  | \<data_folder>     | Directory | fodler where the model files are located |
+| Output | \<ko_file>         | File      | name of the output file with the knock-out candidates |
 
 ### Uninstall
 

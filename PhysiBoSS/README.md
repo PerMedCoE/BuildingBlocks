@@ -17,7 +17,9 @@ This package provides the PhysiBoSS **Building Block (BB)**.
 
 ## Description
 
-[TO BE COMPLETED]
+In this building block we perform a multiscale simulation of a population of cells using PhysiBoSS. 
+The tool uses the different Boolean models personalized by the "Personalize patient" building block and with the mutants selected by the "High-throughput mutant analysis" building block.
+More information on this tool can be found in the work ["Ponce-de-Leon,M. et al. (2022) PhysiBoSS 2.0: a sustainable integration of stochastic Boolean and agent-based modelling frameworks. bioRxiv, 2022.01.06.468363."](https://www.biorxiv.org/content/10.1101/2022.01.06.468363v1) and its code can be found in [its GitHub repository](https://github.com/PhysiBoSS/PhysiBoSS).
 
 ## User instructions
 
@@ -76,13 +78,13 @@ Where the parameters are:
 
 |        | Parameter      | Type   | Description                                             |
 |--------|----------------|--------|---------------------------------------------------------|
-| Input  | \<sample>      | String | [TO BE COMPLETED]                                       |
-| Input  | \<repetition>  | Int    | [TO BE COMPLETED]                                       |
-| Input  | \<prefix>      | String | [TO BE COMPLETED]                                       |
-| Input  | \<bnd_file>    | File   | [TO BE COMPLETED]                                       |
-| Input  | \<cfg_file>    | File   | [TO BE COMPLETED]                                       |
-| Output | \<out_file>    | File   | [TO BE COMPLETED]                                       |
-| Output | \<err_file>    | File   | [TO BE COMPLETED]                                       |
+| Input  | \<sample>      | String | patient's identificator |
+| Input  | \<repetition>  | Int    | number of repetition to be performed |
+| Input  | \<prefix>      | String | name of the model |
+| Input  | \<bnd_file>    | File   | name of the model's BND file |
+| Input  | \<cfg_file>    | File   | name of the model's CFG file |
+| Output | \<out_file>    | File   | main output of the PhysiBoSS run |
+| Output | \<err_file>    | File   | error output of the PhysiBoSS run |
 
 ### Uninstall
 
