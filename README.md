@@ -19,7 +19,7 @@ This repository contains the **Building Blocks** developed within the
 
 2. [**MaBoSS**](MaBoSS/)
 
-    [One line description]
+    This building block uses MaBoSS to screen all the possible knock outs of a given Boolean model.
 
 3. [**Meta Analysis**](meta_analysis/)
 
@@ -27,17 +27,18 @@ This repository contains the **Building Blocks** developed within the
 
 4. [**Personalize Patient**](personalize_patient/)
 
-    [One line description]
+    This building block tailors a given MaBoSS Boolean model to a given RNAseq dataset of interest, for instance from the "Single-cell Processing" building block.
+
 
 5. [**PhysiBoSS**](PhysiBoSS/)
 
-    [One line description]
+    This building block performs a multiscale simulation of a population of cells using PhysiBoSS.
 
 6. [**Print Drug Results**](print_drug_results/)
 
     [One line description]
 
-7. [**Single Cell Processing**](single_cell_processing/)
+7. [**Single-cell Processing**](single_cell_processing/)
 
     [One line description]
 
