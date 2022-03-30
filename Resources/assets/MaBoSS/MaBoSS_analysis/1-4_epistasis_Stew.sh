@@ -5,7 +5,7 @@ other_args=$2
 java -Xmx6000M -cp './BiNoM.jar' fr.curie.BiNoM.pathways.MaBoSS.MaBoSSConfigurationFile -single ${other_args} -c ./${projectname}.cfg -b ./${projectname}.bnd
 cp ./${projectname}.bnd ./${projectname}_mutants/
 cd ${projectname}_mutants/
-sed -i 's:../MaBoSS:MaBoSS:' run.sh
+# sed -i 's:../MaBoSS:MaBoSS:' run.sh
 chmod 755 run.sh
 echo "running MaBoSS instances"
 ./run.sh
