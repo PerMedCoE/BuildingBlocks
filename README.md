@@ -23,7 +23,7 @@ This repository contains the **Building Blocks** developed within the
 
 3. [**Meta Analysis**](meta_analysis/)
 
-    [One line description]
+    This building block performs a meta-analysis to determine which parameters of interest in PhysiBoSS are distributed differently among the patient subgroups.
 
 4. [**Personalize Patient**](personalize_patient/)
 
@@ -40,7 +40,7 @@ This repository contains the **Building Blocks** developed within the
 
 7. [**Single-cell Processing**](single_cell_processing/)
 
-    [One line description]
+    This building block performs the processing and analysis of the single-cell RNA-Seq data from the patients included in the sample.
 
 
 ## License
