@@ -17,7 +17,7 @@ This package provides the Single Cell Processing **Building Block (BB)**.
 
 ## Description
 
-[TO BE COMPLETED]
+This BB performs the processing and analysis of single-cell RNA-Seq data from each patient in the sample.  The first step of the protocol includes quality control, filtering and normalisation of the count matrices at the cellular level. Next, the number of variable genes in each individual is determined and the corresponding scaled matrices are obtained, allowing in the next step the application of dimensionality reduction techniques such as PCA, T-SNE and UMAP. Finally, cells are clustered using graph-based techniques and annotated to their corresponding cell type, enabling subsequent BBs to select and work with the set of cells that are relevant to the disease under study (e.g. epithelial cells in COVID19 disease).
 
 ## User instructions
 
@@ -76,8 +76,8 @@ Where the parameters are:
 
 |        | Parameter        | Type      | Description                                             |
 |--------|------------------|-----------|---------------------------------------------------------|
-| Input  | \<metadata_file> | File      | [TO BE COMPLETED]                                       |
-| Output | \<result_folder> | Directory | [TO BE COMPLETED]                                       |
+| Input  | \<metadata_file> | File      | Sample information                                      |
+| Output | \<result_folder> | Directory | Output folder                                           |
 
 ### Uninstall
 
