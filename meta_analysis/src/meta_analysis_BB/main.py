@@ -9,12 +9,12 @@ from permedcoe import DIRECTORY_IN
 from permedcoe import DIRECTORY_OUT
 
 # Import single container and assets definitions
+from meta_analysis_BB.definitions import META_ANALYSIS_ASSETS_PATH
 from meta_analysis_BB.definitions import META_ANALYSIS_CONTAINER
-from meta_analysis_BB.definitions import META_ANALYSIS_ASSETS
 from meta_analysis_BB.definitions import COMPUTING_UNITS
 
 # Globals
-META_ANALYSIS_BINARY = os.path.join(META_ANALYSIS_ASSETS,
+META_ANALYSIS_BINARY = os.path.join(META_ANALYSIS_ASSETS_PATH,
                                     "meta_analysis.sh")
 
 

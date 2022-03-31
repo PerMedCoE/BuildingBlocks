@@ -12,7 +12,6 @@ This package provides the Meta Analysis **Building Block (BB)**.
     - [Installation](#installation)
     - [Usage](#usage)
     - [Uninstall](#uninstall)
-  - [License](#license)
   - [Contact](#contact)
 
 ## Description
@@ -29,16 +28,14 @@ This BB is designed to analyse the set of simulations generated for each individ
 - `permedcoe` base package: `python3 -m pip install permedcoe`
 
 In addtion to the dependencies, it is necessary to generate the associated
-singularity image ([`meta_analysis.singularity`](../Resources/images/meta_analysis.singularity))
-and the building block asset folder ([`meta_analysis`](../Resources/assets/meta_analysis)),
+singularity image ([`meta_analysis.singularity`](../Resources/images/meta_analysis.singularity)),
 located in the **Resources** folder of this repository.
 
-They **MUST be available and exported in the following environment variables**
+They **MUST be available and exported in the following environment variable**
 before its usage:
 
 ```bash
 export PERMEDCOE_IMAGES="/path/to/images/"
-export PERMEDCOE_ASSETS="/path/to/assets/"
 ```
 
 ### Installation
@@ -48,11 +45,6 @@ This package provides an automatic installation script:
 ```bash
 ./install.sh
 ```
-
-This script creates a file `installation_files.txt` to keep track of the
-installed files.
-It is used with the `uninstall.sh` script to uninstall the Building Block
-from the system.
 
 ### Usage
 
@@ -67,10 +59,12 @@ application, or through the command line for other workflow managers
 The command line is:
 
 ```bash
+META_ANALISIS_ASSETS=$(python3 -c "import meta_analysis_BB; import os; print(os.path.dirname(meta_analysis_BB.__file__))")
+
 meta_analysis_BB -d \
     -i <meta_file> <out_dir> <model_prefix> <ko_file> <reps> <verbose> \
     -o <result_folder> \
-    --mount_point ${PERMEDCOE_ASSETS}/meta_analysis:${PERMEDCOE_ASSETS}/meta_analysis
+    --mount_point ${META_ANALISIS_ASSETS}/assets:${META_ANALISIS_ASSETS}/assets
 ```
 
 Where the parameters are:
@@ -93,10 +87,6 @@ Uninstall can be achieved by executing the following scripts:
 ./uninstall.sh
 ./clean.sh
 ```
-
-## License
-
-[Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
 ## Contact
 
