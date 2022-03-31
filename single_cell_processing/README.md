@@ -12,7 +12,6 @@ This package provides the Single Cell Processing **Building Block (BB)**.
     - [Installation](#installation)
     - [Usage](#usage)
     - [Uninstall](#uninstall)
-  - [License](#license)
   - [Contact](#contact)
 
 ## Description
@@ -28,16 +27,14 @@ This BB performs the processing and analysis of single-cell RNA-Seq data from ea
 - `permedcoe` base package: `python3 -m pip install permedcoe`
 
 In addtion to the dependencies, it is necessary to generate the associated
-singularity image ([`single_cell.singularity`](../Resources/images/single_cell.singularity))
-and the building block asset ([`single_cell`](../Resources/assets/single_cell)
-folder), located in the **Resources** folder of this repository.
+singularity image ([`single_cell.singularity`](../Resources/images/single_cell.singularity)),
+located in the **Resources** folder of this repository.
 
-They **MUST be available and exported in the following environment variables**
+They **MUST be available and exported in the following environment variable**
 before its usage:
 
 ```bash
 export PERMEDCOE_IMAGES="/path/to/images/"
-export PERMEDCOE_ASSETS="/path/to/assets/"
 ```
 
 ### Installation
@@ -47,11 +44,6 @@ This package provides an automatic installation script:
 ```bash
 ./install.sh
 ```
-
-This script creates a file `installation_files.txt` to keep track of the
-installed files.
-It is used with the `uninstall.sh` script to uninstall the Building Block
-from the system.
 
 ### Usage
 
@@ -66,10 +58,12 @@ application, or through the command line for other workflow managers
 The command line is:
 
 ```bash
+SINGLE_CELL_ASSETS=$(python3 -c "import single_cell_processing_BB; import os; print(os.path.dirname(single_cell_processing_BB.__file__))")
+
 single_cell_processing_BB -d \
     -i <p_id> <p_group> <p_file> <parallelize> \
     -o <norm_data> <raw_data> <scaled_data> <cells_metadata> <outdir> \
-    --mount_points ${COVID19_BB_ASSETS}/single_cell/:${COVID19_BB_ASSETS}/single_cell/
+    --mount_points ${SINGLE_CELL_ASSETS}/assets/:${SINGLE_CELL_ASSETS}/assets/
 ```
 
 Where the parameters are:
@@ -94,10 +88,6 @@ Uninstall can be achieved by executing the following scripts:
 ./uninstall.sh
 ./clean.sh
 ```
-
-## License
-
-[Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
 ## Contact
 
