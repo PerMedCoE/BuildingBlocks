@@ -9,24 +9,25 @@ from permedcoe import FILE_IN
 from permedcoe import FILE_OUT
 
 # Import single container and assets definitions
-from maboss_BB.definitions import MABOSS_CONTAINER
-from maboss_BB.definitions import MABOSS_SENSITIVITY_CONTAINER
-from maboss_BB.definitions import MABOSS_ASSETS
-from maboss_BB.definitions import COMPUTING_UNITS
+from MaBoSS_BB.definitions import MABOSS_ASSETS_PATH
+from MaBoSS_BB.definitions import MABOSS_CONTAINER
+from MaBoSS_BB.definitions import MABOSS_SENSITIVITY_CONTAINER
+from MaBoSS_BB.definitions import COMPUTING_UNITS
 
 # Globals
-MABOSS_BINARY = os.path.join(MABOSS_ASSETS, "MaBoSS_analysis.sh")
-MABOSS_SENSITIVIY_ANALYSIS_BINARY = os.path.join(MABOSS_ASSETS, "MaBoSS_sensitivity_analysis.sh")
+MABOSS_BINARY = os.path.join(MABOSS_ASSETS_PATH, "MaBoSS_analysis.sh")
+MABOSS_SENSITIVIY_ANALYSIS_BINARY = os.path.join(
+    MABOSS_ASSETS_PATH, "MaBoSS_sensitivity_analysis.sh"
+)
 
 
 @constraint(computing_units=COMPUTING_UNITS)
 @container(engine="SINGULARITY", image=MABOSS_CONTAINER)
 @binary(binary=MABOSS_BINARY)
 @task(data_folder=DIRECTORY_IN, ko_file=FILE_OUT)
-def MaBoSS_analysis(model="epithelial_cell_2",
-                    data_folder=None,
-                    ko_file=None,
-                    parallel=COMPUTING_UNITS):
+def MaBoSS_analysis(
+    model="epithelial_cell_2", data_folder=None, ko_file=None, parallel=COMPUTING_UNITS
+):
     """
     Performs the MaBoSS analysis.
     Produces the ko file, containing the set of selected gene candidates.
@@ -41,11 +42,15 @@ def MaBoSS_analysis(model="epithelial_cell_2",
 @constraint(computing_units=COMPUTING_UNITS)
 @container(engine="SINGULARITY", image=MABOSS_SENSITIVITY_CONTAINER)
 @binary(binary=MABOSS_SENSITIVIY_ANALYSIS_BINARY)
-@task(model_folder=DIRECTORY_IN, genes_druggable=FILE_IN, genes_target=FILE_IN, result_file=FILE_OUT)
-def MaBoSS_sensitivity_analysis(model_folder=None,
-                                genes_druggable=None,
-                                genes_target=None,
-                                result_file=None):
+@task(
+    model_folder=DIRECTORY_IN,
+    genes_druggable=FILE_IN,
+    genes_target=FILE_IN,
+    result_file=FILE_OUT,
+)
+def MaBoSS_sensitivity_analysis(
+    model_folder=None, genes_druggable=None, genes_target=None, result_file=None
+):
     """
     Performs the MaBoSS analysis.
     Produces the ko file, containing the set of selected gene candidates.
@@ -58,7 +63,7 @@ def MaBoSS_sensitivity_analysis(model_folder=None,
 
 
 def invoke(input, output, config):
-    """ Common interface.
+    """Common interface.
 
     Args:
         input (list): List containing the model and data folder.
@@ -73,11 +78,13 @@ def invoke(input, output, config):
         genes_druggable = input[1]
         genes_target = input[2]
         result_file = output[0]
-        # Building block invokation
-        MaBoSS_sensitivity_analysis(model_folder=model_folder,
-                        genes_druggable=genes_druggable,
-                        genes_target=genes_target,
-                        result_file=result_file)
+        # Building block invocation
+        MaBoSS_sensitivity_analysis(
+            model_folder=model_folder,
+            genes_druggable=genes_druggable,
+            genes_target=genes_target,
+            result_file=result_file,
+        )
 
     else:
         # Process parameters
@@ -85,8 +92,7 @@ def invoke(input, output, config):
         data_folder = input[1]
         parallel = input[2]
         ko_file = output[0]
-        # Building block invokation
-        MaBoSS_analysis(model=model,
-                        data_folder=data_folder,
-                        ko_file=ko_file,
-                        parallel=parallel)
+        # Building block invoCation
+        MaBoSS_analysis(
+            model=model, data_folder=data_folder, ko_file=ko_file, parallel=parallel
+        )

@@ -1,8 +1,7 @@
 import os
 
-# Assets folder for MaBoSS Building Block
-ASSETS_PATH = os.environ["PERMEDCOE_ASSETS"]
-MABOSS_ASSETS = os.path.join(ASSETS_PATH, "MaBoSS")
+# Assets folder within the Building Block
+MABOSS_ASSETS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets")
 
 # Container definition for MaBoSS Building Block
 CONTAINER_PATH = os.environ["PERMEDCOE_IMAGES"]

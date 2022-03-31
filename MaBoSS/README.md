@@ -12,7 +12,6 @@ This package provides the MaBoSS **Building Block (BB)**.
     - [Installation](#installation)
     - [Usage](#usage)
     - [Uninstall](#uninstall)
-  - [License](#license)
   - [Contact](#contact)
 
 ## Description
@@ -29,8 +28,8 @@ More information in MaBoSS can be found in the work [Stoll, G. et al. (2017) MaB
 - `permedcoe` base package: `python3 -m pip install permedcoe`
 
 In addtion to the dependencies, it is necessary to generate the associated
-singularity images ([`MaBoSS.singularity`](../Resources/images/MaBoSS.singularity) and [MaBoSS_sensitivity.singularity](../Resources/images/MaBoSS_sensitivity.singularity))
-and the building block asset folder ([`MaBoSS`](../Resources/assets/MaBoSS)),
+singularity images ([`MaBoSS.singularity`](../Resources/images/MaBoSS.singularity) and
+[MaBoSS_sensitivity.singularity](../Resources/images/MaBoSS_sensitivity.singularity)),
 located in the **Resources** folder of this repository.
 
 They **MUST be available and exported respectively in the following environment variables**
@@ -38,7 +37,6 @@ before its usage:
 
 ```bash
 export PERMEDCOE_IMAGES="/path/to/images/"
-export PERMEDCOE_ASSETS="/path/to/assets/"
 ```
 
 ### Installation
@@ -48,11 +46,6 @@ This package provides an automatic installation script:
 ```bash
 ./install.sh
 ```
-
-This script creates a file `installation_files.txt` to keep track of the
-installed files.
-It is used with the `uninstall.sh` script to uninstall the Building Block
-from the system.
 
 ### Usage
 
@@ -67,10 +60,12 @@ application, or through the command line for other workflow managers
 The command line is:
 
 ```bash
-maboss_BB -d \
+MABOSS_ASSETS=$(python3 -c "import MaBoSS_BB; import os; print(os.path.dirname(MaBoSS_BB.__file__))")
+
+MaBoSS_BB -d \
     -i <prefix> <data_folder> <parallel> \
     -o <ko_file> \
-    --mount_point ${PERMEDCOE_ASSETS}/MaBoSS:${PERMEDCOE_ASSETS}/MaBoSS
+    --mount_point ${MABOSS_ASSETS}/assets:${MABOSS_ASSETS}/assets
 ```
 
 Where the parameters are:
@@ -87,11 +82,13 @@ Alternatively, it can be used to perform sensitivity analysis:
 The command line is:
 
 ```bash
-maboss_BB -d \
+MABOSS_ASSETS=$(python3 -c "import MaBoSS_BB; import os; print(os.path.dirname(MaBoSS_BB.__file__))")
+
+MaBoSS_BB -d \
     -i <model_folder> <genes_druggable> <genes_target> \
     -o <result_file> \
     -c <config_file> \
-    --mount_point ${PERMEDCOE_ASSETS}/MaBoSS:${PERMEDCOE_ASSETS}/MaBoSS
+    --mount_point ${MABOSS_ASSETS}/assets:${MABOSS_ASSETS}/assets
 ```
 
 Where the parameters are:
@@ -112,10 +109,6 @@ Uninstall can be achieved by executing the following scripts:
 ./uninstall.sh
 ./clean.sh
 ```
-
-## License
-
-[Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
 ## Contact
 

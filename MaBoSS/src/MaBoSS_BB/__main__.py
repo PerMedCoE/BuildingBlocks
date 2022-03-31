@@ -4,7 +4,7 @@ NOTE: Do not modify this file unless you want to change the name
 """
 
 from permedcoe import invoker
-from maboss_BB.main import invoke
+from MaBoSS_BB.main import invoke
 
 
 def main():
