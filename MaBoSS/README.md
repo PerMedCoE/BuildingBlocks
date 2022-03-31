@@ -32,7 +32,7 @@ singularity images ([`MaBoSS.singularity`](../Resources/images/MaBoSS.singularit
 [MaBoSS_sensitivity.singularity](../Resources/images/MaBoSS_sensitivity.singularity)),
 located in the **Resources** folder of this repository.
 
-They **MUST be available and exported respectively in the following environment variables**
+They **MUST be available and exported respectively in the following environment variable**
 before its usage:
 
 ```bash
