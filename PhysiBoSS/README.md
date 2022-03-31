@@ -12,12 +12,11 @@ This package provides the PhysiBoSS **Building Block (BB)**.
     - [Installation](#installation)
     - [Usage](#usage)
     - [Uninstall](#uninstall)
-  - [License](#license)
   - [Contact](#contact)
 
 ## Description
 
-In this building block we perform a multiscale simulation of a population of cells using PhysiBoSS. 
+In this building block we perform a multiscale simulation of a population of cells using PhysiBoSS.
 The tool uses the different Boolean models personalized by the "Personalize patient" building block and with the mutants selected by the "High-throughput mutant analysis" building block.
 More information on this tool can be found in the work ["Ponce-de-Leon,M. et al. (2022) PhysiBoSS 2.0: a sustainable integration of stochastic Boolean and agent-based modelling frameworks. bioRxiv, 2022.01.06.468363."](https://www.biorxiv.org/content/10.1101/2022.01.06.468363v1) and its code can be found in [its GitHub repository](https://github.com/PhysiBoSS/PhysiBoSS).
 
@@ -30,16 +29,14 @@ More information on this tool can be found in the work ["Ponce-de-Leon,M. et al.
 - `permedcoe` base package: `python3 -m pip install permedcoe`
 
 In addtion to the dependencies, it is necessary to generate the associated
-singularity image ([`PhysiCell-COVID19.singularity`](../Resources/images/PhysiCell-COVID19.singularity))
-and the building block asset folder ([`PhysiBoSS`](../Resources/assets/PhysiBoSS)),
+singularity image ([`PhysiCell-COVID19.singularity`](../Resources/images/PhysiCell-COVID19.singularity)),
 located in the **Resources** folder of this repository.
 
-They **MUST be available and exported in the following environment variables**
+They **MUST be available and exported in the following environment variable**
 before its usage:
 
 ```bash
 export PERMEDCOE_IMAGES="/path/to/images/"
-export PERMEDCOE_ASSETS="/path/to/assets/"
 ```
 
 ### Installation
@@ -49,11 +46,6 @@ This package provides an automatic installation script:
 ```bash
 ./install.sh
 ```
-
-This script creates a file `installation_files.txt` to keep track of the
-installed files.
-It is used with the `uninstall.sh` script to uninstall the Building Block
-from the system.
 
 ### Usage
 
@@ -68,10 +60,12 @@ application, or through the command line for other workflow managers
 The command line is:
 
 ```bash
-physiboss_BB -d \
-      -i <sample> <repetition> <prefix> <bnd_file> <cfg_file> <parallel> \
-      -o  <out_file> <err_file> <results_dir> \
-      --mount_points ${COVID19_BB_ASSETS}/PhysiBoSS/:${COVID19_BB_ASSETS}/PhysiBoSS/
+PHYSIBOSS_ASSETS=$(python3 -c "import PhysiBoSS_BB; import os; print(os.path.dirname(PhysiBoSS_BB.__file__))")
+
+PhysiBoSS_BB -d \
+      -i <sample> <repetition> <prefix> <bnd_file> <cfg_file> \
+      -o  <out_file> <err_file> \
+      --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/
 ```
 
 Where the parameters are:
@@ -96,10 +90,6 @@ Uninstall can be achieved by executing the following scripts:
 ./uninstall.sh
 ./clean.sh
 ```
-
-## License
-
-[Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
 ## Contact
 

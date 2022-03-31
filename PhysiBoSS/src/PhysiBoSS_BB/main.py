@@ -10,27 +10,34 @@ from permedcoe import DIRECTORY_IN
 from permedcoe import DIRECTORY_OUT
 
 # Import single container and assets definitions
-from physiboss_BB.definitions import PHYSIBOSS_CONTAINER
-from physiboss_BB.definitions import PHYSIBOSS_ASSETS
-from physiboss_BB.definitions import COMPUTING_UNITS
+from PhysiBoSS_BB.definitions import PHYSIBOSS_ASSETS_PATH
+from PhysiBoSS_BB.definitions import PHYSIBOSS_CONTAINER
+from PhysiBoSS_BB.definitions import COMPUTING_UNITS
 
 # Globals# Globals
-PHYSIBOSS_BINARY = os.path.join(PHYSIBOSS_ASSETS, "PhysiBoSS.sh")
-PHYSIBOSS_MODEL_BINARY = os.path.join(PHYSIBOSS_ASSETS, "PhysiBoSS_model.sh")
+PHYSIBOSS_BINARY = os.path.join(PHYSIBOSS_ASSETS_PATH, "PhysiBoSS.sh")
+PHYSIBOSS_MODEL_BINARY = os.path.join(PHYSIBOSS_ASSETS_PATH, "PhysiBoSS_model.sh")
 
 
 @constraint(computing_units=COMPUTING_UNITS)
 @container(engine="SINGULARITY", image=PHYSIBOSS_CONTAINER)
 @binary(binary=PHYSIBOSS_MODEL_BINARY)
-@task(model_dir=DIRECTORY_IN, out_file=FILE_OUT, err_file=FILE_OUT, results_dir=DIRECTORY_OUT)
-def physiboss_model(sample="C141",
-                    repetition=1,
-                    prefix="epithelial_cell_2_personalized",
-                    model_dir=None,
-                    out_file=None,
-                    err_file=None,
-                    results_dir=None,
-                    parallel=COMPUTING_UNITS):
+@task(
+    model_dir=DIRECTORY_IN,
+    out_file=FILE_OUT,
+    err_file=FILE_OUT,
+    results_dir=DIRECTORY_OUT,
+)
+def physiboss_model(
+    sample="C141",
+    repetition=1,
+    prefix="epithelial_cell_2_personalized",
+    model_dir=None,
+    out_file=None,
+    err_file=None,
+    results_dir=None,
+    parallel=COMPUTING_UNITS,
+):
     """
     Performs the PhysiCell + MaBoSS analysis.
 
@@ -46,16 +53,24 @@ def physiboss_model(sample="C141",
 @constraint(computing_units=COMPUTING_UNITS)
 @container(engine="SINGULARITY", image=PHYSIBOSS_CONTAINER)
 @binary(binary=PHYSIBOSS_BINARY)
-@task(bnd_file=FILE_IN, cfg_file=FILE_IN, out_file=FILE_OUT, err_file=FILE_OUT, results_dir=DIRECTORY_OUT)
-def physiboss(sample="C141",
-              repetition=1,
-              prefix="epithelial_cell_2_personalized",
-              bnd_file=None,
-              cfg_file=None,
-              out_file=None,
-              err_file=None,
-              results_dir=None,
-              parallel=COMPUTING_UNITS):
+@task(
+    bnd_file=FILE_IN,
+    cfg_file=FILE_IN,
+    out_file=FILE_OUT,
+    err_file=FILE_OUT,
+    results_dir=DIRECTORY_OUT,
+)
+def physiboss(
+    sample="C141",
+    repetition=1,
+    prefix="epithelial_cell_2_personalized",
+    bnd_file=None,
+    cfg_file=None,
+    out_file=None,
+    err_file=None,
+    results_dir=None,
+    parallel=COMPUTING_UNITS,
+):
     """
     Performs the PhysiCell + MaBoSS analysis.
 
@@ -68,9 +83,8 @@ def physiboss(sample="C141",
     pass
 
 
-
 def invoke(input, output, config):
-    """ Common interface.
+    """Common interface.
 
     Args:
         input (list): List containing the sample label, number of repetitions,
@@ -91,12 +105,14 @@ def invoke(input, output, config):
     err_file = output[1]
     results_dir = output[2]
     # Building block invocation
-    physiboss(sample=sample,
-              repetition=repetition,
-              prefix=prefix,
-              bnd_file=bnd_file,
-              cfg_file=cfg_file,
-              out_file=out_file,
-              err_file=err_file,
-              results_dir=results_dir,
-              parallel=parallel)
+    physiboss(
+        sample=sample,
+        repetition=repetition,
+        prefix=prefix,
+        bnd_file=bnd_file,
+        cfg_file=cfg_file,
+        out_file=out_file,
+        err_file=err_file,
+        results_dir=results_dir,
+        parallel=parallel,
+    )
