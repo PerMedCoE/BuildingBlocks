@@ -9,14 +9,14 @@ from permedcoe import FILE_OUT
 from permedcoe import DIRECTORY_OUT
 
 # Import single container and assets definitions
+from personalize_patient_BB.definitions import PERSONALIZE_PATIENT_ASSETS_PATH
 from personalize_patient_BB.definitions import PERSONALIZE_PATIENT_CONTAINER
-from personalize_patient_BB.definitions import PERSONALIZE_PATIENT_ASSETS
 from personalize_patient_BB.definitions import COMPUTING_UNITS
 
 # Globals
-PERSONALIZE_PATIENT_BINARY = os.path.join(PERSONALIZE_PATIENT_ASSETS,
+PERSONALIZE_PATIENT_BINARY = os.path.join(PERSONALIZE_PATIENT_ASSETS_PATH,
                                           "personalize_patient.sh")
-PERSONALIZE_CELLLINE_BINARY = os.path.join(PERSONALIZE_PATIENT_ASSETS,
+PERSONALIZE_CELLLINE_BINARY = os.path.join(PERSONALIZE_PATIENT_ASSETS_PATH,
                                            "personalize_cellline.sh")
 
 
