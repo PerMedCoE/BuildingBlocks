@@ -8,12 +8,12 @@ from permedcoe import FILE_IN
 from permedcoe import FILE_OUT
 
 # Import container definition
-from carnival_gex_preprocess_BB.definitions import CARNIVAL_GEX_PREPROCESS_CONTAINER
-from carnival_gex_preprocess_BB.definitions import COMPUTING_UNITS
+from ml_jax_drug_prediction_BB.definitions import ML_JAX_DRUG_PREDICTION_CONTAINER
+from ml_jax_drug_prediction_BB.definitions import COMPUTING_UNITS
 
 
 @constraint(computing_units=COMPUTING_UNITS)
-@container(engine="SINGULARITY", image=CARNIVAL_GEX_PREPROCESS_CONTAINER)
+@container(engine="SINGULARITY", image=ML_JAX_DRUG_PREDICTION_CONTAINER)
 @binary(binary="/opt/conda/bin/python /opt/ml.py")
 @task(input_file=FILE_IN, output_file=FILE_OUT)
 def ml(input_file=None, output_file=None,
@@ -79,7 +79,7 @@ def invoke(input, output, config):
     test_drugs = input[7]
     test_cells = input[8]
     output_file = output[0]
-    # Building block invokation
+    # Building block invocation
     ml(input_file=input_file,
        output_file=output_file,
        drug_features=drug_features,

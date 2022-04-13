@@ -2,10 +2,6 @@
 
 echo "Uninstalling..."
 
-# python3 -m pip uninstall covid19_BBs
-
-xargs rm -rf < installed_files.txt
-
-rm installed_files.txt
+python3 -m pip uninstall -y ml-jax-drug-prediction-BB
 
 echo "----- Uninstall finished -----"

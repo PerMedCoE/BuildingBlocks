@@ -4,7 +4,7 @@ NOTE: Do not modify this file unless you want to change the name
 """
 
 from permedcoe import invoker
-from .main import invoke
+from omnipath_BB.main import invoke
 
 
 def main():

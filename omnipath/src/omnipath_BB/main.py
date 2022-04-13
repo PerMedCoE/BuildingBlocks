@@ -40,6 +40,6 @@ def invoke(input, output, config):
     # Process parameters
     input_file = input[0]
     output_file = output[0]
-    # Building block invokation
+    # Building block invocation
     omnipath(input_file=input_file,
              output_file=output_file)

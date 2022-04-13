@@ -1,6 +1,6 @@
 import os
 
-# Container definition for Carnival Building Block
+# Container definition for Omnipath Building Block
 CONTAINER_PATH = os.environ["PERMEDCOE_IMAGES"]
 OMNIPATH_CONTAINER = CONTAINER_PATH + "toolset.sif"
 

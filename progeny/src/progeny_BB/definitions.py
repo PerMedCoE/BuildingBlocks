@@ -1,6 +1,6 @@
 import os
 
-# Container definition for Carnival Building Block
+# Container definition for Progeny Building Block
 CONTAINER_PATH = os.environ["PERMEDCOE_IMAGES"]
 PROGENY_CONTAINER = CONTAINER_PATH + "toolset.sif"
 

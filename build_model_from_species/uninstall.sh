@@ -2,6 +2,6 @@
 
 echo "Uninstalling..."
 
-python3 -m pip uninstall -y build_model_from_species-BB
+python3 -m pip uninstall -y build-model-from-species-BB
 
 echo "----- Uninstall finished -----"

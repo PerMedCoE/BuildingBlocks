@@ -1,6 +1,3 @@
-from math import perm
-import os
-
 from permedcoe import constraint
 from permedcoe import container
 from permedcoe import binary
@@ -82,7 +79,7 @@ def invoke(input, output, config):
     zscore = input[8]
     verbose = input[9]
     output_file = output[0]
-    # Building block invokation
+    # Building block invocation
     progeny(input_file=input_file,
             output_file=output_file,
             organism=organism,

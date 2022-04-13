@@ -1,10 +1,10 @@
-# Progeny Building Block
+# progeny Building Block
 
-This package provides the Progeny **Building Block (BB)**.
+This package provides the progeny **Building Block (BB)**.
 
 ## Table of Contents
 
-- [Progeny Building Block](#progeny-building-block)
+- [progeny Building Block](#progeny-building-block)
   - [Table of Contents](#table-of-contents)
   - [Description](#description)
   - [User instructions](#user-instructions)
@@ -28,9 +28,10 @@ This package provides the Progeny **Building Block (BB)**.
 - `permedcoe` base package: `python3 -m pip install permedcoe`
 
 In addition to the dependencies, it is necessary to generate the associated
-singularity image ([`toolset.singularity`](../Resources/images/toolset.singularity)).
+singularity image ([`toolset.singularity`](../Resources/images/toolset.singularity)),
+located in the **Resources** folder of this repository.
 
-They **MUST be available and exported respectively in the following environment variables**
+They **MUST be available and exported respectively in the following environment variable**
 before its usage:
 
 ```bash
@@ -44,11 +45,6 @@ This package provides an automatic installation script:
 ```bash
 ./install.sh
 ```
-
-This script creates a file `installation_files.txt` to keep track of the
-installed files.
-It is used with the `uninstall.sh` script to uninstall the Building Block
-from the system.
 
 ### Usage
 

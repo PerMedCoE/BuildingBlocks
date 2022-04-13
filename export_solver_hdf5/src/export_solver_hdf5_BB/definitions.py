@@ -1,6 +1,6 @@
 import os
 
-# Container definition for Carnival Building Block
+# Container definition for Export Solver HDF5 Building Block
 CONTAINER_PATH = os.environ["PERMEDCOE_IMAGES"]
 EXPORT_SOLVER_HDF5_CONTAINER = CONTAINER_PATH + "toolset.sif"
 
