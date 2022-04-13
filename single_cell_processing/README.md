@@ -55,7 +55,7 @@ from the system.
 
 ### Usage
 
-The `single_cell_processing` package provides a clear interface that allows
+The `single_cell_processing_BB` package provides a clear interface that allows
 it to be used with multiple workflow managers (e.g. PyCOMPSs, NextFlow and
 Snakemake).
 
@@ -66,18 +66,25 @@ application, or through the command line for other workflow managers
 The command line is:
 
 ```bash
-single_cell_processing -d \
-    -i <metadata_file(tsv)> \
-    -o <result_folder> \
+single_cell_processing_BB -d \
+    -i <p_id> <p_group> <p_file> <parallelize> \
+    -o <norm_data> <raw_data> <scaled_data> <cells_metadata> <outdir> \
     --mount_points ${COVID19_BB_ASSETS}/single_cell/:${COVID19_BB_ASSETS}/single_cell/
 ```
 
 Where the parameters are:
 
-|        | Parameter        | Type      | Description                                             |
-|--------|------------------|-----------|---------------------------------------------------------|
-| Input  | \<metadata_file> | File      | Sample information                                      |
-| Output | \<result_folder> | Directory | Output folder                                           |
+|        | Parameter         | Type      | Description                                             |
+|--------|-------------------|-----------|---------------------------------------------------------|
+| Input  | \<p_id>           | String    | [TO BE COMPLETED]                                       |
+| Input  | \<p_group>        | String    | [TO BE COMPLETED]                                       |
+| Input  | \<p_file>         | File      | [TO BE COMPLETED]                                       |
+| Input  | \<parallelize>    | Int       | Internal parallelism                                    |
+| Output | \<norm_data>      | File      | [TO BE COMPLETED]                                       |
+| Output | \<raw_data>       | File      | [TO BE COMPLETED]                                       |
+| Output | \<scaled_data>    | File      | [TO BE COMPLETED]                                       |
+| Output | \<cells_metadata> | File      | [TO BE COMPLETED]                                       |
+| Output | \<outdir>         | Directory | [TO BE COMPLETED]                                       |
 
 ### Uninstall
 

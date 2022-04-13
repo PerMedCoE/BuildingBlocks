@@ -81,7 +81,7 @@ Where the parameters are:
 | Input  | \<out_dir>         | Directory | Simulations output folder                               |
 | Input  | \<model_prefix>    | String    | Prefix of the boolean model used in the simulations     |
 | Input  | \<ko_file>         | File      | Evaluated gene KOs                                      |
-| Input  | \<reps>            | Int       | Number of replicat                                      |
+| Input  | \<reps>            | Int       | Number of replicas                                      |
 | Input  | \<verbose>         | String    | Verbose level                                           |
 | Output | \<result_folder>   | Directory | Output folder                                           |
 

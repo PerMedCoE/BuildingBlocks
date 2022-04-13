@@ -69,22 +69,24 @@ The command line is:
 
 ```bash
 physiboss_BB -d \
-      -i <sample> <repetition> <prefix> <bnd_file> <cfg_file> \
-      -o  <out_file> <err_file>\
+      -i <sample> <repetition> <prefix> <bnd_file> <cfg_file> <parallel> \
+      -o  <out_file> <err_file> <results_dir> \
       --mount_points ${COVID19_BB_ASSETS}/PhysiBoSS/:${COVID19_BB_ASSETS}/PhysiBoSS/
 ```
 
 Where the parameters are:
 
-|        | Parameter      | Type   | Description                                             |
-|--------|----------------|--------|---------------------------------------------------------|
-| Input  | \<sample>      | String | patient's identificator |
-| Input  | \<repetition>  | Int    | number of repetition to be performed |
-| Input  | \<prefix>      | String | name of the model |
-| Input  | \<bnd_file>    | File   | name of the model's BND file |
-| Input  | \<cfg_file>    | File   | name of the model's CFG file |
-| Output | \<out_file>    | File   | main output of the PhysiBoSS run |
-| Output | \<err_file>    | File   | error output of the PhysiBoSS run |
+|        | Parameter      | Type      | Description                           |
+|--------|----------------|-----------|---------------------------------------|
+| Input  | \<sample>      | String    | Patient's identifier                  |
+| Input  | \<repetition>  | Int       | Number of repetition to be performed  |
+| Input  | \<prefix>      | String    | Name of the model                     |
+| Input  | \<bnd_file>    | File      | Name of the model's BND file          |
+| Input  | \<cfg_file>    | File      | Name of the model's CFG file          |
+| Input  | \<parallel>    | Int       | Internal parallelism                  |
+| Output | \<out_file>    | File      | Main output of the PhysiBoSS run      |
+| Output | \<err_file>    | File      | Error output of the PhysiBoSS run     |
+| Output | \<results_dir> | Directory | Results directory                     |
 
 ### Uninstall
 

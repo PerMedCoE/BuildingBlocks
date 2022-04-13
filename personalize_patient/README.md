@@ -70,22 +70,47 @@ The command line is:
 
 ```bash
 personalize_patient_BB -d \
-      -i <normalized_data_file> <cells_metadata> <data_folder> <model_prefix> <prefix> <ko_file> \
-      -o <result_folder> \
-      --mount_points ${COVID19_BB_ASSETS}/personalize_patient/:${COVID19_BB_ASSETS}/personalize_patient/,<data_folder>:<data_folder>
+      -i <normalized_data> <cells_metadata> <model_prefix> <t> <ko_file> \
+      -o <model_ouput_dir> <personalized_result> \
+      --mount_points ${COVID19_BB_ASSETS}/personalize_patient/:${COVID19_BB_ASSETS}/personalize_patient/
 ```
 
 Where the parameters are:
 
-|        | Parameter               | File      | Description                                             |
-|--------|-------------------------|-----------|---------------------------------------------------------|
-| Input  | \<normalized_data_file> | File      | tsv of the normalized RNAseq data |
-| Input  | \<cells_metadata>       | File      | tsv of the different patients to be analysed with their clinical information|
-| Input  | \<data_folder>          | Directory | folder where the source data is located |
-| Input  | \<model_prefix>         | String    | prefix that describes the model |
-| Input  | \<prefix>               | String    | prefix that describe the patient |
-| Input  | \<ko_file>              | File      | file result of the "High-throughput mutant analysis" (aka MaBoSS) building block |
-| Output | \<result_folder>        | Directory | folder where the results will be located |
+|        | Parameter              | File      | Description                                                                      |
+|--------|------------------------|-----------|----------------------------------------------------------------------------------|
+| Input  | \<normalized_data>     | File      | tsv of the normalized RNAseq data                                                |
+| Input  | \<cells_metadata>      | File      | tsv of the different patients to be analyzed with their clinical information     |
+| Input  | \<model_prefix>        | String    | Prefix that describes the model                                                  |
+| Input  | \<t>                   | String    | [TO BE COMPLETED]                                                                |
+| Input  | \<ko_file>             | File      | File result of the "High-throughput mutant analysis" (aka MaBoSS) building block |
+| Output | \<result_folder>       | Directory | Folder where the results will be located                                         |
+| Output | \<personalized_result> | Directory | [TO BE COMPLETED]                                                                |
+
+Alternatively, it can be used to perform patient personalize cellline:
+
+The command line is:
+
+```bash
+personalize_patient_BB -d \
+      -i <expression> <cnv> <mutation> <cell_type> <model_bnd> <model_cfg> \
+      -o <model_ouput_dir> \
+      -c <config_file> \
+      --mount_points ${COVID19_BB_ASSETS}/personalize_patient/:${COVID19_BB_ASSETS}/personalize_patient/
+```
+
+Where the parameters are:
+
+|        | Parameter              | File      | Description                                                                      |
+|--------|------------------------|-----------|----------------------------------------------------------------------------------|
+| Input  | \<expression>          | String    | [TO BE COMPLETED]                                                                |
+| Input  | \<cnv>                 | String    | [TO BE COMPLETED]                                                                |
+| Input  | \<mutation>            | String    | [TO BE COMPLETED]                                                                |
+| Input  | \<cell_type>           | String    | [TO BE COMPLETED]                                                                |
+| Input  | \<model_bnd>           | File      | [TO BE COMPLETED]                                                                |
+| Input  | \<model_cfg>           | File      | [TO BE COMPLETED]                                                                |
+| Output | \<result_folder>       | Directory | Folder where the results will be located                                         |
+| Config | \<config_file>     | File      | Config file (yaml format containing "uc2" key)          |
 
 ### Uninstall
 

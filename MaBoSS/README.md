@@ -4,7 +4,7 @@ This package provides the MaBoSS **Building Block (BB)**.
 
 ## Table of Contents
 
-- [MaBoSS Building Block](#maboss-building-block)
+- [High-throughput mutant analysis Building Block](#high-throughput-mutant-analysis-building-block)
   - [Table of Contents](#table-of-contents)
   - [Description](#description)
   - [User instructions](#user-instructions)
@@ -68,7 +68,7 @@ The command line is:
 
 ```bash
 maboss_BB -d \
-    -i <prefix> <data_folder> \
+    -i <prefix> <data_folder> <parallel> \
     -o <ko_file> \
     --mount_point ${PERMEDCOE_ASSETS}/MaBoSS:${PERMEDCOE_ASSETS}/MaBoSS
 ```
@@ -77,9 +77,32 @@ Where the parameters are:
 
 |        | Parameter          | Type      | Description                                             |
 |--------|--------------------|-----------|---------------------------------------------------------|
-| Input  | \<prefix>          | String    | name of the model                                       |
-| Input  | \<data_folder>     | Directory | fodler where the model files are located |
-| Output | \<ko_file>         | File      | name of the output file with the knock-out candidates |
+| Input  | \<prefix>          | String    | Name of the model                                       |
+| Input  | \<data_folder>     | Directory | Folder where the model files are located                |
+| Input  | \<parallel>        | Int       | Internal parallelism                                    |
+| Output | \<ko_file>         | File      | Name of the output file with the knock-out candidates   |
+
+Alternatively, it can be used to perform sensitivity analysis:
+
+The command line is:
+
+```bash
+maboss_BB -d \
+    -i <model_folder> <genes_druggable> <genes_target> \
+    -o <result_file> \
+    -c <config_file> \
+    --mount_point ${PERMEDCOE_ASSETS}/MaBoSS:${PERMEDCOE_ASSETS}/MaBoSS
+```
+
+Where the parameters are:
+
+|        | Parameter          | Type      | Description                                             |
+|--------|--------------------|-----------|---------------------------------------------------------|
+| Input  | \<model_folder>    | Directory | Folder that contains the model                          |
+| Input  | \<genes_druggable> | String    | Druggable genes                                         |
+| Input  | \<genes_target>    | String    | Target genes                                            |
+| Output | \<result_file>     | File      | Result file path                                        |
+| Config | \<config_file>     | File      | Config file (yaml format containing "uc2" key)          |
 
 ### Uninstall
 
