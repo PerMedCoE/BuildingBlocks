@@ -18,8 +18,7 @@ setup(
     author_email="infoPerMedCoE@bsc.es",
     classifiers=[
         "Development Status :: 5 - Production/Stable",
-        # Pick your license as you wish
-        # "License :: OSI Approved :: MIT License",
+        "License :: OSI Approved :: Apache Software License"
         "Intended Audience :: Science/Research"
         "Operating System :: Unix"
         "Operating System :: POSIX :: Linux"

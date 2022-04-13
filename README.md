@@ -8,6 +8,7 @@ This repository contains the **Building Blocks** developed within the
 - [PerMedCoE Building Blocks' Catalogue](#permedcoe-building-blocks-catalogue)
   - [Table of Contents](#table-of-contents)
   - [List of Building Blocks](#list-of-building-blocks)
+  - [License](#license)
   - [Contact](#contact)
 
 ## List of Building Blocks
@@ -32,6 +33,10 @@ This repository contains the **Building Blocks** developed within the
 5. [**Single-cell Processing**](single_cell_processing/)
 
     This building block performs the processing and analysis of the single-cell RNA-Seq data from the patients included in the sample.
+
+## License
+
+[Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
 ## Contact
 
