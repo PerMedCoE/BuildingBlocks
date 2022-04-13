@@ -100,7 +100,7 @@ def invoke(input, output, config):
         None
     """
 
-    if "uc2" in config.keys() and config["uc2"]:
+    if config and "uc2" in config.keys() and config["uc2"]:
         expression = input[0]
         cnv = input[1]
         mutation = input[2]

@@ -67,7 +67,7 @@ def invoke(input, output, config):
     Returns:
         None
     """
-    if ("uc2" in config.keys() and config["uc2"]):
+    if config and "uc2" in config.keys() and config["uc2"]:
         # Process parameters
         model_folder = input[0]
         genes_druggable = input[1]
