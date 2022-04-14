@@ -13,11 +13,6 @@ from print_drug_results_BB.definitions import PRINT_DRUG_RESULTS_CONTAINER
 from print_drug_results_BB.definitions import PRINT_DRUG_RESULTS_ASSETS_PATH
 from print_drug_results_BB.definitions import COMPUTING_UNITS
 
-try:
-    from pycompss.api.parameter import COLLECTION_IN
-except ImportError:
-    COLLECTION_IN = None
-
 # Globals
 PRINT_DRUG_RESULTS_BINARY = os.path.join(PRINT_DRUG_RESULTS_ASSETS_PATH,
                                          "print_result_drugs.sh")
@@ -29,7 +24,7 @@ PRINT_DRUG_RESULTS_BINARY = os.path.join(PRINT_DRUG_RESULTS_ASSETS_PATH,
 def print_drug_results_parallelized(cell_lines, result_files, report_folder):
     """
     Python code that processes the drug results and implements an inner
-    PyCOMPSs worflow.
+    PyCOMPSs workflow.
     """
     print("Cell lines: " + str(cell_lines))
     results = []
@@ -44,7 +39,7 @@ def print_drug_results_parallelized(cell_lines, result_files, report_folder):
     merged_mutants = merge_reduce(merge_mutants, mutants)
     merged_targets = merge_reduce(merge_targets, targets)
 
-    dfs = create_dfs(merged_mutants, merged_targets, cell_lines, results)
+    dfs = create_dfs(merged_mutants, merged_targets, cell_lines, *results)
 
     print_results(dfs, report_folder)
 
@@ -95,8 +90,8 @@ def get_mutant_target(result):
     return mutant, target
 
 @container(engine="SINGULARITY", image=PRINT_DRUG_RESULTS_CONTAINER)
-@task(returns=1, results=COLLECTION_IN)
-def create_dfs(mutants, targets, cell_lines, results):
+@task(returns=1)
+def create_dfs(mutants, targets, cell_lines, *results):
     import numpy, pandas
     dfs = {}
     for target in targets:

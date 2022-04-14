@@ -14,10 +14,10 @@ parser.add_argument("bnd_file", type=str,
 parser.add_argument("cfg_file", type=str,
                     help="Output model cfg file")
                     
-parser.add_argument("--list-genes", type=str,
+parser.add_argument("--list-genes", "-list-genes", type=str,
                     help="Input as list of gene")
                     
-parser.add_argument("--sif-file", type=str,
+parser.add_argument("--sif-file", "-sif-file", type=str,
                     help="Input as a sif network file")
 
 args = parser.parse_args()

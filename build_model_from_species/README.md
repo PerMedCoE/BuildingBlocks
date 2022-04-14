@@ -59,13 +59,13 @@ application, or through the command line for other workflow managers
 The command line is:
 
 ```bash
-BUILD_MODEL_FROM_SPECIES_ASSETS=$(python3 -c "import print_drug_results_BB; import os; print(os.path.dirname(print_drug_results_BB.__file__))")
+BUILD_MODEL_FROM_SPECIES_ASSETS=$(python3 -c "import build_model_from_species_BB; import os; print(os.path.dirname(build_model_from_species_BB.__file__))")
 
 build_model_from_species_BB -d \
     -i <input_file> \
     -o <output_bnd_file> <output_cfg_file> \
     -c <config_file> \
-    --mount_point ${BUILD_MODEL_FROM_SPECIES_ASSETS}/assets:${BUILD_MODEL_FROM_SPECIES_ASSETS}/assets
+    --mount_point ${PERSONALIZE_PATIENT_ASSETS}/assets:${PERSONALIZE_PATIENT_ASSETS}/assets
 ```
 
 Where the parameters are:
