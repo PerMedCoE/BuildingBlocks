@@ -6,5 +6,8 @@ From: ./single_cell.sif
     XML_3.99-0.7.tar.gz
 
 %post
+    cd /tmp/
+    wget https://cran.rstudio.org/src/contrib/Archive/rmatio/rmatio_0.15.0.tar.gz
+    wget https://cran.r-project.org/src/contrib/Archive/XML/XML_0.99-7.tar.gz
     R CMD INSTALL -- build rmatio_0.15.0.tar.gz
     R CMD INSTALL -- build XML_3.99-0.7.tar.gz 
