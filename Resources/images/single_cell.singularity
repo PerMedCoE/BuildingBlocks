@@ -31,4 +31,3 @@ Stage: build
 
 %runscript
     exec /bin/bash "$@"
-

@@ -7,7 +7,7 @@ Stage: build
 
 %post
     apt-get update -y
-    DEBIAN_FRONTEND=noninteractive apt-get install -yq r-base default-jre default-jdk git flex bison python pip wget
+    DEBIAN_FRONTEND=noninteractive apt-get install -yq r-base default-jre default-jdk git flex bison python-is-python3 pip wget
     (cd /usr/local; mkdir scm; cd scm; git clone https://github.com/sysbio-curie/MaBoSS-env-2.0.git -b v2.4.1; cd MaBoSS-env-2.0/engine/src; make && make install)
     (cd /usr/local/bin; ln -s /usr/local/scm/MaBoSS-env-2.0/engine/pub/* .)
     mkdir /usr/local/jar
