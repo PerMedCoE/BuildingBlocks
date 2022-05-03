@@ -19,7 +19,7 @@ cfg_file=${model_dir}/${prefix}.cfg
 # Do a copy of PhysiBoSS folder for the current execution
 user=$(whoami)
 physiboss_folder="PhysiBoSS_${sample}_${prefix}_${repetition}_${user}"
-cp -r PhysiBoSS ${physiboss_folder}
+cp -r /usr/local/scm/COVID19/PhysiCell ${physiboss_folder}
 
 # Update the number of threads
 sed -i "s/<omp_num_threads>6/<omp_num_threads>${parallel}/g" "${physiboss_folder}/config/PhysiCell_settings.xml"
@@ -40,7 +40,7 @@ else
   rm -rf output/*
 fi
 # Execution
-./myproj > ${out_file} 2> ${err_file}
+myproj > ${out_file} 2> ${err_file}
 # Move results to the final directory
 if [ ! -d ${results_dir} ]
 then

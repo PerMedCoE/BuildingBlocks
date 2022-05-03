@@ -199,6 +199,7 @@ for(i in 1:nrow(meta)){
   # find markers for every cluster compared to all remaining cells, report only the positive ones
   sobj.markers <- FindAllMarkers(sobj, only.pos = TRUE, min.pct = 0.25, logfc.threshold = 0.25, verbose = F)
   # XXX
+  if (! exists("avg_log2FC")) avg_log2FC = avg_logFC;
   # sobj.markers %>% group_by(cluster) %>% top_n(n = 2, wt = avg_logFC)
   sobj.markers %>% group_by(cluster) %>% top_n(n = 2, wt = avg_log2FC)
   sobj@misc$markers <- sobj.markers

@@ -218,6 +218,7 @@ cat("      - Gene markers by cluster\n")
 # find markers for every cluster compared to all remaining cells, report only the positive ones
 sobj.markers <- FindAllMarkers(sobj, only.pos = TRUE, min.pct = 0.25, logfc.threshold = 0.25, verbose = F)
 # XXX
+if (! 'avg_log2FC' %in% colnames(sobj.markers)) sobj.markers$avg_log2FC = sobj.markers$avg_logFC;
 # sobj.markers %>% group_by(cluster) %>% top_n(n = 2, wt = avg_logFC)
 sobj.markers %>% group_by(cluster) %>% top_n(n = 2, wt = avg_log2FC)
 sobj@misc$markers <- sobj.markers

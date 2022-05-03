@@ -13,10 +13,9 @@ Stage: build
     echo "install.packages('BiocManager', repos='http://cran.us.r-project.org')" | Rscript --vanilla  -
     echo "install.packages('devtools')" | Rscript  -
 
-    echo 'BiocManager::install("SingleR")' | Rscript --vanilla -
-    echo 'devtools::install_version("RcppAnnoy", version = "0.0.16") ' | Rscript --vanilla  -
+    echo 'devtools::install_version("RcppAnnoy", version = "0.0.16", repos="http://cran.us.r-project.org") ' | Rscript --vanilla  -
     echo 'BiocManager::install("BiocNeighbors")' | Rscript --vanilla -
-    echo 'devtools::install_version("RcppAnnoy", version = "0.0.18") ' | Rscript --vanilla  -
+    echo 'devtools::install_version("RcppAnnoy", version = "0.0.18", repos="http://cran.us.r-project.org") ' | Rscript --vanilla  -
     echo 'BiocManager::install("SingleR")' | Rscript --vanilla -
 
     echo 'BiocManager::install("limma")' | Rscript --vanilla -

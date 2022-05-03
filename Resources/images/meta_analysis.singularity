@@ -1,13 +1,22 @@
-Bootstrap: localimage
-From: ./single_cell.sif
+Bootstrap: docker
+From: ubuntu:focal
+Stage: build
 
-%files
-    rmatio_0.15.0.tar.gz
-    XML_3.99-0.7.tar.gz
+%environment
+    export PATH="/usr/local/bin:$PATH"
 
 %post
-    cd /tmp/
-    wget https://cran.rstudio.org/src/contrib/Archive/rmatio/rmatio_0.15.0.tar.gz
-    wget https://cran.r-project.org/src/contrib/Archive/XML/XML_0.99-7.tar.gz
-    R CMD INSTALL -- build rmatio_0.15.0.tar.gz
-    R CMD INSTALL -- build XML_3.99-0.7.tar.gz 
+    apt-get update -y
+    #DEBIAN_FRONTEND=noninteractive apt-get install -yq r-base libhdf5-dev libhdf5-103-1 libxml2-dev libssl-dev libcurl4-openssl-dev
+    DEBIAN_FRONTEND=noninteractive apt-get install -yq r-base libhdf5-dev libxml2-dev libssl-dev libcurl4-openssl-dev
+    echo "install.packages('pacman', repos='http://cran.us.r-project.org')" | Rscript --vanilla  -
+    echo "install.packages('devtools')" | Rscript  -
+
+    echo 'list.p=c("dplyr","Matrix","future","pheatmap","ggplot2","optparse","hdf5r");pacman::p_load(list.p, character.only = TRUE)' | Rscript --vanilla -
+
+    echo "install.packages('rmatio')" | Rscript  -
+    echo "install.packages('XML')" | Rscript  -
+
+%runscript
+    exec /bin/bash "$@"
+
