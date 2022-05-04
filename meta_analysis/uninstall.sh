@@ -2,6 +2,6 @@
 
 echo "Uninstalling..."
 
-python3 -m pip uninstall -y MaBoSS-BB
+python3 -m pip uninstall -y meta_analysis_BB
 
 echo "----- Uninstall finished -----"

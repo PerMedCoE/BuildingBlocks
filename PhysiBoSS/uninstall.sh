@@ -2,6 +2,6 @@
 
 echo "Uninstalling..."
 
-python3 -m pip uninstall -y MaBoSS-BB
+python3 -m pip uninstall -y PhysiBoSS_BB
 
 echo "----- Uninstall finished -----"
