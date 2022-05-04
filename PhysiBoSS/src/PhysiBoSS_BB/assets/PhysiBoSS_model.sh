@@ -12,6 +12,7 @@ out_file=$5
 err_file=$6
 results_dir=$7
 parallel=$8
+max_time=$9
 
 bnd_file=${model_dir}/${prefix}.bnd
 cfg_file=${model_dir}/${prefix}.cfg
@@ -25,6 +26,11 @@ cp -r /usr/local/scm/COVID19/PhysiCell ${physiboss_folder}
 sed -i "s/<omp_num_threads>6/<omp_num_threads>${parallel}/g" "${physiboss_folder}/config/PhysiCell_settings.xml"
 echo "USING:"
 grep "omp_num_threads" "${physiboss_folder}/config/PhysiCell_settings.xml"
+
+# Update the maxtime
+sed -i "s/<max_time units=\"min\">8640<\/max_time> <\!-- 5 days \* 24 h \* 60 min -->/<max_time units=\"min\">${max_time}<\/max_time>/g" "${physiboss_folder}/config/PhysiCell_settings.xml"
+echo "MAX TIME:"
+grep "max_time" "${physiboss_folder}/config/PhysiCell_settings.xml"
 
 # Prepare patient execution
 cp ${bnd_file} ${physiboss_folder}/config/boolean_network/personalized_epithelial_cell.bnd

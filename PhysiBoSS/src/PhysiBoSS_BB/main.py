@@ -37,6 +37,7 @@ def physiboss_model(
     err_file=None,
     results_dir=None,
     parallel=COMPUTING_UNITS,
+    max_time=8640,
 ):
     """
     Performs the PhysiCell + MaBoSS analysis.
@@ -44,7 +45,7 @@ def physiboss_model(
     The Definition is equal to:
         ./physiboss_model.sh <sample> <repetition> <prefix> <model_dir> \
                              <file_name> <out_file> <err_file> <results_dir> \
-                             <computing_units>
+                             <computing_units> <max_time>
     """
     # Empty function since it represents a binary execution:
     pass
@@ -70,6 +71,7 @@ def physiboss(
     err_file=None,
     results_dir=None,
     parallel=COMPUTING_UNITS,
+    max_time=8640,
 ):
     """
     Performs the PhysiCell + MaBoSS analysis.
@@ -77,7 +79,7 @@ def physiboss(
     The Definition is equal to:
         ./physiboss.sh <sample> <repetition> <prefix> <bnd_file> \
                        <cfg_file> <out_file> <err_file> <results_dir> \
-                       <computing_units>
+                       <computing_units> <max_time>
     """
     # Empty function since it represents a binary execution:
     pass
@@ -88,7 +90,8 @@ def invoke(input, output, config):
 
     Args:
         input (list): List containing the sample label, number of repetitions,
-                      prefix name, bnd file path and cfg file path.
+                      prefix name, bnd file path, cfg file path, number
+                      of internal threads and max simulation time.
         output (list): list containing the output and error files.
         config (dict): Configuration dictionary (not used).
     Returns:
@@ -101,6 +104,7 @@ def invoke(input, output, config):
     bnd_file = input[3]
     cfg_file = input[4]
     parallel = input[5]
+    max_time = input[6]
     out_file = output[0]
     err_file = output[1]
     results_dir = output[2]
@@ -115,4 +119,5 @@ def invoke(input, output, config):
         err_file=err_file,
         results_dir=results_dir,
         parallel=parallel,
+        max_time=max_time,
     )
