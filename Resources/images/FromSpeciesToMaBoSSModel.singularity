@@ -7,7 +7,7 @@ From: condaforge/mambaforge:4.10.3-10
 
 %files
     assets/FromSpeciesToMaBoSSModel /opt
-    
+
 %post
     ln -s /opt/FromSpeciesToMaBoSSModel/FromSpeciesToMaBoSSModel.sh /usr/local/bin/FromSpeciesToMaBoSSModel.sh 
     /opt/conda/bin/mamba env create -f /opt/FromSpeciesToMaBoSSModel/pypath_env.yml
