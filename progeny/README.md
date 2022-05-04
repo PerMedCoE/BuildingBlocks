@@ -1,10 +1,10 @@
-# progeny Building Block
+# PROGENy Building Block
 
-This package provides the progeny **Building Block (BB)**.
+This package provides the PROGENy **Building Block (BB)**.
 
 ## Table of Contents
 
-- [progeny Building Block](#progeny-building-block)
+- [PROGENy Building Block](#progeny-building-block)
   - [Table of Contents](#table-of-contents)
   - [Description](#description)
   - [User instructions](#user-instructions)
@@ -17,7 +17,7 @@ This package provides the progeny **Building Block (BB)**.
 
 ## Description
 
-[TO BE COMPLETED]
+The `PROGENy` building block uses PROGENy to extract pathway activities from gene expression data. Further information on PROGENy can be found on the [Saez Laboratory website](https://saezlab.github.io/progeny/).
 
 ## User instructions
 
@@ -66,19 +66,19 @@ progeny_BB -d \
 
 Where the parameters are:
 
-|        | Parameter          | Type      | Description                                             |
-|--------|--------------------|-----------|---------------------------------------------------------|
-| Input  | \<input_file>      | String    | [TO BE COMPLETED]                                       |
-| Input  | \<organism>        | String    | [TO BE COMPLETED]                                       |
-| Input  | \<ntop>            | String    | [TO BE COMPLETED]                                       |
-| Input  | \<col_genes>       | String    | [TO BE COMPLETED]                                       |
-| Input  | \<scale>           | String    | [TO BE COMPLETED]                                       |
-| Input  | \<exclude_cols>    | String    | [TO BE COMPLETED]                                       |
-| Input  | \<tsv>             | String    | [TO BE COMPLETED]                                       |
-| Input  | \<perms>           | String    | [TO BE COMPLETED]                                       |
-| Input  | \<zscore>          | String    | [TO BE COMPLETED]                                       |
-| Input  | \<verbose>         | String    | [TO BE COMPLETED]                                       |
-| Output | \<output_file>     | String    | [TO BE COMPLETED]                                       |
+|        | Parameter          | Type      | Description                                                                                                            |
+|--------|--------------------|-----------|------------------------------------------------------------------------------------------------------------------------|
+| Input  | \<input_file>      | String    | CSV with gene expression data, where rows are genes and columns are samples.                                           |
+| Input  | \<organism>        | String    | Human/Mouse                                                                                                            |
+| Input  | \<ntop>            | Integer   | Number of top genes used to estimate pathway activities.                                                               |
+| Input  | \<col_genes>       | String    | Name of the column containing gene IDs.                                                                                |
+| Input  | \<scale>           | String    | Scale data (True/False)                                                                                                |
+| Input  | \<exclude_cols>    | String    | Columns containing this string will be removed.                                                                        |
+| Input  | \<tsv>             | String    | Import input data as TSV                                                                                               |
+| Input  | \<perms>           | String    | Number of permutations to estimate the null distribution. For default usage of PROGENy, just pass 1 to skip this step. |
+| Input  | \<zscore>          | String    | If True, the z-scores will be returned for the pathway activity estimations. Else, the function returns a normalized z-score value between -1 and 1 |
+| Input  | \<verbose>         | String    | Verbose output (True/False)                                                                                            |
+| Output | \<output_file>     | String    | File with the results containing pathway activities.                                                                   |
 
 ### Uninstall
 

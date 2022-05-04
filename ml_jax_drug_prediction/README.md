@@ -17,7 +17,9 @@ This package provides the ML Jax Drug Prediction **Building Block (BB)**.
 
 ## Description
 
-[TO BE COMPLETED]
+The `ML JAX Drug Prediction` building block implements a matrix factorisation approach to predict IC50 response values of cells with different drugs, with or without side features using JAX. This is a wrapper for [a script hosted on the Saez Lab GitHub repository](https://github.com/saezlab/permedcoe/blob/master/containers/ml-jax/ml.py). This can be used to predict e.g drug responses on cell lines from partial observations of drug/cell responses.
+
+There are two ways of using the building block: for training and for inference (prediction).
 
 ## User instructions
 
@@ -66,18 +68,31 @@ ml_jax_drug_prediction_BB -d \
 
 Where the parameters are:
 
-|        | Parameter          | Type      | Description                                             |
-|--------|--------------------|-----------|---------------------------------------------------------|
-| Input  | \<input_file>      | String    | [TO BE COMPLETED]                                       |
-| Input  | \<drug_features>   | String    | [TO BE COMPLETED]                                       |
-| Input  | \<cell_features>   | String    | [TO BE COMPLETED]                                       |
-| Input  | \<epochs>          | String    | [TO BE COMPLETED]                                       |
-| Input  | \<adam_lr>         | String    | [TO BE COMPLETED]                                       |
-| Input  | \<reg>             | String    | [TO BE COMPLETED]                                       |
-| Input  | \<latent_size>     | String    | [TO BE COMPLETED]                                       |
-| Input  | \<test_drugs>      | String    | [TO BE COMPLETED]                                       |
-| Input  | \<test_cells>      | String    | [TO BE COMPLETED]                                       |
-| Output | \<output_file>     | String    | [TO BE COMPLETED]                                       |
+|        | Parameter          | Type      | Description                                                                                                   |
+|--------|--------------------|-----------|---------------------------------------------------------------------------------------------------------------|
+| Input  | \<input_file>      | String    | CSV with the matrix to predict (e.g IC50 drug/cell responses) for training (see [this example](https://raw.githubusercontent.com/saezlab/Macau_project_1/master/DATA/IC50)). If the file is a .npz file, then the model is imported and this is run in inference mode for predictions. If `.x` is provided, the example file is used for training a model. |
+| Input  | \<drug_features>   | String    | CSV with row features (e.g drug targets). See [this example](https://raw.githubusercontent.com/saezlab/Macau_project_1/master/DATA/target). If `.x` is provided, the example file is used. |
+| Input  | \<cell_features>   | String    | CSV with col features (e.g cell features). See [this example](https://raw.githubusercontent.com/saezlab/Macau_project_1/master/DATA/progeny11). If `.x` is provided, the example file is used. |
+| Input  | \<epochs>          | Integer    | Number of epochs for training using the ADAM optimizer. E.g 200                                               |
+| Input  | \<adam_lr>         | Float    | Learning rate for the ADAM solver. E.g 0.1. Recommended <= 0.1. Lower values slow down the convergence.         |
+| Input  | \<reg>             | Float    |  L2 regularization weight. E.g 0.001. |
+| Input  | \<latent_size>     | Integer    | Number of dimensions for the latent matrices to be estimated from the data. As a rule of thumb, this should be at most the minimum number of features for cells or drugs used. Larger values might create overfitted models. |
+| Input  | \<test_drugs>      | Float    | If row features are provided, this is the proportion of samples removed from training for validation. E.g 0.2.  |
+| Input  | \<test_cells>      | String    | If col features are provided, this is the proportion of samples removed from training for validation. E.g 0.2. |
+| Output | \<output_file>     | String    | npz file with the trained model if in training mode, or csv file with prediction results.                      |
+
+
+Training example (using example data files) that builds a trained `model.npz`:
+
+```bash
+ml_jax_drug_prediction_BB -i .x .x .x 200 0.1 0.001 10 0.1 0.1 -o model.npz
+```
+
+Example of prediction using a trained `model.npz` file (drug_features.csv and cell_features.csv contains new data in the same format as the files used for training, but from new drugs/cells to make predictions):
+
+```bash
+ml_jax_drug_prediction_BB -i .x drug_features.csv cell_features.csv 0 0 0 0 0 0 -o predictions.csv
+```
 
 ### Uninstall
 

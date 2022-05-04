@@ -17,7 +17,7 @@ This package provides the Omnipath **Building Block (BB)**.
 
 ## Description
 
-[TO BE COMPLETED]
+Downloads the [latest OmniPath database](https://omnipathdb.org/) to build an initial PKN network for CARNIVAL.
 
 ## User instructions
 
@@ -67,7 +67,7 @@ Where the parameters are:
 
 |        | Parameter          | Type      | Description                                             |
 |--------|--------------------|-----------|---------------------------------------------------------|
-| Output | \<output_file>     | String    | [TO BE COMPLETED]                                       |
+| Output | \<output_file>     | String    | File with the exported PKN data.                        |
 
 ### Uninstall
 

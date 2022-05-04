@@ -17,7 +17,7 @@ This package provides the Carnival Gex Preprocess **Building Block (BB)**.
 
 ## Description
 
-[TO BE COMPLETED]
+This building block processes (reshapes and scales) gene expression data from the [Genomics of Drug Sensitivity in Cancer (GDSC)](https://www.cancerrxgene.org/) database for use by other building blocks.
 
 ## User instructions
 
@@ -66,16 +66,24 @@ Carnival_gex_preprocess_BB -d \
 
 Where the parameters are:
 
-|        | Parameter           | Type      | Description                                             |
-|--------|---------------------|-----------|---------------------------------------------------------|
-| Input  | \<input_file>       | String    | [TO BE COMPLETED]                                       |
-| Output | \<output_file>      | String    | [TO BE COMPLETED]                                       |
-| Input  | \<col_genes>        | String    | [TO BE COMPLETED]                                       |
-| Input  | \<scale>            | String    | [TO BE COMPLETED]                                       |
-| Input  | \<exclude_cols>     | String    | [TO BE COMPLETED]                                       |
-| Input  | \<tsv>              | String    | [TO BE COMPLETED]                                       |
-| Input  | \<remove>           | String    | [TO BE COMPLETED]                                       |
-| Input  | \<verbose>          | String    | [TO BE COMPLETED]                                       |
+|        | Parameter           | Type      | Description                                                                |
+|--------|---------------------|-----------|----------------------------------------------------------------------------|
+| Input  | \<input_file>       | String    | csv/url with the GDSC gene expression data                                 |
+| Output | \<output_file>      | String    | processed csv file                                                         |
+| Input  | \<col_genes>        | String    | Name of the column containing the gene symbols. Default = `GENE_SYMBOLS`.  |
+| Input  | \<scale>            | String    | Normalize genes across samples (True/False)                                |
+| Input  | \<exclude_cols>     | String    | Exclude columns containing the given string. Default = `GENE_title`        |
+| Input  | \<tsv>              | String    | Import as TSV instead of CSV (True/False)                                  |
+| Input  | \<remove>           | String    | Remove the given substring from columns. Default = `.DATA`                 |
+| Input  | \<verbose>          | String    | Verbose output (True/False)                                                |
+
+Here is an example from https://github.com/saezlab/permedcoe/blob/master/containers/workflow_bb.sh preprocessing GDSC data:
+
+```bash
+wget -O ${tmpdir}/gdsc_gex.zip https://www.cancerrxgene.org/gdsc1000/GDSC1000_WebResources/Data/preprocessed/Cell_line_RMA_proc_basalExp.txt.zip
+unzip gdsc_gex.zip -d ${tmpdir}/
+carnival_gex_preprocess_bb -i ${tmpdir}/Cell_line_RMA_proc_basalExp.txt GENE_SYMBOLS GENE_title FALSE TRUE TRUE DATA. -o ${tmpdir}/gex.csv
+```
 
 ### Uninstall
 

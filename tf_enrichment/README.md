@@ -17,7 +17,7 @@ This package provides the TF Enrichment **Building Block (BB)**.
 
 ## Description
 
-[TO BE COMPLETED]
+The `TF Enrichment` building block uses [DecoupleR](https://saezlab.github.io/decoupleR/) and [Dorothea](https://saezlab.github.io/dorothea/) to estimate transcription factor activities from perturbational data.
 
 ## User instructions
 
@@ -66,17 +66,24 @@ tf_enrichment_BB -d \
 
 Where the parameters are:
 
-|        | Parameter          | Type      | Description                                             |
-|--------|--------------------|-----------|---------------------------------------------------------|
-| Input  | \<input_file>      | String    | [TO BE COMPLETED]                                       |
-| Input  | \<weight_col>      | String    | [TO BE COMPLETED]                                       |
-| Input  | \<source>          | String    | [TO BE COMPLETED]                                       |
-| Input  | \<id_col>          | String    | [TO BE COMPLETED]                                       |
-| Input  | \<tsv>             | String    | [TO BE COMPLETED]                                       |
-| Input  | \<minsize>         | String    | [TO BE COMPLETED]                                       |
-| Input  | \<confidence>      | String    | [TO BE COMPLETED]                                       |
-| Input  | \<verbose>         | String    | [TO BE COMPLETED]                                       |
-| Output | \<output_file>     | String    | [TO BE COMPLETED]                                       |
+|        | Parameter          | Type      | Description                                                                                                             |
+|--------|--------------------|-----------|-------------------------------------------------------------------------------------------------------------------------|
+| Input  | \<input_file>      | String    | Input gene expression data. Genes should be normalized across samples.                                                  |
+| Input  | \<weight_col>      | String    | Name of the column containing differential expression values (e.g t-statistic from DESeq2) between a control/treatment condition for example, or just log-fold change. |
+| Input  | \<source>          | String    | Column with the TFs. Default = `tf`                                                                                     |
+| Input  | \<id_col>          | String    | Name of the column for gene ids.                                                                                        |
+| Input  | \<tsv>             | String    | Import data as TSV instead of CSV (True/False)                                                                          |
+| Input  | \<minsize>         | Integer   | Minimum size for regulons. E.g 10.                                                                                      |
+| Input  | \<confidence>      | String    | Level of confidence to be used for regulons. E.g.: `A,B,C`. (see https://saezlab.github.io/dorothea/ for documentation) |
+| Input  | \<verbose>         | String    | Verbose output (True/False).                                                                                            |
+| Output | \<output_file>     | String    | Result csv file with estimated TF activities.                                                                           |
+
+
+Example from normalized GEX data from GDSC using `preprocess_bb` on sample `DATA.906826`. Note that here we assume that genes are normalized across columns and so the control vs condition is the given column against the other conditions as control:
+
+```bash
+tfenrichment_BB -i gex.csv DATA.906826 GENE_SYMBOLS tf FALSE 10 'A,B,C' TRUE -o 906826_tf.csv
+```
 
 ### Uninstall
 

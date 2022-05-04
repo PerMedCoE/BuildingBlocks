@@ -17,7 +17,7 @@ This package provides the Build Model From Genes **Building Block (BB)**.
 
 ## Description
 
-[TO BE COMPLETED]
+This building block performs automatic network construction using OmniPath and pypath. This enables the generation of a Boolean model in MaBoSS format. It takes a list of genes of interest and returns either a simple network as a SIF file or a MaBoSS network as a BND and CFG files.
 
 ## User instructions
 
@@ -70,11 +70,11 @@ build_model_from_species_BB -d \
 
 Where the parameters are:
 
-|        | Parameter          | Type | Description                                             |
-|--------|--------------------|------|---------------------------------------------------------|
-| Input  | \<input_file>      | File | [TO BE COMPLETED]                                       |
-| Output | \<output_bnd_file> | File | [TO BE COMPLETED]                                       |
-| Output | \<output_cfg_file> | File | [TO BE COMPLETED]                                       |
+|        | Parameter          | Type | Description                                                                                                 |
+|--------|--------------------|------|-------------------------------------------------------------------------------------------------------------|
+| Input  | \<input_file>      | File | List of genes as a CSV file                                                                                 |
+| Output | \<output_bnd_file> | File | BND file of the generated MaBoSS model.                                                                     |
+| Output | \<output_cfg_file> | File | CFG file of the generated MaBoSS model.                                                                     |
 | Config | \<config_file>     | File | Configuration file. Must include the **build_model_from** key with a value that can be **genes** or **sif** |
 
 ### Uninstall

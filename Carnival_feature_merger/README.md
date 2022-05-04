@@ -17,7 +17,7 @@ This package provides the Carnival Feature Merger **Building Block (BB)**.
 
 ## Description
 
-[TO BE COMPLETED]
+This building block is used in Use Case 2 (`Drug Synergies Screening`) to merge the features extracted by CARNIVAL for each cell line with the original cell line features, in order to produce a final csv file that can be used for prediction with the `ML Jax Drug Prediction` building block. 
 
 ## User instructions
 
@@ -65,14 +65,16 @@ Carnival_feature_merger_BB -d \
 
 Where the parameters are:
 
-|        | Parameter           | Type      | Description                                             |
-|--------|---------------------|-----------|---------------------------------------------------------|
-| Input  | \<input_file>       | String    | [TO BE COMPLETED]                                       |
-| Output | \<output_file>      | String    | [TO BE COMPLETED]                                       |
-| Input  | \<feature_file>     | String    | [TO BE COMPLETED]                                       |
-| Input  | \<merge_csv_file>   | String    | [TO BE COMPLETED]                                       |
-| Input  | \<merge_csv_index>  | String    | [TO BE COMPLETED]                                       |
-| Input  | \<merge_csv_prefix> | String    | [TO BE COMPLETED]                                       |
+|        | Parameter           | Type      | Description                                                                                             |
+|--------|---------------------|-----------|---------------------------------------------------------------------------------------------------------|
+| Input  | \<input_dir>        | String    | Path containing the folders with the samples. Name of the folders are used for the name of the samples  |
+| Input  | \<feature_file>     | String    | File containing a list of features. If provided, only those features are retrieved from solutions.      |
+| Input  | \<merge_csv_file>   | String    | If provided, join the merged features into the given file.                                              |
+| Input  | \<merge_csv_index>  | String    | Column ID used as the index for the data (default: `sample`)                                            |
+| Input  | \<merge_csv_prefix> | String    | Prefix for the merged features                                                                          |
+| Output | \<output_file>      | String    | Output file with the features, where rows are samples and columns features                              |
+
+An example of how to use this connected with the rest of the building blocks is available at https://github.com/saezlab/permedcoe/blob/master/containers/workflow_bb.sh
 
 ### Uninstall
 

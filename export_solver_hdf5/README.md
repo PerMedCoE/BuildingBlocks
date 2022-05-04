@@ -17,7 +17,7 @@ This package provides the Export Solver HDF5 **Building Block (BB)**.
 
 ## Description
 
-[TO BE COMPLETED]
+Exports input data required by [the vanilla version of CARNIVAL](https://saezlab.github.io/CARNIVAL/) (sif file, measurements and perturbations) into a HDF5 file required by the optimised version of CARNIVAL with the parallel ACO C++ solver.
 
 ## User instructions
 
@@ -68,11 +68,18 @@ Where the parameters are:
 
 |        | Parameter          | Type      | Description                                             |
 |--------|--------------------|-----------|---------------------------------------------------------|
-| Input  | \<sif>             | String    | [TO BE COMPLETED]                                       |
-| Input  | \<measurements>    | String    | [TO BE COMPLETED]                                       |
-| Input  | \<inputs>          | String    | [TO BE COMPLETED]                                       |
-| Input  | \<verbose>         | String    | [TO BE COMPLETED]                                       |
-| Output | \<output_file>     | String    | [TO BE COMPLETED]                                       |
+| Input  | \<sif>             | String    | The sif csv file containing the signaling network       |
+| Input  | \<measurements>    | String    | The measurements csv with the TFs and weights           |
+| Input  | \<inputs>          | String    | The csv file with the input protein targets             |
+| Input  | \<verbose>         | String    | Verbose output (True/False)                             |
+| Output | \<output_file>     | String    | The final HDF5 file.                                    |
+
+
+An example with toy data from here https://github.com/saezlab/permedcoe/tree/master/containers/toolset/scripts/examples/export would be:
+
+```bash
+export_solver_hdf5_BB -i sif.csv measurements.csv inputs.csv TRUE -o file.h5
+```
 
 ### Uninstall
 

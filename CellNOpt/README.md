@@ -17,7 +17,7 @@ This package provides the CellNOpt **Building Block (BB)**.
 
 ## Description
 
-[TO BE COMPLETED]
+This is the refactored CellNopt in C++ with the ACO solver with OpenMP/MPI support. A description of what CellNopt is and how to use it is available here https://saezlab.github.io/CellNOptR/.
 
 ## User instructions
 
@@ -67,7 +67,10 @@ Where the parameters are:
 
 |        | Parameter          | Type      | Description                                             |
 |--------|--------------------|-----------|---------------------------------------------------------|
-| Input  | \<input_file>      | String    | [TO BE COMPLETED]                                       |
+| Input  | \<input_file>      | String    | HDF5 input data required by CellNopt.                   |
+
+
+An input toy example is available here: https://github.com/saezlab/permedcoe/blob/master/containers/parallel-solvers/examples/cellnopt_toy_example.h5
 
 ### Uninstall
 

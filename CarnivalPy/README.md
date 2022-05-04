@@ -1,6 +1,6 @@
 # CarnivalPy Building Block
 
-This package provides the CarnivalPy **Building Block (BB)**.
+This package provides the CARNIVALPy **Building Block (BB)**.
 
 ## Table of Contents
 
@@ -17,7 +17,7 @@ This package provides the CarnivalPy **Building Block (BB)**.
 
 ## Description
 
-[TO BE COMPLETED]
+The `CARNIVALPy` building block is a refactored vanilla CARNIVAL R version for Python with support for many commercial and non-commercial open source MILP solvers. This extends the capabilities of the old CARNIVAL software to support also open-source solvers such as GLPK or CBC, and better integration with the building block ecosystem.
 
 ## User instructions
 
@@ -65,11 +65,11 @@ CarnivalPy_BB -d \
 
 Where the parameters are:
 
-|        | Parameter          | Type      | Description                                             |
-|--------|--------------------|-----------|---------------------------------------------------------|
-| Input  | \<path>            | String    | [TO BE COMPLETED]                                       |
-| Input  | \<penalty>         | String    | [TO BE COMPLETED]                                       |
-| Input  | \<solver>          | String    | [TO BE COMPLETED]                                       |
+|        | Parameter          | Type      | Description                                                                                   |
+|--------|--------------------|-----------|-----------------------------------------------------------------------------------------------|
+| Input  | \<path>            | String    | Path containing a `sif.csv` file, a `measurements.csv` file, and `perturbations.csv` file.    |
+| Input  | \<penalty>         | Float     | Penalty value for sparsity (penalty for the number of nodes in the final result). E.g 0.0001. |
+| Input  | \<solver>          | String    | Name of the solver to be used: gurobi, cplex, cbc, gurobi_mip, glpk. Any solver supported by Python-MIP and [PICOS](https://picos-api.gitlab.io/picos/introduction.html) can be passed. |
 
 ### Uninstall
 

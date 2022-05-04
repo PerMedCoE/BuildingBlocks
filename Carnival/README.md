@@ -1,6 +1,6 @@
 # Carnival Building Block
 
-This package provides the Carnival **Building Block (BB)**.
+This package provides the CARNIVAL **Building Block (BB)**.
 
 ## Table of Contents
 
@@ -17,7 +17,7 @@ This package provides the Carnival **Building Block (BB)**.
 
 ## Description
 
-[TO BE COMPLETED]
+The CARNIVAL building block contains the refactored CARNIVAL C++ with the new Ant Colony Optimisation (ACO) in C++ with support for OpenMP and MPI. The hdf5 file required as an input can be generated with the `Export Solver HDF5` building block. For a general overview of what CARNIVAL does, see the [CARNIVAL website](https://saezlab.github.io/CARNIVAL/). This building block uses the new developed ACO algorithm to find solutions without the need of using ILP solvers.
 
 ## User instructions
 
@@ -65,9 +65,19 @@ Carnival_BB -d \
 
 Where the parameters are:
 
-|        | Parameter          | Type      | Description                                             |
-|--------|--------------------|-----------|---------------------------------------------------------|
-| Input  | \<input_file>      | String    | [TO BE COMPLETED]                                       |
+|        | Parameter          | Type      | Description                                                                                                                                |
+|--------|--------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| Input  | \<input_file>      | String    | HDF5 data with the SIF network, measurements and perturbations. This file can be produced from csv files using the `export_solver_hdf5_bb` |
+
+
+Example usage:
+
+```bash
+Carnival_BB -i file.h5 -o .
+```
+
+[Here](https://github.com/saezlab/permedcoe/blob/master/containers/parallel-solvers/examples/carnival_toy_example.h5) is an example of already converted CSV data into h5 that can be used to try CARNIVAL. This example was exported with the `export_solver_hdf5_bb` building block from [this example](https://github.com/saezlab/permedcoe/tree/master/containers/toolset/scripts/examples/export).
+
 
 ### Uninstall
 
