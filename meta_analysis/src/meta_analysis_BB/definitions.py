@@ -1,8 +1,7 @@
 import os
 
-# Assets folder for Meta Analysis Building Block
-ASSETS_PATH = os.environ["PERMEDCOE_ASSETS"]
-META_ANALYSIS_ASSETS = os.path.join(ASSETS_PATH, "meta_analysis")
+# Assets folder within the Building Block
+META_ANALYSIS_ASSETS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets")
 
 # Container definition for Meta Analysis Building Block
 CONTAINER_PATH = os.environ["PERMEDCOE_IMAGES"]

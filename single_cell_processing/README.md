@@ -1,10 +1,10 @@
-# Single Cell Processing Building Block
+# Single-Cell Processing Building Block
 
-This package provides the Single Cell Processing **Building Block (BB)**.
+This package provides the Single-Cell Processing **Building Block (BB)**.
 
 ## Table of Contents
 
-- [Single Cell Processing Building Block](#single-cell-processing-building-block)
+- [Single-Cell Processing Building Block](#single-cell-processing-building-block)
   - [Table of Contents](#table-of-contents)
   - [Description](#description)
   - [User instructions](#user-instructions)
@@ -17,7 +17,9 @@ This package provides the Single Cell Processing **Building Block (BB)**.
 
 ## Description
 
-This BB performs the processing and analysis of single-cell RNA-Seq data from each patient in the sample.  The first step of the protocol includes quality control, filtering and normalisation of the count matrices at the cellular level. Next, the number of variable genes in each individual is determined and the corresponding scaled matrices are obtained, allowing in the next step the application of dimensionality reduction techniques such as PCA, T-SNE and UMAP. Finally, cells are clustered using graph-based techniques and annotated to their corresponding cell type, enabling subsequent BBs to select and work with the set of cells that are relevant to the disease under study (e.g. epithelial cells in COVID19 disease).
+This building block enables the processing and analysis of single-cell RNA-Seq data from each patient in a sample. The first step of the protocol includes quality control, filtering and normalisation of the count matrices at the cellular level. Next, the number of variable genes in each individual is determined and the corresponding scaled matrices are obtained, allowing in the next step the application of dimensionality reduction techniques such as PCA, T-SNE and UMAP.
+
+Finally, cells are clustered using graph-based techniques and annotated to their corresponding cell type, enabling subsequent building blocks to select and work with the set of cells that are relevant to the disease under study (e.g. epithelial cells in COVID19 disease).
 
 ## User instructions
 
@@ -28,16 +30,14 @@ This BB performs the processing and analysis of single-cell RNA-Seq data from ea
 - `permedcoe` base package: `python3 -m pip install permedcoe`
 
 In addtion to the dependencies, it is necessary to generate the associated
-singularity image ([`single_cell.singularity`](../Resources/images/single_cell.singularity))
-and the building block asset ([`single_cell`](../Resources/assets/single_cell)
-folder), located in the **Resources** folder of this repository.
+singularity image ([`single_cell.singularity`](../Resources/images/single_cell.singularity)),
+located in the **Resources** folder of this repository.
 
-They **MUST be available and exported in the following environment variables**
+They **MUST be available and exported in the following environment variable**
 before its usage:
 
 ```bash
 export PERMEDCOE_IMAGES="/path/to/images/"
-export PERMEDCOE_ASSETS="/path/to/assets/"
 ```
 
 ### Installation
@@ -47,11 +47,6 @@ This package provides an automatic installation script:
 ```bash
 ./install.sh
 ```
-
-This script creates a file `installation_files.txt` to keep track of the
-installed files.
-It is used with the `uninstall.sh` script to uninstall the Building Block
-from the system.
 
 ### Usage
 
@@ -66,25 +61,27 @@ application, or through the command line for other workflow managers
 The command line is:
 
 ```bash
+SINGLE_CELL_ASSETS=$(python3 -c "import single_cell_processing_BB; import os; print(os.path.dirname(single_cell_processing_BB.__file__))")
+
 single_cell_processing_BB -d \
     -i <p_id> <p_group> <p_file> <parallelize> \
     -o <norm_data> <raw_data> <scaled_data> <cells_metadata> <outdir> \
-    --mount_points ${COVID19_BB_ASSETS}/single_cell/:${COVID19_BB_ASSETS}/single_cell/
+    --mount_points ${SINGLE_CELL_ASSETS}/assets/:${SINGLE_CELL_ASSETS}/assets/
 ```
 
 Where the parameters are:
 
-|        | Parameter         | Type      | Description                                             |
-|--------|-------------------|-----------|---------------------------------------------------------|
-| Input  | \<p_id>           | String    | [TO BE COMPLETED]                                       |
-| Input  | \<p_group>        | String    | [TO BE COMPLETED]                                       |
-| Input  | \<p_file>         | File      | [TO BE COMPLETED]                                       |
-| Input  | \<parallelize>    | Int       | Internal parallelism                                    |
-| Output | \<norm_data>      | File      | [TO BE COMPLETED]                                       |
-| Output | \<raw_data>       | File      | [TO BE COMPLETED]                                       |
-| Output | \<scaled_data>    | File      | [TO BE COMPLETED]                                       |
-| Output | \<cells_metadata> | File      | [TO BE COMPLETED]                                       |
-| Output | \<outdir>         | Directory | [TO BE COMPLETED]                                       |
+|        | Parameter         | Type      | Description                         |
+|--------|-------------------|-----------|-------------------------------------|
+| Input  | \<p_id>           | String    | Patient ID                          |
+| Input  | \<p_group>        | String    | Patient's group label               |
+| Input  | \<p_file>         | File      | scRNA-Seq patient's counts          |
+| Input  | \<parallelize>    | Int       | Internal parallelism                |
+| Output | \<norm_data>      | File      | Normalized counts output filename   |
+| Output | \<raw_data>       | File      | Raw counts output filename          |
+| Output | \<scaled_data>    | File      | Scaled counts output filename       |
+| Output | \<cells_metadata> | File      | Cells' metadata output filename     |
+| Output | \<outdir>         | Directory | Output folder                       |
 
 ### Uninstall
 
