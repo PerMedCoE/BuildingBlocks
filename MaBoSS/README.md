@@ -1,10 +1,10 @@
-# High-throughput mutant analysis Building Block
+# High-throughput Mutant Analysis Building Block
 
-This package provides the MaBoSS **Building Block (BB)**.
+This package provides the High-throughput Mutant Analysis **Building Block (BB)**.
 
 ## Table of Contents
 
-- [High-throughput mutant analysis Building Block](#high-throughput-mutant-analysis-building-block)
+- [High-throughput Mutant Analysis Building Block](#high-throughput-mutant-analysis-building-block)
   - [Table of Contents](#table-of-contents)
   - [Description](#description)
   - [User instructions](#user-instructions)
@@ -17,8 +17,7 @@ This package provides the MaBoSS **Building Block (BB)**.
 
 ## Description
 
-This building block uses MaBoSS to screen all the possible knock outs of a given Boolean model.
-More information in MaBoSS can be found in the work [Stoll, G. et al. (2017) MaBoSS 2.0: an environment for stochastic Boolean modeling. Bioinformatics, 33, 2226–2228.](https://academic.oup.com/bioinformatics/article-lookup/doi/10.1093/bioinformatics/btx123) and in the dedicated [GitHub repository](https://github.com/maboss-bkmc/MaBoSS-env-2.0).
+This building block uses MaBoSS to screen all the possible knockouts of a given Boolean model. It produces a candidate gene list formatted as a text file (single gene per row). More information on MaBoSS can be found in [Stoll G. et al. (2017)](https://academic.oup.com/bioinformatics/article-lookup/doi/10.1093/bioinformatics/btx123) and in the [MaBoSS GitHub repository](https://github.com/maboss-bkmc/MaBoSS-env-2.0).
 
 ## User instructions
 
@@ -28,7 +27,7 @@ More information in MaBoSS can be found in the work [Stoll, G. et al. (2017) MaB
 - [Singularity](https://singularity.lbl.gov/docs-installation)
 - `permedcoe` base package: `python3 -m pip install permedcoe`
 
-In addtion to the dependencies, it is necessary to generate the associated
+In addition to the dependencies, it is necessary to generate the associated
 singularity images ([`MaBoSS.singularity`](../Resources/images/MaBoSS.singularity) and
 [MaBoSS_sensitivity.singularity](../Resources/images/MaBoSS_sensitivity.singularity)),
 located in the **Resources** folder of this repository.

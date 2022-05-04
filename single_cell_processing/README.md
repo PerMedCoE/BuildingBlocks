@@ -1,10 +1,10 @@
-# Single Cell Processing Building Block
+# Single-Cell Processing Building Block
 
-This package provides the Single Cell Processing **Building Block (BB)**.
+This package provides the Single-Cell Processing **Building Block (BB)**.
 
 ## Table of Contents
 
-- [Single Cell Processing Building Block](#single-cell-processing-building-block)
+- [Single-Cell Processing Building Block](#single-cell-processing-building-block)
   - [Table of Contents](#table-of-contents)
   - [Description](#description)
   - [User instructions](#user-instructions)
@@ -17,7 +17,9 @@ This package provides the Single Cell Processing **Building Block (BB)**.
 
 ## Description
 
-This BB performs the processing and analysis of single-cell RNA-Seq data from each patient in the sample.  The first step of the protocol includes quality control, filtering and normalisation of the count matrices at the cellular level. Next, the number of variable genes in each individual is determined and the corresponding scaled matrices are obtained, allowing in the next step the application of dimensionality reduction techniques such as PCA, T-SNE and UMAP. Finally, cells are clustered using graph-based techniques and annotated to their corresponding cell type, enabling subsequent BBs to select and work with the set of cells that are relevant to the disease under study (e.g. epithelial cells in COVID19 disease).
+This building block enables the processing and analysis of single-cell RNA-Seq data from each patient in a sample. The first step of the protocol includes quality control, filtering and normalisation of the count matrices at the cellular level. Next, the number of variable genes in each individual is determined and the corresponding scaled matrices are obtained, allowing in the next step the application of dimensionality reduction techniques such as PCA, T-SNE and UMAP.
+
+Finally, cells are clustered using graph-based techniques and annotated to their corresponding cell type, enabling subsequent building blocks to select and work with the set of cells that are relevant to the disease under study (e.g. epithelial cells in COVID19 disease).
 
 ## User instructions
 
@@ -69,17 +71,17 @@ single_cell_processing_BB -d \
 
 Where the parameters are:
 
-|        | Parameter         | Type      | Description                                             |
-|--------|-------------------|-----------|---------------------------------------------------------|
-| Input  | \<p_id>           | String    | [TO BE COMPLETED]                                       |
-| Input  | \<p_group>        | String    | [TO BE COMPLETED]                                       |
-| Input  | \<p_file>         | File      | [TO BE COMPLETED]                                       |
-| Input  | \<parallelize>    | Int       | Internal parallelism                                    |
-| Output | \<norm_data>      | File      | [TO BE COMPLETED]                                       |
-| Output | \<raw_data>       | File      | [TO BE COMPLETED]                                       |
-| Output | \<scaled_data>    | File      | [TO BE COMPLETED]                                       |
-| Output | \<cells_metadata> | File      | [TO BE COMPLETED]                                       |
-| Output | \<outdir>         | Directory | [TO BE COMPLETED]                                       |
+|        | Parameter         | Type      | Description                         |
+|--------|-------------------|-----------|-------------------------------------|
+| Input  | \<p_id>           | String    | Patient ID                          |
+| Input  | \<p_group>        | String    | Patient's group label               |
+| Input  | \<p_file>         | File      | scRNA-Seq patient's counts          |
+| Input  | \<parallelize>    | Int       | Internal parallelism                |
+| Output | \<norm_data>      | File      | Normalized counts output filename   |
+| Output | \<raw_data>       | File      | Raw counts output filename          |
+| Output | \<scaled_data>    | File      | Scaled counts output filename       |
+| Output | \<cells_metadata> | File      | Cells' metadata output filename     |
+| Output | \<outdir>         | Directory | Output folder                       |
 
 ### Uninstall
 

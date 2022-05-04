@@ -1,7 +1,6 @@
 # PerMedCoE Building Blocks' Catalogue
 
-This repository contains the **Building Blocks** developed within the
-**HPC/Exascale Centre of Excellence in Personalised Medicine** (PerMedCoE).
+This repository contains the **Building Blocks** developed within the **HPC/Exascale Centre of Excellence in Personalised Medicine** (PerMedCoE).
 
 ## Table of Contents
 
@@ -18,7 +17,7 @@ This repository contains the **Building Blocks** developed within the
 
     This building block uses MaBoSS to screen all the possible knock outs of a given Boolean model.
 
-2. [**Meta Analysis**](meta_analysis/)
+2. [**Meta-analysis of PhysiBoSS Output**](meta_analysis/)
 
     This building block performs a meta-analysis to determine which parameters of interest in PhysiBoSS are distributed differently among the patient subgroups.
 

@@ -17,9 +17,7 @@ This package provides the PhysiBoSS **Building Block (BB)**.
 
 ## Description
 
-In this building block we perform a multiscale simulation of a population of cells using PhysiBoSS.
-The tool uses the different Boolean models personalized by the "Personalize patient" building block and with the mutants selected by the "High-throughput mutant analysis" building block.
-More information on this tool can be found in the work ["Ponce-de-Leon,M. et al. (2022) PhysiBoSS 2.0: a sustainable integration of stochastic Boolean and agent-based modelling frameworks. bioRxiv, 2022.01.06.468363."](https://www.biorxiv.org/content/10.1101/2022.01.06.468363v1) and its code can be found in [its GitHub repository](https://github.com/PhysiBoSS/PhysiBoSS).
+This building block is used to perform a multiscale simulation of a population of cells using PhysiBoSS. The tool uses the different Boolean models personalised by the `Personalise patient` building block and with the mutants selected by the `High-throughput mutant analysis` building block. More information on this tool can be found in [Ponce-de-Leon et al. (2022)](https://www.biorxiv.org/content/10.1101/2022.01.06.468363v1) and the [PhysiBoSS GitHub repository](https://github.com/PhysiBoSS/PhysiBoSS).
 
 ## User instructions
 
