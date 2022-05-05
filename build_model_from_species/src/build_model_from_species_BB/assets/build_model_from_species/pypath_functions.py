@@ -126,8 +126,7 @@ def get_complete_dict(graph, gene_dict, depth, pw_legacy):
                     else:
                         print(pw_legacy.vs[paths[i]]['label'], end=' ')
                         complete_dict[pw_legacy.vs[paths[i]]['label']] = list(mapping.map_name(pw_legacy.vs[paths[i]]['label'], 'genesymbol', 'uniprot'))[0]
-                    
-                #print('\n')  
+                #print('\n')
     return complete_dict
 
 def filter_by_node_degree(graph, degree, pw_legacy):

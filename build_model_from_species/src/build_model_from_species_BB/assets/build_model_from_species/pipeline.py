@@ -13,10 +13,10 @@ parser.add_argument("bnd_file", type=str,
 
 parser.add_argument("cfg_file", type=str,
                     help="Output model cfg file")
-                    
+
 parser.add_argument("--list-genes", "-list-genes", type=str,
                     help="Input as list of gene")
-                    
+
 parser.add_argument("--sif-file", "-sif-file", type=str,
                     help="Input as a sif network file")
 
@@ -32,25 +32,25 @@ if args.list_genes is not None:
     workdir=os.path.dirname(bnd_file)
     print("Workdir : " + workdir)
     os.makedirs(workdir, exist_ok=True)
-    
+
     os.chdir(workdir)
-    
+
     if os.path.exists(os.path.join(workdir, "cache")):
         shutil.rmtree(os.path.join(workdir, "cache"))
-    
+
     shutil.copytree(
         "/opt/FromSpeciesToMaBoSSModel/cache", os.path.join(workdir, "cache")
     )
-    
+
     from pypath.share import settings
 
     settings.setup(basedir=workdir) 
     settings.setup(cachedir=os.path.join(workdir, "cache"))
     settings.setup(log_verbosity=0)
-    
+
     from pypath.legacy import main as legacy
     pw_legacy = legacy.PyPath()
-    
+
     import pypath_functions as pf
 
     # source = ["signor"]
@@ -90,15 +90,15 @@ if args.list_genes is not None:
 
     with open(bnd_file, "w") as bnd_file:
         model.print_bnd(bnd_file)
-        
+
     with open(cfg_file, "w") as cfg_file:
         model.print_cfg(cfg_file)
-        
+
     shutil.rmtree(os.path.join(workdir, "cache"))
     shutil.rmtree(os.path.join(workdir, "pypath_log"))
 
 elif args.sif_file is not None:
-    
+
 #     elif sif_file is not None:
     bnd_file = args.bnd_file
     cfg_file = args.cfg_file
@@ -113,11 +113,9 @@ elif args.sif_file is not None:
     for node in model.network:
         model.network[node].set_rate("$u_" + str(node), "$d_" + str(node))
         model.update_parameters(**{"$u_" + str(node): 1.0, "$d_" + str(node): 1.0})
-        
+
     with open(bnd_file, "w") as bnd_file:
         model.print_bnd(bnd_file)
-        
+
     with open(cfg_file, "w") as cfg_file:
         model.print_cfg(cfg_file)
-        
-    
