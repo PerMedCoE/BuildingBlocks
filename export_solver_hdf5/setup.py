@@ -42,9 +42,9 @@ setup(
     },
     # If there are data files included in your packages that need to be
     # installed, specify them here.
-    # package_data={
-    #     "export_solver_hdf5_BB": ["assets/*"],
-    # },
+    package_data={
+        "export_solver_hdf5_BB": ["assets/*"],
+    },
     entry_points={
         "console_scripts": [
             "export_solver_hdf5_BB=export_solver_hdf5_BB.__main__:main",

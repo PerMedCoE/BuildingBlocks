@@ -8,13 +8,17 @@ from permedcoe import FILE_OUT
 from permedcoe import DIRECTORY_IN
 
 # Import container definition
+from Carnival_feature_merger_BB.definitions import CARNIVAL_FEATURE_MERGER_ASSETS_PATH
 from Carnival_feature_merger_BB.definitions import CARNIVAL_FEATURE_MERGER_CONTAINER
 from Carnival_feature_merger_BB.definitions import COMPUTING_UNITS
+
+# Globals
+CARNIVAL_FEATURE_MERGER_BINARY = os.path.join(CARNIVAL_FEATURE_MERGER_ASSETS_PATH, "carnival_feature_merger.sh")
 
 
 @constraint(computing_units=COMPUTING_UNITS)
 @container(engine="SINGULARITY", image=CARNIVAL_FEATURE_MERGER_CONTAINER)
-@binary(binary="/opt/miniconda/bin/python /opt/feature_merge.py")
+@binary(binary=CARNIVAL_FEATURE_MERGER_BINARY)
 @task(input_dir=DIRECTORY_IN, output_file=FILE_OUT)
 def feature_merger(input_dir=None, output_file=None,
                    feature_file_flag='--feature_file', feature_file=None,
@@ -57,10 +61,10 @@ def invoke(input, output, config):
     merge_csv_file = input[2]
     merge_csv_index = input[3]
     merge_csv_prefix = input[4]
-    output_folder = output[0]
+    output_file = output[0]
     # Building block invocation
     feature_merger(input_dir=input_dir,
-                   output_folder=output_folder,
+                   output_file=output_file,
                    feature_file=feature_file,
                    merge_csv_file=merge_csv_file,
                    merge_csv_index=merge_csv_index,

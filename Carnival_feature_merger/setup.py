@@ -42,9 +42,9 @@ setup(
     },
     # If there are data files included in your packages that need to be
     # installed, specify them here.
-    # package_data={
-    #     "Carnival_feature_merger_BB": ["assets/*"],
-    # },
+    package_data={
+        "Carnival_feature_merger_BB": ["assets/*"],
+    },
     entry_points={
         "console_scripts": [
             "Carnival_feature_merger_BB=Carnival_feature_merger_BB.__main__:main",

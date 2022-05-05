@@ -42,9 +42,9 @@ setup(
     },
     # If there are data files included in your packages that need to be
     # installed, specify them here.
-    # package_data={
-    #     "Carnival_gex_preprocess_BB": ["assets/*"],
-    # },
+    package_data={
+        "Carnival_gex_preprocess_BB": ["assets/*"],
+    },
     entry_points={
         "console_scripts": [
             "Carnival_gex_preprocess_BB=Carnival_gex_preprocess_BB.__main__:main",

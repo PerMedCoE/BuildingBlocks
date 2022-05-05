@@ -80,9 +80,9 @@ Where the parameters are:
 Here is an example from https://github.com/saezlab/permedcoe/blob/master/containers/workflow_bb.sh preprocessing GDSC data:
 
 ```bash
-wget -O ${tmpdir}/gdsc_gex.zip https://www.cancerrxgene.org/gdsc1000/GDSC1000_WebResources/Data/preprocessed/Cell_line_RMA_proc_basalExp.txt.zip
-unzip gdsc_gex.zip -d ${tmpdir}/
-carnival_gex_preprocess_bb -i ${tmpdir}/Cell_line_RMA_proc_basalExp.txt GENE_SYMBOLS GENE_title FALSE TRUE TRUE DATA. -o ${tmpdir}/gex.csv
+wget -O gdsc_gex.zip https://www.cancerrxgene.org/gdsc1000/GDSC1000_WebResources/Data/preprocessed/Cell_line_RMA_proc_basalExp.txt.zip
+unzip gdsc_gex.zip
+Carnival_gex_preprocess_BB -i Cell_line_RMA_proc_basalExp.txt GENE_SYMBOLS GENE_title FALSE TRUE DATA. TRUE -o gex.csv
 ```
 
 ### Uninstall

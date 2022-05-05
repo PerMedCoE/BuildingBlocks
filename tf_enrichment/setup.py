@@ -8,9 +8,9 @@ here = pathlib.Path(__file__).parent.resolve()
 long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
-    name="Carnival_BB",
+    name="tf_enrichment_BB",
     version="0.0.1",
-    description="This package provides the Carnival Building Block",
+    description="This package provides the tf_enrichment Building Block",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/PerMedCoE/BuildingBlocks",
@@ -32,7 +32,7 @@ setup(
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3 :: Only",
     ],
-    keywords="BuildingBlock, PerMedCoE, Carnival",
+    keywords="BuildingBlock, PerMedCoE, tf_enrichment",
     package_dir={"": "src"},
     packages=find_packages(where="src"),
     python_requires=">=3.6, <4",
@@ -42,17 +42,17 @@ setup(
     },
     # If there are data files included in your packages that need to be
     # installed, specify them here.
-    # package_data={
-    #     "Carnival_BB": ["assets/*"],
-    # },
+    package_data={
+        "tf_enrichment_BB": ["assets/*"],
+    },
     entry_points={
         "console_scripts": [
-            "Carnival_BB=Carnival_BB.__main__:main",
+            "tf_enrichment_BB=tf_enrichment_BB.__main__:main",
         ],
     },
     project_urls={
         "Bug Reports": "https://github.com/PerMedCoE/BuildingBlocks/issues",
-        "Source": "https://github.com/PerMedCoE/BuildingBlocks/tree/main/Carnival",
+        "Source": "https://github.com/PerMedCoE/BuildingBlocks/tree/main/tf_enrichment",
     },
 )
 

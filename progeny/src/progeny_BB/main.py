@@ -1,3 +1,5 @@
+import os
+
 from permedcoe import constraint
 from permedcoe import container
 from permedcoe import binary
@@ -6,13 +8,17 @@ from permedcoe import FILE_IN
 from permedcoe import FILE_OUT
 
 # Import container definition
+from progeny_BB.definitions import PROGENY_ASSETS_PATH
 from progeny_BB.definitions import PROGENY_CONTAINER
 from progeny_BB.definitions import COMPUTING_UNITS
+
+# Globals
+PROGENY_BINARY = os.path.join(PROGENY_ASSETS_PATH, "progeny.sh")
 
 
 @constraint(computing_units=COMPUTING_UNITS)
 @container(engine="SINGULARITY", image=PROGENY_CONTAINER)
-@binary(binary="Rscript --vanilla /opt/progeny.R")
+@binary(binary=PROGENY_BINARY)
 @task(input_file=FILE_IN, output_file=FILE_OUT)
 def progeny(input_file=None, output_file=None,
             organism_flag='-o', organism=None,

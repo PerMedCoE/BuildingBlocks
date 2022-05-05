@@ -15,7 +15,20 @@ wget https://github.com/saezlab/permedcoe/archive/refs/heads/master.zip
 unzip master.zip
 cd permedcoe-master/containers
 
-# TODO: Add building the containers for single-drug-prediction.
+cd toolset
+sudo /usr/local/bin/singularity build toolset.sif toolset.singularity
+mv toolset.sif ../../../
+cd ..
+
+cd carnivalpy
+sudo /usr/local/bin/singularity build carnivalpy.sif carnivalpy.singularity
+mv carnivalpy.sif ../../../
+cd ..
+
+cd ml-jax
+sudo /usr/local/bin/singularity build ml-jax.sif ml-jax.singularity
+mv ml-jax.sif ../../../tf-jax.sif
+cd ..
 
 cd ../..
 ## Cleanup

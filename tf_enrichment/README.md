@@ -69,20 +69,22 @@ Where the parameters are:
 |        | Parameter          | Type      | Description                                                                                                             |
 |--------|--------------------|-----------|-------------------------------------------------------------------------------------------------------------------------|
 | Input  | \<input_file>      | String    | Input gene expression data. Genes should be normalized across samples.                                                  |
-| Input  | \<weight_col>      | String    | Name of the column containing differential expression values (e.g t-statistic from DESeq2) between a control/treatment condition for example, or just log-fold change. |
-| Input  | \<source>          | String    | Column with the TFs. Default = `tf`                                                                                     |
-| Input  | \<id_col>          | String    | Name of the column for gene ids.                                                                                        |
 | Input  | \<tsv>             | String    | Import data as TSV instead of CSV (True/False)                                                                          |
+| Input  | \<weight_col>      | String    | Name of the column containing differential expression values (e.g t-statistic from DESeq2) between a control/treatment condition for example, or just log-fold change. |
+| Input  | \<id_col>          | String    | Name of the column for gene ids.                                                                                        |
 | Input  | \<minsize>         | Integer   | Minimum size for regulons. E.g 10.                                                                                      |
+| Input  | \<source>          | String    | Column with the TFs. Default = `tf`                                                                                     |
 | Input  | \<confidence>      | String    | Level of confidence to be used for regulons. E.g.: `A,B,C`. (see https://saezlab.github.io/dorothea/ for documentation) |
 | Input  | \<verbose>         | String    | Verbose output (True/False).                                                                                            |
+| Input  | \<pval_threshold>  | Float     | Filter out TFs with adj. p-val above the provided value.                                                                |
+| Input  | \<export_carnival> | String    |  Export a table with the results with two columns (id, value) only (for CARNIVAL)(TRUE/FALSE).                          |
 | Output | \<output_file>     | String    | Result csv file with estimated TF activities.                                                                           |
 
 
 Example from normalized GEX data from GDSC using `preprocess_bb` on sample `DATA.906826`. Note that here we assume that genes are normalized across columns and so the control vs condition is the given column against the other conditions as control:
 
 ```bash
-tfenrichment_BB -i gex.csv DATA.906826 GENE_SYMBOLS tf FALSE 10 'A,B,C' TRUE -o 906826_tf.csv
+tf_enrichment_BB -i gex_n.csv 906826 tf GENE_SYMBOLS FALSE 10 'A,B,C' TRUE -o 906826/measurements.csv
 ```
 
 ### Uninstall

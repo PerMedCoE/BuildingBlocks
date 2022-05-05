@@ -42,9 +42,9 @@ setup(
     },
     # If there are data files included in your packages that need to be
     # installed, specify them here.
-    # package_data={
-    #     "ml_jax_drug_prediction_BB": ["assets/*"],
-    # },
+    package_data={
+        "ml_jax_drug_prediction_BB": ["assets/*"],
+    },
     entry_points={
         "console_scripts": [
             "ml_jax_drug_prediction_BB=ml_jax_drug_prediction_BB.__main__:main",

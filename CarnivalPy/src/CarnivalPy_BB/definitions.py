@@ -1,5 +1,8 @@
 import os
 
+# Assets folder within the Building Block
+CARNIVALPY_ASSETS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets")
+
 # Container definition for Carnival Building Block
 CONTAINER_PATH = os.environ["PERMEDCOE_IMAGES"]
 CARNIVALPY_CONTAINER = CONTAINER_PATH + "carnivalpy.sif"

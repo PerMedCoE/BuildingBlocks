@@ -60,7 +60,8 @@ The command line is:
 
 ```bash
 Carnival_feature_merger_BB -d \
-    -i <input_file>
+    -i <input_dir> <feature_file> <merge_csv_file> <merge_csv_index> <merge_csv_prefix> \
+    -o <output_file>
 ```
 
 Where the parameters are:

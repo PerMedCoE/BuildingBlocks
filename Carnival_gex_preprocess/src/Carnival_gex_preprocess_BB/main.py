@@ -8,13 +8,18 @@ from permedcoe import FILE_IN
 from permedcoe import FILE_OUT
 
 # Import container definition
+from Carnival_gex_preprocess_BB.definitions import CARNIVAL_GEX_PREPROCESS_ASSETS_PATH
 from Carnival_gex_preprocess_BB.definitions import CARNIVAL_GEX_PREPROCESS_CONTAINER
 from Carnival_gex_preprocess_BB.definitions import COMPUTING_UNITS
+
+# Globals
+CARNIVAL_GEX_PREPROCESS_BINARY = os.path.join(CARNIVAL_GEX_PREPROCESS_ASSETS_PATH,
+                                              "carnival_gex_preprocess.sh")
 
 
 @constraint(computing_units=COMPUTING_UNITS)
 @container(engine="SINGULARITY", image=CARNIVAL_GEX_PREPROCESS_CONTAINER)
-@binary(binary="Rscript --vanilla /opt/preprocess.R")
+@binary(binary=CARNIVAL_GEX_PREPROCESS_BINARY)
 @task(input_file=FILE_IN, output_file=FILE_OUT)
 def preprocess(input_file=None, output_file=None,
                col_genes_flag='-c', col_genes=None,
@@ -66,7 +71,7 @@ def invoke(input, output, config):
     remove = input[5]
     verbose = input[6]
     output_file = output[0]
-    # Building block invokation
+    # Building block invocation
     preprocess(input_file=input_file,
                output_file=output_file,
                col_genes=col_genes,
