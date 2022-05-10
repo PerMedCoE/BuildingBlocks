@@ -20,7 +20,7 @@ ML_JAX_DRUG_PREDICTION_BINARY = os.path.join(ML_JAX_DRUG_PREDICTION_ASSETS_PATH,
 @constraint(computing_units=COMPUTING_UNITS)
 @container(engine="SINGULARITY", image=ML_JAX_DRUG_PREDICTION_CONTAINER)
 @binary(binary=ML_JAX_DRUG_PREDICTION_BINARY)
-@task(input_file=FILE_IN, output_file=FILE_OUT)
+@task(input_file=FILE_IN, output_file=FILE_OUT, cell_features=FILE_IN)
 def ml(input_file=None, output_file=None,
        drug_features_flag='--drug_features', drug_features=None,
        cell_features_flag='--cell_features', cell_features=None,
