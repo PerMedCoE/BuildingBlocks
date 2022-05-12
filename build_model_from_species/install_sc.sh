@@ -2,9 +2,7 @@
 
 echo "Installing..."
 
-version=$(python -c "import sys; version = sys.version_info; print('%d.%d' % (version[0], version[1]))")
-path="$1/python${version}/"
-
+path=$1
 mkdir -p ${path}
 
 python3 -m pip install . --target=${path}
