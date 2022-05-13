@@ -107,7 +107,7 @@ def invoke(input, output, config):
         cell_type = input[3]
         model_bnd = input[4]
         model_cfg = input[5]
-        model_output_dir = output[0]
+        model_output_dir = os.path.abspath(output[0])
         # personalized_result = output[1]
         personalize_patient_cellline(expression_data=expression,
                         cnv_data=cnv,
@@ -124,7 +124,7 @@ def invoke(input, output, config):
         model_prefix = input[2]
         t = input[3]
         ko = input[4]
-        model_output_dir = output[0]
+        model_output_dir = os.path.abspath(output[0])
         personalized_result = output[1]
         # Building block invocation
         personalize_patient(norm_data=norm_data,
