@@ -3,18 +3,15 @@ From: ubuntu
 Stage: build
 
 %environment
-    export PATH="/usr/local/bin:/usr/local/bin/MaBoSS_BB/:$PATH"
+    export PATH="/usr/local/bin:$PATH"
 
 %post
     DEBIAN_FRONTEND=noninteractive apt-get update -y
     DEBIAN_FRONTEND=noninteractive apt-get install -y r-base default-jre python3 python3-pip wget unzip
     pip install maboss seaborn
-    wget https://github.com/sysbio-curie/MaBoSS-env-2.0/releases/download/v2.4.1/MaBoSS-linux64.zip 
+    wget https://github.com/sysbio-curie/MaBoSS-env-2.0/releases/download/v2.4.1/MaBoSS-linux64.zip
     unzip -o MaBoSS-linux64.zip -d /usr/local/bin/
     ls -al /usr/local/bin
-    
-%files
-    assets/MaBoSS_BB /usr/local/bin
 
 %runscript
     exec /bin/bash "$@"
