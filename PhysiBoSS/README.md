@@ -76,6 +76,7 @@ Where the parameters are:
 | Input  | \<bnd_file>    | File      | Name of the model's BND file          |
 | Input  | \<cfg_file>    | File      | Name of the model's CFG file          |
 | Input  | \<parallel>    | Int       | Internal parallelism                  |
+| Input  | \<max_time>    | Int       | PhysiBoSS simulation maximum time     |
 | Output | \<out_file>    | File      | Main output of the PhysiBoSS run      |
 | Output | \<err_file>    | File      | Error output of the PhysiBoSS run     |
 | Output | \<results_dir> | Directory | Results directory                     |
