@@ -1,5 +1,6 @@
 import os
 
+from permedcoe import Arguments
 from permedcoe import constraint
 from permedcoe import container
 from permedcoe import binary
@@ -62,22 +63,21 @@ def MaBoSS_sensitivity_analysis(
     pass
 
 
-def invoke(input, output, config):
+def invoke(arguments, config):
     """Common interface.
 
     Args:
-        input (list): List containing the model and data folder.
-        output (list): list containing the output directory path.
+        arguments (args): Building Block parsed arguments.
         config (dict): Configuration dictionary (not used).
     Returns:
         None
     """
-    if config and "uc2" in config.keys() and config["uc2"]:
+    if arguments.mode == "sensitivity":
         # Process parameters
-        model_folder = input[0]
-        genes_druggable = input[1]
-        genes_target = input[2]
-        result_file = output[0]
+        model_folder = arguments.model_folder
+        genes_druggable = arguments.genes_druggable
+        genes_target = arguments.genes_target
+        result_file = arguments.result_file
         # Building block invocation
         MaBoSS_sensitivity_analysis(
             model_folder=model_folder,
@@ -85,14 +85,63 @@ def invoke(input, output, config):
             genes_target=genes_target,
             result_file=result_file,
         )
-
     else:
         # Process parameters
-        model = input[0]
-        data_folder = input[1]
-        parallel = input[2]
-        ko_file = output[0]
+        model = arguments.model
+        data_folder = arguments.data_folder
+        parallel = arguments.parallel
+        ko_file = arguments.ko_file
         # Building block invoCation
         MaBoSS_analysis(
-            model=model, data_folder=data_folder, ko_file=ko_file, parallel=parallel
+            model=model,
+            data_folder=data_folder,
+            ko_file=ko_file,
+            parallel=parallel
         )
+
+
+def arguments_info():
+    """Arguments definition.
+
+    Builds the arguments definition.
+
+    Returns:
+        Supported arguments.
+    """
+    arguments = Arguments()
+    arguments.add_input(name="model",
+                        type=str,
+                        description="Model",
+                        check=str)
+    arguments.add_input(name="data_folder",
+                        type=str,
+                        description="Data folder",
+                        check="folder")
+    arguments.add_input(name="parallel",
+                        type=int,
+                        description="Internal parallelism",
+                        check=None)
+    arguments.add_output(name="ko_file",
+                         type=str,
+                         description="KO file")
+    sensitivity = "sensitivity"
+    arguments.add_input(name="model_folder",
+                        type=str,
+                        description="Model folder",
+                        check="folder",
+                        mode=sensitivity)
+    arguments.add_input(name="genes_druggable",
+                        type=str,
+                        description="Genes druggable (csv)",
+                        check="file",
+                        mode=sensitivity)
+    arguments.add_input(name="genes_target",
+                        type=str,
+                        description="Genes target (csv)",
+                        check="file",
+                        mode=sensitivity)
+    arguments.add_output(name="result_file",
+                         type=str,
+                         description="Sensitivity result file (json)",
+                         mode=sensitivity)
+    return arguments
