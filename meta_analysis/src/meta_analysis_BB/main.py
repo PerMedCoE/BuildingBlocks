@@ -1,5 +1,6 @@
 import os
 
+from permedcoe import Arguments
 from permedcoe import constraint
 from permedcoe import container
 from permedcoe import binary
@@ -47,24 +48,23 @@ def meta_analysis(meta_file_flag='-m', meta_file=None,
     pass
 
 
-def invoke(input, output, config):
-    """ Common interface.
+def invoke(arguments, config):
+    """Common interface.
 
     Args:
-        input (list): List containing the metadata file path.
-        output (list): list containing the output directory path.
+        arguments (args): Building Block parsed arguments.
         config (dict): Configuration dictionary (not used).
     Returns:
         None
     """
     # Process parameters
-    meta_file = input[0]
-    out_dir = input[1]
-    model_prefix = input[2]
-    ko_file = input[3]
-    reps = input[4]
-    verbose = input[5]
-    results = output[0]
+    meta_file = arguments.meta_file
+    out_dir = arguments.out_dir
+    model_prefix = arguments.model_prefix
+    ko_file = arguments.ko_file
+    reps = arguments.reps
+    verbose = arguments.verbose
+    results = arguments.results
     # Building block invocation
     meta_analysis(meta_file=meta_file,
                   out_dir=out_dir,
@@ -73,3 +73,42 @@ def invoke(input, output, config):
                   reps=reps,
                   verbose=verbose,
                   results=results)
+
+
+def arguments_info():
+    """Arguments definition.
+
+    Builds the arguments definition.
+
+    Returns:
+        Supported arguments.
+    """
+    arguments = Arguments()
+    arguments.add_input(name="meta_file",
+                        type=str,
+                        description="Sample information",
+                        check="file")
+    arguments.add_input(name="out_dir",
+                        type=str,
+                        description="Simulations output folder",
+                        check="folder")
+    arguments.add_input(name="model_prefix",
+                        type=str,
+                        description="Prefix of the boolean model used in the simulations",
+                        check=str)
+    arguments.add_input(name="ko_file",
+                        type=str,
+                        description="Evaluated gene KOs",
+                        check="file")
+    arguments.add_input(name="reps",
+                        type=int,
+                        description="Number of replicas",
+                        check=int)
+    arguments.add_input(name="verbose",
+                        type=str,
+                        description="Verbose level",
+                        check=str)
+    arguments.add_output(name="results",
+                         type=str,
+                         description="Output folder")
+    return arguments

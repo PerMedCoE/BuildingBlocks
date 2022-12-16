@@ -5,10 +5,11 @@ NOTE: Do not modify this file unless you want to change the name
 
 from permedcoe import invoker
 from progeny_BB.main import invoke
+from progeny_BB.main import arguments_info
 
 
 def main():
-    invoker(invoke)  # Does automatically the parameter parsing
+    invoker(invoke, arguments_info)
 
 
 if __name__ == "__main__":

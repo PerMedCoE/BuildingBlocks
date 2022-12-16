@@ -1,5 +1,6 @@
 import os
 
+from permedcoe import Arguments
 from permedcoe import constraint
 from permedcoe import container
 from permedcoe import binary
@@ -26,17 +27,37 @@ def carnival(input_file=None):
     pass
 
 
-def invoke(input, output, config):
+def invoke(arguments, config):
     """ Common interface.
 
+    # TODO: add options to export in a given folder
+
     Args:
-        input (list): List containing the model and data folder.
-        output (list): list containing the output directory path.
+        arguments (args): Building Block parsed arguments.
         config (dict): Configuration dictionary (not used).
     Returns:
         None
     """
     # Process parameters
-    input_file = input[0]
+    input_file = arguments.input_file
     # Building block invocation
     carnival(input_file=input_file)
+
+
+def arguments_info():
+    """Arguments definition.
+
+    Builds the arguments definition.
+
+    Returns:
+        Supported arguments.
+    """
+    arguments = Arguments()
+    input_file_desc = "HDF5 data with the SIF network, measurements \
+                       and perturbations. This file can be produced from \
+                       csv files using the export_solver_hdf5_bb"
+    arguments.add_input(name="input_file",
+                        type=str,
+                        description=input_file_desc,
+                        check="file")
+    return arguments

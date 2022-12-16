@@ -1,5 +1,6 @@
 import os
 
+from permedcoe import Arguments
 from permedcoe import container
 from permedcoe import binary
 from permedcoe import task
@@ -149,22 +150,39 @@ def print_drug_results(drug_results_folder=None, reports_folder=None):
     pass
 
 
-def invoke(input, output, config):
+def invoke(arguments, config):
     """ Common interface.
 
     Args:
-        input (list): List containing the normalized data file path, cells
-                      metadata, model prefix, tag and ko file.
-        output (list): list containing the output directory path.
+        arguments (args): Building Block parsed arguments.
         config (dict): Configuration dictionary (not used).
     Returns:
         None
     """
     # Process parameters
-    results_folder = input[0]
-    reports_folder = output[0]
+    results_folder = arguments.results_folder
+    reports_folder = arguments.reports_folder
     # Building block invocation
     print_drug_results(
         drug_results_folder=results_folder,
         reports_folder=reports_folder
     )
+
+
+def arguments_info():
+    """Arguments definition.
+
+    Builds the arguments definition.
+
+    Returns:
+        Supported arguments.
+    """
+    arguments = Arguments()
+    arguments.add_input(name="results_folder",
+                        type=str,
+                        description="Results folder",
+                        check="folder")
+    arguments.add_output(name="reports_folder",
+                         type=str,
+                         description="Reports folder")
+    return arguments

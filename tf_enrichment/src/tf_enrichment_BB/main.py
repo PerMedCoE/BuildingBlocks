@@ -1,5 +1,6 @@
 import os
 
+from permedcoe import Arguments
 from permedcoe import constraint
 from permedcoe import container
 from permedcoe import binary
@@ -61,28 +62,27 @@ def tf_enrichment(input_file=None, output_file=None,
     pass
 
 
-def invoke(input, output, config):
+def invoke(arguments, config):
     """ Common interface.
 
     Args:
-        input (list): List containing the model and data folder.
-        output (list): list containing the output directory path.
+        arguments (args): Building Block parsed arguments.
         config (dict): Configuration dictionary (not used).
     Returns:
         None
     """
     # Process parameters
-    input_file = input[0]
-    tsv = input[1]
-    weight_col = input[2]
-    id_col = input[3]
-    minsize = input[4]
-    source = input[5]
-    confidence = input[6]
-    verbose = input[7]
-    pval_threshold = input[8]
-    export_carnival = input[9]
-    output_file = output[0]
+    input_file = arguments.input_file
+    tsv = arguments.tsv
+    weight_col = arguments.weight_col
+    id_col = arguments.id_col
+    minsize = arguments.minsize
+    source = arguments.source
+    confidence = arguments.confidence
+    verbose = arguments.verbose
+    pval_threshold = arguments.pval_threshold
+    export_carnival = arguments.export_carnival
+    output_file = arguments.output_file
     # Building block invocation
     tf_enrichment(input_file=input_file,
                   output_file=output_file,
@@ -95,3 +95,60 @@ def invoke(input, output, config):
                   verbose=verbose,
                   pval_threshold=pval_threshold,
                   export_carnival=export_carnival)
+
+
+def arguments_info():
+    """Arguments definition.
+
+    Builds the arguments definition.
+
+    Returns:
+        Supported arguments.
+    """
+    arguments = Arguments()
+    arguments.add_input(name="input_file",
+                        type=str,
+                        description="Input gene expression data. Genes should be normalized across samples",
+                        check="file")
+    arguments.add_input(name="tsv",
+                        type=bool,
+                        description="Import data as TSV instead of CSV (True | False)",
+                        check=bool)
+    arguments.add_input(name="weight_col",
+                        type=str,
+                        description="Name of the column containing differential expression values \
+                                     (e.g t-statistic from DESeq2) between a control/treatment \
+                                     condition for example, or just log-fold change.",
+                        check=str)
+    arguments.add_input(name="id_col",
+                        type=str,
+                        description="Name of the column for gene ids",
+                        check=str)
+    arguments.add_input(name="minsize",
+                        type=int,
+                        description="Minimum size for regulons (e.g. 10)",
+                        check=int)
+    arguments.add_input(name="source",
+                        type=str,
+                        description="Column with the TFs (e.g. tf)",
+                        check=str)
+    arguments.add_input(name="confidence",
+                        type=str,
+                        description="Level of confidence to be used for regulons. E.g.: A,B,C. (see https://saezlab.github.io/dorothea/ for documentation)",
+                        check=str)
+    arguments.add_input(name="verbose",
+                        type=str,
+                        description="Verbose output (True | False).",
+                        check=str)
+    arguments.add_input(name="pval_threshold",
+                        type=float,
+                        description="Filter out TFs with adj. p-val above the provided value",
+                        check=float)
+    arguments.add_input(name="export_carnival",
+                        type=str,
+                        description="Export a table with the results with two columns (id, value) only (for CARNIVAL)(TRUE/FALSE)",
+                        check=str)
+    arguments.add_output(name="output_file",
+                         type=str,
+                         description="Result csv file with estimated TF activities")
+    return arguments

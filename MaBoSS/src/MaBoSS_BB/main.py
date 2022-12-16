@@ -91,7 +91,7 @@ def invoke(arguments, config):
         data_folder = arguments.data_folder
         parallel = arguments.parallel
         ko_file = arguments.ko_file
-        # Building block invoCation
+        # Building block invocation
         MaBoSS_analysis(
             model=model,
             data_folder=data_folder,

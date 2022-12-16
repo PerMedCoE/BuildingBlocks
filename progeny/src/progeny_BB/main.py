@@ -1,5 +1,6 @@
 import os
 
+from permedcoe import Arguments
 from permedcoe import constraint
 from permedcoe import container
 from permedcoe import binary
@@ -60,31 +61,30 @@ def progeny(input_file=None, output_file=None,
     pass
 
 
-def invoke(input, output, config):
+def invoke(arguments, config):
     """ Common interface.
 
     Example:
         progeny -i gex.csv Human 60 GENE_SYMBOLS TRUE GENE_title FALSE 3000 TRUE TRUE -o progeny11.csv
 
     Args:
-        input (list): List containing the model and data folder.
-        output (list): list containing the output directory path.
+        arguments (args): Building Block parsed arguments.
         config (dict): Configuration dictionary (not used).
     Returns:
         None
     """
     # Process parameters
-    input_file = input[0]
-    organism = input[1]
-    ntop = input[2]
-    col_genes = input[3]
-    scale = input[4]
-    exclude_cols = input[5]
-    tsv = input[6]
-    perms = input[7]
-    zscore = input[8]
-    verbose = input[9]
-    output_file = output[0]
+    input_file = arguments.input_file
+    organism = arguments.organism
+    ntop = arguments.ntop
+    col_genes = arguments.col_genes
+    scale = arguments.scale
+    exclude_cols = arguments.exclude_cols
+    tsv = arguments.tsv
+    perms = arguments.perms
+    zscore = arguments.zscore
+    verbose = arguments.verbose
+    output_file = arguments.output_file
     # Building block invocation
     progeny(input_file=input_file,
             output_file=output_file,
@@ -97,3 +97,61 @@ def invoke(input, output, config):
             perms=perms,
             zscore=zscore,
             verbose=verbose)
+
+
+def arguments_info():
+    """Arguments definition.
+
+    Builds the arguments definition.
+
+    Returns:
+        Supported arguments.
+    """
+    arguments = Arguments()
+    arguments.add_input(name="input_file",
+                        type=str,
+                        description="CSV with gene expression data, where rows are genes and columns are samples",
+                        check="file")
+    arguments.add_input(name="organism",
+                        type=str,
+                        description="Human\/Mouse",
+                        check=str)
+    arguments.add_input(name="ntop",
+                        type=int,
+                        description="Number of top genes used to estimate pathway activities",
+                        check=int)
+    arguments.add_input(name="col_genes",
+                        type=str,
+                        description="Name of the column containing gene IDs",
+                        check=str)
+    arguments.add_input(name="scale",
+                        type=bool,
+                        description="Scale data (True | False)",
+                        check=bool)
+    arguments.add_input(name="exclude_cols",
+                        type=str,
+                        description="Columns containing this string will be removed",
+                        check=str)
+    arguments.add_input(name="tsv",
+                        type=str,
+                        description="Import input data as TSV",
+                        check=str)
+    arguments.add_input(name="perms",
+                        type=int,
+                        description="Number of permutations to estimate the null distribution. \
+                                     For default usage of PROGENy, just pass 1 to skip this step",
+                        check=int)
+    arguments.add_input(name="zscore",
+                        type=bool,
+                        description="If True, the z-scores will be returned for the pathway \
+                                     activity estimations. Else, the function returns a normalized \
+                                     z-score value between -1 and 1",
+                        check=bool)
+    arguments.add_input(name="verbose",
+                        type=str,
+                        description="Verbose output (True | False)",
+                        check=str)
+    arguments.add_output(name="output_file",
+                         type=str,
+                         description="File with the results containing pathway activities")
+    return arguments

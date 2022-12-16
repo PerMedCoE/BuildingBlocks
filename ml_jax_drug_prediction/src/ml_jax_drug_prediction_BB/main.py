@@ -1,5 +1,6 @@
 import os
 
+from permedcoe import Arguments
 from permedcoe import constraint
 from permedcoe import container
 from permedcoe import binary
@@ -58,7 +59,7 @@ def ml(input_file=None, output_file=None,
     pass
 
 
-def invoke(input, output, config):
+def invoke(arguments, config):
     """ Common interface.
 
     Process parameters
@@ -67,23 +68,22 @@ def invoke(input, output, config):
         ml -i .x .x .x 200 0.1 0.001 10 0.1 0.1 -o model.npz
 
     Args:
-        input (list): List containing the model and data folder.
-        output (list): list containing the output directory path.
+        arguments (args): Building Block parsed arguments.
         config (dict): Configuration dictionary (not used).
     Returns:
         None
     """
     # Process parameters
-    input_file = input[0]
-    drug_features = input[1]
-    cell_features = input[2]
-    epochs = input[3]
-    adam_lr = input[4]
-    reg = input[5]
-    latent_size = input[6]
-    test_drugs = input[7]
-    test_cells = input[8]
-    output_file = output[0]
+    input_file = arguments.input_file
+    drug_features = arguments.drug_features
+    cell_features = arguments.cell_features
+    epochs = arguments.epochs
+    adam_lr = arguments.adam_lr
+    reg = arguments.reg
+    latent_size = arguments.latent_size
+    test_drugs = arguments.test_drugs
+    test_cells = arguments.test_cells
+    output_file = arguments.output_file
     # Building block invocation
     ml(input_file=input_file,
        output_file=output_file,
@@ -95,3 +95,68 @@ def invoke(input, output, config):
        latent_size=latent_size,
        test_drugs=test_drugs,
        test_cells=test_cells)
+
+
+def arguments_info():
+    """Arguments definition.
+
+    Builds the arguments definition.
+
+    Returns:
+        Supported arguments.
+    """
+    arguments = Arguments()
+    arguments.add_input(name="input_file",
+                        type=str,
+                        description="CSV with the matrix to predict (e.g IC50 drug/cell responses) \
+                                     for training (see this example). If the file is a .npz file, \
+                                     then the model is imported and this is run in inference mode for \
+                                     predictions. If .x is provided, the example file is used for \
+                                     training a mode",
+                        check="file")
+    arguments.add_input(name="drug_features",
+                        type=str,
+                        description="CSV with row features (e.g. drug targets). \
+                                     If .x is provided, the example file is used.",
+                        check="file")
+    arguments.add_input(name="cell_features",
+                        type=str,
+                        description="CSV with col features (e.g. cell features). \
+                                     If .x is provided, the example file is used.",
+                        check="file")
+    arguments.add_input(name="epochs",
+                        type=int,
+                        description="Number of epochs for training using the ADAM optimizer (e.g. 200)",
+                        check=int)
+    arguments.add_input(name="adam_lr",
+                        type=float,
+                        description="Learning rate for the ADAM solver. E.g. 0.1. Recommended <= 0.1. \
+                                     Lower values slow down the convergence.",
+                        check=float)
+    arguments.add_input(name="reg",
+                        type=float,
+                        description="L2 regularization weight (e.g. 0.001)",
+                        check=float)
+    arguments.add_input(name="latent_size",
+                        type=int,
+                        description="Number of dimensions for the latent matrices to be estimated \
+                                     from the data. As a rule of thumb, this should be at most the \
+                                     minimum number of features for cells or drugs used. Larger \
+                                     values might create overfitted models.",
+                        check=int)
+    arguments.add_input(name="test_drugs",
+                        type=str,
+                        description="If row features are provided, this is the proportion of samples \
+                                     removed from training for validation (e.g. 0.2)",
+                        check=str)
+    arguments.add_input(name="test_cells",
+                        type=str,
+                        description="If col features are provided, this is the proportion of samples \
+                                     removed from training for validation (e.g. 0.2)",
+                        check=str)
+    arguments.add_output(name="output_file",
+                         type=str,
+                         description="npz file with the trained model if in \
+                                      training mode, or csv file with \
+                                      prediction results")
+    return arguments

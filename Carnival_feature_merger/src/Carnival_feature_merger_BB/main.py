@@ -1,5 +1,6 @@
 import os
 
+from permedcoe import Arguments
 from permedcoe import constraint
 from permedcoe import container
 from permedcoe import binary
@@ -45,23 +46,22 @@ def feature_merger(input_dir=None, output_file=None,
     pass
 
 
-def invoke(input, output, config):
+def invoke(arguments, config):
     """ Common interface.
 
     Args:
-        input (list): List containing the model and data folder.
-        output (list): list containing the output directory path.
+        arguments (args): Building Block parsed arguments.
         config (dict): Configuration dictionary (not used).
     Returns:
         None
     """
     # Process parameters
-    input_dir = input[0]
-    feature_file = input[1]
-    merge_csv_file = input[2]
-    merge_csv_index = input[3]
-    merge_csv_prefix = input[4]
-    output_file = output[0]
+    input_dir = arguments.input_dir
+    feature_file = arguments.feature_file
+    merge_csv_file = arguments.merge_csv_file
+    merge_csv_index = arguments.merge_csv_index
+    merge_csv_prefix = arguments.merge_csv_prefix
+    output_file = arguments.output_file
     # Building block invocation
     feature_merger(input_dir=input_dir,
                    output_file=output_file,
@@ -69,3 +69,43 @@ def invoke(input, output, config):
                    merge_csv_file=merge_csv_file,
                    merge_csv_index=merge_csv_index,
                    merge_csv_prefix=merge_csv_prefix)
+
+
+def arguments_info():
+    """Arguments definition.
+
+    Builds the arguments definition.
+
+    Returns:
+        Supported arguments.
+    """
+    arguments = Arguments()
+    arguments.add_input(name="input_dir",
+                        type=str,
+                        description="Path containing the folders with the samples. \
+                                     Name of the folders are used for the name of \
+                                     the samples",
+                        check="folder")
+    arguments.add_input(name="feature_file",
+                        type=str,
+                        description="File containing a list of features. \
+                                     If provided, only those features are \
+                                     retrieved from solutions",
+                        check="file")
+    arguments.add_input(name="merge_csv_file",
+                        type=str,
+                        description="Join the merged features into the given file",
+                        check="file")
+    arguments.add_input(name="merge_csv_index",
+                        type=str,
+                        description="Column ID used as the index for the data (e.g. sample)",
+                        check=str)
+    arguments.add_input(name="merge_csv_prefix",
+                        type=str,
+                        description="Prefix for the merged features",
+                        check=str)
+    arguments.add_output(name="output_file",
+                         type=str,
+                         description="Output file with the features, where rows are samples \
+                                      and columns features")
+    return arguments

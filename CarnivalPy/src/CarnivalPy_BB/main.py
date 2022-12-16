@@ -1,5 +1,6 @@
 import os
 
+from permedcoe import Arguments
 from permedcoe import constraint
 from permedcoe import container
 from permedcoe import binary
@@ -48,23 +49,22 @@ def carnivalpy(path=None,
     pass
 
 
-def invoke(input, output, config):
+def invoke(arguments, config):
     """ Common interface.
 
     Args:
-        input (list): List containing the model and data folder.
-        output (list): list containing the output directory path.
+        arguments (args): Building Block parsed arguments.
         config (dict): Configuration dictionary (not used).
     Returns:
         None
     """
     # Process parameters
-    path = input[0]
-    penalty = input[1]
-    solver = input[2]
-    tol = input[3]
-    maxtime = input[4]
-    export = output[0]
+    path = arguments.path
+    penalty = arguments.penalty
+    solver = arguments.solver
+    tol = arguments.tol
+    maxtime = arguments.maxtime
+    export = arguments.export
     # Building block invocation
     carnivalpy(path=path,
                penalty=penalty,
@@ -72,3 +72,46 @@ def invoke(input, output, config):
                tol=tol,
                maxtime=maxtime,
                export=export)
+
+
+
+def arguments_info():
+    """Arguments definition.
+
+    Builds the arguments definition.
+
+    Returns:
+        Supported arguments.
+    """
+    arguments = Arguments()
+    arguments.add_input(name="path",
+                        type=str,
+                        description="Path containing a sif.csv file, \
+                                     a measurements.csv file, and \
+                                     perturbations.csv file",
+                        check=str)
+    arguments.add_input(name="penalty",
+                        type=float,
+                        description="Penalty value for sparsity \
+                                     (penalty for the number of nodes in \
+                                     the final result) (e.g 0.0001)",
+                        check=float)
+    arguments.add_input(name="solver",
+                        type=str,
+                        description="Name of the solver to be used: \
+                                     gurobi, cplex, cbc, gurobi_mip, glpk. \
+                                     Any solver supported by Python-MIP and \
+                                     PICOS can be passed.",
+                        check=str)
+    arguments.add_input(name="tol",
+                        type=float,
+                        description="MIP Gap tolerance",
+                        check=float)
+    arguments.add_input(name="maxtime",
+                        type=int,
+                        description="Max time in seconds",
+                        check=int)
+    arguments.add_output(name="export",
+                         type=str,
+                         description="Path to the file to be exported with the solution")
+    return arguments

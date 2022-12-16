@@ -1,5 +1,6 @@
 import os
 
+from permedcoe import Arguments
 from permedcoe import constraint
 from permedcoe import container
 from permedcoe import binary
@@ -85,29 +86,26 @@ def physiboss(
     pass
 
 
-def invoke(input, output, config):
+def invoke(arguments, config):
     """Common interface.
 
     Args:
-        input (list): List containing the sample label, number of repetitions,
-                      prefix name, bnd file path, cfg file path, number
-                      of internal threads and max simulation time.
-        output (list): list containing the output and error files.
+        arguments (args): Building Block parsed arguments.
         config (dict): Configuration dictionary (not used).
     Returns:
         None
     """
     # Process parameters
-    sample = input[0]
-    repetition = input[1]
-    prefix = input[2]
-    bnd_file = input[3]
-    cfg_file = input[4]
-    parallel = input[5]
-    max_time = input[6]
-    out_file = output[0]
-    err_file = output[1]
-    results_dir = output[2]
+    sample = arguments.sample
+    repetition = arguments.repetition
+    prefix = arguments.prefix
+    bnd_file = arguments.bnd_file
+    cfg_file = arguments.cfg_file
+    parallel = arguments.parallel
+    max_time = arguments.max_time
+    out_file = arguments.out_file
+    err_file = arguments.err_file
+    results_dir = arguments.results_dir
     # Building block invocation
     physiboss(
         sample=sample,
@@ -121,3 +119,52 @@ def invoke(input, output, config):
         parallel=parallel,
         max_time=max_time,
     )
+
+
+def arguments_info():
+    """Arguments definition.
+
+    Builds the arguments definition.
+
+    Returns:
+        Supported arguments.
+    """
+    arguments = Arguments()
+    arguments.add_input(name="sample",
+                        type=str,
+                        description="Patient\'s identifier",
+                        check=str)
+    arguments.add_input(name="repetition",
+                        type=int,
+                        description="Number of repetition to be performed",
+                        check=int)
+    arguments.add_input(name="prefix",
+                        type=str,
+                        description="Name of the model",
+                        check=str)
+    arguments.add_input(name="bnd_file",
+                        type=str,
+                        description="Name of the model\'s BND file",
+                        check="file")
+    arguments.add_input(name="cfg_file",
+                        type=str,
+                        description="Name of the model\'s CFG file",
+                        check="file")
+    arguments.add_input(name="parallel",
+                        type=int,
+                        description="Internal parallelism",
+                        check=int)
+    arguments.add_input(name="max_time",
+                        type=int,
+                        description="PhysiBoSS simulation maximum time",
+                        check=int)
+    arguments.add_output(name="out_file",
+                         type=str,
+                         description="Main output of the PhysiBoSS run")
+    arguments.add_output(name="err_file",
+                         type=str,
+                         description="Error output of the PhysiBoSS run")
+    arguments.add_output(name="results_dir",
+                         type=str,
+                         description="Results directory")
+    return arguments

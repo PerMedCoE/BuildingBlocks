@@ -1,5 +1,6 @@
 import os
 
+from permedcoe import Arguments
 from permedcoe import constraint
 from permedcoe import container
 from permedcoe import binary
@@ -88,27 +89,25 @@ def personalize_patient_cellline(expression_data_flag="-e", expression_data=None
     pass
 
 
-def invoke(input, output, config):
+def invoke(arguments, config):
     """ Common interface.
 
     Args:
-        input (list): List containing the normalized data file path, cells
-                      metadata, model prefix, tag and ko file.
-        output (list): list containing the output directory path.
+        arguments (args): Building Block parsed arguments.
         config (dict): Configuration dictionary (not used).
     Returns:
         None
     """
-
-    if config and "uc2" in config.keys() and config["uc2"]:
-        expression = input[0]
-        cnv = input[1]
-        mutation = input[2]
-        cell_type = input[3]
-        model_bnd = input[4]
-        model_cfg = input[5]
-        model_output_dir = os.path.abspath(output[0])
-        # personalized_result = output[1]
+    if arguments.mode == "uc2":
+        # Process parameters
+        expression = arguments.expression
+        cnv = arguments.cnv
+        mutation = arguments.mutation
+        cell_type = arguments.cell_type
+        model_bnd = arguments.model_bnd
+        model_cfg = arguments.model_cfg
+        model_output_dir = os.path.abspath(arguments.model_output_dir)
+        # Building block invocation
         personalize_patient_cellline(expression_data=expression,
                         cnv_data=cnv,
                         mutation_data=mutation,
@@ -116,16 +115,15 @@ def invoke(input, output, config):
                         model_cfg=model_cfg,
                         t=cell_type,
                         model_output_dir=model_output_dir)
-                        # personalized_result=personalized_result)
     else:
         # Process parameters
-        norm_data = input[0]
-        cells = input[1]
-        model_prefix = input[2]
-        t = input[3]
-        ko = input[4]
-        model_output_dir = os.path.abspath(output[0])
-        personalized_result = output[1]
+        norm_data = arguments.norm_data
+        cells = arguments.cells
+        model_prefix = arguments.model_prefix
+        t = arguments.t
+        ko = arguments.ko
+        model_output_dir = os.path.abspath(arguments.model_output_dir)
+        personalized_result = arguments.personalized_result
         # Building block invocation
         personalize_patient(norm_data=norm_data,
                         cells=cells,
@@ -134,3 +132,76 @@ def invoke(input, output, config):
                         model_output_dir=model_output_dir,
                         personalized_result=personalized_result,
                         ko=ko)
+
+
+def arguments_info():
+    """Arguments definition.
+
+    Builds the arguments definition.
+
+    Returns:
+        Supported arguments.
+    """
+    arguments = Arguments()
+    arguments.add_input(name="norm_data",
+                        type=str,
+                        description="tsv of the normalized RNAseq data",
+                        check="file")
+    arguments.add_input(name="cells",
+                        type=str,
+                        description="tsv of the different patients to be analyzed with their clinical information",
+                        check="file")
+    arguments.add_input(name="model_prefix",
+                        type=str,
+                        description="Prefix that describes the model",
+                        check=str)
+    arguments.add_input(name="t",
+                        type=str,
+                        description="Specific cell type of interest",
+                        check=str)
+    arguments.add_input(name="ko",
+                        type=str,
+                        description="File result of the High-throughput mutant analysis (aka MaBoSS) building block",
+                        check="file")
+    arguments.add_output(name="model_output_dir",
+                         type=str,
+                         description="Folder where the results will be located")
+    arguments.add_input(name="personalized_result",
+                        type=str,
+                        description="Personalisation summary file")
+    uc2 = "uc2"
+    arguments.add_input(name="expression",
+                        type=str,
+                        description="Expression data file",
+                        check="file",
+                        mode=uc2)
+    arguments.add_input(name="cnv",
+                        type=str,
+                        description="Copy number variation file",
+                        check="file",
+                        mode=uc2)
+    arguments.add_input(name="mutation",
+                        type=str,
+                        description="Mutation file",
+                        check="file",
+                        mode=uc2)
+    arguments.add_input(name="cell_type",
+                        type=str,
+                        description="Identifier of the cell line to use for personalization",
+                        check=str,
+                        mode=uc2)
+    arguments.add_input(name="model_bnd",
+                        type=str,
+                        description="BND file of the MaBoSS model to personalize",
+                        check="file",
+                        mode=uc2)
+    arguments.add_input(name="model_cfg",
+                        type=str,
+                        description="CFG file of the MaBoSS model to personalize",
+                        check="file",
+                        mode=uc2)
+    arguments.add_output(name="model_output_dir",
+                         type=str,
+                         description="Folder where the results will be located",
+                         mode=uc2)
+    return arguments
