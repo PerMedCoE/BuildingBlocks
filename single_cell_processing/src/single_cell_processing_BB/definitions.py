@@ -1,5 +1,6 @@
 import os
 from permedcoe.bb import CONTAINER_PATH
+from permedcoe.bb import COMPUTING_UNITS
 
 # Assets folder within the Building Block
 SINGLE_CELL_ASSETS_PATH = os.path.join(
@@ -8,10 +9,3 @@ SINGLE_CELL_ASSETS_PATH = os.path.join(
 
 # Container definition for Meta Analysis Building Block
 SINGLE_CELL_PROCESSING_CONTAINER = CONTAINER_PATH + "single_cell.sif"
-
-# Computing units
-COMPUTING_UNITS_VARIABLE_NAME = "COMPUTING_UNITS"
-if COMPUTING_UNITS_VARIABLE_NAME in os.environ:
-    COMPUTING_UNITS = int(os.environ[COMPUTING_UNITS_VARIABLE_NAME])
-else:
-    COMPUTING_UNITS = 1
