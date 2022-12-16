@@ -1,7 +1,7 @@
 import os
+from permedcoe.bb import CONTAINER_PATH
 
 # Container definition for Carnival Building Block
-CONTAINER_PATH = os.environ["PERMEDCOE_IMAGES"]
 CARNIVAL_CONTAINER = CONTAINER_PATH + "signaling-solvers.sif"
 
 # Computing units

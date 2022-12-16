@@ -1,4 +1,5 @@
 import os
+from permedcoe.bb import CONTAINER_PATH
 
 # Assets folder within the Building Block
 PHYSIBOSS_ASSETS_PATH = os.path.join(
@@ -6,7 +7,6 @@ PHYSIBOSS_ASSETS_PATH = os.path.join(
 )
 
 # Container definition for Meta Analysis Building Block
-CONTAINER_PATH = os.environ["PERMEDCOE_IMAGES"]
 PHYSIBOSS_CONTAINER = CONTAINER_PATH + "PhysiCell-COVID19.sif"
 
 # Computing units

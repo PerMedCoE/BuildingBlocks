@@ -1,4 +1,5 @@
 import os
+from permedcoe.bb import CONTAINER_PATH
 
 # Assets folder within the Building Block
 SINGLE_CELL_ASSETS_PATH = os.path.join(
@@ -6,7 +7,6 @@ SINGLE_CELL_ASSETS_PATH = os.path.join(
 )
 
 # Container definition for Meta Analysis Building Block
-CONTAINER_PATH = os.environ["PERMEDCOE_IMAGES"]
 SINGLE_CELL_PROCESSING_CONTAINER = CONTAINER_PATH + "single_cell.sif"
 
 # Computing units
