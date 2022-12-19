@@ -18,12 +18,12 @@ setup(
     author_email="infoPerMedCoE@bsc.es",
     classifiers=[
         "Development Status :: 5 - Production/Stable",
-        "License :: OSI Approved :: Apache Software License"
-        "Intended Audience :: Science/Research"
-        "Operating System :: Unix"
-        "Operating System :: POSIX :: Linux"
-        "Topic :: Scientific/Engineering :: Bio-Informatics"
-        "Topic :: Scientific/Engineering :: Medical Science Apps."
+        "License :: OSI Approved :: Apache Software License",
+        "Intended Audience :: Science/Research",
+        "Operating System :: Unix",
+        "Operating System :: POSIX :: Linux",
+        "Topic :: Scientific/Engineering :: Bio-Informatics",
+        "Topic :: Scientific/Engineering :: Medical Science Apps.",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
