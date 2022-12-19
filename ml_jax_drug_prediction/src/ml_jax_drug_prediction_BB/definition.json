@@ -1,0 +1,69 @@
+{
+    "short_description": "The JAX Drug Prediction building block implements a matrix factorisation approach to predict IC50 response values of cells with different drugs, with or without side features using JAX.",
+    "long_description": "The JAX Drug Prediction building block implements a matrix factorisation approach to predict IC50 response values of cells with different drugs, with or without side features using JAX. This is a wrapper for [a script hosted on the Saez Laboratory GitHub repository](https://github.com/saezlab/permedcoe/blob/master/containers/ml-jax/ml.py). This can be used to predict e.g drug responses on cell lines from partial observations of drug/cell responses. There are two ways of using the building block: for training and for inference (prediction).",
+    "use_description": "long",
+    "parameters": {
+        "default": [
+            {
+                "type": "input",
+                "name": "input_file",
+                "format": "file",
+                "description": "CSV with the matrix to predict (e.g IC50 drug/cell responses) for training (see this example). If the file is a .npz file, then the model is imported and this is run in inference mode for predictions. If .x is provided, the example file is used for training a mode"
+            },
+            {
+                "type": "input",
+                "name": "drug_features",
+                "format": "file",
+                "description": "CSV with row features (e.g. drug targets). If .x is provided, the example file is used"
+            },
+            {
+                "type": "input",
+                "name": "cell_features",
+                "format": "file",
+                "description": "CSV with col features (e.g. cell features). If .x is provided, the example file is used"
+            },
+            {
+                "type": "input",
+                "name": "epochs",
+                "format": "int",
+                "description": "Number of epochs for training using the ADAM optimizer (e.g. 200)"
+            },
+            {
+                "type": "input",
+                "name": "adam_lr",
+                "format": "float",
+                "description": "Learning rate for the ADAM solver (e.g. 0.1. Recommended <= 0.1). Lower values slow down the convergence"
+            },
+            {
+                "type": "input",
+                "name": "reg",
+                "format": "float",
+                "description": "L2 regularization weight (e.g. 0.001)"
+            },
+            {
+                "type": "input",
+                "name": "latent_size",
+                "format": "int",
+                "description": "Number of dimensions for the latent matrices to be estimated from the data. As a rule of thumb, this should be at most the minimum number of features for cells or drugs used. Larger values might create overfitted models"
+            },
+            {
+                "type": "input",
+                "name": "test_drugs",
+                "format": "str",
+                "description": "f row features are provided, this is the proportion of samples removed from training for validation (e.g. 0.2)"
+            },
+            {
+                "type": "input",
+                "name": "test_cells",
+                "format": "str",
+                "description": "If col features are provided, this is the proportion of samples removed from training for validation (e.g. 0.2)"
+            },
+            {
+                "type": "output",
+                "name": "output_file",
+                "format": "file",
+                "description": "npz file with the trained model if in training mode, or csv file with prediction results"
+            }
+        ]
+    }
+}

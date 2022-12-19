@@ -1,6 +1,5 @@
 import os
 
-from permedcoe import Arguments
 from permedcoe import constraint
 from permedcoe import container
 from permedcoe import binary
@@ -73,42 +72,3 @@ def invoke(arguments, config):
                   reps=reps,
                   verbose=verbose,
                   results=results)
-
-
-def arguments_info():
-    """Arguments definition.
-
-    Builds the arguments definition.
-
-    Returns:
-        Supported arguments.
-    """
-    arguments = Arguments()
-    arguments.add_input(name="meta_file",
-                        type=str,
-                        description="Sample information",
-                        check="file")
-    arguments.add_input(name="out_dir",
-                        type=str,
-                        description="Simulations output folder",
-                        check="folder")
-    arguments.add_input(name="model_prefix",
-                        type=str,
-                        description="Prefix of the boolean model used in the simulations",
-                        check=str)
-    arguments.add_input(name="ko_file",
-                        type=str,
-                        description="Evaluated gene KOs",
-                        check="file")
-    arguments.add_input(name="reps",
-                        type=int,
-                        description="Number of replicas",
-                        check=int)
-    arguments.add_input(name="verbose",
-                        type=str,
-                        description="Verbose level",
-                        check=str)
-    arguments.add_output(name="results",
-                         type=str,
-                         description="Output folder")
-    return arguments

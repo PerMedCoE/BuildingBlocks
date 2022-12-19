@@ -1,6 +1,5 @@
 import os
 
-from permedcoe import Arguments
 from permedcoe import constraint
 from permedcoe import container
 from permedcoe import binary
@@ -95,60 +94,3 @@ def invoke(arguments, config):
                   verbose=verbose,
                   pval_threshold=pval_threshold,
                   export_carnival=export_carnival)
-
-
-def arguments_info():
-    """Arguments definition.
-
-    Builds the arguments definition.
-
-    Returns:
-        Supported arguments.
-    """
-    arguments = Arguments()
-    arguments.add_input(name="input_file",
-                        type=str,
-                        description="Input gene expression data. Genes should be normalized across samples",
-                        check="file")
-    arguments.add_input(name="tsv",
-                        type=bool,
-                        description="Import data as TSV instead of CSV (True | False)",
-                        check=bool)
-    arguments.add_input(name="weight_col",
-                        type=str,
-                        description="Name of the column containing differential expression values \
-                                     (e.g t-statistic from DESeq2) between a control/treatment \
-                                     condition for example, or just log-fold change.",
-                        check=str)
-    arguments.add_input(name="id_col",
-                        type=str,
-                        description="Name of the column for gene ids",
-                        check=str)
-    arguments.add_input(name="minsize",
-                        type=int,
-                        description="Minimum size for regulons (e.g. 10)",
-                        check=int)
-    arguments.add_input(name="source",
-                        type=str,
-                        description="Column with the TFs (e.g. tf)",
-                        check=str)
-    arguments.add_input(name="confidence",
-                        type=str,
-                        description="Level of confidence to be used for regulons. E.g.: A,B,C. (see https://saezlab.github.io/dorothea/ for documentation)",
-                        check=str)
-    arguments.add_input(name="verbose",
-                        type=str,
-                        description="Verbose output (True | False).",
-                        check=str)
-    arguments.add_input(name="pval_threshold",
-                        type=float,
-                        description="Filter out TFs with adj. p-val above the provided value",
-                        check=float)
-    arguments.add_input(name="export_carnival",
-                        type=str,
-                        description="Export a table with the results with two columns (id, value) only (for CARNIVAL)(TRUE/FALSE)",
-                        check=str)
-    arguments.add_output(name="output_file",
-                         type=str,
-                         description="Result csv file with estimated TF activities")
-    return arguments

@@ -1,6 +1,5 @@
 import os
 
-from permedcoe import Arguments
 from permedcoe import container
 from permedcoe import binary
 from permedcoe import task
@@ -167,22 +166,3 @@ def invoke(arguments, config):
         drug_results_folder=results_folder,
         reports_folder=reports_folder
     )
-
-
-def arguments_info():
-    """Arguments definition.
-
-    Builds the arguments definition.
-
-    Returns:
-        Supported arguments.
-    """
-    arguments = Arguments()
-    arguments.add_input(name="results_folder",
-                        type=str,
-                        description="Results folder",
-                        check="folder")
-    arguments.add_output(name="reports_folder",
-                         type=str,
-                         description="Reports folder")
-    return arguments

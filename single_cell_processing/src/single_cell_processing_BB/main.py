@@ -1,6 +1,5 @@
 import os
 
-from permedcoe import Arguments
 from permedcoe import constraint
 from permedcoe import container
 from permedcoe import binary
@@ -98,47 +97,3 @@ def invoke(arguments, config):
         outdir=outdir,
         parallelize=parallelize,
     )
-
-
-def arguments_info():
-    """Arguments definition.
-
-    Builds the arguments definition.
-
-    Returns:
-        Supported arguments.
-    """
-    arguments = Arguments()
-    arguments.add_input(name="p_id",
-                        type=str,
-                        description="Patient ID",
-                        check=str)
-    arguments.add_input(name="p_group",
-                        type=str,
-                        description="Patient\'s group label",
-                        check=str)
-    arguments.add_input(name="p_file",
-                        type=str,
-                        description="scRNA-Seq patient\'s counts",
-                        check="file")
-    arguments.add_input(name="parallelize",
-                        type=int,
-                        description="Internal parallelism",
-                        check=int)
-    arguments.add_output(name="norm_data",
-                         type=str,
-                         description="Normalized counts output filename")
-    arguments.add_output(name="raw_data",
-                         type=str,
-                         description="Raw counts output filename")
-    arguments.add_output(name="scaled_data",
-                         type=str,
-                         description="Scaled counts output filename")
-    arguments.add_output(name="cells_metadata",
-                         type=str,
-                         description="Cells\' metadata output filename")
-    arguments.add_output(name="outdir",
-                         type=str,
-                         description="Output folder")
-    return arguments
-

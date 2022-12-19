@@ -1,6 +1,5 @@
 import os
 
-from permedcoe import Arguments
 from permedcoe import constraint
 from permedcoe import container
 from permedcoe import binary
@@ -42,19 +41,3 @@ def invoke(arguments, config):
     input_file = arguments.input_file
     # Generate config file
     cellnopt(input_file=input_file)
-
-
-def arguments_info():
-    """Arguments definition.
-
-    Builds the arguments definition.
-
-    Returns:
-        Supported arguments.
-    """
-    arguments = Arguments()
-    arguments.add_input(name="input_file",
-                        type=str,
-                        description="HDF5 input data required by CellNopt",
-                        check="file")
-    return arguments

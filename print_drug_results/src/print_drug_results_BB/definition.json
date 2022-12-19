@@ -1,0 +1,21 @@
+{
+    "short_description": "This building block generates reports from raw results of multiple drug screenings (for example multiple cell lines). It takes as input a folder containing multiple results for each individual screening (cell line). It returns multiple reports in a result folder, including figures and summary values.",
+    "long_description": "This building block generates reports from raw results of multiple drug screenings (for example multiple cell lines). It takes as input a folder containing multiple results for each individual screening (cell line). It returns multiple reports in a result folder, including figures and summary values.",
+    "use_description": "long",
+    "parameters": {
+        "default": [
+            {
+                "type": "input",
+                "name": "results_folder",
+                "format": "folder",
+                "description": "Results folder"
+            },
+            {
+                "type": "output",
+                "name": "reports_folder",
+                "format": "folder",
+                "description": "Reports folder"
+            }
+        ]
+    }
+}

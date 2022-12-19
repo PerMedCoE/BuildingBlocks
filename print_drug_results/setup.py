@@ -43,7 +43,8 @@ setup(
     # If there are data files included in your packages that need to be
     # installed, specify them here.
     package_data={
-        "print_drug_results_BB": ["assets/*"],
+        "print_drug_results_BB": ["assets/*",
+                                  "definition.json"],
     },
     entry_points={
         "console_scripts": [

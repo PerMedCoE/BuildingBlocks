@@ -1,0 +1,15 @@
+{
+    "short_description": "The CARNIVAL building block contains the refactored CARNIVAL C++ with the new Ant Colony Optimisation (ACO) in C++ with support for OpenMP and MPI.",
+    "long_description": "The CARNIVAL building block contains the refactored CARNIVAL C++ with the new Ant Colony Optimisation (ACO) in C++ with support for OpenMP and MPI. The hdf5 file required as an input can be generated with the Export Solver HDF5 building block. For a general overview of what CARNIVAL does, see the [CARNIVAL website](https://saezlab.github.io/CARNIVAL/). This building block uses the new developed ACO algorithm to find solutions without the need of using ILP solvers.",
+    "use_description": "long",
+    "parameters": {
+        "default": [
+            {
+                "type": "input",
+                "name": "input_file",
+                "format": "file",
+                "description": "HDF5 data with the SIF network, measurements and perturbations. This file can be produced from csv files using the export_solver_hdf5_bb"
+            }
+        ]
+    }
+}

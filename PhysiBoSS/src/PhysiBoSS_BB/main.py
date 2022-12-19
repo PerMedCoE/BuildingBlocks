@@ -1,6 +1,5 @@
 import os
 
-from permedcoe import Arguments
 from permedcoe import constraint
 from permedcoe import container
 from permedcoe import binary
@@ -119,52 +118,3 @@ def invoke(arguments, config):
         parallel=parallel,
         max_time=max_time,
     )
-
-
-def arguments_info():
-    """Arguments definition.
-
-    Builds the arguments definition.
-
-    Returns:
-        Supported arguments.
-    """
-    arguments = Arguments()
-    arguments.add_input(name="sample",
-                        type=str,
-                        description="Patient\'s identifier",
-                        check=str)
-    arguments.add_input(name="repetition",
-                        type=int,
-                        description="Number of repetition to be performed",
-                        check=int)
-    arguments.add_input(name="prefix",
-                        type=str,
-                        description="Name of the model",
-                        check=str)
-    arguments.add_input(name="bnd_file",
-                        type=str,
-                        description="Name of the model\'s BND file",
-                        check="file")
-    arguments.add_input(name="cfg_file",
-                        type=str,
-                        description="Name of the model\'s CFG file",
-                        check="file")
-    arguments.add_input(name="parallel",
-                        type=int,
-                        description="Internal parallelism",
-                        check=int)
-    arguments.add_input(name="max_time",
-                        type=int,
-                        description="PhysiBoSS simulation maximum time",
-                        check=int)
-    arguments.add_output(name="out_file",
-                         type=str,
-                         description="Main output of the PhysiBoSS run")
-    arguments.add_output(name="err_file",
-                         type=str,
-                         description="Error output of the PhysiBoSS run")
-    arguments.add_output(name="results_dir",
-                         type=str,
-                         description="Results directory")
-    return arguments

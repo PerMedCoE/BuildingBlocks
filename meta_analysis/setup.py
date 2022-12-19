@@ -43,7 +43,8 @@ setup(
     # If there are data files included in your packages that need to be
     # installed, specify them here.
     package_data={
-        "meta_analysis_BB": ["assets/*"],
+        "meta_analysis_BB": ["assets/*",
+                             "definition.json"],
     },
     entry_points={
         "console_scripts": [

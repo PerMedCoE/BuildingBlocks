@@ -44,7 +44,8 @@ setup(
     # installed, specify them here.
     package_data={
         "build_model_from_species_BB": ["assets/*",
-                                        "assets/build_model_from_species/*"],
+                                        "assets/build_model_from_species/*",
+                                        "definition.json"],
     },
     entry_points={
         "console_scripts": [

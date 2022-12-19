@@ -1,0 +1,21 @@
+{
+    "short_description": "Downloads the latest OmniPath database (https://omnipathdb.org/) to build an initial PKN network for CARNIVAL.",
+    "long_description": "Downloads the latest OmniPath database (https://omnipathdb.org/) to build an initial PKN network for CARNIVAL.",
+    "use_description": "long",
+    "parameters": {
+        "default": [
+            {
+                "type": "input",
+                "name": "verbose",
+                "format": "str",
+                "description": "If verbose or not (True | False)"
+            },
+            {
+                "type": "output",
+                "name": "output_file",
+                "format": "file",
+                "description": "File with the exported PKN data"
+            }
+        ]
+    }
+}

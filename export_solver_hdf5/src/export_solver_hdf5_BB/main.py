@@ -1,6 +1,5 @@
 import os
 
-from permedcoe import Arguments
 from permedcoe import constraint
 from permedcoe import container
 from permedcoe import binary
@@ -70,34 +69,3 @@ def invoke(arguments, config):
            inputs=inputs,
            output_file=output_file,
            verbose=verbose)
-
-
-def arguments_info():
-    """Arguments definition.
-
-    Builds the arguments definition.
-
-    Returns:
-        Supported arguments.
-    """
-    arguments = Arguments()
-    arguments.add_input(name="sif",
-                        type=str,
-                        description="The sif csv file containing the signaling network",
-                        check="file")
-    arguments.add_input(name="measurements",
-                        type=str,
-                        description="The measurements csv with the TFs and weights",
-                        check=str)
-    arguments.add_input(name="inputs",
-                        type=str,
-                        description="The csv file with the input protein targets",
-                        check="file")
-    arguments.add_input(name="verbose",
-                        type=str,
-                        description="Verbose output (True | False)",
-                        check=str)
-    arguments.add_output(name="output_file",
-                         type=str,
-                         description="The final HDF5 file")
-    return arguments

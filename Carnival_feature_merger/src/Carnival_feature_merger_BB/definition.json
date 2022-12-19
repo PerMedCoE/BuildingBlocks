@@ -1,0 +1,45 @@
+{
+    "short_description": "This building block is used in Use Case 2 (Drug Synergies Screening) to merge the features extracted by CARNIVAL for each cell line with the original cell line features, in order to produce a final csv file that can be used for prediction with the JAX Drug Prediction building block.",
+    "long_description": "This building block is used in Use Case 2 (Drug Synergies Screening) to merge the features extracted by CARNIVAL for each cell line with the original cell line features, in order to produce a final csv file that can be used for prediction with the JAX Drug Prediction building block.",
+    "use_description": "long",
+    "parameters": {
+        "default": [
+            {
+                "type": "input",
+                "name": "input_dir",
+                "format": "folder",
+                "description": "Path containing the folders with the samples. Name of the folders are used for the name of the samples"
+            },
+            {
+                "type": "input",
+                "name": "feature_file",
+                "format": "file",
+                "description": "File containing a list of features. If provided, only those features are retrieved from solutions"
+            },
+            {
+                "type": "input",
+                "name": "merge_csv_file",
+                "format": "file",
+                "description": "Join the merged features into the given file"
+            },
+            {
+                "type": "input",
+                "name": "merge_csv_index",
+                "format": "str",
+                "description": "Column ID used as the index for the data (e.g. sample)"
+            },
+            {
+                "type": "input",
+                "name": "merge_csv_prefix",
+                "format": "str",
+                "description": "Prefix for the merged features"
+            },
+            {
+                "type": "output",
+                "name": "output_file",
+                "format": "file",
+                "description": "Output file with the features, where rows are samples and columns features"
+            }
+        ]
+    }
+}

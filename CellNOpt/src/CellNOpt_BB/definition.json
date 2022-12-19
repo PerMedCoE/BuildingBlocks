@@ -1,0 +1,15 @@
+{
+    "short_description": "This is the refactored CellNopt in C++ with the ACO solver with OpenMP/MPI support.",
+    "long_description": "This is the refactored CellNopt in C++ with the ACO solver with OpenMP/MPI support. A description of what CellNopt is and how to use it is available on the [Saez Laboratory website](https://saezlab.github.io/CellNOptR/).",
+    "use_description": "long",
+    "parameters": {
+        "default": [
+            {
+                "type": "input",
+                "name": "input_file",
+                "format": "file",
+                "description": "HDF5 input data required by CellNopt"
+            }
+        ]
+    }
+}

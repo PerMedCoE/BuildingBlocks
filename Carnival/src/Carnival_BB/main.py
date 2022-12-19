@@ -1,6 +1,3 @@
-import os
-
-from permedcoe import Arguments
 from permedcoe import constraint
 from permedcoe import container
 from permedcoe import binary
@@ -42,22 +39,3 @@ def invoke(arguments, config):
     input_file = arguments.input_file
     # Building block invocation
     carnival(input_file=input_file)
-
-
-def arguments_info():
-    """Arguments definition.
-
-    Builds the arguments definition.
-
-    Returns:
-        Supported arguments.
-    """
-    arguments = Arguments()
-    input_file_desc = "HDF5 data with the SIF network, measurements \
-                       and perturbations. This file can be produced from \
-                       csv files using the export_solver_hdf5_bb"
-    arguments.add_input(name="input_file",
-                        type=str,
-                        description=input_file_desc,
-                        check="file")
-    return arguments

@@ -1,0 +1,59 @@
+{
+    "short_description": "This building block uses MaBoSS to screen all the possible knockouts of a given Boolean model.",
+    "long_description": "This building block uses MaBoSS to screen all the possible knockouts of a given Boolean model. It produces a candidate gene list formatted as a text file (single gene per row). More information on MaBoSS can be found in [Stoll G. et al. (2017)](https://academic.oup.com/bioinformatics/article-lookup/doi/10.1093/bioinformatics/btx123) and in the [MaBoSS GitHub repository](https://github.com/maboss-bkmc/MaBoSS-env-2.0).",
+    "use_description": "long",
+    "parameters": {
+        "default": [
+            {
+                "type": "input",
+                "name": "model",
+                "format": "str",
+                "description": "Model"
+            },
+            {
+                "type": "input",
+                "name": "data_folder",
+                "format": "folder",
+                "description": "Data folder"
+            },
+            {
+                "type": "input",
+                "name": "parallel",
+                "format": "int",
+                "description": "Internal parallelism"
+            },
+            {
+                "type": "output",
+                "name": "ko_file",
+                "format": "file",
+                "description": "KO file"
+            }
+        ],
+        "sensitivity": [
+            {
+                "type": "input",
+                "name": "model_folder",
+                "format": "folder",
+                "description": "Model folder"
+            },
+            {
+                "type": "input",
+                "name": "genes_druggable",
+                "format": "file",
+                "description": "Genes druggable (csv)"
+            },
+            {
+                "type": "input",
+                "name": "genes_target",
+                "format": "file",
+                "description": "Genes target (csv)"
+            },
+            {
+                "type": "output",
+                "name": "result_file",
+                "format": "file",
+                "description": "Sensitivity result file (json)"
+            }
+        ]
+    }
+}

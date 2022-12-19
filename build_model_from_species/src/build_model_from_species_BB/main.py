@@ -70,29 +70,3 @@ def invoke(arguments, config):
                              output_cfg_file=output_cfg_file)
     else:
         raise Exception("Unsupported %s build model from key. Supported: genes | sif" % arguments.mode)
-
-
-def arguments_info():
-    """Arguments definition.
-
-    Builds the arguments definition.
-
-    Returns:
-        Supported arguments.
-    """
-    arguments = Arguments()
-    arguments.add_input(name="build_model_from",
-                        type=str,
-                        description="Build model from key (genes | sif)",
-                        check=str)
-    arguments.add_input(name="input_file",
-                        type=str,
-                        description="List of genes as a CSV file",
-                        check="file")
-    arguments.add_output(name="output_bnd_file",
-                         type=str,
-                         description="BND file of the generated MaBoSS model")
-    arguments.add_output(name="output_cfg_file",
-                         type=str,
-                         description="CFG file of the generated MaBoSS model")
-    return arguments

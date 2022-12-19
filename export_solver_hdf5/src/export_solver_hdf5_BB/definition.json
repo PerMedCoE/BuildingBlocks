@@ -1,0 +1,39 @@
+{
+    "short_description": "Exports input data required by [the vanilla version of CARNIVAL](https://saezlab.github.io/CARNIVAL/) (sif file, measurements and perturbations) into a HDF5 file required by the optimised version of CARNIVAL with the parallel ACO C++ solver.",
+    "long_description": "Exports input data required by [the vanilla version of CARNIVAL](https://saezlab.github.io/CARNIVAL/) (sif file, measurements and perturbations) into a HDF5 file required by the optimised version of CARNIVAL with the parallel ACO C++ solver.",
+    "use_description": "long",
+    "parameters": {
+        "default": [
+            {
+                "type": "input",
+                "name": "sif",
+                "format": "file",
+                "description": "The sif csv file containing the signaling network"
+            },
+            {
+                "type": "input",
+                "name": "measurements",
+                "format": "str",
+                "description": "The measurements csv with the TFs and weights"
+            },
+            {
+                "type": "input",
+                "name": "inputs",
+                "format": "file",
+                "description": "The csv file with the input protein targets"
+            },
+            {
+                "type": "input",
+                "name": "verbose",
+                "format": "str",
+                "description": "Verbose output (True | False)"
+            },
+            {
+                "type": "output",
+                "name": "output_file",
+                "format": "file",
+                "description": "The final HDF5 file"
+            }
+        ]
+    }
+}

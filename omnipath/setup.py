@@ -43,7 +43,8 @@ setup(
     # If there are data files included in your packages that need to be
     # installed, specify them here.
     package_data={
-        "omnipath_BB": ["assets/*"],
+        "omnipath_BB": ["assets/*",
+                        "definition.json"],
     },
     entry_points={
         "console_scripts": [

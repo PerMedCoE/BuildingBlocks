@@ -1,6 +1,5 @@
 import os
 
-from permedcoe import Arguments
 from permedcoe import constraint
 from permedcoe import container
 from permedcoe import binary
@@ -80,46 +79,3 @@ def invoke(arguments, config):
                tsv=tsv,
                remove=remove,
                verbose=verbose)
-
-
-def arguments_info():
-    """Arguments definition.
-
-    Builds the arguments definition.
-
-    Returns:
-        Supported arguments.
-    """
-    arguments = Arguments()
-    arguments.add_input(name="input_file",
-                        type=str,
-                        description="csv with the GDSC gene expression data",
-                        check="file")
-    arguments.add_input(name="col_genes",
-                        type=str,
-                        description="Name of the column containing the gene symbols (e.g. GENE_SYMBOLS)",
-                        check=str)
-    arguments.add_input(name="scale",
-                        type=str,
-                        description="Normalize genes across samples (True | False)",
-                        check=str)
-    arguments.add_input(name="exclude_cols",
-                        type=str,
-                        description="Exclude columns containing the given string (e.g. GENE_title)",
-                        check=str)
-    arguments.add_input(name="tsv",
-                        type=str,
-                        description="Import as TSV instead of CSV (True | False)",
-                        check=str)
-    arguments.add_input(name="remove",
-                        type=str,
-                        description="Remove the given substring from columns (e.g. .DATA)",
-                        check=str)
-    arguments.add_input(name="verbose",
-                        type=str,
-                        description="Verbose output (True | False)",
-                        check=str)
-    arguments.add_output(name="output_file",
-                         type=str,
-                         description="Processed csv file")
-    return arguments

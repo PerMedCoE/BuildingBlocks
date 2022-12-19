@@ -1,0 +1,69 @@
+{
+    "short_description": "This building block is used to perform a multiscale simulation of a population of cells using PhysiBoSS.",
+    "long_description": "This building block is used to perform a multiscale simulation of a population of cells using PhysiBoSS. The tool uses the different Boolean models personalised by the Personalise patient building block and with the mutants selected by the High-throughput mutant analysis building block. More information on this tool can be found in [Ponce-de-Leon et al. (2022)](https://www.biorxiv.org/content/10.1101/2022.01.06.468363v1) and the [PhysiBoSS GitHub repository](https://github.com/PhysiBoSS/PhysiBoSS).",
+    "use_description": "long",
+    "parameters": {
+        "default": [
+            {
+                "type": "input",
+                "name": "sample",
+                "format": "str",
+                "description": "Patient's identifier"
+            },
+            {
+                "type": "input",
+                "name": "repetition",
+                "format": "int",
+                "description": "Number of repetition to be performed"
+            },
+            {
+                "type": "input",
+                "name": "prefix",
+                "format": "str",
+                "description": "Name of the model"
+            },
+            {
+                "type": "input",
+                "name": "bnd_file",
+                "format": "file",
+                "description": "Name of the model's BND file"
+            },
+            {
+                "type": "input",
+                "name": "cfg_file",
+                "format": "file",
+                "description": "Name of the model's CFG file"
+            },
+            {
+                "type": "input",
+                "name": "parallel",
+                "format": "int",
+                "description": "Internal parallelism"
+            },
+            {
+                "type": "input",
+                "name": "max_time",
+                "format": "int",
+                "description": "PhysiBoSS simulation maximum time"
+            },
+            {
+                "type": "output",
+                "name": "out_file",
+                "format": "file",
+                "description": "Main output of the PhysiBoSS run"
+            },
+            {
+                "type": "output",
+                "name": "err_file",
+                "format": "file",
+                "description": "Error output of the PhysiBoSS run"
+            },
+            {
+                "type": "output",
+                "name": "results_dir",
+                "format": "folder",
+                "description": "Results directory"
+            }
+        ]
+    }
+}

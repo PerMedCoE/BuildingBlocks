@@ -1,6 +1,5 @@
 import os
 
-from permedcoe import Arguments
 from permedcoe import constraint
 from permedcoe import container
 from permedcoe import binary
@@ -72,46 +71,3 @@ def invoke(arguments, config):
                tol=tol,
                maxtime=maxtime,
                export=export)
-
-
-
-def arguments_info():
-    """Arguments definition.
-
-    Builds the arguments definition.
-
-    Returns:
-        Supported arguments.
-    """
-    arguments = Arguments()
-    arguments.add_input(name="path",
-                        type=str,
-                        description="Path containing a sif.csv file, \
-                                     a measurements.csv file, and \
-                                     perturbations.csv file",
-                        check=str)
-    arguments.add_input(name="penalty",
-                        type=float,
-                        description="Penalty value for sparsity \
-                                     (penalty for the number of nodes in \
-                                     the final result) (e.g 0.0001)",
-                        check=float)
-    arguments.add_input(name="solver",
-                        type=str,
-                        description="Name of the solver to be used: \
-                                     gurobi, cplex, cbc, gurobi_mip, glpk. \
-                                     Any solver supported by Python-MIP and \
-                                     PICOS can be passed.",
-                        check=str)
-    arguments.add_input(name="tol",
-                        type=float,
-                        description="MIP Gap tolerance",
-                        check=float)
-    arguments.add_input(name="maxtime",
-                        type=int,
-                        description="Max time in seconds",
-                        check=int)
-    arguments.add_output(name="export",
-                         type=str,
-                         description="Path to the file to be exported with the solution")
-    return arguments

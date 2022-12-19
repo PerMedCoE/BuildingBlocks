@@ -1,0 +1,95 @@
+{
+    "short_description": "This building block tailors a given MaBoSS Boolean model to a given RNAseq dataset of interest. ",
+    "long_description": "This building block tailors a given MaBoSS Boolean model to a given RNAseq dataset of interest. This RNAseq dataset can come from the Single cell processing building block and needs to be normalised as described in [Béal et al. (2019)](https://www.frontiersin.org/articles/10.3389/fphys.2018.01965/full?field=&journalName=Frontiers_in_Physiology&id=369984) and in the [PROFILE GitHub repository](https://github.com/sysbio-curie/PROFILE). The Single-cell Processing building block performs this normalisation step. Another option of this building block is to personalise a given MaBoSS model using cell line information such as mutations, copy number alterations and expression counts.",
+    "use_description": "long",
+    "parameters": {
+        "default": [
+            {
+                "type": "input",
+                "name": "norm_data",
+                "format": "file",
+                "description": "tsv of the normalized RNAseq data"
+            },
+            {
+                "type": "input",
+                "name": "cells",
+                "format": "file",
+                "description": "tsv of the different patients to be analyzed with their clinical information"
+            },
+            {
+                "type": "input",
+                "name": "model_prefix",
+                "format": "str",
+                "description": "Prefix that describes the model"
+            },
+            {
+                "type": "input",
+                "name": "t",
+                "format": "str",
+                "description": "Specific cell type of interest"
+            },
+            {
+                "type": "input",
+                "name": "ko",
+                "format": "file",
+                "description": "File result of the High-throughput mutant analysis (aka MaBoSS) building block"
+            },
+            {
+                "type": "output",
+                "name": "model_output_dir",
+                "format": "folder",
+                "description": "Folder where the results will be located"
+            },
+            {
+                "type": "output",
+                "name": "personalized_result",
+                "format": "file",
+                "description": "Personalisation summary file"
+            }
+        ],
+        "uc2": [
+            {
+                "type": "input",
+                "name": "expression",
+                "format": "file",
+                "description": "Expression data file"
+            },
+            {
+                "type": "input",
+                "name": "cnv",
+                "format": "file",
+                "description": "Copy number variation file"
+            },
+            {
+                "type": "input",
+                "name": "mutation",
+                "format": "file",
+                "description": "Mutation file"
+            },
+            {
+                "type": "input",
+                "name": "cell_type",
+                "format": "str",
+                "description": "Identifier of the cell line to use for personalization"
+            },
+            {
+                "type": "input",
+                "name": "model_bnd",
+                "format": "file",
+                "description": "BND file of the MaBoSS model to personalize"
+            },
+            {
+                "type": "input",
+                "name": "model_cfg",
+                "format": "file",
+                "description": "CFG file of the MaBoSS model to personalize"
+            },
+            {
+                "type": "output",
+                "name": "model_output_dir",
+                "format": "folder",
+                "description": "Folder where the results will be located"
+            }
+        ]
+    }
+}

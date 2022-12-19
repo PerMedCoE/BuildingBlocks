@@ -1,6 +1,5 @@
 import os
 
-from permedcoe import Arguments
 from permedcoe import constraint
 from permedcoe import container
 from permedcoe import binary
@@ -69,43 +68,3 @@ def invoke(arguments, config):
                    merge_csv_file=merge_csv_file,
                    merge_csv_index=merge_csv_index,
                    merge_csv_prefix=merge_csv_prefix)
-
-
-def arguments_info():
-    """Arguments definition.
-
-    Builds the arguments definition.
-
-    Returns:
-        Supported arguments.
-    """
-    arguments = Arguments()
-    arguments.add_input(name="input_dir",
-                        type=str,
-                        description="Path containing the folders with the samples. \
-                                     Name of the folders are used for the name of \
-                                     the samples",
-                        check="folder")
-    arguments.add_input(name="feature_file",
-                        type=str,
-                        description="File containing a list of features. \
-                                     If provided, only those features are \
-                                     retrieved from solutions",
-                        check="file")
-    arguments.add_input(name="merge_csv_file",
-                        type=str,
-                        description="Join the merged features into the given file",
-                        check="file")
-    arguments.add_input(name="merge_csv_index",
-                        type=str,
-                        description="Column ID used as the index for the data (e.g. sample)",
-                        check=str)
-    arguments.add_input(name="merge_csv_prefix",
-                        type=str,
-                        description="Prefix for the merged features",
-                        check=str)
-    arguments.add_output(name="output_file",
-                         type=str,
-                         description="Output file with the features, where rows are samples \
-                                      and columns features")
-    return arguments

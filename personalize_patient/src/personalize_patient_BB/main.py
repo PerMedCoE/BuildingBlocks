@@ -1,6 +1,5 @@
 import os
 
-from permedcoe import Arguments
 from permedcoe import constraint
 from permedcoe import container
 from permedcoe import binary
@@ -132,76 +131,3 @@ def invoke(arguments, config):
                         model_output_dir=model_output_dir,
                         personalized_result=personalized_result,
                         ko=ko)
-
-
-def arguments_info():
-    """Arguments definition.
-
-    Builds the arguments definition.
-
-    Returns:
-        Supported arguments.
-    """
-    arguments = Arguments()
-    arguments.add_input(name="norm_data",
-                        type=str,
-                        description="tsv of the normalized RNAseq data",
-                        check="file")
-    arguments.add_input(name="cells",
-                        type=str,
-                        description="tsv of the different patients to be analyzed with their clinical information",
-                        check="file")
-    arguments.add_input(name="model_prefix",
-                        type=str,
-                        description="Prefix that describes the model",
-                        check=str)
-    arguments.add_input(name="t",
-                        type=str,
-                        description="Specific cell type of interest",
-                        check=str)
-    arguments.add_input(name="ko",
-                        type=str,
-                        description="File result of the High-throughput mutant analysis (aka MaBoSS) building block",
-                        check="file")
-    arguments.add_output(name="model_output_dir",
-                         type=str,
-                         description="Folder where the results will be located")
-    arguments.add_input(name="personalized_result",
-                        type=str,
-                        description="Personalisation summary file")
-    uc2 = "uc2"
-    arguments.add_input(name="expression",
-                        type=str,
-                        description="Expression data file",
-                        check="file",
-                        mode=uc2)
-    arguments.add_input(name="cnv",
-                        type=str,
-                        description="Copy number variation file",
-                        check="file",
-                        mode=uc2)
-    arguments.add_input(name="mutation",
-                        type=str,
-                        description="Mutation file",
-                        check="file",
-                        mode=uc2)
-    arguments.add_input(name="cell_type",
-                        type=str,
-                        description="Identifier of the cell line to use for personalization",
-                        check=str,
-                        mode=uc2)
-    arguments.add_input(name="model_bnd",
-                        type=str,
-                        description="BND file of the MaBoSS model to personalize",
-                        check="file",
-                        mode=uc2)
-    arguments.add_input(name="model_cfg",
-                        type=str,
-                        description="CFG file of the MaBoSS model to personalize",
-                        check="file",
-                        mode=uc2)
-    arguments.add_output(name="model_output_dir",
-                         type=str,
-                         description="Folder where the results will be located",
-                         mode=uc2)
-    return arguments

@@ -1,0 +1,57 @@
+{
+    "short_description": "This building block processes (reshapes and scales) gene expression data from the [Genomics of Drug Sensitivity in Cancer (GDSC) database](https://www.cancerrxgene.org/) for use by other building blocks.",
+    "long_description": "This building block processes (reshapes and scales) gene expression data from the [Genomics of Drug Sensitivity in Cancer (GDSC) database](https://www.cancerrxgene.org/) for use by other building blocks.",
+    "use_description": "long",
+    "parameters": {
+        "default": [
+            {
+                "type": "input",
+                "name": "input_file",
+                "format": "file",
+                "description": "csv with the GDSC gene expression data"
+            },
+            {
+                "type": "input",
+                "name": "col_genes",
+                "format": "str",
+                "description": "Name of the column containing the gene symbols (e.g. GENE_SYMBOLS)"
+            },
+            {
+                "type": "input",
+                "name": "scale",
+                "format": "str",
+                "description": "Normalize genes across samples (True | False)"
+            },
+            {
+                "type": "input",
+                "name": "exclude_cols",
+                "format": "str",
+                "description": "Exclude columns containing the given string (e.g. GENE_title)"
+            },
+            {
+                "type": "input",
+                "name": "tsv",
+                "format": "str",
+                "description": "Import as TSV instead of CSV (True | False)"
+            },
+            {
+                "type": "input",
+                "name": "remove",
+                "format": "str",
+                "description": "Remove the given substring from columns (e.g. .DATA)"
+            },
+            {
+                "type": "input",
+                "name": "verbose",
+                "format": "file",
+                "description": "Verbose output (True | False)"
+            },
+            {
+                "type": "output",
+                "name": "output_file",
+                "format": "file",
+                "description": "Processed csv file"
+            }
+        ]
+    }
+}
