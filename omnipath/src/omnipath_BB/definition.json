@@ -8,7 +8,7 @@
                 "type": "input",
                 "name": "verbose",
                 "format": "str",
-                "description": "If verbose or not (True | False)"
+                "description": "If verbose or not (true | false)"
             },
             {
                 "type": "output",

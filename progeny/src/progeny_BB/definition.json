@@ -32,7 +32,7 @@
                 "type": "input",
                 "name": "scale",
                 "format": "str",
-                "description": "Scale data (True | False)"
+                "description": "Scale data (TRUE | FALSE)"
             },
             {
                 "type": "input",
@@ -56,13 +56,13 @@
                 "type": "input",
                 "name": "zscore",
                 "format": "str",
-                "description": "If True, the z-scores will be returned for the pathway activity estimations. Else, the function returns a normalized z-score value between -1 and 1"
+                "description": "If TRUE, the z-scores will be returned for the pathway activity estimations. Else, the function returns a normalized z-score value between -1 and 1"
             },
             {
                 "type": "input",
                 "name": "verbose",
                 "format": "str",
-                "description": "Verbose output (True | False)"
+                "description": "Verbose output (TRUE | FALSE)"
             },
             {
                 "type": "output",

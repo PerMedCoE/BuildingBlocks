@@ -9,7 +9,7 @@ long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
     name="progeny_BB",
-    version="0.0.1",
+    version="0.0.2",
     description="This package provides the progeny Building Block",
     long_description=long_description,
     long_description_content_type="text/markdown",

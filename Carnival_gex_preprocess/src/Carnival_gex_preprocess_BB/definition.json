@@ -20,7 +20,7 @@
                 "type": "input",
                 "name": "scale",
                 "format": "str",
-                "description": "Normalize genes across samples (True | False)"
+                "description": "Normalize genes across samples (TRUE | FALSE)"
             },
             {
                 "type": "input",
@@ -32,7 +32,7 @@
                 "type": "input",
                 "name": "tsv",
                 "format": "str",
-                "description": "Import as TSV instead of CSV (True | False)"
+                "description": "Import as TSV instead of CSV (TRUE | FALSE)"
             },
             {
                 "type": "input",
@@ -43,8 +43,8 @@
             {
                 "type": "input",
                 "name": "verbose",
-                "format": "file",
-                "description": "Verbose output (True | False)"
+                "format": "str",
+                "description": "Verbose output (TRUE | FALSE)"
             },
             {
                 "type": "output",

@@ -9,7 +9,7 @@ long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
     name="personalize_patient_BB",
-    version="0.0.1",
+    version="0.0.2",
     description="This package provides the Personalize Patient Building Block",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -56,5 +56,3 @@ setup(
         "Source": "https://github.com/PerMedCoE/BuildingBlocks/tree/main/personalize_patient",
     },
 )
-
-

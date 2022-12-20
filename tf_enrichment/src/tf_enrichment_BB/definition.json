@@ -14,7 +14,7 @@
                 "type": "input",
                 "name": "tsv",
                 "format": "str",
-                "description": "Import data as TSV instead of CSV (True | False)"
+                "description": "Import data as TSV instead of CSV (TRUE | FALSE)"
             },
             {
                 "type": "input",
@@ -50,7 +50,7 @@
                 "type": "input",
                 "name": "verbose",
                 "format": "str",
-                "description": "Verbose output (True | False)"
+                "description": "Verbose output (TRUE | FALSE)"
             },
             {
                 "type": "input",
