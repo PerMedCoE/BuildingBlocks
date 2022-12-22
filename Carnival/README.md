@@ -65,15 +65,15 @@ Carnival_BB -d \
 
 Where the parameters are:
 
-|        | Parameter          | Type      | Description                                                                                                                                |
-|--------|--------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------|
-| Input  | \<input_file>      | String    | HDF5 data with the SIF network, measurements and perturbations. This file can be produced from csv files using the `export_solver_hdf5_bb` |
+|        | Flag         | Parameter      | Type   | Description                                                                                                                                |
+|--------|--------------|----------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| Input  | --input_file | \<input_file>  | String | HDF5 data with the SIF network, measurements and perturbations. This file can be produced from csv files using the `export_solver_hdf5_bb` |
 
 
 Example usage:
 
 ```bash
-Carnival_BB -i file.h5 -o .
+Carnival_BB --input_file file.h5
 ```
 
 [Here](https://github.com/saezlab/permedcoe/blob/master/containers/parallel-solvers/examples/carnival_toy_example.h5) is an example of already converted CSV data into h5 that can be used to try CARNIVAL. This example was exported with the `export_solver_hdf5_bb` building block from [this example](https://github.com/saezlab/permedcoe/tree/master/containers/toolset/scripts/examples/export).

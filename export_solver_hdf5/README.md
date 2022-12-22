@@ -60,25 +60,33 @@ The command line is:
 
 ```bash
 export_solver_hdf5_BB -d \
-    -i <sif> <measurements> <inputs> <verbose>
-    -o <output_file>
+    --sif <sif> \
+    --measurements <measurements> \
+    --inputs <inputs> \
+    --verbose <verbose> \
+    --output_file <output_file>
 ```
 
 Where the parameters are:
 
-|        | Parameter          | Type      | Description                                             |
-|--------|--------------------|-----------|---------------------------------------------------------|
-| Input  | \<sif>             | String    | The sif csv file containing the signaling network       |
-| Input  | \<measurements>    | String    | The measurements csv with the TFs and weights           |
-| Input  | \<inputs>          | String    | The csv file with the input protein targets             |
-| Input  | \<verbose>         | String    | Verbose output (True/False)                             |
-| Output | \<output_file>     | String    | The final HDF5 file.                                    |
+|        | Flag           | Parameter       | Type   | Description                                       |
+|--------|----------------|-----------------|--------|---------------------------------------------------|
+| Input  | --sif          | \<sif>          | File   | The sif csv file containing the signaling network |
+| Input  | --measurements | \<measurements> | String | The measurements csv with the TFs and weights     |
+| Input  | --inputs       | \<inputs>       | File   | The csv file with the input protein targets       |
+| Input  | --verbose      | \<verbose>      | String | Verbose output (TRUE/FALSE)                       |
+| Output | --output_file  | \<output_file>  | File   | The final HDF5 file.                              |
 
 
 An example with toy data from here https://github.com/saezlab/permedcoe/tree/master/containers/toolset/scripts/examples/export would be:
 
 ```bash
-export_solver_hdf5_BB -i sif.csv measurements.csv inputs.csv TRUE -o file.h5
+export_solver_hdf5_BB \
+    --sif sif.csv \
+    --measurements measurements.csv \
+    --inputs inputs.csv \
+    --verbose TRUE \
+    --output_file file.h5
 ```
 
 ### Uninstall

@@ -60,16 +60,16 @@ The command line is:
 
 ```bash
 omnipath_BB -d \
-    -i <debug> \
-    -o <output_file>
+    --verbose <verbose> \
+    --output_file <output_file>
 ```
 
 Where the parameters are:
 
-|        | Parameter          | Type      | Description                      |
-|--------|--------------------|-----------|----------------------------------|
-| Input  | \<debug>           | Boolean   | If debug or not (True | False ). |
-| Output | \<output_file>     | String    | File with the exported PKN data. |
+|        | Flag          | Parameter      | Type   | Description                     |
+|--------|---------------|----------------|--------|---------------------------------|
+| Input  | --verbose     | \<verbose>     | String | If debug or not (True | False ) |
+| Output | --output_file | \<output_file> | String | File with the exported PKN data |
 
 ### Uninstall
 

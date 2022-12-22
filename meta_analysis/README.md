@@ -64,22 +64,27 @@ The command line is:
 META_ANALISIS_ASSETS=$(python3 -c "import meta_analysis_BB; import os; print(os.path.dirname(meta_analysis_BB.__file__))")
 
 meta_analysis_BB -d \
-    -i <meta_file> <out_dir> <model_prefix> <ko_file> <reps> <verbose> \
-    -o <result_folder> \
-    --mount_point ${META_ANALISIS_ASSETS}/assets:${META_ANALISIS_ASSETS}/assets
+    --mount_point ${META_ANALISIS_ASSETS}/assets:${META_ANALISIS_ASSETS}/assets \
+    --meta_file <meta_file> \
+    --out_dir <out_dir> \
+    --model_prefix <model_prefix> \
+    --ko_file <ko_file> \
+    --reps <reps> \
+    --verbose <verbose> \
+    --result_folder <result_folder>
 ```
 
 Where the parameters are:
 
-|        | Parameter          | Type      | Description                                             |
-|--------|--------------------|-----------|---------------------------------------------------------|
-| Input  | \<meta_file>       | File      | Sample information                                      |
-| Input  | \<out_dir>         | Directory | Simulations output folder                               |
-| Input  | \<model_prefix>    | String    | Prefix of the boolean model used in the simulations     |
-| Input  | \<ko_file>         | File      | Evaluated gene KOs                                      |
-| Input  | \<reps>            | Int       | Number of replicas                                      |
-| Input  | \<verbose>         | String    | Verbose level                                           |
-| Output | \<result_folder>   | Directory | Output folder                                           |
+|        | Flag            | Parameter          | Type   | Description                                         |
+|--------|-----------------|--------------------|--------|-----------------------------------------------------|
+| Input  | --meta_file     | \<meta_file>       | File   | Sample information                                  |
+| Input  | --out_dir       | \<out_dir>         | Folder | Simulations output folder                           |
+| Input  | --model_prefix  | \<model_prefix>    | String | Prefix of the boolean model used in the simulations |
+| Input  | --ko_file       | \<ko_file>         | File   | Evaluated gene KOs                                  |
+| Input  | --reps          | \<reps>            | Int    | Number of replicas                                  |
+| Input  | --verbose       | \<verbose>         | String | Verbose level                                       |
+| Output | --result_folder | \<result_folder>   | Folder | Output folder                                       |
 
 ### Uninstall
 

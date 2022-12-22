@@ -63,24 +63,31 @@ The command line is:
 SINGLE_CELL_ASSETS=$(python3 -c "import single_cell_processing_BB; import os; print(os.path.dirname(single_cell_processing_BB.__file__))")
 
 single_cell_processing_BB -d \
-    -i <p_id> <p_group> <p_file> <parallelize> \
-    -o <norm_data> <raw_data> <scaled_data> <cells_metadata> <outdir> \
-    --mount_points ${SINGLE_CELL_ASSETS}/assets/:${SINGLE_CELL_ASSETS}/assets/
+    --mount_points ${SINGLE_CELL_ASSETS}/assets/:${SINGLE_CELL_ASSETS}/assets/ \
+    --p_id <p_id> \
+    --p_group <p_group> \
+    --p_file <p_file> \
+    --parallelize <parallelize> \
+    --norm_data <norm_data> \
+    --raw_data <raw_data> \
+    --scaled_data <scaled_data> \
+    --cells_metadata <cells_metadata> \
+    --outdir <outdir>
 ```
 
 Where the parameters are:
 
-|        | Parameter         | Type      | Description                         |
-|--------|-------------------|-----------|-------------------------------------|
-| Input  | \<p_id>           | String    | Patient ID                          |
-| Input  | \<p_group>        | String    | Patient's group label               |
-| Input  | \<p_file>         | File      | scRNA-Seq patient's counts          |
-| Input  | \<parallelize>    | Int       | Internal parallelism                |
-| Output | \<norm_data>      | File      | Normalized counts output filename   |
-| Output | \<raw_data>       | File      | Raw counts output filename          |
-| Output | \<scaled_data>    | File      | Scaled counts output filename       |
-| Output | \<cells_metadata> | File      | Cells' metadata output filename     |
-| Output | \<outdir>         | Directory | Output folder                       |
+|        | Flag             | Parameter         | Type    | Description                       |
+|--------|------------------|-------------------|---------|-----------------------------------|
+| Input  | --p_id           | \<p_id>           | String  | Patient ID                        |
+| Input  | --p_group        | \<p_group>        | String  | Patient's group label             |
+| Input  | --p_file         | \<p_file>         | File    | scRNA-Seq patient's counts        |
+| Input  | --parallelize    | \<parallelize>    | Integer | Internal parallelism              |
+| Output | --norm_data      | \<norm_data>      | File    | Normalized counts output filename |
+| Output | --raw_data       | \<raw_data>       | File    | Raw counts output filename        |
+| Output | --scaled_data    | \<scaled_data>    | File    | Scaled counts output filename     |
+| Output | --cells_metadata | \<cells_metadata> | File    | Cells' metadata output filename   |
+| Output | --outdir         | \<outdir>         | Folder  | Output folder                     |
 
 ### Uninstall
 

@@ -60,14 +60,14 @@ The command line is:
 
 ```bash
 CellNOpt_BB -d \
-    -i <input_file>
+    --input_file <input_file>
 ```
 
 Where the parameters are:
 
-|        | Parameter          | Type      | Description                                             |
-|--------|--------------------|-----------|---------------------------------------------------------|
-| Input  | \<input_file>      | String    | HDF5 input data required by CellNopt.                   |
+|        | Flag         | Parameter     | Type | Description                           |
+|--------|--------------|---------------|------|---------------------------------------|
+| Input  | --input_file | \<input_file> | File | HDF5 input data required by CellNopt. |
 
 
 An input toy example is available here: https://github.com/saezlab/permedcoe/blob/master/containers/parallel-solvers/examples/cellnopt_toy_example.h5
