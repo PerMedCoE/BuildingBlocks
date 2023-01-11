@@ -45,23 +45,22 @@ def feature_merger(input_dir=None, output_file=None,
     pass
 
 
-def invoke(input, output, config):
+def invoke(arguments, config):
     """ Common interface.
 
     Args:
-        input (list): List containing the model and data folder.
-        output (list): list containing the output directory path.
+        arguments (args): Building Block parsed arguments.
         config (dict): Configuration dictionary (not used).
     Returns:
         None
     """
     # Process parameters
-    input_dir = input[0]
-    feature_file = input[1]
-    merge_csv_file = input[2]
-    merge_csv_index = input[3]
-    merge_csv_prefix = input[4]
-    output_file = output[0]
+    input_dir = arguments.input_dir
+    feature_file = arguments.feature_file
+    merge_csv_file = arguments.merge_csv_file
+    merge_csv_index = arguments.merge_csv_index
+    merge_csv_prefix = arguments.merge_csv_prefix
+    output_file = arguments.output_file
     # Building block invocation
     feature_merger(input_dir=input_dir,
                    output_file=output_file,

@@ -9,7 +9,7 @@ long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
     name="Carnival_BB",
-    version="0.0.1",
+    version="0.0.2",
     description="This package provides the Carnival Building Block",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -18,12 +18,12 @@ setup(
     author_email="infoPerMedCoE@bsc.es",
     classifiers=[
         "Development Status :: 5 - Production/Stable",
-        "License :: OSI Approved :: Apache Software License"
-        "Intended Audience :: Science/Research"
-        "Operating System :: Unix"
-        "Operating System :: POSIX :: Linux"
-        "Topic :: Scientific/Engineering :: Bio-Informatics"
-        "Topic :: Scientific/Engineering :: Medical Science Apps."
+        "License :: OSI Approved :: Apache Software License",
+        "Intended Audience :: Science/Research",
+        "Operating System :: Unix",
+        "Operating System :: POSIX :: Linux",
+        "Topic :: Scientific/Engineering :: Bio-Informatics",
+        "Topic :: Scientific/Engineering :: Medical Science Apps.",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
@@ -36,15 +36,16 @@ setup(
     package_dir={"": "src"},
     packages=find_packages(where="src"),
     python_requires=">=3.6, <4",
-    install_requires=["permedcoe>=0.0.1"],
+    install_requires=["permedcoe>=0.0.6"],
     extras_require={
         "dev": ["check-manifest"],
     },
     # If there are data files included in your packages that need to be
     # installed, specify them here.
-    # package_data={
-    #     "Carnival_BB": ["assets/*"],
-    # },
+    package_data={
+        "Carnival_BB": [ # "assets/*",
+                        "definition.json"],
+    },
     entry_points={
         "console_scripts": [
             "Carnival_BB=Carnival_BB.__main__:main",
@@ -55,5 +56,3 @@ setup(
         "Source": "https://github.com/PerMedCoE/BuildingBlocks/tree/main/Carnival",
     },
 )
-
-

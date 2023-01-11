@@ -1,0 +1,75 @@
+{
+    "short_description": "The PROGENy building block uses PROGENy to extract pathway activities from gene expression data. Further information on PROGENy can be found on the [Saez Laboratory website](https://saezlab.github.io/progeny/).",
+    "long_description": "The PROGENy building block uses PROGENy to extract pathway activities from gene expression data. Further information on PROGENy can be found on the [Saez Laboratory website](https://saezlab.github.io/progeny/).",
+    "use_description": "long",
+    "parameters": {
+        "default": [
+            {
+                "type": "input",
+                "name": "input_file",
+                "format": "file",
+                "description": "CSV with gene expression data, where rows are genes and columns are samples"
+            },
+            {
+                "type": "input",
+                "name": "organism",
+                "format": "str",
+                "description": "Human | Mouse"
+            },
+            {
+                "type": "input",
+                "name": "ntop",
+                "format": "int",
+                "description": "Number of top genes used to estimate pathway activities"
+            },
+            {
+                "type": "input",
+                "name": "col_genes",
+                "format": "str",
+                "description": "Name of the column containing gene IDs"
+            },
+            {
+                "type": "input",
+                "name": "scale",
+                "format": "str",
+                "description": "Scale data (TRUE | FALSE)"
+            },
+            {
+                "type": "input",
+                "name": "exclude_cols",
+                "format": "str",
+                "description": "Columns containing this string will be removed"
+            },
+            {
+                "type": "input",
+                "name": "tsv",
+                "format": "str",
+                "description": "Import input data as TSV"
+            },
+            {
+                "type": "input",
+                "name": "perms",
+                "format": "int",
+                "description": "Number of permutations to estimate the null distribution. For default usage of PROGENy, just pass 1 to skip this step"
+            },
+            {
+                "type": "input",
+                "name": "zscore",
+                "format": "str",
+                "description": "If TRUE, the z-scores will be returned for the pathway activity estimations. Else, the function returns a normalized z-score value between -1 and 1"
+            },
+            {
+                "type": "input",
+                "name": "verbose",
+                "format": "str",
+                "description": "Verbose output (TRUE | FALSE)"
+            },
+            {
+                "type": "output",
+                "name": "output_file",
+                "format": "file",
+                "description": "File with the results containing pathway activities"
+            }
+        ]
+    }
+}

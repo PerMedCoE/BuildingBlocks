@@ -62,20 +62,21 @@ The command line is:
 BUILD_MODEL_FROM_SPECIES_ASSETS=$(python3 -c "import build_model_from_species_BB; import os; print(os.path.dirname(build_model_from_species_BB.__file__))")
 
 build_model_from_species_BB -d \
-    -i <input_file> \
-    -o <output_bnd_file> <output_cfg_file> \
-    -c <config_file> \
-    --mount_point ${PERSONALIZE_PATIENT_ASSETS}/assets:${PERSONALIZE_PATIENT_ASSETS}/assets
+    --mount_point ${PERSONALIZE_PATIENT_ASSETS}/assets:${PERSONALIZE_PATIENT_ASSETS}/assets \
+    --build_model_from <genes | sif>
+    --input_file <input_file> \
+    --output_bnd_file <output_bnd_file> \
+    --output_cfg_file <output_cfg_file>    
 ```
 
 Where the parameters are:
 
-|        | Parameter          | Type | Description                                                                                                 |
-|--------|--------------------|------|-------------------------------------------------------------------------------------------------------------|
-| Input  | \<input_file>      | File | List of genes as a CSV file                                                                                 |
-| Output | \<output_bnd_file> | File | BND file of the generated MaBoSS model.                                                                     |
-| Output | \<output_cfg_file> | File | CFG file of the generated MaBoSS model.                                                                     |
-| Config | \<config_file>     | File | Configuration file. Must include the **build_model_from** key with a value that can be **genes** or **sif** |
+|        | Flag               | Parameter          | Type    | Description                            |
+|--------|--------------------|--------------------|---------|----------------------------------------|
+| Input  | --build_model_from | \<genes|sif>       | String  | Build model from genes or sif          |
+| Input  | --input_file       | \<input_file>      | File    | List of genes as a CSV file            |
+| Output | --output_bnd_file  | \<output_bnd_file> | File    | BND file of the generated MaBoSS model |
+| Output | --output_cfg_file  | \<output_cfg_file> | File    | CFG file of the generated MaBoSS model |
 
 ### Uninstall
 
@@ -93,3 +94,7 @@ Uninstall can be achieved by executing the following scripts:
 ## Contact
 
 <https://permedcoe.eu/contact/>
+
+This software has been developed for the [PerMedCoE project](https://permedcoe.eu/), funded by the European Commission (EU H2020 [951773](https://cordis.europa.eu/project/id/951773)).
+
+![](https://permedcoe.eu/wp-content/uploads/2020/11/logo_1.png "PerMedCoE")

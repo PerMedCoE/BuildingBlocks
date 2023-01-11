@@ -61,28 +61,27 @@ def tf_enrichment(input_file=None, output_file=None,
     pass
 
 
-def invoke(input, output, config):
+def invoke(arguments, config):
     """ Common interface.
 
     Args:
-        input (list): List containing the model and data folder.
-        output (list): list containing the output directory path.
+        arguments (args): Building Block parsed arguments.
         config (dict): Configuration dictionary (not used).
     Returns:
         None
     """
     # Process parameters
-    input_file = input[0]
-    tsv = input[1]
-    weight_col = input[2]
-    id_col = input[3]
-    minsize = input[4]
-    source = input[5]
-    confidence = input[6]
-    verbose = input[7]
-    pval_threshold = input[8]
-    export_carnival = input[9]
-    output_file = output[0]
+    input_file = arguments.input_file
+    tsv = arguments.tsv
+    weight_col = arguments.weight_col
+    id_col = arguments.id_col
+    minsize = arguments.minsize
+    source = arguments.source
+    confidence = arguments.confidence
+    verbose = arguments.verbose
+    pval_threshold = arguments.pval_threshold
+    export_carnival = arguments.export_carnival
+    output_file = arguments.output_file
     # Building block invocation
     tf_enrichment(input_file=input_file,
                   output_file=output_file,

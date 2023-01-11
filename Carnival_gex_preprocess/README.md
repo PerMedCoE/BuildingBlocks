@@ -60,29 +60,43 @@ The command line is:
 
 ```bash
 Carnival_gex_preprocess_BB -d \
-    -i <input_file> <col_genes> <scale> <exclude_cols> <tsv> <remove> <verbose>
-    -o <output_file>
+    --input_file <input_file> \
+    --col_genes <col_genes> \
+    --scale <scale> \
+    --exclude_cols <exclude_cols> \
+    --tsv <tsv> \
+    --remove <remove> \
+    --verbose <verbose> \
+    --output_file <output_file>
 ```
 
 Where the parameters are:
 
-|        | Parameter           | Type      | Description                                                                |
-|--------|---------------------|-----------|----------------------------------------------------------------------------|
-| Input  | \<input_file>       | String    | csv/url with the GDSC gene expression data                                 |
-| Output | \<output_file>      | String    | processed csv file                                                         |
-| Input  | \<col_genes>        | String    | Name of the column containing the gene symbols. Default = `GENE_SYMBOLS`.  |
-| Input  | \<scale>            | String    | Normalize genes across samples (True/False)                                |
-| Input  | \<exclude_cols>     | String    | Exclude columns containing the given string. Default = `GENE_title`        |
-| Input  | \<tsv>              | String    | Import as TSV instead of CSV (True/False)                                  |
-| Input  | \<remove>           | String    | Remove the given substring from columns. Default = `.DATA`                 |
-| Input  | \<verbose>          | String    | Verbose output (True/False)                                                |
+|        | Flag           | Parameter           | Type   | Description                                                              |
+|--------|----------------|---------------------|--------|--------------------------------------------------------------------------|
+| Input  | --input_file   | \<input_file>       | File   | csv/url with the GDSC gene expression data                               |
+| Input  | --col_genes    | \<col_genes>        | String | Name of the column containing the gene symbols. Default = `GENE_SYMBOLS` |
+| Input  | --scale        | \<scale>            | String | Normalize genes across samples (TRUE/FALSE)                              |
+| Input  | --exclude_cols | \<exclude_cols>     | String | Exclude columns containing the given string. Default = `GENE_title`      |
+| Input  | --tsv          | \<tsv>              | String | Import as TSV instead of CSV (TRUE/FALSE)                                |
+| Input  | --remove       | \<remove>           | String | Remove the given substring from columns. Default = `.DATA`               |
+| Input  | --verbose      | \<verbose>          | String | Verbose output (TRUE/FALSE)                                              |
+| Output | --output_file  | \<output_file>      | File   | Processed csv file                                                       |
 
 Here is an example from https://github.com/saezlab/permedcoe/blob/master/containers/workflow_bb.sh preprocessing GDSC data:
 
 ```bash
 wget -O gdsc_gex.zip https://www.cancerrxgene.org/gdsc1000/GDSC1000_WebResources/Data/preprocessed/Cell_line_RMA_proc_basalExp.txt.zip
 unzip gdsc_gex.zip
-Carnival_gex_preprocess_BB -i Cell_line_RMA_proc_basalExp.txt GENE_SYMBOLS GENE_title FALSE TRUE DATA. TRUE -o gex.csv
+Carnival_gex_preprocess_BB \
+    --input_file Cell_line_RMA_proc_basalExp.txt \
+    --col_genes GENE_SYMBOLS \
+    --scale FALSE \
+    --exclude_cols GENE_title \
+    --tsv TRUE \
+    --remove DATA. \
+    --verbose TRUE \
+    --output_file gex.csv
 ```
 
 ### Uninstall
@@ -101,3 +115,7 @@ Uninstall can be achieved by executing the following scripts:
 ## Contact
 
 <https://permedcoe.eu/contact/>
+
+This software has been developed for the [PerMedCoE project](https://permedcoe.eu/), funded by the European Commission (EU H2020 [951773](https://cordis.europa.eu/project/id/951773)).
+
+![](https://permedcoe.eu/wp-content/uploads/2020/11/logo_1.png "PerMedCoE")

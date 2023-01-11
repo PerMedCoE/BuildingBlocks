@@ -48,23 +48,22 @@ def carnivalpy(path=None,
     pass
 
 
-def invoke(input, output, config):
+def invoke(arguments, config):
     """ Common interface.
 
     Args:
-        input (list): List containing the model and data folder.
-        output (list): list containing the output directory path.
+        arguments (args): Building Block parsed arguments.
         config (dict): Configuration dictionary (not used).
     Returns:
         None
     """
     # Process parameters
-    path = input[0]
-    penalty = input[1]
-    solver = input[2]
-    tol = input[3]
-    maxtime = input[4]
-    export = output[0]
+    path = arguments.path
+    penalty = arguments.penalty
+    solver = arguments.solver
+    tol = arguments.tol
+    maxtime = arguments.maxtime
+    export = arguments.export
     # Building block invocation
     carnivalpy(path=path,
                penalty=penalty,

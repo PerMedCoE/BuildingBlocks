@@ -62,19 +62,17 @@ The command line is:
 PRINT_DRUG_RESULTS_ASSETS=$(python3 -c "import print_drug_results_BB; import os; print(os.path.dirname(print_drug_results_BB.__file__))")
 
 print_drug_results_BB -d \
-    -i <prefix> <data_folder> \
-    -o <ko_file> \
-    --mount_point ${PRINT_DRUG_RESULTS_ASSETS}/assets:${PRINT_DRUG_RESULTS_ASSETS}/assets
+    --mount_point ${PRINT_DRUG_RESULTS_ASSETS}/assets:${PRINT_DRUG_RESULTS_ASSETS}/assets \
+    --results_folder <results_folder> \
+    --reports_folder <reports_folder>
 ```
 
 Where the parameters are:
 
-|        | Parameter          | Type | Description                                             |
-|--------|--------------------|------|---------------------------------------------------------|
-| Input  | \<input_file>      | File | [TO BE COMPLETED]                                       |
-| Output | \<output_bnd_file> | File | [TO BE COMPLETED]                                       |
-| Output | \<output_cfg_file> | File | [TO BE COMPLETED]                                       |
-| Config | \<config_file>     | File | Configuration file. Must include the **build_model_from** key with a value that can be **genes** or **sif** |
+|        | Flag             | Parameter         | Type | Description    |
+|--------|------------------|-------------------|------|----------------|
+| Input  | --results_folder | \<input_file>     | File | Results folder |
+| Output | --reports_folder | \<reports_folder> | File | Reports folder |
 
 ### Uninstall
 
@@ -92,3 +90,7 @@ Uninstall can be achieved by executing the following scripts:
 ## Contact
 
 <https://permedcoe.eu/contact/>
+
+This software has been developed for the [PerMedCoE project](https://permedcoe.eu/), funded by the European Commission (EU H2020 [951773](https://cordis.europa.eu/project/id/951773)).
+
+![](https://permedcoe.eu/wp-content/uploads/2020/11/logo_1.png "PerMedCoE")

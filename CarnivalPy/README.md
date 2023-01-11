@@ -60,20 +60,24 @@ The command line is:
 
 ```bash
 CarnivalPy_BB -d \
-    -i <path> <penalty> <solver> <tol> <maxtime> \
-    -o <export>
+    --path <path> \
+    --penalty <penalty> \
+    --solver <solver> \
+    --tol <tol> \
+    --maxtime <maxtime> \
+    --export <export>
 ```
 
 Where the parameters are:
 
-|        | Parameter   | Type      | Description                                                                                   |
-|--------|-------------|-----------|-----------------------------------------------------------------------------------------------|
-| Input  | \<path>     | String    | Path containing a `sif.csv` file, a `measurements.csv` file, and `perturbations.csv` file.    |
-| Input  | \<penalty>  | Float     | Penalty value for sparsity (penalty for the number of nodes in the final result). E.g 0.0001. |
-| Input  | \<solver>   | String    | Name of the solver to be used: gurobi, cplex, cbc, gurobi_mip, glpk. Any solver supported by Python-MIP and [PICOS](https://picos-api.gitlab.io/picos/introduction.html) can be passed. |
-| Input  | \<tol>      | Float     | MIP Gap tolerance.                                                                            |
-| Input  | \<maxtime>  | Int       | Max time in seconds.                                                                          |
-| Output | \<export>   | String    | Path to the file to be exported with the solution                                             |
+|        | Flag      | Parameter   | Type   | Description                                                                                   |
+|--------|-----------|-------------|--------|-----------------------------------------------------------------------------------------------|
+| Input  | --path    | \<path>     | File   | Path containing a `sif.csv` file, a `measurements.csv` file, and `perturbations.csv` file.    |
+| Input  | --penalty | \<penalty>  | Float  | Penalty value for sparsity (penalty for the number of nodes in the final result). E.g 0.0001. |
+| Input  | --solver  | \<solver>   | String | Name of the solver to be used: gurobi, cplex, cbc, gurobi_mip, glpk. Any solver supported by Python-MIP and [PICOS](https://picos-api.gitlab.io/picos/introduction.html) can be passed. |
+| Input  | --tol     | \<tol>      | Float  | MIP Gap tolerance.                                                                            |
+| Input  | --maxtime | \<maxtime>  | Int    | Max time in seconds.                                                                          |
+| Output | --export  | \<export>   | File   | Path to the file to be exported with the solution                                             |
 
 ### Uninstall
 
@@ -91,3 +95,7 @@ Uninstall can be achieved by executing the following scripts:
 ## Contact
 
 <https://permedcoe.eu/contact/>
+
+This software has been developed for the [PerMedCoE project](https://permedcoe.eu/), funded by the European Commission (EU H2020 [951773](https://cordis.europa.eu/project/id/951773)).
+
+![](https://permedcoe.eu/wp-content/uploads/2020/11/logo_1.png "PerMedCoE")

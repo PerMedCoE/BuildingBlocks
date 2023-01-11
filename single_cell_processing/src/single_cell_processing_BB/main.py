@@ -66,26 +66,25 @@ def single_cell_processing(
     pass
 
 
-def invoke(input, output, config):
+def invoke(arguments, config):
     """Common interface.
 
     Args:
-        input (list): List containing the metadata file path.
-        output (list): list containing the output directory path.
+        arguments (args): Building Block parsed arguments.
         config (dict): Configuration dictionary (not used).
     Returns:
         None
     """
     # Process parameters
-    p_id = input[0]
-    p_group = input[1]
-    p_file = input[2]
-    parallelize = input[3]
-    norm_data = output[0]
-    raw_data = output[1]
-    scaled_data = output[2]
-    cells_metadata = output[3]
-    outdir = output[4]
+    p_id = arguments.p_id
+    p_group = arguments.p_group
+    p_file = arguments.p_file
+    parallelize = arguments.parallelize
+    norm_data = arguments.norm_data
+    raw_data = arguments.raw_data
+    scaled_data = arguments.scaled_data
+    cells_metadata = arguments.cells_metadata
+    outdir = arguments.outdir
     # Building block invocation
     single_cell_processing(
         p_id=p_id,

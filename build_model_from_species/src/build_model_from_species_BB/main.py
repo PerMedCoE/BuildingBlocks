@@ -1,5 +1,6 @@
 import os
 
+from permedcoe import Arguments
 from permedcoe import constraint
 from permedcoe import container
 from permedcoe import binary
@@ -42,35 +43,30 @@ def build_model_from_sif(output_bnd_file=None,
     pass
 
 
-def invoke(input, output, config):
+def invoke(arguments, config):
     """ Common interface.
 
     Args:
-        input (str): Input file path.
-        output (str): Output directory path.
+        arguments (args): Building Block parsed arguments.
         config (dict): Configuration dictionary.
     Returns:
         None
     """
-    build_model_from_key = "build_model_from"
-    if build_model_from_key in config.keys():
-        if config[build_model_from_key] == "genes":
-            print("List genes")
-            input_file = input[0]
-            output_bnd_file = output[0]
-            output_cfg_file = output[1]
-            build_model_from_species(input_file=input_file,
-                                     output_bnd_file=output_bnd_file,
-                                     output_cfg_file=output_cfg_file)
-        elif config[build_model_from_key] == "sif":
-            print("SIF file")
-            input_file = input[0]
-            output_bnd_file = output[0]
-            output_cfg_file = output[1]
-            build_model_from_sif(input_file=input_file,
+    if arguments.build_model_from == "genes":
+        print("List genes")
+        input_file = arguments.input_file
+        output_bnd_file = arguments.output_bnd_file
+        output_cfg_file = arguments.output_cfg_file
+        build_model_from_species(input_file=input_file,
                                  output_bnd_file=output_bnd_file,
                                  output_cfg_file=output_cfg_file)
-        else:
-            raise Exception("Unsupported %s value in config file. Supported: genes | sif" % build_model_from_key)
+    elif arguments.build_model_from == "sif":
+        print("SIF file")
+        input_file = arguments.input_file
+        output_bnd_file = arguments.output_bnd_file
+        output_cfg_file = arguments.output_cfg_file
+        build_model_from_sif(input_file=input_file,
+                             output_bnd_file=output_bnd_file,
+                             output_cfg_file=output_cfg_file)
     else:
-        raise Exception("Could not find %s in config file." % build_model_from_key)
+        raise Exception("Unsupported %s build model from key. Supported: genes | sif" % arguments.mode)

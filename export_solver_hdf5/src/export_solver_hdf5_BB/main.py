@@ -46,24 +46,24 @@ def export(sif=None,
     pass
 
 
-def invoke(input, output, config):
+def invoke(arguments, config):
     """ Common interface.
 
     export_bb -i sif.csv measurements.csv inputs.csv TRUE -o file.h5
 
     Args:
-        input (list): List containing the model and data folder.
-        output (list): list containing the output directory path.
+        arguments (args): Building Block parsed arguments.
         config (dict): Configuration dictionary (not used).
     Returns:
         None
     """
     # Process parameters
-    sif = input[0]
-    measurements = input[1]
-    inputs = input[2]
-    verbose = input[3]
-    output_file = output[0]
+    sif = arguments.sif
+    measurements = arguments.measurements
+    inputs = arguments.inputs
+    verbose = arguments.verbose
+    output_file = arguments.output_file
+    # Building block invocation
     export(sif=sif,
            measurements=measurements,
            inputs=inputs,

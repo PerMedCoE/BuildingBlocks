@@ -60,14 +60,14 @@ The command line is:
 
 ```bash
 CellNOpt_BB -d \
-    -i <input_file>
+    --input_file <input_file>
 ```
 
 Where the parameters are:
 
-|        | Parameter          | Type      | Description                                             |
-|--------|--------------------|-----------|---------------------------------------------------------|
-| Input  | \<input_file>      | String    | HDF5 input data required by CellNopt.                   |
+|        | Flag         | Parameter     | Type | Description                           |
+|--------|--------------|---------------|------|---------------------------------------|
+| Input  | --input_file | \<input_file> | File | HDF5 input data required by CellNopt. |
 
 
 An input toy example is available here: https://github.com/saezlab/permedcoe/blob/master/containers/parallel-solvers/examples/cellnopt_toy_example.h5
@@ -88,3 +88,7 @@ Uninstall can be achieved by executing the following scripts:
 ## Contact
 
 <https://permedcoe.eu/contact/>
+
+This software has been developed for the [PerMedCoE project](https://permedcoe.eu/), funded by the European Commission (EU H2020 [951773](https://cordis.europa.eu/project/id/951773)).
+
+![](https://permedcoe.eu/wp-content/uploads/2020/11/logo_1.png "PerMedCoE")

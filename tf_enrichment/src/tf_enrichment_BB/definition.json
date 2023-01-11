@@ -1,0 +1,75 @@
+{
+    "short_description": "The TF Enrichment building block uses [DecoupleR](https://saezlab.github.io/decoupleR/) and [Dorothea](https://saezlab.github.io/dorothea/) to estimate transcription factor activities from perturbational data.",
+    "long_description": "The TF Enrichment building block uses [DecoupleR](https://saezlab.github.io/decoupleR/) and [Dorothea](https://saezlab.github.io/dorothea/) to estimate transcription factor activities from perturbational data.",
+    "use_description": "long",
+    "parameters": {
+        "default": [
+            {
+                "type": "input",
+                "name": "input_file",
+                "format": "file",
+                "description": "Input gene expression data. Genes should be normalized across samples"
+            },
+            {
+                "type": "input",
+                "name": "tsv",
+                "format": "str",
+                "description": "Import data as TSV instead of CSV (TRUE | FALSE)"
+            },
+            {
+                "type": "input",
+                "name": "weight_col",
+                "format": "str",
+                "description": "Name of the column containing differential expression values (e.g t-statistic from DESeq2) between a control/treatment condition for example, or just log-fold change."
+            },
+            {
+                "type": "input",
+                "name": "id_col",
+                "format": "str",
+                "description": "Name of the column for gene ids"
+            },
+            {
+                "type": "input",
+                "name": "minsize",
+                "format": "int",
+                "description": "Minimum size for regulons (e.g. 10)"
+            },
+            {
+                "type": "input",
+                "name": "source",
+                "format": "str",
+                "description": "Column with the TFs (e.g. tf)"
+            },
+            {
+                "type": "input",
+                "name": "confidence",
+                "format": "str",
+                "description": "Level of confidence to be used for regulons. E.g.: A,B,C. (see https://saezlab.github.io/dorothea/ for documentation)"
+            },
+            {
+                "type": "input",
+                "name": "verbose",
+                "format": "str",
+                "description": "Verbose output (TRUE | FALSE)"
+            },
+            {
+                "type": "input",
+                "name": "pval_threshold",
+                "format": "float",
+                "description": "Filter out TFs with adj. p-val above the provided value"
+            },
+            {
+                "type": "input",
+                "name": "export_carnival",
+                "format": "str",
+                "description": "Export a table with the results with two columns (id, value) only (for CARNIVAL)(TRUE/FALSE)"
+            },
+            {
+                "type": "output",
+                "name": "output_file",
+                "format": "file",
+                "description": "Result csv file with estimated TF activities"
+            }
+        ]
+    }
+}

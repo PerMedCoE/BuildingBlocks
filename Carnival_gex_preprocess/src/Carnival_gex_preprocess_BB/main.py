@@ -52,25 +52,24 @@ def preprocess(input_file=None, output_file=None,
     pass
 
 
-def invoke(input, output, config):
+def invoke(arguments, config):
     """ Common interface.
 
     Args:
-        input (list): List containing the model and data folder.
-        output (list): list containing the output directory path.
+        arguments (args): Building Block parsed arguments.
         config (dict): Configuration dictionary (not used).
     Returns:
         None
     """
     # Process parameters
-    input_file = input[0]
-    col_genes = input[1]
-    scale = input[2]
-    exclude_cols = input[3]
-    tsv = input[4]
-    remove = input[5]
-    verbose = input[6]
-    output_file = output[0]
+    input_file = arguments.input_file
+    col_genes = arguments.col_genes
+    scale = arguments.scale
+    exclude_cols = arguments.exclude_cols
+    tsv = arguments.tsv
+    remove = arguments.remove
+    verbose = arguments.verbose
+    output_file = arguments.output_file
     # Building block invocation
     preprocess(input_file=input_file,
                output_file=output_file,

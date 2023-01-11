@@ -1,6 +1,5 @@
 import os
 
-from permedcoe import Arguments
 from permedcoe import constraint
 from permedcoe import container
 from permedcoe import binary
@@ -91,57 +90,10 @@ def invoke(arguments, config):
         data_folder = arguments.data_folder
         parallel = arguments.parallel
         ko_file = arguments.ko_file
-        # Building block invoCation
+        # Building block invocation
         MaBoSS_analysis(
             model=model,
             data_folder=data_folder,
             ko_file=ko_file,
             parallel=parallel
         )
-
-
-def arguments_info():
-    """Arguments definition.
-
-    Builds the arguments definition.
-
-    Returns:
-        Supported arguments.
-    """
-    arguments = Arguments()
-    arguments.add_input(name="model",
-                        type=str,
-                        description="Model",
-                        check=str)
-    arguments.add_input(name="data_folder",
-                        type=str,
-                        description="Data folder",
-                        check="folder")
-    arguments.add_input(name="parallel",
-                        type=int,
-                        description="Internal parallelism",
-                        check=None)
-    arguments.add_output(name="ko_file",
-                         type=str,
-                         description="KO file")
-    sensitivity = "sensitivity"
-    arguments.add_input(name="model_folder",
-                        type=str,
-                        description="Model folder",
-                        check="folder",
-                        mode=sensitivity)
-    arguments.add_input(name="genes_druggable",
-                        type=str,
-                        description="Genes druggable (csv)",
-                        check="file",
-                        mode=sensitivity)
-    arguments.add_input(name="genes_target",
-                        type=str,
-                        description="Genes target (csv)",
-                        check="file",
-                        mode=sensitivity)
-    arguments.add_output(name="result_file",
-                         type=str,
-                         description="Sensitivity result file (json)",
-                         mode=sensitivity)
-    return arguments

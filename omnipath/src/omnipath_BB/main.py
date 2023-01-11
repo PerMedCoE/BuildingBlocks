@@ -30,18 +30,17 @@ def omnipath(output_file=None):
     pass
 
 
-def invoke(input, output, config):
+def invoke(arguments, config):
     """ Common interface.
 
     Args:
-        input (list): List containing the model and data folder.
-        output (list): list containing the output directory path.
+        arguments (args): Building Block parsed arguments.
         config (dict): Configuration dictionary (not used).
     Returns:
         None
     """
     # Process parameters
-    debug = input[0]
-    output_file = output[0]
+    verbose = arguments.verbose
+    output_file = arguments.output_file
     # Building block invocation
     omnipath(output_file=output_file)

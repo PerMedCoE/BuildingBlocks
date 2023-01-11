@@ -1,0 +1,63 @@
+{
+    "short_description": "This building block enables the processing and analysis of single-cell RNA-Seq data from each patient in a sample.",
+    "long_description": "This building block enables the processing and analysis of single-cell RNA-Seq data from each patient in a sample. The first step of the protocol includes quality control, filtering and normalisation of the count matrices at the cellular level. Next, the number of variable genes in each individual is determined and the corresponding scaled matrices are obtained, allowing in the next step the application of dimensionality reduction techniques such as PCA, T-SNE and UMAP. Finally, cells are clustered using graph-based techniques and annotated to their corresponding cell type, enabling subsequent building blocks to select and work with the set of cells that are relevant to the disease under study (e.g. epithelial cells in COVID19 disease).",
+    "use_description": "long",
+    "parameters": {
+        "default": [
+            {
+                "type": "input",
+                "name": "p_id",
+                "format": "str",
+                "description": "Patient ID"
+            },
+            {
+                "type": "input",
+                "name": "p_group",
+                "format": "str",
+                "description": "Patient's group label"
+            },
+            {
+                "type": "input",
+                "name": "p_file",
+                "format": "file",
+                "description": "scRNA-Seq patient's counts"
+            },
+            {
+                "type": "input",
+                "name": "parallelize",
+                "format": "int",
+                "description": "Internal parallelism"
+            },
+            {
+                "type": "output",
+                "name": "norm_data",
+                "format": "file",
+                "description": "Normalized counts output filename"
+            },
+            {
+                "type": "output",
+                "name": "raw_data",
+                "format": "file",
+                "description": "Raw counts output filename"
+            },
+            {
+                "type": "output",
+                "name": "scaled_data",
+                "format": "file",
+                "description": "Scaled counts output filename"
+            },
+            {
+                "type": "output",
+                "name": "cells_metadata",
+                "format": "file",
+                "description": "Cells' metadata output filename"
+            },
+            {
+                "type": "output",
+                "name": "outdir",
+                "format": "folder",
+                "description": "Output folder"
+            }
+        ]
+    }
+}

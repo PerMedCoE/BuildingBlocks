@@ -58,7 +58,7 @@ def ml(input_file=None, output_file=None,
     pass
 
 
-def invoke(input, output, config):
+def invoke(arguments, config):
     """ Common interface.
 
     Process parameters
@@ -67,23 +67,22 @@ def invoke(input, output, config):
         ml -i .x .x .x 200 0.1 0.001 10 0.1 0.1 -o model.npz
 
     Args:
-        input (list): List containing the model and data folder.
-        output (list): list containing the output directory path.
+        arguments (args): Building Block parsed arguments.
         config (dict): Configuration dictionary (not used).
     Returns:
         None
     """
     # Process parameters
-    input_file = input[0]
-    drug_features = input[1]
-    cell_features = input[2]
-    epochs = input[3]
-    adam_lr = input[4]
-    reg = input[5]
-    latent_size = input[6]
-    test_drugs = input[7]
-    test_cells = input[8]
-    output_file = output[0]
+    input_file = arguments.input_file
+    drug_features = arguments.drug_features
+    cell_features = arguments.cell_features
+    epochs = arguments.epochs
+    adam_lr = arguments.adam_lr
+    reg = arguments.reg
+    latent_size = arguments.latent_size
+    test_drugs = arguments.test_drugs
+    test_cells = arguments.test_cells
+    output_file = arguments.output_file
     # Building block invocation
     ml(input_file=input_file,
        output_file=output_file,

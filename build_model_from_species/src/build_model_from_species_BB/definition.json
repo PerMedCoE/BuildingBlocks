@@ -1,0 +1,33 @@
+{
+    "short_description": "This building block performs automatic network construction using OmniPath and pypath.",
+    "long_description": "This building block performs automatic network construction using OmniPath and pypath. This enables the generation of a Boolean model in MaBoSS format. It takes a list of genes of interest and returns either a simple network as a SIF file or a MaBoSS network as a BND and CFG files.",
+    "use_description": "long",
+    "parameters": {
+        "default": [
+            {
+                "type": "input",
+                "name": "build_model_from",
+                "format": "str",
+                "description": "Build model from key (genes | sif)"
+            },
+            {
+                "type": "input",
+                "name": "input_file",
+                "format": "file",
+                "description": "List of genes as a CSV file"
+            },
+            {
+                "type": "output",
+                "name": "output_bnd_file",
+                "format": "file",
+                "description": "BND file of the generated MaBoSS model"
+            },
+            {
+                "type": "output",
+                "name": "output_cfg_file",
+                "format": "file",
+                "description": "CFG file of the generated MaBoSS model"
+            }
+        ]
+    }
+}

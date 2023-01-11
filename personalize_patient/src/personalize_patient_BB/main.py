@@ -88,27 +88,25 @@ def personalize_patient_cellline(expression_data_flag="-e", expression_data=None
     pass
 
 
-def invoke(input, output, config):
+def invoke(arguments, config):
     """ Common interface.
 
     Args:
-        input (list): List containing the normalized data file path, cells
-                      metadata, model prefix, tag and ko file.
-        output (list): list containing the output directory path.
+        arguments (args): Building Block parsed arguments.
         config (dict): Configuration dictionary (not used).
     Returns:
         None
     """
-
-    if config and "uc2" in config.keys() and config["uc2"]:
-        expression = input[0]
-        cnv = input[1]
-        mutation = input[2]
-        cell_type = input[3]
-        model_bnd = input[4]
-        model_cfg = input[5]
-        model_output_dir = os.path.abspath(output[0])
-        # personalized_result = output[1]
+    if arguments.mode == "uc2":
+        # Process parameters
+        expression = arguments.expression
+        cnv = arguments.cnv
+        mutation = arguments.mutation
+        cell_type = arguments.cell_type
+        model_bnd = arguments.model_bnd
+        model_cfg = arguments.model_cfg
+        model_output_dir = os.path.abspath(arguments.model_output_dir)
+        # Building block invocation
         personalize_patient_cellline(expression_data=expression,
                         cnv_data=cnv,
                         mutation_data=mutation,
@@ -116,16 +114,15 @@ def invoke(input, output, config):
                         model_cfg=model_cfg,
                         t=cell_type,
                         model_output_dir=model_output_dir)
-                        # personalized_result=personalized_result)
     else:
         # Process parameters
-        norm_data = input[0]
-        cells = input[1]
-        model_prefix = input[2]
-        t = input[3]
-        ko = input[4]
-        model_output_dir = os.path.abspath(output[0])
-        personalized_result = output[1]
+        norm_data = arguments.norm_data
+        cells = arguments.cells
+        model_prefix = arguments.model_prefix
+        t = arguments.t
+        ko = arguments.ko
+        model_output_dir = os.path.abspath(arguments.model_output_dir)
+        personalized_result = arguments.personalized_result
         # Building block invocation
         personalize_patient(norm_data=norm_data,
                         cells=cells,

@@ -64,22 +64,28 @@ The command line is:
 PERSONALIZE_PATIENT_ASSETS=$(python3 -c "import personalize_patient_BB; import os; print(os.path.dirname(personalize_patient_BB.__file__))")
 
 personalize_patient_BB -d \
-      -i <normalized_data> <cells_metadata> <model_prefix> <t> <ko_file> \
-      -o <model_ouput_dir> <personalized_result> \
-      --mount_points ${PERSONALIZE_PATIENT_ASSETS}/assets/:${PERSONALIZE_PATIENT_ASSETS}/assets/
+      --mount_points ${PERSONALIZE_PATIENT_ASSETS}/assets/:${PERSONALIZE_PATIENT_ASSETS}/assets/ \
+      default \
+      --norm_data <norm_data> \
+      --cells <cells> \
+      --model_prefix <model_prefix> \
+      --t <t> \
+      --ko_file <ko_file> \
+      --model_ouput_dir <model_ouput_dir> \
+      --personalized_result <personalized_result>
 ```
 
 Where the parameters are:
 
-|        | Parameter              | File      | Description                                                                      |
-|--------|------------------------|-----------|----------------------------------------------------------------------------------|
-| Input  | \<normalized_data>     | File      | tsv of the normalized RNAseq data                                                |
-| Input  | \<cells_metadata>      | File      | tsv of the different patients to be analyzed with their clinical information     |
-| Input  | \<model_prefix>        | String    | Prefix that describes the model                                                  |
-| Input  | \<t>                   | String    | Specific cell type of interest                                                   |
-| Input  | \<ko_file>             | File      | File result of the "High-throughput mutant analysis" (aka MaBoSS) building block |
-| Output | \<result_folder>       | Directory | Folder where the results will be located                                         |
-| Output | \<personalized_result> | File      | Personalisation summary file                                                     |
+|        | Flag                  | Parameter              | File   | Description                                                                      |
+|--------|-----------------------|------------------------|--------|----------------------------------------------------------------------------------|
+| Input  | --norm_data           | \<norm_data>           | File   | tsv of the normalized RNAseq data                                                |
+| Input  | --cells               | \<cells>               | File   | tsv of the different patients to be analyzed with their clinical information     |
+| Input  | --model_prefix        | \<model_prefix>        | String | Prefix that describes the model                                                  |
+| Input  | --t                   | \<t>                   | String | Specific cell type of interest                                                   |
+| Input  | --ko_file             | \<ko_file>             | File   | File result of the "High-throughput mutant analysis" (aka MaBoSS) building block |
+| Output | --model_output_dir    | \<model_output_dir>    | Folder | Folder where the results will be located                                         |
+| Output | --personalized_result | \<personalized_result> | File   | Personalisation summary file                                                     |
 
 Alternatively, it can be used to perform patient personalize cellline:
 
@@ -89,24 +95,29 @@ The command line is:
 PERSONALIZE_PATIENT_ASSETS=$(python3 -c "import personalize_patient_BB; import os; print(os.path.dirname(personalize_patient_BB.__file__))")
 
 personalize_patient_BB -d \
-      -i <expression> <cnv> <mutation> <cell_type> <model_bnd> <model_cfg> \
-      -o <model_ouput_dir> \
-      -c <config_file> \
-      --mount_points ${PERSONALIZE_PATIENT_ASSETS}/assets/:${PERSONALIZE_PATIENT_ASSETS}/assets/
+      --mount_points ${PERSONALIZE_PATIENT_ASSETS}/assets/:${PERSONALIZE_PATIENT_ASSETS}/assets/ \
+      uc2 \
+      --expression <expression> \
+      --cnv <cnv> \
+      --mutation <mutation> \
+      --cell_type <cell_type> \
+      --model_bnd <model_bnd> \
+      --model_cfg <model_cfg> \
+      --model_output_dir <model_ouput_dir>
 ```
 
 Where the parameters are:
 
-|        | Parameter              | File      | Description                                                                      |
-|--------|------------------------|-----------|----------------------------------------------------------------------------------|
-| Input  | \<expression>          | File      | Expression data file                                                             |
-| Input  | \<cnv>                 | File      | Copy number variation file                                                       |
-| Input  | \<mutation>            | File      | Mutation file                                                                    |
-| Input  | \<cell_type>           | String    | Identifier of the cell line to use for personalization                           |
-| Input  | \<model_bnd>           | File      | BND file of the MaBoSS model to personalize                                      |
-| Input  | \<model_cfg>           | File      | CFG file of the MaBoSS model to personalize                                      |
-| Output | \<result_folder>       | Directory | Folder where the results will be located                                         |
-| Config | \<config_file>         | File      | Config file (yaml format containing "uc2" key)                                   |
+|        | Flag               | Parameter           | File   | Description                                            |
+|--------|--------------------|---------------------|--------|--------------------------------------------------------|
+| Input  | --expression       | \<expression>       | File   | Expression data file                                   |
+| Input  | --cnv              | \<cnv>              | File   | Copy number variation file                             |
+| Input  | --mutation         | \<mutation>         | File   | Mutation file                                          |
+| Input  | --cell_type        | \<cell_type>        | String | Identifier of the cell line to use for personalization |
+| Input  | --model_bnd        | \<model_bnd>        | File   | BND file of the MaBoSS model to personalize            |
+| Input  | --model_cfg        | \<model_cfg>        | File   | CFG file of the MaBoSS model to personalize            |
+| Output | --model_output_dir | \<model_output_dir> | Folder | Folder where the results will be located               |
+
 
 ### Uninstall
 
@@ -120,3 +131,7 @@ Uninstall can be achieved by executing the following scripts:
 ## Contact
 
 <https://permedcoe.eu/contact/>
+
+This software has been developed for the [PerMedCoE project](https://permedcoe.eu/), funded by the European Commission (EU H2020 [951773](https://cordis.europa.eu/project/id/951773)).
+
+![](https://permedcoe.eu/wp-content/uploads/2020/11/logo_1.png "PerMedCoE")

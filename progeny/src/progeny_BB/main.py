@@ -60,31 +60,30 @@ def progeny(input_file=None, output_file=None,
     pass
 
 
-def invoke(input, output, config):
+def invoke(arguments, config):
     """ Common interface.
 
     Example:
         progeny -i gex.csv Human 60 GENE_SYMBOLS TRUE GENE_title FALSE 3000 TRUE TRUE -o progeny11.csv
 
     Args:
-        input (list): List containing the model and data folder.
-        output (list): list containing the output directory path.
+        arguments (args): Building Block parsed arguments.
         config (dict): Configuration dictionary (not used).
     Returns:
         None
     """
     # Process parameters
-    input_file = input[0]
-    organism = input[1]
-    ntop = input[2]
-    col_genes = input[3]
-    scale = input[4]
-    exclude_cols = input[5]
-    tsv = input[6]
-    perms = input[7]
-    zscore = input[8]
-    verbose = input[9]
-    output_file = output[0]
+    input_file = arguments.input_file
+    organism = arguments.organism
+    ntop = arguments.ntop
+    col_genes = arguments.col_genes
+    scale = arguments.scale
+    exclude_cols = arguments.exclude_cols
+    tsv = arguments.tsv
+    perms = arguments.perms
+    zscore = arguments.zscore
+    verbose = arguments.verbose
+    output_file = arguments.output_file
     # Building block invocation
     progeny(input_file=input_file,
             output_file=output_file,

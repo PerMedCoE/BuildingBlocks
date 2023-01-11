@@ -60,25 +60,34 @@ The command line is:
 
 ```bash
 progeny_BB -d \
-    -i <input_file> organism> <ntop> <col_genes> <scale> <exclude_cols> <tsv> <perms> <zscore> <verbose>
-    -o <output_file>
+    --input_file <input_file> \
+    --organism <organism> \
+    --ntop <ntop> \
+    --col_genes <col_genes> \
+    --scale <scale> \
+    --exclude_cols <exclude_cols> \
+    --tsv <tsv> \
+    --perms <perms> \
+    --zscore <zscore> \
+    --verbose <verbose>\
+    --output_file <output_file>
 ```
 
 Where the parameters are:
 
-|        | Parameter          | Type      | Description                                                                                                            |
-|--------|--------------------|-----------|------------------------------------------------------------------------------------------------------------------------|
-| Input  | \<input_file>      | String    | CSV with gene expression data, where rows are genes and columns are samples.                                           |
-| Input  | \<organism>        | String    | Human/Mouse                                                                                                            |
-| Input  | \<ntop>            | Integer   | Number of top genes used to estimate pathway activities.                                                               |
-| Input  | \<col_genes>       | String    | Name of the column containing gene IDs.                                                                                |
-| Input  | \<scale>           | String    | Scale data (True/False)                                                                                                |
-| Input  | \<exclude_cols>    | String    | Columns containing this string will be removed.                                                                        |
-| Input  | \<tsv>             | String    | Import input data as TSV                                                                                               |
-| Input  | \<perms>           | String    | Number of permutations to estimate the null distribution. For default usage of PROGENy, just pass 1 to skip this step. |
-| Input  | \<zscore>          | String    | If True, the z-scores will be returned for the pathway activity estimations. Else, the function returns a normalized z-score value between -1 and 1 |
-| Input  | \<verbose>         | String    | Verbose output (True/False)                                                                                            |
-| Output | \<output_file>     | String    | File with the results containing pathway activities.                                                                   |
+|        | Flag           | Parameter       | Type    | Description                                                                 |
+|--------|----------------|-----------------|---------|-----------------------------------------------------------------------------|
+| Input  | --input_file   | \<input_file>   | File    | CSV with gene expression data, where rows are genes and columns are samples |
+| Input  | --organism     | \<organism>     | String  | Human/Mouse                                                                 |
+| Input  | --ntop         | \<ntop>         | Integer | Number of top genes used to estimate pathway activities                     |
+| Input  | --col_genes    | \<col_genes>    | String  | Name of the column containing gene IDs                                      |
+| Input  | --scale        | \<scale>        | String  | Scale data (TRUE/FALSE)                                                     |
+| Input  | --exclude_cols | \<exclude_cols> | String  | Columns containing this string will be removed                              |
+| Input  | --tsv          | \<tsv>          | String  | Import input data as TSV                                                    |
+| Input  | --perms        | \<perms>        | Integer | Number of permutations to estimate the null distribution. For default usage of PROGENy, just pass 1 to skip this step |
+| Input  | --zscore       | \<zscore>       | String  | If True, the z-scores will be returned for the pathway activity estimations. Else, the function returns a normalized z-score value between -1 and 1 |
+| Input  | --verbose      | \<verbose>      | String  | Verbose output (TRUE/FALSE)                                                 |
+| Output | --output_file  | \<output_file>  | File    | File with the results containing pathway activities                         |
 
 ### Uninstall
 
@@ -96,3 +105,7 @@ Uninstall can be achieved by executing the following scripts:
 ## Contact
 
 <https://permedcoe.eu/contact/>
+
+This software has been developed for the [PerMedCoE project](https://permedcoe.eu/), funded by the European Commission (EU H2020 [951773](https://cordis.europa.eu/project/id/951773)).
+
+![](https://permedcoe.eu/wp-content/uploads/2020/11/logo_1.png "PerMedCoE")

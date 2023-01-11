@@ -26,19 +26,18 @@ def cellnopt(input_file=None):
     pass
 
 
-def invoke(input, output, config):
+def invoke(arguments, config):
     """ Common interface.
 
     # TODO: add options to export in a given folder
 
     Args:
-        input (list): List containing the model and data folder.
-        output (list): list containing the output directory path.
+        arguments (args): Building Block parsed arguments.
         config (dict): Configuration dictionary (not used).
     Returns:
         None
     """
     # Process parameters
-    input_file = input[0]
+    input_file = arguments.input_file
     # Generate config file
     cellnopt(input_file=input_file)

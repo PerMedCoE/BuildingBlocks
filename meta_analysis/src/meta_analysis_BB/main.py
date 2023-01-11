@@ -47,24 +47,23 @@ def meta_analysis(meta_file_flag='-m', meta_file=None,
     pass
 
 
-def invoke(input, output, config):
-    """ Common interface.
+def invoke(arguments, config):
+    """Common interface.
 
     Args:
-        input (list): List containing the metadata file path.
-        output (list): list containing the output directory path.
+        arguments (args): Building Block parsed arguments.
         config (dict): Configuration dictionary (not used).
     Returns:
         None
     """
     # Process parameters
-    meta_file = input[0]
-    out_dir = input[1]
-    model_prefix = input[2]
-    ko_file = input[3]
-    reps = input[4]
-    verbose = input[5]
-    results = output[0]
+    meta_file = arguments.meta_file
+    out_dir = arguments.out_dir
+    model_prefix = arguments.model_prefix
+    ko_file = arguments.ko_file
+    reps = arguments.reps
+    verbose = arguments.verbose
+    results = arguments.results
     # Building block invocation
     meta_analysis(meta_file=meta_file,
                   out_dir=out_dir,

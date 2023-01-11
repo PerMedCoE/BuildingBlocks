@@ -61,25 +61,30 @@ The command line is:
 PHYSIBOSS_ASSETS=$(python3 -c "import PhysiBoSS_BB; import os; print(os.path.dirname(PhysiBoSS_BB.__file__))")
 
 PhysiBoSS_BB -d \
-      -i <sample> <repetition> <prefix> <bnd_file> <cfg_file> \
-      -o  <out_file> <err_file> \
-      --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/
+      --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
+      --sample <sample> \
+      --repetition <repetition> \
+      --prefix <prefix> \
+      --bnd_file <bnd_file> \
+      --cfg_file <cfg_file> \
+      --out_file <out_file> \
+      --err_file <err_file>
 ```
 
 Where the parameters are:
 
-|        | Parameter      | Type      | Description                           |
-|--------|----------------|-----------|---------------------------------------|
-| Input  | \<sample>      | String    | Patient's identifier                  |
-| Input  | \<repetition>  | Int       | Number of repetition to be performed  |
-| Input  | \<prefix>      | String    | Name of the model                     |
-| Input  | \<bnd_file>    | File      | Name of the model's BND file          |
-| Input  | \<cfg_file>    | File      | Name of the model's CFG file          |
-| Input  | \<parallel>    | Int       | Internal parallelism                  |
-| Input  | \<max_time>    | Int       | PhysiBoSS simulation maximum time     |
-| Output | \<out_file>    | File      | Main output of the PhysiBoSS run      |
-| Output | \<err_file>    | File      | Error output of the PhysiBoSS run     |
-| Output | \<results_dir> | Directory | Results directory                     |
+|        | Flag          | Parameter      | Type    | Description                          |
+|--------|---------------|----------------|---------|--------------------------------------|
+| Input  | --sample      | \<sample>      | String  | Patient's identifier                 |
+| Input  | --repetition  | \<repetition>  | Integer | Number of repetition to be performed |
+| Input  | --prefix      | \<prefix>      | String  | Name of the model                    |
+| Input  | --bnd_file    | \<bnd_file>    | File    | Name of the model's BND file         |
+| Input  | --cfg_file    | \<cfg_file>    | File    | Name of the model's CFG file         |
+| Input  | --parallel    | \<parallel>    | Integer | Internal parallelism                 |
+| Input  | --max_time    | \<max_time>    | Integer | PhysiBoSS simulation maximum time    |
+| Output | --out_file    | \<out_file>    | File    | Main output of the PhysiBoSS run     |
+| Output | --err_file    | \<err_file>    | File    | Error output of the PhysiBoSS run    |
+| Output | --results_dir | \<results_dir> | Folder  | Results directory                    |
 
 ### Uninstall
 
@@ -93,3 +98,7 @@ Uninstall can be achieved by executing the following scripts:
 ## Contact
 
 <https://permedcoe.eu/contact/>
+
+This software has been developed for the [PerMedCoE project](https://permedcoe.eu/), funded by the European Commission (EU H2020 [951773](https://cordis.europa.eu/project/id/951773)).
+
+![](https://permedcoe.eu/wp-content/uploads/2020/11/logo_1.png "PerMedCoE")
