@@ -3,6 +3,7 @@ import os
 from permedcoe import constraint
 from permedcoe import container
 from permedcoe import binary
+from permedcoe import julia
 from permedcoe import task
 from permedcoe import FILE_IN
 from permedcoe import FILE_OUT
@@ -32,10 +33,31 @@ def COBREXA_analysis(
     Produces the output txt file.
 
     The Definition is equal to:
-        julia <cobrexa_binary> <debug_flag> <input_xml> <output_txt>
+        julia --project=/project <cobrexa_binary> <debug_flag> <input_xml> <output_txt>
     """
     # Empty function since it represents a binary execution:
     pass
+
+
+@constraint(computing_units=COMPUTING_UNITS)
+@container(engine="SINGULARITY", image=COBREXA_CONTAINER)
+@julia(script=COBREXA_BINARY, project="/project")
+@task(input_file_xml=FILE_IN, output_file_txt=FILE_OUT)
+def COBREXA_analysis_julia(
+    debug_flag="-d",
+    input_file_xml=None,
+    output_file_txt=None
+):
+    """
+    Performs the COBREXA analysis.
+    Produces the output txt file.
+
+    The Definition is equal to:
+        julia --project=/project <cobrexa_binary> <debug_flag> <input_xml> <output_txt>
+    """
+    # Empty function since it represents a julia execution:
+    pass
+
 
 
 def invoke(arguments, config):
