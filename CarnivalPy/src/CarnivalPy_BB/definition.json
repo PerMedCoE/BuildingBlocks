@@ -7,7 +7,7 @@
             {
                 "type": "input",
                 "name": "path",
-                "format": "file",
+                "format": "folder",
                 "description": "Path containing a sif.csv file, a measurements.csv file, and perturbations.csv file"
             },
             {
@@ -39,6 +39,12 @@
                 "name": "export",
                 "format": "file",
                 "description": "Path to the file to be exported with the solution"
+            },
+            {
+                "type": "output",
+                "name": "working_directory",
+                "format": "folder",
+                "description": "Working directory (used for assets)"
             }
         ]
     }

@@ -20,12 +20,13 @@ BUILD_MODEL_FROM_SPECIES_BINARY = os.path.join(BUILD_MODEL_FROM_SPECIES_ASSETS_P
 @container(engine="SINGULARITY", image=BUILD_MODEL_FROM_SPECIES_CONTAINER)
 @binary(binary=BUILD_MODEL_FROM_SPECIES_BINARY)
 @task(output_bnd_file=FILE_OUT, output_cfg_file=FILE_OUT, input_file=FILE_IN)
-def build_model_from_species(output_bnd_file=None,
+def build_model_from_species(working_directory="None",
+                             output_bnd_file=None,
                              output_cfg_file=None,
                              input_file_flag="--list-genes",input_file=None
                              ):
     # The Definition is equal to:
-    #    BUILD_MODEL_FROM_SPECIES_BINARY <output_bnd_file> <output_cfg_file> --list-genes <input_file>
+    #    BUILD_MODEL_FROM_SPECIES_BINARY <working_directory> <output_bnd_file> <output_cfg_file> --list-genes <input_file>
     # Empty function since it represents a binary execution:
     pass
 
@@ -33,12 +34,13 @@ def build_model_from_species(output_bnd_file=None,
 @container(engine="SINGULARITY", image=BUILD_MODEL_FROM_SPECIES_CONTAINER)
 @binary(binary=BUILD_MODEL_FROM_SPECIES_BINARY)
 @task(output_bnd_file=FILE_OUT, output_cfg_file=FILE_OUT, input_file=FILE_IN)
-def build_model_from_sif(output_bnd_file=None,
+def build_model_from_sif(working_directory="None",
+                         output_bnd_file=None,
                          output_cfg_file=None,
                          input_file_flag="--sif-file", input_file=None
                          ):
     # The Definition is equal to:
-    #    BUILD_MODEL_FROM_SPECIES_BINARY <output_bnd_file> <output_cfg_file> --sif-file <input_file>
+    #    BUILD_MODEL_FROM_SPECIES_BINARY <working_directory> <output_bnd_file> <output_cfg_file> --sif-file <input_file>
     # Empty function since it represents a binary execution:
     pass
 
@@ -57,16 +59,20 @@ def invoke(arguments, config):
         input_file = arguments.input_file
         output_bnd_file = arguments.output_bnd_file
         output_cfg_file = arguments.output_cfg_file
+        working_directory = arguments.working_directory
         build_model_from_species(input_file=input_file,
                                  output_bnd_file=output_bnd_file,
-                                 output_cfg_file=output_cfg_file)
+                                 output_cfg_file=output_cfg_file,
+                                 working_directory=working_directory)
     elif arguments.build_model_from == "sif":
         print("SIF file")
         input_file = arguments.input_file
         output_bnd_file = arguments.output_bnd_file
         output_cfg_file = arguments.output_cfg_file
+        working_directory = arguments.working_directory
         build_model_from_sif(input_file=input_file,
                              output_bnd_file=output_bnd_file,
-                             output_cfg_file=output_cfg_file)
+                             output_cfg_file=output_cfg_file,
+                             working_directory=working_directory)
     else:
         raise Exception("Unsupported %s build model from key. Supported: genes | sif" % arguments.mode)

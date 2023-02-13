@@ -15,6 +15,12 @@
                 "name": "reports_folder",
                 "format": "folder",
                 "description": "Reports folder"
+            },
+            {
+                "type": "output",
+                "name": "working_directory",
+                "format": "folder",
+                "description": "Working directory (used for assets)"
             }
         ]
     }

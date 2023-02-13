@@ -51,6 +51,12 @@
                 "name": "output_file",
                 "format": "file",
                 "description": "Processed csv file"
+            },
+            {
+                "type": "output",
+                "name": "working_directory",
+                "format": "folder",
+                "description": "Working directory (used for assets)"
             }
         ]
     }

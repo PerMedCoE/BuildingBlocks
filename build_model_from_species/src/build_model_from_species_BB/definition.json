@@ -27,6 +27,12 @@
                 "name": "output_cfg_file",
                 "format": "file",
                 "description": "CFG file of the generated MaBoSS model"
+            },
+            {
+                "type": "output",
+                "name": "working_directory",
+                "format": "folder",
+                "description": "Working directory (used for assets)"
             }
         ]
     }

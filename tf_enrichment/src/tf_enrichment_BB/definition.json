@@ -69,6 +69,12 @@
                 "name": "output_file",
                 "format": "file",
                 "description": "Result csv file with estimated TF activities"
+            },
+            {
+                "type": "output",
+                "name": "working_directory",
+                "format": "folder",
+                "description": "Working directory (used for assets)"
             }
         ]
     }

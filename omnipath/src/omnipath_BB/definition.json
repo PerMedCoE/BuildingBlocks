@@ -15,6 +15,12 @@
                 "name": "output_file",
                 "format": "file",
                 "description": "File with the exported PKN data"
+            },
+            {
+                "type": "output",
+                "name": "working_directory",
+                "format": "folder",
+                "description": "Working directory (used for assets)"
             }
         ]
     }

@@ -21,7 +21,8 @@ CARNIVAL_GEX_PREPROCESS_BINARY = os.path.join(CARNIVAL_GEX_PREPROCESS_ASSETS_PAT
 @container(engine="SINGULARITY", image=CARNIVAL_GEX_PREPROCESS_CONTAINER)
 @binary(binary=CARNIVAL_GEX_PREPROCESS_BINARY)
 @task(input_file=FILE_IN, output_file=FILE_OUT)
-def preprocess(input_file=None, output_file=None,
+def preprocess(working_directory="None",
+               input_file=None, output_file=None,
                col_genes_flag='-c', col_genes=None,
                scale_flag='-s', scale=None,
                exclude_cols_flag='-e', exclude_cols=None,
@@ -32,6 +33,7 @@ def preprocess(input_file=None, output_file=None,
     Runs Carnival Gex Preprocess
 
     The Definition is equal to:
+        <working_directory>
         Rscript --vanilla /opt/preprocess.R <input_file> <output_file>
                                             <col_genes_flag> <col_genes>
                                             <scale_flag> <scale>
@@ -40,6 +42,7 @@ def preprocess(input_file=None, output_file=None,
                                             <remove_flag> <remove>
                                             <verbose_flag> <verbose>
     By default:
+        <working_directory>
         Rscript --vanilla /opt/preprocess.R <input_file> <output_file>
                                             -c <col_genes>
                                             -s <scale>
@@ -70,8 +73,10 @@ def invoke(arguments, config):
     remove = arguments.remove
     verbose = arguments.verbose
     output_file = arguments.output_file
+    working_directory = arguments.working_directory
     # Building block invocation
-    preprocess(input_file=input_file,
+    preprocess(working_directory=working_directory,
+               input_file=input_file,
                output_file=output_file,
                col_genes=col_genes,
                scale=scale,

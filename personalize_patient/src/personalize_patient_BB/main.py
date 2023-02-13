@@ -24,7 +24,8 @@ PERSONALIZE_CELLLINE_BINARY = os.path.join(PERSONALIZE_PATIENT_ASSETS_PATH,
 @container(engine="SINGULARITY", image=PERSONALIZE_PATIENT_CONTAINER)
 @binary(binary=PERSONALIZE_PATIENT_BINARY)
 @task(norm_data=FILE_IN, cells=FILE_IN, model_output_dir=DIRECTORY_OUT, personalized_result=FILE_OUT, ko=FILE_IN)
-def personalize_patient(norm_data_flag="-e", norm_data=None,
+def personalize_patient(working_directory="None",
+                        norm_data_flag="-e", norm_data=None,
                         cells_flag="-c", cells=None,
                         model_prefix_flag="-m", model_prefix="prefix",
                         t_flag="-t", t="Epithelial_cells",
@@ -37,6 +38,7 @@ def personalize_patient(norm_data_flag="-e", norm_data=None,
 
     The Definition is equal to:
        ./personalize_patient.sh \
+       <working_directory> \
        -e <norm_data> \
        -c <cells> \
        -m <model_prefix> -t <t> \
@@ -44,6 +46,7 @@ def personalize_patient(norm_data_flag="-e", norm_data=None,
        -k <ko>
     Sample:
        ./personalize_patient.sh \
+       $(pwd)/personalize_patient_wd/ \
        -e $outdir/$sample/norm_data.tsv \
        -c $outdir/$sample/cells_metadata.tsv \
        -m $model_prefix -t Epithelial_cells \
@@ -57,7 +60,8 @@ def personalize_patient(norm_data_flag="-e", norm_data=None,
 @container(engine="SINGULARITY", image=PERSONALIZE_PATIENT_CONTAINER)
 @binary(binary=PERSONALIZE_CELLLINE_BINARY)
 @task(expression_data=FILE_IN, cnv_data=FILE_IN, mutation_data=FILE_IN, model_bnd=FILE_IN, model_cfg=FILE_IN, model_output_dir=DIRECTORY_OUT)
-def personalize_patient_cellline(expression_data_flag="-e", expression_data=None,
+def personalize_patient_cellline(working_directory="None",
+                                 expression_data_flag="-e", expression_data=None,
                                  cnv_data_flag="-c", cnv_data=None,
                                  mutation_data_flag="-m", mutation_data=None,
                                  model_bnd_flag="-x", model_bnd=None,
@@ -71,6 +75,7 @@ def personalize_patient_cellline(expression_data_flag="-e", expression_data=None
 
     The Definition is equal to:
        ./personalize_patient.sh \
+       <working_directory> \
        -e <expression> \
        -c <cells> \
        -m <model_prefix> -t <t> \
@@ -78,6 +83,7 @@ def personalize_patient_cellline(expression_data_flag="-e", expression_data=None
         # -p <personalization_result> \
     Sample:
        ./personalize_patient.sh \
+       $(pwd)/personalize_patient_wd/ \
        -e $outdir/$sample/norm_data.tsv \
        -c $outdir/$sample/cells_metadata.tsv \
        -m $model_prefix -t Epithelial_cells \
@@ -106,14 +112,16 @@ def invoke(arguments, config):
         model_bnd = arguments.model_bnd
         model_cfg = arguments.model_cfg
         model_output_dir = os.path.abspath(arguments.model_output_dir)
+        working_directory = arguments.working_directory
         # Building block invocation
-        personalize_patient_cellline(expression_data=expression,
-                        cnv_data=cnv,
-                        mutation_data=mutation,
-                        model_bnd=model_bnd,
-                        model_cfg=model_cfg,
-                        t=cell_type,
-                        model_output_dir=model_output_dir)
+        personalize_patient_cellline(working_directory=working_directory,
+                                     expression_data=expression,
+                                     cnv_data=cnv,
+                                     mutation_data=mutation,
+                                     model_bnd=model_bnd,
+                                     model_cfg=model_cfg,
+                                     t=cell_type,
+                                     model_output_dir=model_output_dir)
     else:
         # Process parameters
         norm_data = arguments.norm_data
@@ -123,11 +131,13 @@ def invoke(arguments, config):
         ko = arguments.ko
         model_output_dir = os.path.abspath(arguments.model_output_dir)
         personalized_result = arguments.personalized_result
+        working_directory = arguments.working_directory
         # Building block invocation
-        personalize_patient(norm_data=norm_data,
-                        cells=cells,
-                        model_prefix=model_prefix,
-                        t=t,
-                        model_output_dir=model_output_dir,
-                        personalized_result=personalized_result,
-                        ko=ko)
+        personalize_patient(working_directory=working_directory,
+                            norm_data=norm_data,
+                            cells=cells,
+                            model_prefix=model_prefix,
+                            t=t,
+                            model_output_dir=model_output_dir,
+                            personalized_result=personalized_result,
+                            ko=ko)

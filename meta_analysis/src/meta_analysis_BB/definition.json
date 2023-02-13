@@ -45,6 +45,12 @@
                 "name": "results",
                 "format": "folder",
                 "description": "Output folder"
+            },
+            {
+                "type": "output",
+                "name": "working_directory",
+                "format": "folder",
+                "description": "Working directory (used for assets)"
             }
         ]
     }

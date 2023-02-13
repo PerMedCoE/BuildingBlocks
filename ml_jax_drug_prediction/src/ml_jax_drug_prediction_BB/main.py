@@ -21,7 +21,8 @@ ML_JAX_DRUG_PREDICTION_BINARY = os.path.join(ML_JAX_DRUG_PREDICTION_ASSETS_PATH,
 @container(engine="SINGULARITY", image=ML_JAX_DRUG_PREDICTION_CONTAINER)
 @binary(binary=ML_JAX_DRUG_PREDICTION_BINARY)
 @task(input_file=FILE_IN, output_file=FILE_OUT, cell_features=FILE_IN)
-def ml(input_file=None, output_file=None,
+def ml(working_directory="None",
+       input_file=None, output_file=None,
        drug_features_flag='--drug_features', drug_features=None,
        cell_features_flag='--cell_features', cell_features=None,
        epochs_flag='--epochs', epochs=None,
@@ -34,6 +35,7 @@ def ml(input_file=None, output_file=None,
     Runs ML Jax Drug Prediction
 
     The Definition is equal to:
+        <working_directory>
         /opt/conda/bin/python /opt/ml.py <input_file> <output_file>
                                          <drug_features_flag> <drug_features>
                                          <cell_features_flag> <cell_features>
@@ -44,6 +46,7 @@ def ml(input_file=None, output_file=None,
                                          <test_drugs_flag> <test_drugs>
                                          <test_cells_flag> <test_cells>
     By default:
+        <working_directory>
         /opt/conda/bin/python /opt/ml.py <input_file> <output_file>
                                          --drug_features <drug_features>
                                          --cell_features <cell_features>
@@ -83,8 +86,10 @@ def invoke(arguments, config):
     test_drugs = arguments.test_drugs
     test_cells = arguments.test_cells
     output_file = arguments.output_file
+    working_directory = arguments.working_directory
     # Building block invocation
-    ml(input_file=input_file,
+    ml(working_directory=working_directory,
+       input_file=input_file,
        output_file=output_file,
        drug_features=drug_features,
        cell_features=cell_features,

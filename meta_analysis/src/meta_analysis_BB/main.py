@@ -25,7 +25,8 @@ META_ANALYSIS_BINARY = os.path.join(META_ANALYSIS_ASSETS_PATH,
       out_dir=DIRECTORY_IN,
       ko_file=FILE_IN,
       results=DIRECTORY_OUT)
-def meta_analysis(meta_file_flag='-m', meta_file=None,
+def meta_analysis(working_directory="None",
+                  meta_file_flag='-m', meta_file=None,
                   out_dir_flag='-o', out_dir=None,
                   model_prefix_flag='-p', model_prefix=None,
                   ko_file_flag='-k', ko_file=None,
@@ -36,7 +37,8 @@ def meta_analysis(meta_file_flag='-m', meta_file=None,
     Performs the Single Cell processing.
 
     The Definition is equal to:
-        ./meta_analysis.sh -m <meta_file> \
+        ./meta_analysis.sh <working_directory> \
+                           -m <meta_file> \
                            -o <out_dir> \
                            -p <model_prefix> \
                            -k <ko_file> \
@@ -64,6 +66,7 @@ def invoke(arguments, config):
     reps = arguments.reps
     verbose = arguments.verbose
     results = arguments.results
+    working_directory = arguments.working_directory
     # Building block invocation
     meta_analysis(meta_file=meta_file,
                   out_dir=out_dir,
@@ -71,4 +74,5 @@ def invoke(arguments, config):
                   ko_file=ko_file,
                   reps=reps,
                   verbose=verbose,
-                  results=results)
+                  results=results,
+                  working_directory=working_directory)

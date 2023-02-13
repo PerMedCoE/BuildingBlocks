@@ -1,25 +1,51 @@
 #!/usr/bin/env bash
 
-CURRENT_DIR=$(pwd)
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-cd $SCRIPT_DIR
-
 sample=$1
 repetition=$2
-prefix==$3
+prefix=$3
 model_dir=$4
 out_file=$5
 err_file=$6
 results_dir=$7
 parallel=$8
 max_time=$9
+working_directory=${10}
+
+echo "--------------------------------------------"
+echo "Running PhysiBoSS_model.sh"
+echo "Parameters:"
+echo " - sample = ${sample}"
+echo " - repetition = ${repetition}"
+echo " - prefix = ${prefix}"
+echo " - model_dir = ${model_dir}"
+echo " - out_file = ${out_file}"
+echo " - err_file = ${err_file}"
+echo " - results_dir = ${results_dir}"
+echo " - parallel = ${parallel}"
+echo " - max_time = ${max_time}"
+echo " - working_directory = ${working_directory}"
+echo "--------------------------------------------"
+
+CURRENT_DIR=$(pwd)
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+# Directory where the scripts used by this script are located in the installation folder
+SCRIPTS_DIR="${SCRIPT_DIR}/"
+
+# This is the directory where the auxiliary or temporary files will be written and from where the execution will be done
+if [ "${working_directory}" = "pycompss_sandbox" ]; then
+    working_directory=${CURRENT_DIR}
+    echo "Using PyCOMPSs sandbox directory: ${working_directory}"
+else
+    echo "Using working directory: ${working_directory}"
+    cd ${working_directory}
+fi
 
 bnd_file=${model_dir}/${prefix}.bnd
 cfg_file=${model_dir}/${prefix}.cfg
 
 # Do a copy of PhysiBoSS folder for the current execution
 user=$(whoami)
-physiboss_folder="PhysiBoSS_${sample}_${prefix}_${repetition}_${user}"
+physiboss_folder="./PhysiBoSS_${sample}_${prefix}_${repetition}_${user}"
 cp -r /usr/local/scm/COVID19/PhysiCell ${physiboss_folder}
 
 # Update the number of threads

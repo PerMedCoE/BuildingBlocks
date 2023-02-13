@@ -20,7 +20,8 @@ PROGENY_BINARY = os.path.join(PROGENY_ASSETS_PATH, "progeny.sh")
 @container(engine="SINGULARITY", image=PROGENY_CONTAINER)
 @binary(binary=PROGENY_BINARY)
 @task(input_file=FILE_IN, output_file=FILE_OUT)
-def progeny(input_file=None, output_file=None,
+def progeny(working_directory="None",
+            input_file=None, output_file=None,
             organism_flag='-o', organism=None,
             ntop_flag='-i', ntop=None,
             col_genes_flag='-c', col_genes=None,
@@ -34,6 +35,7 @@ def progeny(input_file=None, output_file=None,
     Runs Carnival Gex Preprocess
 
     The Definition is equal to:
+        <working_directory>
         Rscript --vanilla /opt/progeny.R <input_file> <output_file>
                                          <organism_flag> <organism>
                                          <ntop_flag> <ntop>
@@ -45,6 +47,7 @@ def progeny(input_file=None, output_file=None,
                                          <zscore_flag> <zscore>
                                          <verbose_flag> <verbose>
     By default:
+        <working_directory>
         Rscript --vanilla /opt/progeny.R <input_file> <output_file>
                                          -o <organism>
                                          -i <ntop>
@@ -84,8 +87,10 @@ def invoke(arguments, config):
     zscore = arguments.zscore
     verbose = arguments.verbose
     output_file = arguments.output_file
+    working_directory = arguments.working_directory
     # Building block invocation
-    progeny(input_file=input_file,
+    progeny(working_directory=working_directory,
+            input_file=input_file,
             output_file=output_file,
             organism=organism,
             ntop=ntop,

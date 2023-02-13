@@ -63,6 +63,12 @@
                 "name": "output_file",
                 "format": "file",
                 "description": "npz file with the trained model if in training mode, or csv file with prediction results"
+            },
+            {
+                "type": "output",
+                "name": "working_directory",
+                "format": "folder",
+                "description": "Working directory (used for assets)"
             }
         ]
     }

@@ -45,6 +45,12 @@
                 "name": "personalized_result",
                 "format": "file",
                 "description": "Personalisation summary file"
+            },
+            {
+                "type": "output",
+                "name": "working_directory",
+                "format": "folder",
+                "description": "Working directory (used for assets)"
             }
         ],
         "uc2": [
@@ -89,6 +95,12 @@
                 "name": "model_output_dir",
                 "format": "folder",
                 "description": "Folder where the results will be located"
+            },
+            {
+                "type": "output",
+                "name": "working_directory",
+                "format": "folder",
+                "description": "Working directory (used for assets)"
             }
         ]
     }

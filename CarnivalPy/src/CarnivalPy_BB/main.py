@@ -20,7 +20,8 @@ CARNIVALPY_BINARY = os.path.join(CARNIVALPY_ASSETS_PATH, "carnivalpy.sh")
 @container(engine="SINGULARITY", image=CARNIVALPY_CONTAINER)
 @binary(binary=CARNIVALPY_BINARY)
 @task(path=DIRECTORY_IN, export=FILE_OUT)
-def carnivalpy(path=None,
+def carnivalpy(working_directory="None",
+               path=None,
                penalty_flag='--penalty', penalty=None,
                solver_flag='--solver', solver=None,
                tol_flag='--tol', tol=0.01,
@@ -30,6 +31,7 @@ def carnivalpy(path=None,
     Runs CarnivalPy
 
     The Definition is equal to:
+        <working_directory>
         /opt/conda/bin/python /opt/carnival/carnivalpy/carnival.py <path>
                                                                    <col_genes_flag> <penalty>
                                                                    <solver_flag> <solver>
@@ -37,6 +39,7 @@ def carnivalpy(path=None,
                                                                    <maxtime_flag> <maxtime>
                                                                    <export_flag> <export>
     By default:
+        <working_directory>
         /opt/conda/bin/python /opt/carnival/carnivalpy/carnival.py <path>
                                                                    --penalty <penalty>
                                                                    --solver <solver>
@@ -64,8 +67,10 @@ def invoke(arguments, config):
     tol = arguments.tol
     maxtime = arguments.maxtime
     export = arguments.export
+    working_directory = arguments.working_directory
     # Building block invocation
-    carnivalpy(path=path,
+    carnivalpy(working_directory=working_directory,
+               path=path,
                penalty=penalty,
                solver=solver,
                tol=tol,

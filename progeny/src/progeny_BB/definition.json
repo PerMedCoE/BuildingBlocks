@@ -69,6 +69,12 @@
                 "name": "output_file",
                 "format": "file",
                 "description": "File with the results containing pathway activities"
+            },
+            {
+                "type": "output",
+                "name": "working_directory",
+                "format": "folder",
+                "description": "Working directory (used for assets)"
             }
         ]
     }

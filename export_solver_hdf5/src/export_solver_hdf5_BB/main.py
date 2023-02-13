@@ -21,7 +21,8 @@ EXPORT_SOLVER_HDF5_BINARY = os.path.join(EXPORT_SOLVER_HDF5_ASSETS_PATH,
 @container(engine="SINGULARITY", image=EXPORT_SOLVER_HDF5_CONTAINER)
 @binary(binary=EXPORT_SOLVER_HDF5_BINARY)
 @task(sif=FILE_IN, measurements=FILE_IN, inputs=FILE_IN, output_file=FILE_OUT)
-def export(sif=None,
+def export(working_directory="None",
+           sif=None,
            measurements=None,
            inputs=None,
            output_file=None,
@@ -30,12 +31,14 @@ def export(sif=None,
     Runs export solver to hdf5
 
     The Definition is equal to:
+        <working_directory>
         Rscript --vanilla /opt/export.R <sif>
                                         <measurements>
                                         <inputs>
                                         <output_file>
                                         <verbose_flag> <verbose>
     By default:
+        <working_directory>
         Rscript --vanilla /opt/export.R <sif>
                                         <measurements>
                                         <inputs>
@@ -63,8 +66,10 @@ def invoke(arguments, config):
     inputs = arguments.inputs
     verbose = arguments.verbose
     output_file = arguments.output_file
+    working_directory = arguments.working_directory
     # Building block invocation
-    export(sif=sif,
+    export(working_directory=working_directory,
+           sif=sif,
            measurements=measurements,
            inputs=inputs,
            output_file=output_file,

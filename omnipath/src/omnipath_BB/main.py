@@ -19,11 +19,13 @@ OMNIPATH_BINARY = os.path.join(OMNIPATH_ASSETS_PATH, "omnipath.sh")
 @container(engine="SINGULARITY", image=OMNIPATH_CONTAINER)
 @binary(binary=OMNIPATH_BINARY)
 @task(output_file=FILE_OUT)
-def omnipath(output_file=None):
+def omnipath(working_directory="None",
+             output_file=None):
     """
     Runs Omnipath
 
     The Definition is equal to:
+        <working_directory>
         Rscript --vanilla /opt/omnipath.R <output_file>
     """
     # Empty function since it represents a binary execution:
@@ -42,5 +44,7 @@ def invoke(arguments, config):
     # Process parameters
     verbose = arguments.verbose
     output_file = arguments.output_file
+    working_directory = arguments.working_directory
     # Building block invocation
-    omnipath(output_file=output_file)
+    omnipath(working_directory=working_directory,
+             output_file=output_file)
