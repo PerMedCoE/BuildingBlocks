@@ -45,8 +45,13 @@ cfg_file=${model_dir}/${prefix}.cfg
 
 # Do a copy of PhysiBoSS folder for the current execution
 user=$(whoami)
-physiboss_folder="./PhysiBoSS_${sample}_${prefix}_${repetition}_${user}"
+physiboss_folder="${working_directory}/PhysiBoSS_${sample}_${prefix}_${repetition}_${user}"
 cp -r /usr/local/scm/COVID19/PhysiCell ${physiboss_folder}
+chmod -R 755 ${physiboss_folder}
+echo "COPY OF PhysiBoSS:"
+echo "${physiboss_folder}"
+echo "PhysiBoSS executable:"
+ls -l ${physiboss_folder} | grep myproj
 
 # Update the number of threads
 sed -i "s/<omp_num_threads>6/<omp_num_threads>${parallel}/g" "${physiboss_folder}/config/PhysiCell_settings.xml"
@@ -54,6 +59,7 @@ echo "USING:"
 grep "omp_num_threads" "${physiboss_folder}/config/PhysiCell_settings.xml"
 
 # Update the maxtime
+sed -i "s/<max_time units=\"min\">14400<\/max_time> <\!-- 5 days \* 24 h \* 60 min -->/<max_time units=\"min\">${max_time}<\/max_time>/g" "${physiboss_folder}/config/PhysiCell_settings.xml"
 sed -i "s/<max_time units=\"min\">8640<\/max_time> <\!-- 5 days \* 24 h \* 60 min -->/<max_time units=\"min\">${max_time}<\/max_time>/g" "${physiboss_folder}/config/PhysiCell_settings.xml"
 echo "MAX TIME:"
 grep "max_time" "${physiboss_folder}/config/PhysiCell_settings.xml"
@@ -71,6 +77,7 @@ then
 else
   rm -rf output/*
 fi
+
 # Execution
 myproj > ${out_file} 2> ${err_file}
 # Move results to the final directory
