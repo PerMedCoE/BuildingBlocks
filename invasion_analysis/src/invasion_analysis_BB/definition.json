@@ -1,0 +1,21 @@
+{
+    "short_description": "This building block extracts quantifications about type of invasion from a physiboss result.",
+    "long_description": "This building block extracts quantifications about type of invasion from a physiboss result.",
+    "use_description": "long",
+    "parameters": {
+        "default": [
+            {
+                "type": "input",
+                "name": "physiboss_result_path",
+                "format": "str",
+                "description": "Path of the PhysiBoSS result to analyse"
+            },
+            {
+                "type": "output",
+                "name": "output_data",
+                "format": "file",
+                "description": "CSV file containing invasion data"
+            }
+        ]
+    }
+}

@@ -1,0 +1,20 @@
+Bootstrap: docker
+From: ubuntu
+Stage: build
+
+%environment
+    export PATH="/usr/local/bin:$PATH"
+
+%post
+    DEBIAN_FRONTEND=noninteractive apt-get update -y
+    DEBIAN_FRONTEND=noninteractive apt-get install -y python3 python3-pip
+    pip install seaborn numpy matplotlib pandas networkx
+    pip install permedcoe
+    ln -s /usr/bin/python3 /usr/bin/python
+
+%files
+    ../../invasion_analysis/src/invasion_analysis_BB/* /usr/local/lib/python3.10/dist-packages/invasion_analysis_BB/
+
+%runscript
+    exec /bin/bash "$@"
+
