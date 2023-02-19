@@ -1,0 +1,17 @@
+Bootstrap: docker
+From: ubuntu
+Stage: build
+
+%environment
+    export PATH="/usr/local/bin:$PATH"
+
+%post
+    apt-get update -y
+    DEBIAN_FRONTEND=noninteractive apt-get install -yq build-essential flex bison git
+    mkdir -p /usr/local/scm/
+    cd /usr/local/scm/
+    (git clone https://github.com/sysbio-curie/Invasion_model_PhysiBoSS.git; rm -fr Invasion_model_PhysiBoSS/.git/; cd Invasion_model_PhysiBoSS/src; make; cp myproj ../bin; ln -s /usr/local/scm/Invasion_model_PhysiBoSS/bin/myproj /usr/local/bin/myproj; cd ../data; sed -i "s/<folder>./<folder>output/g" PhysiCell_settings_2D.xml; cat PhysiCell_settings_2D.xml)
+    
+%runscript
+    exec /usr/local/bin/myproj "$@"
+
