@@ -1,0 +1,5 @@
+source,interaction,target
+I1,1,P1
+I2,1,P1
+I2,-1,P2
+P1,1,T
