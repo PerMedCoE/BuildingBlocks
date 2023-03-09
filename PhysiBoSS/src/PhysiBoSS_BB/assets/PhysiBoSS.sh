@@ -50,7 +50,10 @@ chmod -R 755 ${physiboss_folder}
 echo "COPY OF PhysiBoSS:"
 echo "${physiboss_folder}"
 echo "PhysiBoSS executable:"
-ls -l ${physiboss_folder} | grep myproj
+ls -l ${physiboss_folder}
+echo "--------------------------------------"
+ls -l ${working_directory}
+echo "--------------------------------------"
 
 # Update the number of threads
 sed -i "s/<omp_num_threads>6/<omp_num_threads>${parallel}/g" "${physiboss_folder}/config/PhysiCell_settings.xml"
