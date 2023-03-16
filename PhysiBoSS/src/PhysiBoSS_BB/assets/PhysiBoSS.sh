@@ -52,6 +52,7 @@ echo "${physiboss_folder}"
 echo "PhysiBoSS executable:"
 ls -l ${physiboss_folder}
 echo "--------------------------------------"
+echo "Working directory content:"
 ls -l ${working_directory}
 echo "--------------------------------------"
 
