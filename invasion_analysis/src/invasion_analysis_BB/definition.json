@@ -15,6 +15,12 @@
                 "name": "output_data",
                 "format": "file",
                 "description": "CSV file containing invasion data"
+            },
+            {
+                "type": "output",
+                "name": "working_directory",
+                "format": "folder",
+                "description": "Working directory (used for assets)"
             }
         ]
     }

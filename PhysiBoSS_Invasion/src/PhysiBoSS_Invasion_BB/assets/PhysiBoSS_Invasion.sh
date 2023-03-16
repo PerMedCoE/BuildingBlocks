@@ -12,12 +12,48 @@ err_file=$4
 results_dir=$5
 parallel=$6
 max_time=$7
+working_directory=$8
+
+echo "--------------------------------------------"
+echo "Running PhysiBoSS.sh"
+echo "Parameters:"
+echo " - parameter_set = ${parameter_set}"
+echo " - repetition = ${repetition}"
+echo " - out_file = ${out_file}"
+echo " - err_file = ${err_file}"
+echo " - results_dir = ${results_dir}"
+echo " - parallel = ${parallel}"
+echo " - max_time = ${max_time}"
+echo " - working_directory = ${working_directory}"
+echo "--------------------------------------------"
+
+CURRENT_DIR=$(pwd)
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+# Directory where the scripts used by this script are located in the installation folder
+SCRIPTS_DIR="${SCRIPT_DIR}/"
+
+# This is the directory where the auxiliary or temporary files will be written and from where the execution will be done
+if [ "${working_directory}" = "pycompss_sandbox" ]; then
+    working_directory=${CURRENT_DIR}
+    echo "Using PyCOMPSs sandbox directory: ${working_directory}"
+else
+    echo "Using working directory: ${working_directory}"
+    cd ${working_directory}
+fi
 
 # Do a copy of PhysiBoSS folder for the current execution
 user=$(whoami)
-physiboss_folder="PhysiBoSS_${repetition}_${user}"
-
+physiboss_folder="${working_directory}/PhysiBoSS_${repetition}_${user}"
 cp -r /usr/local/scm/Invasion_model_PhysiBoSS/ ${physiboss_folder}
+chmod -R 755 ${physiboss_folder}
+echo "COPY OF PhysiBoSS:"
+echo "${physiboss_folder}"
+echo "PhysiBoSS executable:"
+ls -l ${physiboss_folder}
+echo "--------------------------------------"
+echo "Working directory content:"
+ls -l ${working_directory}
+echo "--------------------------------------"
 
 # Update the number of threads
 sed -i "s/<omp_num_threads>12/<omp_num_threads>${parallel}/g" "${physiboss_folder}/data/PhysiCell_settings_2D.xml"

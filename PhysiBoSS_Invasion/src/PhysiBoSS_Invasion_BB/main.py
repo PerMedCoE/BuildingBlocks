@@ -35,6 +35,7 @@ def physiboss_invasion(
     results_dir=None,
     parallel=8,
     max_time=8640,
+    working_directory="None"
 ):
     """
     Performs the PhysiCell + MaBoSS analysis.
@@ -64,6 +65,7 @@ def invoke(arguments, config):
     out_file = arguments.out_file
     err_file = arguments.err_file
     results_dir = arguments.results_dir
+    working_directory = arguments.working_directory
     # Building block invocation
     physiboss_invasion(
         repetition=repetition,
@@ -72,4 +74,5 @@ def invoke(arguments, config):
         results_dir=results_dir,
         parallel=parallel,
         max_time=max_time,
+        working_directory=working_directory
     )
