@@ -12,6 +12,7 @@ This package provides the PhysiBoSS **Building Block (BB)**.
     - [Installation](#installation)
     - [Usage](#usage)
     - [Uninstall](#uninstall)
+  - [License](#license)
   - [Contact](#contact)
 
 ## Description
@@ -96,6 +97,11 @@ Uninstall can be achieved by executing the following scripts:
 ./uninstall.sh
 ./clean.sh
 ```
+
+## License
+
+[Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+
 
 ## Contact
 
