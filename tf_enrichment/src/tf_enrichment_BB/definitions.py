@@ -9,4 +9,5 @@ BB_SOURCE_PATH=os.path.dirname(os.path.abspath(__file__))
 #  - Assets folder within the Building Block
 TF_ENRICHMENT_ASSETS_PATH = os.path.join(BB_SOURCE_PATH, "assets")
 #  - Container definition for Carnival Building Block
-TF_ENRICHMENT_CONTAINER = CONTAINER_PATH + "toolset.sif"
+CONTAINER = "toolset.sif"
+TF_ENRICHMENT_CONTAINER = os.path.join(CONTAINER_PATH, CONTAINER)

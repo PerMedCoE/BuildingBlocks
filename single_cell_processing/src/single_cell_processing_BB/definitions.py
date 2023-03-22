@@ -9,4 +9,5 @@ BB_SOURCE_PATH=os.path.dirname(os.path.abspath(__file__))
 #  - Assets folder within the Building Block
 SINGLE_CELL_ASSETS_PATH = os.path.join(BB_SOURCE_PATH, "assets")
 #  - Container definition for Meta Analysis Building Block
-SINGLE_CELL_PROCESSING_CONTAINER = CONTAINER_PATH + "single_cell.sif"
+CONTAINER = "single_cell.sif"
+SINGLE_CELL_PROCESSING_CONTAINER = os.path.join(CONTAINER_PATH, CONTAINER)
