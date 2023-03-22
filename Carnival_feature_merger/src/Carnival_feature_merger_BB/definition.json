@@ -39,12 +39,6 @@
                 "name": "output_file",
                 "format": "file",
                 "description": "Output file with the features, where rows are samples and columns features"
-            },
-            {
-                "type": "output",
-                "name": "working_directory",
-                "format": "folder",
-                "description": "Working directory (used for assets)"
             }
         ]
     }

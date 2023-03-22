@@ -7,6 +7,7 @@ from permedcoe import task
 from permedcoe import FILE_IN
 from permedcoe import FILE_OUT
 from permedcoe import DIRECTORY_OUT
+from permedcoe import TMPDIR
 
 # Import single container and assets definitions
 from personalize_patient_BB.definitions import PERSONALIZE_PATIENT_ASSETS_PATH
@@ -24,7 +25,7 @@ PERSONALIZE_CELLLINE_BINARY = os.path.join(PERSONALIZE_PATIENT_ASSETS_PATH,
 @container(engine="SINGULARITY", image=PERSONALIZE_PATIENT_CONTAINER)
 @binary(binary=PERSONALIZE_PATIENT_BINARY)
 @task(norm_data=FILE_IN, cells=FILE_IN, model_output_dir=DIRECTORY_OUT, personalized_result=FILE_OUT, ko=FILE_IN)
-def personalize_patient(working_directory="None",
+def personalize_patient(tmpdir=TMPDIR,
                         norm_data_flag="-e", norm_data=None,
                         cells_flag="-c", cells=None,
                         model_prefix_flag="-m", model_prefix="prefix",
@@ -38,7 +39,7 @@ def personalize_patient(working_directory="None",
 
     The Definition is equal to:
        ./personalize_patient.sh \
-       <working_directory> \
+       <tmpdir> \
        -e <norm_data> \
        -c <cells> \
        -m <model_prefix> -t <t> \
@@ -60,7 +61,7 @@ def personalize_patient(working_directory="None",
 @container(engine="SINGULARITY", image=PERSONALIZE_PATIENT_CONTAINER)
 @binary(binary=PERSONALIZE_CELLLINE_BINARY)
 @task(expression_data=FILE_IN, cnv_data=FILE_IN, mutation_data=FILE_IN, model_bnd=FILE_IN, model_cfg=FILE_IN, model_output_dir=DIRECTORY_OUT)
-def personalize_patient_cellline(working_directory="None",
+def personalize_patient_cellline(tmpdir=TMPDIR,
                                  expression_data_flag="-e", expression_data=None,
                                  cnv_data_flag="-c", cnv_data=None,
                                  mutation_data_flag="-m", mutation_data=None,
@@ -75,7 +76,7 @@ def personalize_patient_cellline(working_directory="None",
 
     The Definition is equal to:
        ./personalize_patient.sh \
-       <working_directory> \
+       <tmpdir> \
        -e <expression> \
        -c <cells> \
        -m <model_prefix> -t <t> \
@@ -112,9 +113,9 @@ def invoke(arguments, config):
         model_bnd = arguments.model_bnd
         model_cfg = arguments.model_cfg
         model_output_dir = os.path.abspath(arguments.model_output_dir)
-        working_directory = arguments.working_directory
+        tmpdir = arguments.tmpdir
         # Building block invocation
-        personalize_patient_cellline(working_directory=working_directory,
+        personalize_patient_cellline(tmpdir=tmpdir,
                                      expression_data=expression,
                                      cnv_data=cnv,
                                      mutation_data=mutation,
@@ -131,9 +132,9 @@ def invoke(arguments, config):
         ko = arguments.ko
         model_output_dir = os.path.abspath(arguments.model_output_dir)
         personalized_result = arguments.personalized_result
-        working_directory = arguments.working_directory
+        tmpdir = arguments.tmpdir
         # Building block invocation
-        personalize_patient(working_directory=working_directory,
+        personalize_patient(tmpdir=tmpdir,
                             norm_data=norm_data,
                             cells=cells,
                             model_prefix=model_prefix,

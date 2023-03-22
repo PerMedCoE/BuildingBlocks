@@ -8,6 +8,7 @@ from permedcoe import task
 from permedcoe import FILE_IN
 from permedcoe import FILE_OUT
 from permedcoe import DIRECTORY_IN
+from permedcoe import TMPDIR
 
 # Import single container and assets definitions
 from invasion_analysis_BB.definitions import INVASION_ANALYSIS_CONTAINER
@@ -21,7 +22,7 @@ INVASION_ANALYSIS_BINARY = os.path.join(INVASION_ANALYSIS_ASSETS_PATH, "Invasion
 @container(engine="SINGULARITY", image=INVASION_ANALYSIS_CONTAINER)
 @binary(binary=INVASION_ANALYSIS_BINARY)
 @task(physiboss_result_path=DIRECTORY_IN, output_data=FILE_OUT)
-def invasion_analysis(working_directory="None",
+def invasion_analysis(tmpdir=TMPDIR,
                       physiboss_result_path=None,
                       output_data=None
                       ):
@@ -41,9 +42,9 @@ def invoke(arguments, config):
     Returns:
         None
     """
-    working_directory = arguments.working_directory
+    tmpdir = arguments.tmpdir
     physiboss_result_path = arguments.physiboss_result_path
     output_data = arguments.output_data
-    invasion_analysis(working_directory=working_directory,
+    invasion_analysis(tmpdir=tmpdir,
                       physiboss_result_path=physiboss_result_path,
                       output_data=output_data)

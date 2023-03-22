@@ -6,6 +6,7 @@ from permedcoe import binary
 from permedcoe import task
 from permedcoe import FILE_OUT
 from permedcoe import DIRECTORY_IN
+from permedcoe import TMPDIR
 
 # Import container definition
 from Carnival_feature_merger_BB.definitions import CARNIVAL_FEATURE_MERGER_ASSETS_PATH
@@ -20,7 +21,7 @@ CARNIVAL_FEATURE_MERGER_BINARY = os.path.join(CARNIVAL_FEATURE_MERGER_ASSETS_PAT
 @container(engine="SINGULARITY", image=CARNIVAL_FEATURE_MERGER_CONTAINER)
 @binary(binary=CARNIVAL_FEATURE_MERGER_BINARY)
 @task(input_dir=DIRECTORY_IN, output_file=FILE_OUT)
-def feature_merger(working_directory="None",
+def feature_merger(tmpdir=TMPDIR,
                    input_dir=None, output_file=None,
                    feature_file_flag='--feature_file', feature_file=None,
                    merge_csv_file_flag='--merge_csv_file', merge_csv_file=None,
@@ -30,14 +31,14 @@ def feature_merger(working_directory="None",
     Runs CarnivalPy
 
     The Definition is equal to:
-        <working_directory>
+        <tmpdir>
         /opt/miniconda/bin/python /opt/feature_merge.py <input_dir> <output_file>
                                                         <feature_file_flag> <feature_file>
                                                         <merge_csv_file_flag> <merge_csv_file>
                                                         <merge_csv_index_flag> <merge_csv_index>
                                                         <merge_csv_prefix_flag> <merge_csv_prefix>
     By default:
-        <working_directory>
+        <tmpdir>
         /opt/miniconda/bin/python /opt/feature_merge.py <input_dir> <output_file>
                                                         --feature_file <feature_file>
                                                         --merge_csv_file <merge_csv_file>
@@ -64,9 +65,9 @@ def invoke(arguments, config):
     merge_csv_index = arguments.merge_csv_index
     merge_csv_prefix = arguments.merge_csv_prefix
     output_file = arguments.output_file
-    working_directory = arguments.working_directory
+    tmpdir = arguments.tmpdir
     # Building block invocation
-    feature_merger(working_directory=working_directory,
+    feature_merger(tmpdir=tmpdir,
                    input_dir=input_dir,
                    output_file=output_file,
                    feature_file=feature_file,

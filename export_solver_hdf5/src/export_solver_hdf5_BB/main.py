@@ -6,6 +6,7 @@ from permedcoe import binary
 from permedcoe import task
 from permedcoe import FILE_IN
 from permedcoe import FILE_OUT
+from permedcoe import TMPDIR
 
 # Import container definition
 from export_solver_hdf5_BB.definitions import EXPORT_SOLVER_HDF5_ASSETS_PATH
@@ -21,7 +22,7 @@ EXPORT_SOLVER_HDF5_BINARY = os.path.join(EXPORT_SOLVER_HDF5_ASSETS_PATH,
 @container(engine="SINGULARITY", image=EXPORT_SOLVER_HDF5_CONTAINER)
 @binary(binary=EXPORT_SOLVER_HDF5_BINARY)
 @task(sif=FILE_IN, measurements=FILE_IN, inputs=FILE_IN, output_file=FILE_OUT)
-def export(working_directory="None",
+def export(tmpdir=TMPDIR,
            sif=None,
            measurements=None,
            inputs=None,
@@ -31,14 +32,14 @@ def export(working_directory="None",
     Runs export solver to hdf5
 
     The Definition is equal to:
-        <working_directory>
+        <tmpdir>
         Rscript --vanilla /opt/export.R <sif>
                                         <measurements>
                                         <inputs>
                                         <output_file>
                                         <verbose_flag> <verbose>
     By default:
-        <working_directory>
+        <tmpdir>
         Rscript --vanilla /opt/export.R <sif>
                                         <measurements>
                                         <inputs>
@@ -66,9 +67,9 @@ def invoke(arguments, config):
     inputs = arguments.inputs
     verbose = arguments.verbose
     output_file = arguments.output_file
-    working_directory = arguments.working_directory
+    tmpdir = arguments.tmpdir
     # Building block invocation
-    export(working_directory=working_directory,
+    export(tmpdir=tmpdir,
            sif=sif,
            measurements=measurements,
            inputs=inputs,

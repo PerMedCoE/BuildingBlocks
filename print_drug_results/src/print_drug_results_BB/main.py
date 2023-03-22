@@ -7,6 +7,7 @@ from permedcoe import FILE_IN
 from permedcoe import FILE_OUT
 from permedcoe import DIRECTORY_IN
 from permedcoe import DIRECTORY_OUT
+from permedcoe import TMPDIR
 
 # Import single container and assets definitions
 from print_drug_results_BB.definitions import PRINT_DRUG_RESULTS_CONTAINER
@@ -141,14 +142,14 @@ def print_results(dfs, report_folder):
 @binary(binary=PRINT_DRUG_RESULTS_BINARY)
 @task(drug_results_folder=DIRECTORY_IN, reports_folder=DIRECTORY_OUT)
 def print_drug_results(
-    working_directory="None",
+    tmpdir=TMPDIR,
     drug_results_folder=None,
     reports_folder=None):
     """
 
     """
     # Empty function since it represents a binary execution:
-    #    PRINT_DRUG_RESULTS_BINARY <working_directory> <drug_results_folder> <reports_folder>
+    #    PRINT_DRUG_RESULTS_BINARY <tmpdir> <drug_results_folder> <reports_folder>
     pass
 
 
@@ -164,10 +165,10 @@ def invoke(arguments, config):
     # Process parameters
     results_folder = arguments.results_folder
     reports_folder = arguments.reports_folder
-    working_directory = arguments.working_directory
+    tmpdir = arguments.tmpdir
     # Building block invocation
     print_drug_results(
-        working_directory=working_directory,
+        tmpdir=tmpdir,
         drug_results_folder=results_folder,
         reports_folder=reports_folder
     )

@@ -33,12 +33,6 @@
                 "name": "output_file",
                 "format": "file",
                 "description": "The final HDF5 file"
-            },
-            {
-                "type": "output",
-                "name": "working_directory",
-                "format": "folder",
-                "description": "Working directory (used for assets)"
             }
         ]
     }

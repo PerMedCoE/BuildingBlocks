@@ -6,6 +6,7 @@ from permedcoe import binary
 from permedcoe import task
 from permedcoe import FILE_IN
 from permedcoe import FILE_OUT
+from permedcoe import TMPDIR
 
 # Import container definition
 from ml_jax_drug_prediction_BB.definitions import ML_JAX_DRUG_PREDICTION_ASSETS_PATH
@@ -21,7 +22,7 @@ ML_JAX_DRUG_PREDICTION_BINARY = os.path.join(ML_JAX_DRUG_PREDICTION_ASSETS_PATH,
 @container(engine="SINGULARITY", image=ML_JAX_DRUG_PREDICTION_CONTAINER)
 @binary(binary=ML_JAX_DRUG_PREDICTION_BINARY)
 @task(input_file=FILE_IN, output_file=FILE_OUT, cell_features=FILE_IN)
-def ml(working_directory="None",
+def ml(tmpdir=TMPDIR,
        input_file=None, output_file=None,
        drug_features_flag='--drug_features', drug_features=None,
        cell_features_flag='--cell_features', cell_features=None,
@@ -35,7 +36,7 @@ def ml(working_directory="None",
     Runs ML Jax Drug Prediction
 
     The Definition is equal to:
-        <working_directory>
+        <tmpdir>
         /opt/conda/bin/python /opt/ml.py <input_file> <output_file>
                                          <drug_features_flag> <drug_features>
                                          <cell_features_flag> <cell_features>
@@ -46,7 +47,7 @@ def ml(working_directory="None",
                                          <test_drugs_flag> <test_drugs>
                                          <test_cells_flag> <test_cells>
     By default:
-        <working_directory>
+        <tmpdir>
         /opt/conda/bin/python /opt/ml.py <input_file> <output_file>
                                          --drug_features <drug_features>
                                          --cell_features <cell_features>
@@ -86,9 +87,9 @@ def invoke(arguments, config):
     test_drugs = arguments.test_drugs
     test_cells = arguments.test_cells
     output_file = arguments.output_file
-    working_directory = arguments.working_directory
+    tmpdir = arguments.tmpdir
     # Building block invocation
-    ml(working_directory=working_directory,
+    ml(tmpdir=tmpdir,
        input_file=input_file,
        output_file=output_file,
        drug_features=drug_features,

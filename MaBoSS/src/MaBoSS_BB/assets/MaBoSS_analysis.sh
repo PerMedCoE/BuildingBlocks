@@ -4,7 +4,7 @@ projectname=$1
 data_folder=$2
 ko_file=$3
 parallel=$4
-working_directory=$5
+tmpdir=$5
 
 echo "--------------------------------------------"
 echo "Running MaBoSS_analysis.sh"
@@ -13,7 +13,7 @@ echo " - projectname = ${projectname}"
 echo " - data_folder = ${data_folder}"
 echo " - ko_file = ${ko_file}"
 echo " - parallel = ${parallel}"
-echo " - working_directory = ${working_directory}"
+echo " - tmpdir = ${tmpdir}"
 echo "--------------------------------------------"
 
 CURRENT_DIR=$(pwd)
@@ -22,12 +22,12 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 SCRIPTS_DIR="${SCRIPT_DIR}/MaBoSS_analysis"
 
 # This is the directory where the auxiliary or temporary files will be written and from where the execution will be done
-if [ "${working_directory}" = "pycompss_sandbox" ]; then
-    working_directory=${CURRENT_DIR}
-    echo "Using PyCOMPSs sandbox directory: ${working_directory}"
+if [ "${tmpdir}" = "pycompss_sandbox" ]; then
+    tmpdir=${CURRENT_DIR}
+    echo "Using PyCOMPSs sandbox directory as temporary: ${tmpdir}"
 else
-    echo "Using working directory: ${working_directory}"
-    cd ${working_directory}
+    echo "Using temporary directory: ${tmpdir}"
+    cd ${tmpdir}
 fi
 
 echo "1, run MaBoSS instance"

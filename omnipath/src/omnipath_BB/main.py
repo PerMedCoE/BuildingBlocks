@@ -5,6 +5,7 @@ from permedcoe import container
 from permedcoe import binary
 from permedcoe import task
 from permedcoe import FILE_OUT
+from permedcoe import TMPDIR
 
 # Import container definition
 from omnipath_BB.definitions import OMNIPATH_ASSETS_PATH
@@ -19,13 +20,13 @@ OMNIPATH_BINARY = os.path.join(OMNIPATH_ASSETS_PATH, "omnipath.sh")
 @container(engine="SINGULARITY", image=OMNIPATH_CONTAINER)
 @binary(binary=OMNIPATH_BINARY)
 @task(output_file=FILE_OUT)
-def omnipath(working_directory="None",
+def omnipath(tmpdir=TMPDIR,
              output_file=None):
     """
     Runs Omnipath
 
     The Definition is equal to:
-        <working_directory>
+        <tmpdir>
         Rscript --vanilla /opt/omnipath.R <output_file>
     """
     # Empty function since it represents a binary execution:
@@ -44,7 +45,7 @@ def invoke(arguments, config):
     # Process parameters
     verbose = arguments.verbose
     output_file = arguments.output_file
-    working_directory = arguments.working_directory
+    tmpdir = arguments.tmpdir
     # Building block invocation
-    omnipath(working_directory=working_directory,
+    omnipath(tmpdir=tmpdir,
              output_file=output_file)

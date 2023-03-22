@@ -10,7 +10,7 @@ from build_model_from_species_BB.definitions import BB_SOURCE_PATH
 
 
 def main():
-    invoker(invoke, os.path.join(BB_SOURCE_PATH, "definition.json"))
+    invoker(invoke, os.path.join(BB_SOURCE_PATH, "definition.json"), require_tmpdir=True)
 
 
 if __name__ == "__main__":

@@ -27,12 +27,6 @@
                 "name": "ko_file",
                 "format": "file",
                 "description": "KO file"
-            },
-            {
-                "type": "output",
-                "name": "working_directory",
-                "format": "folder",
-                "description": "Working directory (used for assets)"
             }
         ],
         "sensitivity": [
@@ -59,12 +53,6 @@
                 "name": "result_file",
                 "format": "file",
                 "description": "Sensitivity result file (json)"
-            },
-            {
-                "type": "output",
-                "name": "working_directory",
-                "format": "folder",
-                "description": "Working directory (used for assets)"
             }
         ]
     }

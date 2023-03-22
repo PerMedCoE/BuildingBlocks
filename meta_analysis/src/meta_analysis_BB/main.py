@@ -7,6 +7,7 @@ from permedcoe import task
 from permedcoe import FILE_IN
 from permedcoe import DIRECTORY_IN
 from permedcoe import DIRECTORY_OUT
+from permedcoe import TMPDIR
 
 # Import single container and assets definitions
 from meta_analysis_BB.definitions import META_ANALYSIS_ASSETS_PATH
@@ -25,7 +26,7 @@ META_ANALYSIS_BINARY = os.path.join(META_ANALYSIS_ASSETS_PATH,
       out_dir=DIRECTORY_IN,
       ko_file=FILE_IN,
       results=DIRECTORY_OUT)
-def meta_analysis(working_directory="None",
+def meta_analysis(tmpdir=TMPDIR,
                   meta_file_flag='-m', meta_file=None,
                   out_dir_flag='-o', out_dir=None,
                   model_prefix_flag='-p', model_prefix=None,
@@ -37,7 +38,7 @@ def meta_analysis(working_directory="None",
     Performs the Single Cell processing.
 
     The Definition is equal to:
-        ./meta_analysis.sh <working_directory> \
+        ./meta_analysis.sh <tmpdir> \
                            -m <meta_file> \
                            -o <out_dir> \
                            -p <model_prefix> \
@@ -66,7 +67,7 @@ def invoke(arguments, config):
     reps = arguments.reps
     verbose = arguments.verbose
     results = arguments.results
-    working_directory = arguments.working_directory
+    tmpdir = arguments.tmpdir
     # Building block invocation
     meta_analysis(meta_file=meta_file,
                   out_dir=out_dir,
@@ -75,4 +76,4 @@ def invoke(arguments, config):
                   reps=reps,
                   verbose=verbose,
                   results=results,
-                  working_directory=working_directory)
+                  tmpdir=tmpdir)

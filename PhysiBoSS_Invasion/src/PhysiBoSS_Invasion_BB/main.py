@@ -8,6 +8,7 @@ from permedcoe import FILE_IN
 from permedcoe import FILE_OUT
 from permedcoe import DIRECTORY_IN
 from permedcoe import DIRECTORY_OUT
+from permedcoe import TMPDIR
 
 # Import single container and assets definitions
 from PhysiBoSS_Invasion_BB.definitions import PHYSIBOSS_INVASION_ASSETS_PATH
@@ -35,7 +36,7 @@ def physiboss_invasion(
     results_dir=None,
     parallel=8,
     max_time=8640,
-    working_directory="None"
+    tmpdir=TMPDIR
 ):
     """
     Performs the PhysiCell + MaBoSS analysis.
@@ -65,7 +66,7 @@ def invoke(arguments, config):
     out_file = arguments.out_file
     err_file = arguments.err_file
     results_dir = arguments.results_dir
-    working_directory = arguments.working_directory
+    tmpdir = arguments.tmpdir
     # Building block invocation
     physiboss_invasion(
         repetition=repetition,
@@ -74,5 +75,5 @@ def invoke(arguments, config):
         results_dir=results_dir,
         parallel=parallel,
         max_time=max_time,
-        working_directory=working_directory
+        tmpdir=tmpdir
     )

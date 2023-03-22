@@ -6,6 +6,7 @@ from permedcoe import binary
 from permedcoe import task
 from permedcoe import FILE_IN
 from permedcoe import FILE_OUT
+from permedcoe import TMPDIR
 
 # Import container definition
 from progeny_BB.definitions import PROGENY_ASSETS_PATH
@@ -20,7 +21,7 @@ PROGENY_BINARY = os.path.join(PROGENY_ASSETS_PATH, "progeny.sh")
 @container(engine="SINGULARITY", image=PROGENY_CONTAINER)
 @binary(binary=PROGENY_BINARY)
 @task(input_file=FILE_IN, output_file=FILE_OUT)
-def progeny(working_directory="None",
+def progeny(tmpdir=TMPDIR,
             input_file=None, output_file=None,
             organism_flag='-o', organism=None,
             ntop_flag='-i', ntop=None,
@@ -35,7 +36,7 @@ def progeny(working_directory="None",
     Runs Carnival Gex Preprocess
 
     The Definition is equal to:
-        <working_directory>
+        <tmpdir>
         Rscript --vanilla /opt/progeny.R <input_file> <output_file>
                                          <organism_flag> <organism>
                                          <ntop_flag> <ntop>
@@ -47,7 +48,7 @@ def progeny(working_directory="None",
                                          <zscore_flag> <zscore>
                                          <verbose_flag> <verbose>
     By default:
-        <working_directory>
+        <tmpdir>
         Rscript --vanilla /opt/progeny.R <input_file> <output_file>
                                          -o <organism>
                                          -i <ntop>
@@ -87,9 +88,9 @@ def invoke(arguments, config):
     zscore = arguments.zscore
     verbose = arguments.verbose
     output_file = arguments.output_file
-    working_directory = arguments.working_directory
+    tmpdir = arguments.tmpdir
     # Building block invocation
-    progeny(working_directory=working_directory,
+    progeny(tmpdir=tmpdir,
             input_file=input_file,
             output_file=output_file,
             organism=organism,
