@@ -9,6 +9,6 @@ BB_SOURCE_PATH=os.path.dirname(os.path.abspath(__file__))
 #  - Assets folder within the Building Block
 MABOSS_ASSETS_PATH = os.path.join(BB_SOURCE_PATH, "assets")
 #  - Container definition for MaBoSS Building Block
-CONTAINER = ["MaBoSS.sif", "MaBoSS_sensitivity.sif"]
+CONTAINER = ["maboss.sif", "maboss_sensitivity.sif"]
 MABOSS_CONTAINER = os.path.join(CONTAINER_PATH, CONTAINER[0])
 MABOSS_SENSITIVITY_CONTAINER = os.path.join(CONTAINER_PATH, CONTAINER[1])

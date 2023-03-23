@@ -9,5 +9,5 @@ BB_SOURCE_PATH=os.path.dirname(os.path.abspath(__file__))
 #  - Assets folder within the Building Block
 PERSONALIZE_PATIENT_ASSETS_PATH = os.path.join(BB_SOURCE_PATH, "assets")
 #  - Container definition for Meta Analysis Building Block
-CONTAINER = "PhysiCell-COVID19.sif"
+CONTAINER = "physicell_covid19.sif"
 PERSONALIZE_PATIENT_CONTAINER = os.path.join(CONTAINER_PATH, CONTAINER)
