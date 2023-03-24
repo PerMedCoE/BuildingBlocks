@@ -12,6 +12,7 @@ This package provides the High-throughput Mutant Analysis **Building Block (BB)*
     - [Installation](#installation)
     - [Usage](#usage)
     - [Uninstall](#uninstall)
+  - [License](#license)
   - [Contact](#contact)
 
 ## Description
@@ -62,22 +63,24 @@ The command line is:
 MABOSS_ASSETS=$(python3 -c "import MaBoSS_BB; import os; print(os.path.dirname(MaBoSS_BB.__file__))")
 
 MaBoSS_BB -d \
-    --mount_point ${MABOSS_ASSETS}/assets:${MABOSS_ASSETS}/assets \
+    --mount_point ${MABOSS_ASSETS}/assets:${MABOSS_ASSETS}/assets,<working_directory>:<working_directory> \
     default \
     --model <model> \
     --data_folder <data_folder> \
     --parallel <parallel> \
-    --ko_file <ko_file>
+    --ko_file <ko_file> \
+    --working_directory <working_directory>
 ```
 
 Where the parameters are:
 
-|        | Flag          | Parameter      | Type      | Description                                           |
-|--------|---------------|----------------|-----------|-------------------------------------------------------|
-| Input  | --model       | \<model>       | String    | Name of the model                                     |
-| Input  | --data_folder | \<data_folder> | Directory | Folder where the model files are located              |
-| Input  | --parallel    | \<parallel>    | Int       | Internal parallelism                                  |
-| Output | --ko_file     | \<ko_file>     | File      | Name of the output file with the knock-out candidates |
+|        | Flag                | Parameter            | Type   | Description                                           |
+|--------|---------------------|----------------------|--------|-------------------------------------------------------|
+| Input  | --model             | \<model>             | String | Name of the model                                     |
+| Input  | --data_folder       | \<data_folder>       | Folder | Folder where the model files are located              |
+| Input  | --parallel          | \<parallel>          | Int    | Internal parallelism                                  |
+| Output | --ko_file           | \<ko_file>           | File   | Name of the output file with the knock-out candidates |
+| Output | --working_directory | \<working_directory> | Folder | Working directory (temporary files)                   |
 
 Alternatively, it can be used to perform sensitivity analysis:
 
@@ -87,22 +90,24 @@ The command line is:
 MABOSS_ASSETS=$(python3 -c "import MaBoSS_BB; import os; print(os.path.dirname(MaBoSS_BB.__file__))")
 
 MaBoSS_BB -d \
-    --mount_point ${MABOSS_ASSETS}/assets:${MABOSS_ASSETS}/assets \
+    --mount_point ${MABOSS_ASSETS}/assets:${MABOSS_ASSETS}/assets,<working_directory>:<working_directory> \
     sensitivity \
     --model_folder <model_folder> \
     --genes_druggable <genes_druggable> \
     --genes_target <genes_target> \
-    --result_file <result_file>
+    --result_file <result_file> \
+    --working_directory <working_directory>
 ```
 
 Where the parameters are:
 
-|        | Flag              | Parameter          | Type   | Description                    |
-|--------|-------------------|--------------------|--------|--------------------------------|
-| Input  | --model_folder    | \<model_folder>    | Folder | Folder that contains the model |
-| Input  | --genes_druggable | \<genes_druggable> | String | Druggable genes                |
-| Input  | --genes_target    | \<genes_target>    | String | Target genes                   |
-| Output | --result_file     | \<result_file>     | File   | Result file path               |
+|        | Flag                | Parameter            | Type   | Description                         |
+|--------|---------------------|----------------------|--------|-------------------------------------|
+| Input  | --model_folder      | \<model_folder>      | Folder | Folder that contains the model      |
+| Input  | --genes_druggable   | \<genes_druggable>   | String | Druggable genes                     |
+| Input  | --genes_target      | \<genes_target>      | String | Target genes                        |
+| Output | --result_file       | \<result_file>       | File   | Result file path                    |
+| Output | --working_directory | \<working_directory> | Folder | Working directory (temporary files) |
 
 ### Uninstall
 
@@ -112,6 +117,11 @@ Uninstall can be achieved by executing the following scripts:
 ./uninstall.sh
 ./clean.sh
 ```
+
+## License
+
+[Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+
 
 ## Contact
 

@@ -7,4 +7,5 @@ BB_SOURCE_PATH=os.path.dirname(os.path.abspath(__file__))
 
 # Update the following lines:
 #  - Container definition for Carnival Building Block
-CELLNOPT_CONTAINER = CONTAINER_PATH + "signaling-solvers.sif"
+CONTAINER = "signaling_solvers.sif"
+CELLNOPT_CONTAINER = os.path.join(CONTAINER_PATH, CONTAINER)

@@ -7,6 +7,7 @@ from permedcoe import task
 from permedcoe import DIRECTORY_IN
 from permedcoe import FILE_IN
 from permedcoe import FILE_OUT
+from permedcoe import TMPDIR
 
 # Import single container and assets definitions
 from MaBoSS_BB.definitions import MABOSS_ASSETS_PATH
@@ -26,14 +27,14 @@ MABOSS_SENSITIVIY_ANALYSIS_BINARY = os.path.join(
 @binary(binary=MABOSS_BINARY)
 @task(data_folder=DIRECTORY_IN, ko_file=FILE_OUT)
 def MaBoSS_analysis(
-    model="epithelial_cell_2", data_folder=None, ko_file=None, parallel=COMPUTING_UNITS
+    model="epithelial_cell_2", data_folder=None, ko_file=None, parallel=COMPUTING_UNITS, tmpdir=TMPDIR
 ):
     """
     Performs the MaBoSS analysis.
     Produces the ko file, containing the set of selected gene candidates.
 
     The Definition is equal to:
-        ./MaBoSS_analysis.sh <model> <data_folder> <ko_file> <computing_units>
+        ./MaBoSS_analysis.sh <model> <data_folder> <ko_file> <computing_units> <tmpdir>
     """
     # Empty function since it represents a binary execution:
     pass
@@ -49,14 +50,14 @@ def MaBoSS_analysis(
     result_file=FILE_OUT,
 )
 def MaBoSS_sensitivity_analysis(
-    model_folder=None, genes_druggable=None, genes_target=None, result_file=None
+    tmpdir=TMPDIR, model_folder=None, genes_druggable=None, genes_target=None, result_file=None
 ):
     """
     Performs the MaBoSS analysis.
     Produces the ko file, containing the set of selected gene candidates.
 
     The Definition is equal to:
-        ./MaBoSS_sensitivity_analysis.sh <model_folder> <genes_druggable> <genes_target> <result_file>
+        ./MaBoSS_sensitivity_analysis.sh <tmpdir> <model_folder> <genes_druggable> <genes_target> <result_file>
     """
     # Empty function since it represents a binary execution:
     pass
@@ -77,23 +78,27 @@ def invoke(arguments, config):
         genes_druggable = arguments.genes_druggable
         genes_target = arguments.genes_target
         result_file = arguments.result_file
+        tmpdir = arguments.tmpdir
         # Building block invocation
         MaBoSS_sensitivity_analysis(
             model_folder=model_folder,
             genes_druggable=genes_druggable,
             genes_target=genes_target,
             result_file=result_file,
+            tmpdir=tmpdir
         )
     else:
         # Process parameters
         model = arguments.model
         data_folder = arguments.data_folder
-        parallel = arguments.parallel
         ko_file = arguments.ko_file
+        parallel = arguments.parallel
+        tmpdir = arguments.tmpdir
         # Building block invocation
         MaBoSS_analysis(
             model=model,
             data_folder=data_folder,
             ko_file=ko_file,
-            parallel=parallel
+            parallel=parallel,
+            tmpdir=tmpdir
         )

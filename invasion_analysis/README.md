@@ -62,17 +62,19 @@ The command line is:
 INVASION_ANALYSIS_ASSETS=$(python3 -c "import invasion_analysis_BB; import os; print(os.path.dirname(invasion_analysis_BB.__file__))")
 
 invasion_analysis_BB -d \
-    --mount_point ${PERSONALIZE_PATIENT_ASSETS}/assets:${PERSONALIZE_PATIENT_ASSETS}/assets \
+    --mount_point ${INVASION_ANALYSIS_ASSETS}/assets:${INVASION_ANALYSIS_ASSETS}/assets \
     --physiboss_result_path <physiboss_result_path> \
-    --output_data <output_data> 
+    --output_data <output_data> \
+    --working_directory <working_directory>
 ```
 
 Where the parameters are:
 
-|        | Flag                     | Parameter          | Type    | Description                              |
-|--------|--------------------------|--------------------|---------|------------------------------------------|
-| Input  | --physiboss_result_path  | \<input_file>      | File    | Path of the PhysiBoSS result to analyse  |
-| Output | --output_data            | \<output_data> | File    | Path of the CSV file to generate         |
+|        | Flag                     | Parameter                | Type    | Description                             |
+|--------|--------------------------|--------------------------|---------|-----------------------------------------|
+| Input  | --physiboss_result_path  | \<physiboss_result_path> | File    | Path of the PhysiBoSS result to analyse |
+| Output | --output_data            | \<output_data>           | File    | Path of the CSV file to generate        |
+| Output | --working_directory      | \<working_directory>     | Folder  | Working directory (temporary files)     |
 
 ### Uninstall
 

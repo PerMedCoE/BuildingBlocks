@@ -12,6 +12,7 @@ This package provides the PhysiBoSS **Building Block (BB)**.
     - [Installation](#installation)
     - [Usage](#usage)
     - [Uninstall](#uninstall)
+  - [License](#license)
   - [Contact](#contact)
 
 ## Description
@@ -61,30 +62,32 @@ The command line is:
 PHYSIBOSS_ASSETS=$(python3 -c "import PhysiBoSS_BB; import os; print(os.path.dirname(PhysiBoSS_BB.__file__))")
 
 PhysiBoSS_BB -d \
-      --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
-      --sample <sample> \
-      --repetition <repetition> \
-      --prefix <prefix> \
-      --bnd_file <bnd_file> \
-      --cfg_file <cfg_file> \
-      --out_file <out_file> \
-      --err_file <err_file>
+    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/,<working_directory>:<working_directory> \
+    --sample <sample> \
+    --repetition <repetition> \
+    --prefix <prefix> \
+    --bnd_file <bnd_file> \
+    --cfg_file <cfg_file> \
+    --out_file <out_file> \
+    --err_file <err_file> \
+    --working_directory <working_directory>
 ```
 
 Where the parameters are:
 
-|        | Flag          | Parameter      | Type    | Description                          |
-|--------|---------------|----------------|---------|--------------------------------------|
-| Input  | --sample      | \<sample>      | String  | Patient's identifier                 |
-| Input  | --repetition  | \<repetition>  | Integer | Number of repetition to be performed |
-| Input  | --prefix      | \<prefix>      | String  | Name of the model                    |
-| Input  | --bnd_file    | \<bnd_file>    | File    | Name of the model's BND file         |
-| Input  | --cfg_file    | \<cfg_file>    | File    | Name of the model's CFG file         |
-| Input  | --parallel    | \<parallel>    | Integer | Internal parallelism                 |
-| Input  | --max_time    | \<max_time>    | Integer | PhysiBoSS simulation maximum time    |
-| Output | --out_file    | \<out_file>    | File    | Main output of the PhysiBoSS run     |
-| Output | --err_file    | \<err_file>    | File    | Error output of the PhysiBoSS run    |
-| Output | --results_dir | \<results_dir> | Folder  | Results directory                    |
+|        | Flag                | Parameter            | Type    | Description                          |
+|--------|---------------------|----------------------|---------|--------------------------------------|
+| Input  | --sample            | \<sample>            | String  | Patient's identifier                 |
+| Input  | --repetition        | \<repetition>        | Integer | Number of repetition to be performed |
+| Input  | --prefix            | \<prefix>            | String  | Name of the model                    |
+| Input  | --bnd_file          | \<bnd_file>          | File    | Name of the model's BND file         |
+| Input  | --cfg_file          | \<cfg_file>          | File    | Name of the model's CFG file         |
+| Input  | --parallel          | \<parallel>          | Integer | Internal parallelism                 |
+| Input  | --max_time          | \<max_time>          | Integer | PhysiBoSS simulation maximum time    |
+| Output | --out_file          | \<out_file>          | File    | Main output of the PhysiBoSS run     |
+| Output | --err_file          | \<err_file>          | File    | Error output of the PhysiBoSS run    |
+| Output | --results_dir       | \<results_dir>       | Folder  | Results directory                    |
+| Output | --working_directory | \<working_directory> | Folder  | Working directory (temporary files)  |
 
 ### Uninstall
 
@@ -94,6 +97,11 @@ Uninstall can be achieved by executing the following scripts:
 ./uninstall.sh
 ./clean.sh
 ```
+
+## License
+
+[Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+
 
 ## Contact
 

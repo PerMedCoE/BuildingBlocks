@@ -9,4 +9,5 @@ BB_SOURCE_PATH=os.path.dirname(os.path.abspath(__file__))
 #  - Assets folder within the Building Block
 CARNIVAL_GEX_PREPROCESS_ASSETS_PATH = os.path.join(BB_SOURCE_PATH, "assets")
 #  - Container definition for Carnival Building Block
-CARNIVAL_GEX_PREPROCESS_CONTAINER = CONTAINER_PATH + "toolset.sif"
+CONTAINER = "toolset.sif"
+CARNIVAL_GEX_PREPROCESS_CONTAINER = os.path.join(CONTAINER_PATH, CONTAINER)

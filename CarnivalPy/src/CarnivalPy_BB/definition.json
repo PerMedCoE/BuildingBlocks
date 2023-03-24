@@ -7,7 +7,7 @@
             {
                 "type": "input",
                 "name": "path",
-                "format": "file",
+                "format": "folder",
                 "description": "Path containing a sif.csv file, a measurements.csv file, and perturbations.csv file"
             },
             {

@@ -59,7 +59,10 @@ application, or through the command line for other workflow managers
 The command line is:
 
 ```bash
+TF_ENRICHMENT_ASSETS=$(python3 -c "import tf_enrichment_BB; import os; print(os.path.dirname(tf_enrichment_BB.__file__))")
+
 tf_enrichment_BB -d \
+    --mount_point ${TF_ENRICHMENT_ASSETS}/assets:${TF_ENRICHMENT_ASSETS}/assets,<working_directory>:<working_directory> \
     --input_file <input_file> \
     --weight_col <weight_col> \
     --source <source> \
@@ -68,24 +71,26 @@ tf_enrichment_BB -d \
     --minsize <minsize> \
     --confidence <confidence> \
     --verbose <verbose> \
-    --output_file <output_file>
+    --output_file <output_file> \
+    --working_directory <working_directory>
 ```
 
 Where the parameters are:
 
-|        | Flag              | Parameter          | Type    | Description                                                                                                             |
-|--------|-------------------|--------------------|---------|-------------------------------------------------------------------------------------------------------------------------|
-| Input  | --input_file      | \<input_file>      | File    | Input gene expression data. Genes should be normalized across samples.                                                  |
-| Input  | --tsv             | \<tsv>             | String  | Import data as TSV instead of CSV (True/False)                                                                          |
-| Input  | --weight_col      | \<weight_col>      | String  | Name of the column containing differential expression values (e.g t-statistic from DESeq2) between a control/treatment condition for example, or just log-fold change. |
-| Input  | --id_col          | \<id_col>          | String  | Name of the column for gene ids.                                                                                        |
-| Input  | --minsize         | \<minsize>         | Integer | Minimum size for regulons. E.g 10.                                                                                      |
-| Input  | --source          | \<source>          | String  | Column with the TFs. Default = `tf`                                                                                     |
-| Input  | --confidence      | \<confidence>      | String  | Level of confidence to be used for regulons. E.g.: `A,B,C`. (see https://saezlab.github.io/dorothea/ for documentation) |
-| Input  | --verbose         | \<verbose>         | String  | Verbose output (True/False).                                                                                            |
-| Input  | --pval_threshold  | \<pval_threshold>  | Float   | Filter out TFs with adj. p-val above the provided value.                                                                |
-| Input  | --export_carnival | \<export_carnival> | String  |  Export a table with the results with two columns (id, value) only (for CARNIVAL)(TRUE/FALSE).                          |
-| Output | --output_file     | \<output_file>     | File    | Result csv file with estimated TF activities.                                                                           |
+|        | Flag                | Parameter            | Type    | Description                                                                                                             |
+|--------|---------------------|----------------------|---------|-------------------------------------------------------------------------------------------------------------------------|
+| Input  | --input_file        | \<input_file>        | File    | Input gene expression data. Genes should be normalized across samples.                                                  |
+| Input  | --tsv               | \<tsv>               | String  | Import data as TSV instead of CSV (True/False)                                                                          |
+| Input  | --weight_col        | \<weight_col>        | String  | Name of the column containing differential expression values (e.g t-statistic from DESeq2) between a control/treatment condition for example, or just log-fold change. |
+| Input  | --id_col            | \<id_col>            | String  | Name of the column for gene ids.                                                                                        |
+| Input  | --minsize           | \<minsize>           | Integer | Minimum size for regulons. E.g 10.                                                                                      |
+| Input  | --source            | \<source>            | String  | Column with the TFs. Default = `tf`                                                                                     |
+| Input  | --confidence        | \<confidence>        | String  | Level of confidence to be used for regulons. E.g.: `A,B,C`. (see https://saezlab.github.io/dorothea/ for documentation) |
+| Input  | --verbose           | \<verbose>           | String  | Verbose output (True/False).                                                                                            |
+| Input  | --pval_threshold    | \<pval_threshold>    | Float   | Filter out TFs with adj. p-val above the provided value.                                                                |
+| Input  | --export_carnival   | \<export_carnival>   | String  |  Export a table with the results with two columns (id, value) only (for CARNIVAL)(TRUE/FALSE).                          |
+| Output | --output_file       | \<output_file>       | File    | Result csv file with estimated TF activities.                                                                           |
+| Output | --working_directory | \<working_directory> | Folder  | Working directory (temporary files)                                                                                     |
 
 
 Example from normalized GEX data from GDSC using `preprocess_bb` on sample `DATA.906826`. Note that here we assume that genes are normalized across columns and so the control vs condition is the given column against the other conditions as control:

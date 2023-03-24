@@ -62,17 +62,19 @@ The command line is:
 PRINT_DRUG_RESULTS_ASSETS=$(python3 -c "import print_drug_results_BB; import os; print(os.path.dirname(print_drug_results_BB.__file__))")
 
 print_drug_results_BB -d \
-    --mount_point ${PRINT_DRUG_RESULTS_ASSETS}/assets:${PRINT_DRUG_RESULTS_ASSETS}/assets \
+    --mount_point ${PRINT_DRUG_RESULTS_ASSETS}/assets:${PRINT_DRUG_RESULTS_ASSETS}/assets,<working_directory>:<working_directory> \
     --results_folder <results_folder> \
-    --reports_folder <reports_folder>
+    --reports_folder <reports_folder> \
+    --working_directory <working_directory>
 ```
 
 Where the parameters are:
 
-|        | Flag             | Parameter         | Type | Description    |
-|--------|------------------|-------------------|------|----------------|
-| Input  | --results_folder | \<input_file>     | File | Results folder |
-| Output | --reports_folder | \<reports_folder> | File | Reports folder |
+|        | Flag                | Parameter            | Type   | Description                         |
+|--------|---------------------|----------------------|--------|-------------------------------------|
+| Input  | --results_folder    | \<input_file>        | File   | Results folder                      |
+| Output | --reports_folder    | \<reports_folder>    | File   | Reports folder                      |
+| Output | --working_directory | \<working_directory> | Folder | Working directory (temporary files) |
 
 ### Uninstall
 

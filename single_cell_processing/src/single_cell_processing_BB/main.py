@@ -7,6 +7,7 @@ from permedcoe import task
 from permedcoe import FILE_IN
 from permedcoe import FILE_OUT
 from permedcoe import DIRECTORY_OUT
+from permedcoe import TMPDIR
 
 # Import single container and assets definitions
 from single_cell_processing_BB.definitions import SINGLE_CELL_ASSETS_PATH
@@ -31,6 +32,7 @@ SINGLE_CELL_PROCESSING_BINARY = os.path.join(
     outdir=DIRECTORY_OUT,
 )
 def single_cell_processing(
+    tmpdir=TMPDIR,
     id_flag="-i",
     p_id="C141",
     group_flag="-g",
@@ -48,13 +50,14 @@ def single_cell_processing(
     outdir_flag="-o",
     outdir=None,
     parallelize_flag="-p",
-    parallelize=COMPUTING_UNITS,
+    parallelize=COMPUTING_UNITS
 ):
     """
     Performs the Single Cell processing.
 
     The Definition is equal to:
-        ./single_cell_processing.sh -i <id> -g <group> -f <file> \
+        ./single_cell_processing.sh <tmpdir> \
+                                    -i <id> -g <group> -f <file> \
                                     -nd <norm_data> \
                                     -rd <raw_data> \
                                     -sd <scaled_data> \
@@ -85,6 +88,7 @@ def invoke(arguments, config):
     scaled_data = arguments.scaled_data
     cells_metadata = arguments.cells_metadata
     outdir = arguments.outdir
+    tmpdir = arguments.tmpdir
     # Building block invocation
     single_cell_processing(
         p_id=p_id,
@@ -96,4 +100,5 @@ def invoke(arguments, config):
         cells_metadata=cells_metadata,
         outdir=outdir,
         parallelize=parallelize,
+        tmpdir=tmpdir,
     )

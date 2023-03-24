@@ -61,7 +61,10 @@ application, or through the command line for other workflow managers
 The command line is:
 
 ```bash
+ML_JAX_DRUG_PREDICTION_ASSETS=$(python3 -c "import ml_jax_drug_prediction_BB; import os; print(os.path.dirname(ml_jax_drug_prediction_BB.__file__))")
+
 ml_jax_drug_prediction_BB -d \
+    --mount_point ${ML_JAX_DRUG_PREDICTION_ASSETS}/assets:${ML_JAX_DRUG_PREDICTION_ASSETS}/assets,<working_directory>:<working_directory> \
     --input_file <input_file> \
     --drug_features <drug_features> \
     --cell_features <cell_features> \
@@ -71,29 +74,36 @@ ml_jax_drug_prediction_BB -d \
     --latent_size <latent_size> \
     --test_drugs <test_drugs> \
     --test_cells <test_cells> \
-    --output_file <output_file>
+    --output_file <output_file> \
+    --working_directory <working_directory>
 ```
 
 Where the parameters are:
 
-|        | Flag            | Parameter        | Type    | Description                                                                                                   |
-|--------|-----------------|------------------|---------|---------------------------------------------------------------------------------------------------------------|
-| Input  | --input_file    | \<input_file>    | File    | CSV with the matrix to predict (e.g IC50 drug/cell responses) for training (see [this example](https://raw.githubusercontent.com/saezlab/Macau_project_1/master/DATA/IC50)). If the file is a .npz file, then the model is imported and this is run in inference mode for predictions. If `.x` is provided, the example file is used for training a model. |
-| Input  | --drug_features | \<drug_features> | File    | CSV with row features (e.g drug targets). See [this example](https://raw.githubusercontent.com/saezlab/Macau_project_1/master/DATA/target). If `.x` is provided, the example file is used. |
-| Input  | --cell_features | \<cell_features> | File    | CSV with col features (e.g cell features). See [this example](https://raw.githubusercontent.com/saezlab/Macau_project_1/master/DATA/progeny11). If `.x` is provided, the example file is used. |
-| Input  | --epochs        | \<epochs>        | Integer | Number of epochs for training using the ADAM optimizer. E.g 200                                               |
-| Input  | --adam_lr       | \<adam_lr>       | Float   | Learning rate for the ADAM solver. E.g 0.1. Recommended <= 0.1. Lower values slow down the convergence.         |
-| Input  | --reg           | \<reg>           | Float   |  L2 regularization weight. E.g 0.001. |
-| Input  | --latent_size   | \<latent_size>   | Integer | Number of dimensions for the latent matrices to be estimated from the data. As a rule of thumb, this should be at most the minimum number of features for cells or drugs used. Larger values might create overfitted models. |
-| Input  | --test_drugs    | \<test_drugs>    | String  | If row features are provided, this is the proportion of samples removed from training for validation. E.g 0.2.  |
-| Input  | --test_cells    | \<test_cells>    | String  | If col features are provided, this is the proportion of samples removed from training for validation. E.g 0.2. |
-| Output | --output_file   | \<output_file>   | File    | npz file with the trained model if in training mode, or csv file with prediction results.                      |
+|        | Flag                | Parameter            | Type    | Description                                                                                                   |
+|--------|---------------------|----------------------|---------|---------------------------------------------------------------------------------------------------------------|
+| Input  | --input_file        | \<input_file>        | File    | CSV with the matrix to predict (e.g IC50 drug/cell responses) for training (see [this example](https://raw.githubusercontent.com/saezlab/Macau_project_1/master/DATA/IC50)). If the file is a .npz file, then the model is imported and this is run in inference mode for predictions. If `.x` is provided, the example file is used for training a model. |
+| Input  | --drug_features     | \<drug_features>     | File    | CSV with row features (e.g drug targets). See [this example](https://raw.githubusercontent.com/saezlab/Macau_project_1/master/DATA/target). If `.x` is provided, the example file is used. |
+| Input  | --cell_features     | \<cell_features>     | File    | CSV with col features (e.g cell features). See [this example](https://raw.githubusercontent.com/saezlab/Macau_project_1/master/DATA/progeny11). If `.x` is provided, the example file is used. |
+| Input  | --epochs            | \<epochs>            | Integer | Number of epochs for training using the ADAM optimizer. E.g 200                                               |
+| Input  | --adam_lr           | \<adam_lr>           | Float   | Learning rate for the ADAM solver. E.g 0.1. Recommended <= 0.1. Lower values slow down the convergence.         |
+| Input  | --reg               | \<reg>               | Float   |  L2 regularization weight. E.g 0.001. |
+| Input  | --latent_size       | \<latent_size>       | Integer | Number of dimensions for the latent matrices to be estimated from the data. As a rule of thumb, this should be at most the minimum number of features for cells or drugs used. Larger values might create overfitted models. |
+| Input  | --test_drugs        | \<test_drugs>        | String  | If row features are provided, this is the proportion of samples removed from training for validation. E.g 0.2.  |
+| Input  | --test_cells        | \<test_cells>        | String  | If col features are provided, this is the proportion of samples removed from training for validation. E.g 0.2. |
+| Output | --output_file       | \<output_file>       | File    | npz file with the trained model if in training mode, or csv file with prediction results.                      |
+| Output | --working_directory | \<working_directory> | Folder  | Working directory (temporary files)   |
 
 
 Training example (using example data files) that builds a trained `model.npz`:
 
 ```bash
-ml_jax_drug_prediction_BB \
+ML_JAX_DRUG_PREDICTION_ASSETS=$(python3 -c "import ml_jax_drug_prediction_BB; import os; print(os.path.dirname(ml_jax_drug_prediction_BB.__file__))")
+ML_JAX_DRUG_PREDICTION_WD="$(pwd)/ml_jax_drug_prediction_wd"
+mkdir ${ML_JAX_DRUG_PREDICTION_WD}
+
+ml_jax_drug_prediction_BB -d \
+    --mount_point ${ML_JAX_DRUG_PREDICTION_ASSETS}/assets:${ML_JAX_DRUG_PREDICTION_ASSETS}/assets,${ML_JAX_DRUG_PREDICTION_WD}:${ML_JAX_DRUG_PREDICTION_WD} \
     --input_file .x \
     --drug_features .x \
     --cell_features .x \
@@ -103,7 +113,8 @@ ml_jax_drug_prediction_BB \
     --latent_size 10 \
     --test_drugs 0.1 \
     --test_cells 0.1 \
-    --output_file model.npz
+    --output_file model.npz \
+    --working_directory ${ML_JAX_DRUG_PREDICTION_WD}
 ```
 
 Example of prediction using a trained `model.npz` file (drug_features.csv and cell_features.csv contains new data in the same format as the files used for training, but from new drugs/cells to make predictions):

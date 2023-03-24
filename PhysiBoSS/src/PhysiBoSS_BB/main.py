@@ -8,6 +8,7 @@ from permedcoe import FILE_IN
 from permedcoe import FILE_OUT
 from permedcoe import DIRECTORY_IN
 from permedcoe import DIRECTORY_OUT
+from permedcoe import TMPDIR
 
 # Import single container and assets definitions
 from PhysiBoSS_BB.definitions import PHYSIBOSS_ASSETS_PATH
@@ -38,6 +39,7 @@ def physiboss_model(
     results_dir=None,
     parallel=COMPUTING_UNITS,
     max_time=8640,
+    tmpdir=TMPDIR
 ):
     """
     Performs the PhysiCell + MaBoSS analysis.
@@ -45,7 +47,7 @@ def physiboss_model(
     The Definition is equal to:
         ./physiboss_model.sh <sample> <repetition> <prefix> <model_dir> \
                              <file_name> <out_file> <err_file> <results_dir> \
-                             <computing_units> <max_time>
+                             <computing_units> <max_time> <tmpdir>
     """
     # Empty function since it represents a binary execution:
     pass
@@ -72,6 +74,7 @@ def physiboss(
     results_dir=None,
     parallel=COMPUTING_UNITS,
     max_time=8640,
+    tmpdir=TMPDIR
 ):
     """
     Performs the PhysiCell + MaBoSS analysis.
@@ -79,7 +82,7 @@ def physiboss(
     The Definition is equal to:
         ./physiboss.sh <sample> <repetition> <prefix> <bnd_file> \
                        <cfg_file> <out_file> <err_file> <results_dir> \
-                       <computing_units> <max_time>
+                       <computing_units> <max_time> <tmpdir>
     """
     # Empty function since it represents a binary execution:
     pass
@@ -105,6 +108,7 @@ def invoke(arguments, config):
     out_file = arguments.out_file
     err_file = arguments.err_file
     results_dir = arguments.results_dir
+    tmpdir = arguments.tmpdir
     # Building block invocation
     physiboss(
         sample=sample,
@@ -117,4 +121,5 @@ def invoke(arguments, config):
         results_dir=results_dir,
         parallel=parallel,
         max_time=max_time,
+        tmpdir=tmpdir
     )

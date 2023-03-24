@@ -9,7 +9,7 @@ long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
     name="Carnival_gex_preprocess_BB",
-    version="0.0.2",
+    version="0.0.3",
     description="This package provides the Carnival Gex Preprocess Building Block",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -36,7 +36,7 @@ setup(
     package_dir={"": "src"},
     packages=find_packages(where="src"),
     python_requires=">=3.6, <4",
-    install_requires=["permedcoe>=0.0.6"],
+    install_requires=["permedcoe>=0.0.8"],
     extras_require={
         "dev": ["check-manifest"],
     },

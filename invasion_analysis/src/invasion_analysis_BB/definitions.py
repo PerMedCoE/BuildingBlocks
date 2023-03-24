@@ -9,4 +9,5 @@ BB_SOURCE_PATH=os.path.dirname(os.path.abspath(__file__))
 #  - Assets folder within the Building Block
 INVASION_ANALYSIS_ASSETS_PATH = os.path.join(BB_SOURCE_PATH, "assets")
 #  - Container definition for the Invasion Analysis Building Block
-INVASION_ANALYSIS_CONTAINER = CONTAINER_PATH + "InvasionAnalysis.sif"
+CONTAINER = "invasion_analysis.sif"
+INVASION_ANALYSIS_CONTAINER = os.path.join(CONTAINER_PATH, CONTAINER)

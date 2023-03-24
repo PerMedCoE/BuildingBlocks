@@ -12,6 +12,7 @@ This package provides the Single-Cell Processing **Building Block (BB)**.
     - [Installation](#installation)
     - [Usage](#usage)
     - [Uninstall](#uninstall)
+  - [License](#license)
   - [Contact](#contact)
 
 ## Description
@@ -63,7 +64,7 @@ The command line is:
 SINGLE_CELL_ASSETS=$(python3 -c "import single_cell_processing_BB; import os; print(os.path.dirname(single_cell_processing_BB.__file__))")
 
 single_cell_processing_BB -d \
-    --mount_points ${SINGLE_CELL_ASSETS}/assets/:${SINGLE_CELL_ASSETS}/assets/ \
+    --mount_points ${SINGLE_CELL_ASSETS}/assets/:${SINGLE_CELL_ASSETS}/assets/,<working_directory>:<working_directory> \
     --p_id <p_id> \
     --p_group <p_group> \
     --p_file <p_file> \
@@ -72,22 +73,24 @@ single_cell_processing_BB -d \
     --raw_data <raw_data> \
     --scaled_data <scaled_data> \
     --cells_metadata <cells_metadata> \
-    --outdir <outdir>
+    --outdir <outdir> \
+    --working_directory <working_directory>
 ```
 
 Where the parameters are:
 
-|        | Flag             | Parameter         | Type    | Description                       |
-|--------|------------------|-------------------|---------|-----------------------------------|
-| Input  | --p_id           | \<p_id>           | String  | Patient ID                        |
-| Input  | --p_group        | \<p_group>        | String  | Patient's group label             |
-| Input  | --p_file         | \<p_file>         | File    | scRNA-Seq patient's counts        |
-| Input  | --parallelize    | \<parallelize>    | Integer | Internal parallelism              |
-| Output | --norm_data      | \<norm_data>      | File    | Normalized counts output filename |
-| Output | --raw_data       | \<raw_data>       | File    | Raw counts output filename        |
-| Output | --scaled_data    | \<scaled_data>    | File    | Scaled counts output filename     |
-| Output | --cells_metadata | \<cells_metadata> | File    | Cells' metadata output filename   |
-| Output | --outdir         | \<outdir>         | Folder  | Output folder                     |
+|        | Flag                | Parameter            | Type    | Description                         |
+|--------|---------------------|----------------------|---------|-------------------------------------|
+| Input  | --p_id              | \<p_id>              | String  | Patient ID                          |
+| Input  | --p_group           | \<p_group>           | String  | Patient's group label               |
+| Input  | --p_file            | \<p_file>            | File    | scRNA-Seq patient's counts          |
+| Input  | --parallelize       | \<parallelize>       | Integer | Internal parallelism                |
+| Output | --norm_data         | \<norm_data>         | File    | Normalized counts output filename   |
+| Output | --raw_data          | \<raw_data>          | File    | Raw counts output filename          |
+| Output | --scaled_data       | \<scaled_data>       | File    | Scaled counts output filename       |
+| Output | --cells_metadata    | \<cells_metadata>    | File    | Cells' metadata output filename     |
+| Output | --outdir            | \<outdir>            | Folder  | Output folder                       |
+| Output | --working_directory | \<working_directory> | Folder  | Working directory (temporary files) |
 
 ### Uninstall
 
@@ -97,6 +100,11 @@ Uninstall can be achieved by executing the following scripts:
 ./uninstall.sh
 ./clean.sh
 ```
+
+## License
+
+[Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+
 
 ## Contact
 
