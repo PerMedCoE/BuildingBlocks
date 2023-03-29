@@ -9,4 +9,5 @@ BB_SOURCE_PATH=os.path.dirname(os.path.abspath(__file__))
 #  - Assets folder within the Building Block
 COBREXA_ASSETS_PATH = os.path.join(BB_SOURCE_PATH, "assets")
 #  - Container definition for COBREXA Building Block
-COBREXA_CONTAINER = CONTAINER_PATH + "cobrexa.jl_latest.sif"
+CONTAINER = "cobrexa.jl_latest.sif"
+COBREXA_CONTAINER = os.path.join(CONTAINER_PATH, CONTAINER) 

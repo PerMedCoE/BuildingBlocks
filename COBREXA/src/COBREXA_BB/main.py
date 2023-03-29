@@ -19,11 +19,9 @@ COBREXA_BINARY = os.path.join(COBREXA_ASSETS_PATH, "fva.jl")
 
 @constraint(computing_units=COMPUTING_UNITS)
 @container(engine="SINGULARITY", image=COBREXA_CONTAINER)
-@binary(binary="julia")
+@julia(script=COBREXA_BINARY, project="/project")
 @task(input_file_xml=FILE_IN, output_file_txt=FILE_OUT)
 def COBREXA_analysis(
-    project_flag="--project=/project",
-    cobrexa_binary=COBREXA_BINARY,
     debug_flag="-d",
     input_file_xml=None,
     output_file_txt=None
@@ -37,27 +35,6 @@ def COBREXA_analysis(
     """
     # Empty function since it represents a binary execution:
     pass
-
-
-@constraint(computing_units=COMPUTING_UNITS)
-@container(engine="SINGULARITY", image=COBREXA_CONTAINER)
-@julia(script=COBREXA_BINARY, project="/project")
-@task(input_file_xml=FILE_IN, output_file_txt=FILE_OUT)
-def COBREXA_analysis_julia(
-    debug_flag="-d",
-    input_file_xml=None,
-    output_file_txt=None
-):
-    """
-    Performs the COBREXA analysis.
-    Produces the output txt file.
-
-    The Definition is equal to:
-        julia --project=/project <cobrexa_binary> <debug_flag> <input_xml> <output_txt>
-    """
-    # Empty function since it represents a julia execution:
-    pass
-
 
 
 def invoke(arguments, config):
