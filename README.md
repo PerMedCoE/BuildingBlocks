@@ -12,7 +12,7 @@ This repository contains the **Building Blocks** developed within the **HPC/Exas
 
 ## List of Building Blocks
 
-1. [**COBREXA](COBREXA/)
+1. [**COBREXA**](COBREXA/)
 
     [TODO: ADD DESCRIPTION]
 
