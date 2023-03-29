@@ -36,7 +36,7 @@ setup(
     package_dir={"": "src"},
     packages=find_packages(where="src"),
     python_requires=">=3.6, <4",
-    install_requires=["permedcoe>=0.0.8"],
+    install_requires=["permedcoe>=0.0.9"],
     extras_require={
         "dev": ["check-manifest"],
     },
