@@ -1,0 +1,27 @@
+{
+    "short_description": "TODO: ADD SHORT DESCRIPTION.",
+    "long_description": "TODO: ADD LONG DESCRIPTION.",
+    "use_description": "long",
+    "parameters": {
+        "default": [
+            {
+                "type": "input",
+                "name": "verbose",
+                "format": "bool",
+                "description": "Enable verbose mode (true | false)"
+            },
+            {
+                "type": "input",
+                "name": "input_xml",
+                "format": "file",
+                "description": "Input xml file"
+            },
+            {
+                "type": "output",
+                "name": "output_txt",
+                "format": "file",
+                "description": "Output txt file"
+            }
+        ]
+    }
+}
