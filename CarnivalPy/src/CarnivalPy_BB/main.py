@@ -9,12 +9,12 @@ from permedcoe import FILE_OUT
 from permedcoe import TMPDIR
 
 # Import container definition
-from CarnivalPy_BB.definitions import CARNIVALPY_ASSETS_PATH
 from CarnivalPy_BB.definitions import CARNIVALPY_CONTAINER
+from CarnivalPy_BB.definitions import ASSETS_PATH
 from CarnivalPy_BB.definitions import COMPUTING_UNITS
 
 # Globals
-CARNIVALPY_BINARY = os.path.join(CARNIVALPY_ASSETS_PATH, "carnivalpy.sh")
+CARNIVALPY_BINARY = os.path.join(ASSETS_PATH, "carnivalpy.sh")
 
 
 @constraint(computing_units=COMPUTING_UNITS)

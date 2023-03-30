@@ -9,12 +9,12 @@ from permedcoe import FILE_OUT
 from permedcoe import TMPDIR
 
 # Import container definition
-from progeny_BB.definitions import PROGENY_ASSETS_PATH
 from progeny_BB.definitions import PROGENY_CONTAINER
+from progeny_BB.definitions import ASSETS_PATH
 from progeny_BB.definitions import COMPUTING_UNITS
 
 # Globals
-PROGENY_BINARY = os.path.join(PROGENY_ASSETS_PATH, "progeny.sh")
+PROGENY_BINARY = os.path.join(ASSETS_PATH, "progeny.sh")
 
 
 @constraint(computing_units=COMPUTING_UNITS)

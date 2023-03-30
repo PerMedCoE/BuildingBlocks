@@ -8,12 +8,12 @@ from permedcoe import FILE_OUT
 from permedcoe import TMPDIR
 
 # Import container definition
-from omnipath_BB.definitions import OMNIPATH_ASSETS_PATH
 from omnipath_BB.definitions import OMNIPATH_CONTAINER
+from omnipath_BB.definitions import ASSETS_PATH
 from omnipath_BB.definitions import COMPUTING_UNITS
 
 # Globals
-OMNIPATH_BINARY = os.path.join(OMNIPATH_ASSETS_PATH, "omnipath.sh")
+OMNIPATH_BINARY = os.path.join(ASSETS_PATH, "omnipath.sh")
 
 
 @constraint(computing_units=COMPUTING_UNITS)

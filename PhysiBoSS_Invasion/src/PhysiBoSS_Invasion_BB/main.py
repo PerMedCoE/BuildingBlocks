@@ -11,13 +11,13 @@ from permedcoe import DIRECTORY_OUT
 from permedcoe import TMPDIR
 
 # Import single container and assets definitions
-from PhysiBoSS_Invasion_BB.definitions import PHYSIBOSS_INVASION_ASSETS_PATH
 from PhysiBoSS_Invasion_BB.definitions import PHYSIBOSS_INVASION_CONTAINER
+from PhysiBoSS_Invasion_BB.definitions import ASSETS_PATH
 from PhysiBoSS_Invasion_BB.definitions import COMPUTING_UNITS
 
 # Globals
-PHYSIBOSS_INVASION_BINARY = os.path.join(PHYSIBOSS_INVASION_ASSETS_PATH, "PhysiBoSS_Invasion.sh")
-PHYSIBOSS_INVASION_MODEL_BINARY = os.path.join(PHYSIBOSS_INVASION_ASSETS_PATH, "PhysiBoSS_Invasion_model.sh")
+PHYSIBOSS_INVASION_BINARY = os.path.join(ASSETS_PATH, "PhysiBoSS_Invasion.sh")
+PHYSIBOSS_INVASION_MODEL_BINARY = os.path.join(ASSETS_PATH, "PhysiBoSS_Invasion_model.sh")
 
 @constraint(computing_units=COMPUTING_UNITS)
 @container(engine="SINGULARITY", image=PHYSIBOSS_INVASION_CONTAINER)

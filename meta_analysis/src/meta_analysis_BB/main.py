@@ -10,13 +10,12 @@ from permedcoe import DIRECTORY_OUT
 from permedcoe import TMPDIR
 
 # Import single container and assets definitions
-from meta_analysis_BB.definitions import META_ANALYSIS_ASSETS_PATH
 from meta_analysis_BB.definitions import META_ANALYSIS_CONTAINER
+from meta_analysis_BB.definitions import ASSETS_PATH
 from meta_analysis_BB.definitions import COMPUTING_UNITS
 
 # Globals
-META_ANALYSIS_BINARY = os.path.join(META_ANALYSIS_ASSETS_PATH,
-                                    "meta_analysis.sh")
+META_ANALYSIS_BINARY = os.path.join(ASSETS_PATH, "meta_analysis.sh")
 
 
 # @constraint(computing_units=COMPUTING_UNITS)

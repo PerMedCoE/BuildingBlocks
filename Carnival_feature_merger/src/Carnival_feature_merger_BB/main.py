@@ -9,12 +9,12 @@ from permedcoe import DIRECTORY_IN
 from permedcoe import TMPDIR
 
 # Import container definition
-from Carnival_feature_merger_BB.definitions import CARNIVAL_FEATURE_MERGER_ASSETS_PATH
 from Carnival_feature_merger_BB.definitions import CARNIVAL_FEATURE_MERGER_CONTAINER
+from Carnival_feature_merger_BB.definitions import ASSETS_PATH
 from Carnival_feature_merger_BB.definitions import COMPUTING_UNITS
 
 # Globals
-CARNIVAL_FEATURE_MERGER_BINARY = os.path.join(CARNIVAL_FEATURE_MERGER_ASSETS_PATH, "carnival_feature_merger.sh")
+CARNIVAL_FEATURE_MERGER_BINARY = os.path.join(ASSETS_PATH, "carnival_feature_merger.sh")
 
 
 @constraint(computing_units=COMPUTING_UNITS)

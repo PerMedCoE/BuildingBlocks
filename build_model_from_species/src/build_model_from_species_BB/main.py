@@ -11,11 +11,11 @@ from permedcoe import TMPDIR
 
 # Import single container and assets definitions
 from build_model_from_species_BB.definitions import BUILD_MODEL_FROM_SPECIES_CONTAINER
-from build_model_from_species_BB.definitions import BUILD_MODEL_FROM_SPECIES_ASSETS_PATH
+from build_model_from_species_BB.definitions import ASSETS_PATH
 from build_model_from_species_BB.definitions import COMPUTING_UNITS
 
 # Globals
-BUILD_MODEL_FROM_SPECIES_BINARY = os.path.join(BUILD_MODEL_FROM_SPECIES_ASSETS_PATH, "FromSpeciesToMaBoSSModel.sh")
+BUILD_MODEL_FROM_SPECIES_BINARY = os.path.join(ASSETS_PATH, "FromSpeciesToMaBoSSModel.sh")
 
 
 @container(engine="SINGULARITY", image=BUILD_MODEL_FROM_SPECIES_CONTAINER)

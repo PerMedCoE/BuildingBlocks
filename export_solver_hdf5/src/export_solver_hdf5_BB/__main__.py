@@ -6,11 +6,15 @@ NOTE: Do not modify this file unless you want to change the name
 import os
 from permedcoe import invoker
 from export_solver_hdf5_BB.main import invoke
+from export_solver_hdf5_BB.definitions import ASSETS_PATH
 from export_solver_hdf5_BB.definitions import BB_SOURCE_PATH
 
 
 def main():
-    invoker(invoke, os.path.join(BB_SOURCE_PATH, "definition.json"), require_tmpdir=True)
+    invoker(invoke,
+            os.path.join(BB_SOURCE_PATH, "definition.json"),
+            require_tmpdir=True,
+            assets_path=ASSETS_PATH)
 
 
 if __name__ == "__main__":

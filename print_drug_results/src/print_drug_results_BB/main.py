@@ -11,12 +11,11 @@ from permedcoe import TMPDIR
 
 # Import single container and assets definitions
 from print_drug_results_BB.definitions import PRINT_DRUG_RESULTS_CONTAINER
-from print_drug_results_BB.definitions import PRINT_DRUG_RESULTS_ASSETS_PATH
+from print_drug_results_BB.definitions import ASSETS_PATH
 from print_drug_results_BB.definitions import COMPUTING_UNITS
 
 # Globals
-PRINT_DRUG_RESULTS_BINARY = os.path.join(PRINT_DRUG_RESULTS_ASSETS_PATH,
-                                         "print_result_drugs.sh")
+PRINT_DRUG_RESULTS_BINARY = os.path.join(ASSETS_PATH, "print_result_drugs.sh")
 
 ############################################
 ###### Parallelized code for PyCOMPSs ######
