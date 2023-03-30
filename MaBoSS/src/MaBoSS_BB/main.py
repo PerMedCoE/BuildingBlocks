@@ -10,16 +10,14 @@ from permedcoe import FILE_OUT
 from permedcoe import TMPDIR
 
 # Import single container and assets definitions
-from MaBoSS_BB.definitions import MABOSS_ASSETS_PATH
 from MaBoSS_BB.definitions import MABOSS_CONTAINER
 from MaBoSS_BB.definitions import MABOSS_SENSITIVITY_CONTAINER
+from MaBoSS_BB.definitions import ASSETS_PATH
 from MaBoSS_BB.definitions import COMPUTING_UNITS
 
 # Globals
-MABOSS_BINARY = os.path.join(MABOSS_ASSETS_PATH, "MaBoSS_analysis.sh")
-MABOSS_SENSITIVIY_ANALYSIS_BINARY = os.path.join(
-    MABOSS_ASSETS_PATH, "MaBoSS_sensitivity_analysis.sh"
-)
+MABOSS_BINARY = os.path.join(ASSETS_PATH, "MaBoSS_analysis.sh")
+MABOSS_SENSITIVIY_ANALYSIS_BINARY = os.path.join(ASSETS_PATH, "MaBoSS_sensitivity_analysis.sh")
 
 
 @constraint(computing_units=COMPUTING_UNITS)

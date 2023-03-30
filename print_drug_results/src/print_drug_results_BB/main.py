@@ -10,13 +10,12 @@ from permedcoe import DIRECTORY_OUT
 from permedcoe import TMPDIR
 
 # Import single container and assets definitions
-from print_drug_results_BB.definitions import PRINT_DRUG_RESULTS_CONTAINER
-from print_drug_results_BB.definitions import PRINT_DRUG_RESULTS_ASSETS_PATH
+from print_drug_results_BB.definitions import CONTAINER
+from print_drug_results_BB.definitions import ASSETS_PATH
 from print_drug_results_BB.definitions import COMPUTING_UNITS
 
 # Globals
-PRINT_DRUG_RESULTS_BINARY = os.path.join(PRINT_DRUG_RESULTS_ASSETS_PATH,
-                                         "print_result_drugs.sh")
+PRINT_DRUG_RESULTS_BINARY = os.path.join(ASSETS_PATH, "print_result_drugs.sh")
 
 ############################################
 ###### Parallelized code for PyCOMPSs ######
@@ -65,17 +64,17 @@ def merge_reduce(f, data):
         else:
             return data[x]
 
-@container(engine="SINGULARITY", image=PRINT_DRUG_RESULTS_CONTAINER)
+@container(engine="SINGULARITY", image=CONTAINER)
 @task(returns=1)
 def merge_mutants(mutant_a, mutant_b):
     return mutant_a.union(mutant_b)
 
-@container(engine="SINGULARITY", image=PRINT_DRUG_RESULTS_CONTAINER)
+@container(engine="SINGULARITY", image=CONTAINER)
 @task(returns=1)
 def merge_targets(target_a, target_b):
     return target_a.union(target_b)
 
-@container(engine="SINGULARITY", image=PRINT_DRUG_RESULTS_CONTAINER)
+@container(engine="SINGULARITY", image=CONTAINER)
 @task(result_path=FILE_IN, returns=1)
 def read_result_file(result_path):
     import json
@@ -83,14 +82,14 @@ def read_result_file(result_path):
         result = json.load(result_file)
     return result
 
-@container(engine="SINGULARITY", image=PRINT_DRUG_RESULTS_CONTAINER)
+@container(engine="SINGULARITY", image=CONTAINER)
 @task(returns=2)
 def get_mutant_target(result):
     mutant = set(list(result.keys()))
     target = set(list(list(result.values())[0].keys()))
     return mutant, target
 
-@container(engine="SINGULARITY", image=PRINT_DRUG_RESULTS_CONTAINER)
+@container(engine="SINGULARITY", image=CONTAINER)
 @task(returns=1)
 def create_dfs(mutants, targets, cell_lines, *results):
     import numpy, pandas
@@ -112,7 +111,7 @@ def create_dfs(mutants, targets, cell_lines, *results):
         position += 1
     return dfs
 
-@container(engine="SINGULARITY", image=PRINT_DRUG_RESULTS_CONTAINER)
+@container(engine="SINGULARITY", image=CONTAINER)
 @task(report_folder=DIRECTORY_OUT)
 def print_results(dfs, report_folder):
     import seaborn
@@ -138,7 +137,7 @@ def print_results(dfs, report_folder):
 ###### Using directly the binary ######
 #######################################
 
-@container(engine="SINGULARITY", image=PRINT_DRUG_RESULTS_CONTAINER)
+@container(engine="SINGULARITY", image=CONTAINER)
 @binary(binary=PRINT_DRUG_RESULTS_BINARY)
 @task(drug_results_folder=DIRECTORY_IN, reports_folder=DIRECTORY_OUT)
 def print_drug_results(
