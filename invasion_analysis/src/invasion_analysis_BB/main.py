@@ -11,7 +11,7 @@ from permedcoe import DIRECTORY_IN
 from permedcoe import TMPDIR
 
 # Import single container and assets definitions
-from invasion_analysis_BB.definitions import INVASION_ANALYSIS_CONTAINER
+from invasion_analysis_BB.definitions import CONTAINER
 from invasion_analysis_BB.definitions import ASSETS_PATH
 from invasion_analysis_BB.definitions import COMPUTING_UNITS
 
@@ -19,7 +19,7 @@ from invasion_analysis_BB.definitions import COMPUTING_UNITS
 INVASION_ANALYSIS_BINARY = os.path.join(ASSETS_PATH, "InvasionAnalysis.sh")
 
 
-@container(engine="SINGULARITY", image=INVASION_ANALYSIS_CONTAINER)
+@container(engine="SINGULARITY", image=CONTAINER)
 @binary(binary=INVASION_ANALYSIS_BINARY)
 @task(physiboss_result_path=DIRECTORY_IN, output_data=FILE_OUT)
 def invasion_analysis(tmpdir=TMPDIR,

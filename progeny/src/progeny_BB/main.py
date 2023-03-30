@@ -9,7 +9,7 @@ from permedcoe import FILE_OUT
 from permedcoe import TMPDIR
 
 # Import container definition
-from progeny_BB.definitions import PROGENY_CONTAINER
+from progeny_BB.definitions import CONTAINER
 from progeny_BB.definitions import ASSETS_PATH
 from progeny_BB.definitions import COMPUTING_UNITS
 
@@ -18,7 +18,7 @@ PROGENY_BINARY = os.path.join(ASSETS_PATH, "progeny.sh")
 
 
 @constraint(computing_units=COMPUTING_UNITS)
-@container(engine="SINGULARITY", image=PROGENY_CONTAINER)
+@container(engine="SINGULARITY", image=CONTAINER)
 @binary(binary=PROGENY_BINARY)
 @task(input_file=FILE_IN, output_file=FILE_OUT)
 def progeny(tmpdir=TMPDIR,

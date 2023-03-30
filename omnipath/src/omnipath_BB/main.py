@@ -8,7 +8,7 @@ from permedcoe import FILE_OUT
 from permedcoe import TMPDIR
 
 # Import container definition
-from omnipath_BB.definitions import OMNIPATH_CONTAINER
+from omnipath_BB.definitions import CONTAINER
 from omnipath_BB.definitions import ASSETS_PATH
 from omnipath_BB.definitions import COMPUTING_UNITS
 
@@ -17,7 +17,7 @@ OMNIPATH_BINARY = os.path.join(ASSETS_PATH, "omnipath.sh")
 
 
 @constraint(computing_units=COMPUTING_UNITS)
-@container(engine="SINGULARITY", image=OMNIPATH_CONTAINER)
+@container(engine="SINGULARITY", image=CONTAINER)
 @binary(binary=OMNIPATH_BINARY)
 @task(output_file=FILE_OUT)
 def omnipath(tmpdir=TMPDIR,

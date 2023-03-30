@@ -9,7 +9,7 @@ from permedcoe import FILE_OUT
 from permedcoe import TMPDIR
 
 # Import container definition
-from CarnivalPy_BB.definitions import CARNIVALPY_CONTAINER
+from CarnivalPy_BB.definitions import CONTAINER
 from CarnivalPy_BB.definitions import ASSETS_PATH
 from CarnivalPy_BB.definitions import COMPUTING_UNITS
 
@@ -18,7 +18,7 @@ CARNIVALPY_BINARY = os.path.join(ASSETS_PATH, "carnivalpy.sh")
 
 
 @constraint(computing_units=COMPUTING_UNITS)
-@container(engine="SINGULARITY", image=CARNIVALPY_CONTAINER)
+@container(engine="SINGULARITY", image=CONTAINER)
 @binary(binary=CARNIVALPY_BINARY)
 @task(path=DIRECTORY_IN, export=FILE_OUT)
 def carnivalpy(tmpdir=TMPDIR,

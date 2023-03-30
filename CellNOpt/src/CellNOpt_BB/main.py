@@ -7,12 +7,12 @@ from permedcoe import task
 from permedcoe import FILE_IN
 
 # Import container definition
-from CellNOpt_BB.definitions import CELLNOPT_CONTAINER
+from CellNOpt_BB.definitions import CONTAINER
 from CellNOpt_BB.definitions import COMPUTING_UNITS
 
 
 @constraint(computing_units=COMPUTING_UNITS)
-@container(engine="SINGULARITY", image=CELLNOPT_CONTAINER)
+@container(engine="SINGULARITY", image=CONTAINER)
 @binary(binary="/opt/cellnopt/build/example1")
 @task(input_file=FILE_IN)
 def cellnopt(input_file=None):

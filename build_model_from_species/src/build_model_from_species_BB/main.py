@@ -10,7 +10,7 @@ from permedcoe import FILE_OUT
 from permedcoe import TMPDIR
 
 # Import single container and assets definitions
-from build_model_from_species_BB.definitions import BUILD_MODEL_FROM_SPECIES_CONTAINER
+from build_model_from_species_BB.definitions import CONTAINER
 from build_model_from_species_BB.definitions import ASSETS_PATH
 from build_model_from_species_BB.definitions import COMPUTING_UNITS
 
@@ -18,7 +18,7 @@ from build_model_from_species_BB.definitions import COMPUTING_UNITS
 BUILD_MODEL_FROM_SPECIES_BINARY = os.path.join(ASSETS_PATH, "FromSpeciesToMaBoSSModel.sh")
 
 
-@container(engine="SINGULARITY", image=BUILD_MODEL_FROM_SPECIES_CONTAINER)
+@container(engine="SINGULARITY", image=CONTAINER)
 @binary(binary=BUILD_MODEL_FROM_SPECIES_BINARY)
 @task(output_bnd_file=FILE_OUT, output_cfg_file=FILE_OUT, input_file=FILE_IN)
 def build_model_from_species(tmpdir=TMPDIR,
@@ -32,7 +32,7 @@ def build_model_from_species(tmpdir=TMPDIR,
     pass
 
 
-@container(engine="SINGULARITY", image=BUILD_MODEL_FROM_SPECIES_CONTAINER)
+@container(engine="SINGULARITY", image=CONTAINER)
 @binary(binary=BUILD_MODEL_FROM_SPECIES_BINARY)
 @task(output_bnd_file=FILE_OUT, output_cfg_file=FILE_OUT, input_file=FILE_IN)
 def build_model_from_sif(tmpdir=TMPDIR,

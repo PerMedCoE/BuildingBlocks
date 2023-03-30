@@ -5,12 +5,12 @@ from permedcoe import task
 from permedcoe import FILE_IN
 
 # Import container definition
-from Carnival_BB.definitions import CARNIVAL_CONTAINER
+from Carnival_BB.definitions import CONTAINER
 from Carnival_BB.definitions import COMPUTING_UNITS
 
 
 @constraint(computing_units=COMPUTING_UNITS)
-@container(engine="SINGULARITY", image=CARNIVAL_CONTAINER)
+@container(engine="SINGULARITY", image=CONTAINER)
 @binary(binary="/opt/carnival/build/aco")
 @task(input_file=FILE_IN)
 def carnival(input_file=None):

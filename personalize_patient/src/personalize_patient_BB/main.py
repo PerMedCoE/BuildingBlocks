@@ -10,7 +10,7 @@ from permedcoe import DIRECTORY_OUT
 from permedcoe import TMPDIR
 
 # Import single container and assets definitions
-from personalize_patient_BB.definitions import PERSONALIZE_PATIENT_CONTAINER
+from personalize_patient_BB.definitions import CONTAINER
 from personalize_patient_BB.definitions import ASSETS_PATH
 from personalize_patient_BB.definitions import COMPUTING_UNITS
 
@@ -20,7 +20,7 @@ PERSONALIZE_CELLLINE_BINARY = os.path.join(ASSETS_PATH, "personalize_cellline.sh
 
 
 # @constraint(computing_units=COMPUTING_UNITS)
-@container(engine="SINGULARITY", image=PERSONALIZE_PATIENT_CONTAINER)
+@container(engine="SINGULARITY", image=CONTAINER)
 @binary(binary=PERSONALIZE_PATIENT_BINARY)
 @task(norm_data=FILE_IN, cells=FILE_IN, model_output_dir=DIRECTORY_OUT, personalized_result=FILE_OUT, ko=FILE_IN)
 def personalize_patient(tmpdir=TMPDIR,
@@ -56,7 +56,7 @@ def personalize_patient(tmpdir=TMPDIR,
     pass
 
 
-@container(engine="SINGULARITY", image=PERSONALIZE_PATIENT_CONTAINER)
+@container(engine="SINGULARITY", image=CONTAINER)
 @binary(binary=PERSONALIZE_CELLLINE_BINARY)
 @task(expression_data=FILE_IN, cnv_data=FILE_IN, mutation_data=FILE_IN, model_bnd=FILE_IN, model_cfg=FILE_IN, model_output_dir=DIRECTORY_OUT)
 def personalize_patient_cellline(tmpdir=TMPDIR,
