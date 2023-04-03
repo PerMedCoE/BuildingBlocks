@@ -9,17 +9,16 @@ from permedcoe import FILE_OUT
 from permedcoe import TMPDIR
 
 # Import container definition
-from ml_jax_drug_prediction_BB.definitions import ML_JAX_DRUG_PREDICTION_ASSETS_PATH
-from ml_jax_drug_prediction_BB.definitions import ML_JAX_DRUG_PREDICTION_CONTAINER
+from ml_jax_drug_prediction_BB.definitions import CONTAINER
+from ml_jax_drug_prediction_BB.definitions import ASSETS_PATH
 from ml_jax_drug_prediction_BB.definitions import COMPUTING_UNITS
 
 # Globals
-ML_JAX_DRUG_PREDICTION_BINARY = os.path.join(ML_JAX_DRUG_PREDICTION_ASSETS_PATH,
-                                             "ml_jax_drug_prediction.sh")
+ML_JAX_DRUG_PREDICTION_BINARY = os.path.join(ASSETS_PATH, "ml_jax_drug_prediction.sh")
 
 
 @constraint(computing_units=COMPUTING_UNITS)
-@container(engine="SINGULARITY", image=ML_JAX_DRUG_PREDICTION_CONTAINER)
+@container(engine="SINGULARITY", image=CONTAINER)
 @binary(binary=ML_JAX_DRUG_PREDICTION_BINARY)
 @task(input_file=FILE_IN, output_file=FILE_OUT, cell_features=FILE_IN)
 def ml(tmpdir=TMPDIR,

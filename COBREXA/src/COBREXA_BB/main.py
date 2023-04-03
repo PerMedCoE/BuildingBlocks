@@ -9,16 +9,16 @@ from permedcoe import FILE_IN
 from permedcoe import FILE_OUT
 
 # Import single container and assets definitions
-from COBREXA_BB.definitions import COBREXA_ASSETS_PATH
-from COBREXA_BB.definitions import COBREXA_CONTAINER
+from COBREXA_BB.definitions import CONTAINER
+from COBREXA_BB.definitions import ASSETS_PATH
 from COBREXA_BB.definitions import COMPUTING_UNITS
 
 # Globals
-COBREXA_BINARY = os.path.join(COBREXA_ASSETS_PATH, "fva.jl")
+COBREXA_BINARY = os.path.join(ASSETS_PATH, "fva.jl")
 
 
 @constraint(computing_units=COMPUTING_UNITS)
-@container(engine="SINGULARITY", image=COBREXA_CONTAINER)
+@container(engine="SINGULARITY", image=CONTAINER)
 @julia(script=COBREXA_BINARY, project="/project")
 @task(input_file_xml=FILE_IN, output_file_txt=FILE_OUT)
 def COBREXA_analysis(

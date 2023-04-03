@@ -9,17 +9,16 @@ from permedcoe import FILE_OUT
 from permedcoe import TMPDIR
 
 # Import container definition
-from Carnival_gex_preprocess_BB.definitions import CARNIVAL_GEX_PREPROCESS_ASSETS_PATH
-from Carnival_gex_preprocess_BB.definitions import CARNIVAL_GEX_PREPROCESS_CONTAINER
+from Carnival_gex_preprocess_BB.definitions import CONTAINER
+from Carnival_gex_preprocess_BB.definitions import ASSETS_PATH
 from Carnival_gex_preprocess_BB.definitions import COMPUTING_UNITS
 
 # Globals
-CARNIVAL_GEX_PREPROCESS_BINARY = os.path.join(CARNIVAL_GEX_PREPROCESS_ASSETS_PATH,
-                                              "carnival_gex_preprocess.sh")
+CARNIVAL_GEX_PREPROCESS_BINARY = os.path.join(ASSETS_PATH, "carnival_gex_preprocess.sh")
 
 
 @constraint(computing_units=COMPUTING_UNITS)
-@container(engine="SINGULARITY", image=CARNIVAL_GEX_PREPROCESS_CONTAINER)
+@container(engine="SINGULARITY", image=CONTAINER)
 @binary(binary=CARNIVAL_GEX_PREPROCESS_BINARY)
 @task(input_file=FILE_IN, output_file=FILE_OUT)
 def preprocess(tmpdir=TMPDIR,

@@ -9,17 +9,16 @@ from permedcoe import FILE_OUT
 from permedcoe import TMPDIR
 
 # Import container definition
-from tf_enrichment_BB.definitions import TF_ENRICHMENT_ASSETS_PATH
-from tf_enrichment_BB.definitions import TF_ENRICHMENT_CONTAINER
+from tf_enrichment_BB.definitions import CONTAINER
+from tf_enrichment_BB.definitions import ASSETS_PATH
 from tf_enrichment_BB.definitions import COMPUTING_UNITS
 
 # Globals
-TF_ENRICHMENT_BINARY = os.path.join(TF_ENRICHMENT_ASSETS_PATH,
-                                    "tf_enrichment.sh")
+TF_ENRICHMENT_BINARY = os.path.join(ASSETS_PATH, "tf_enrichment.sh")
 
 
 @constraint(computing_units=COMPUTING_UNITS)
-@container(engine="SINGULARITY", image=TF_ENRICHMENT_CONTAINER)
+@container(engine="SINGULARITY", image=CONTAINER)
 @binary(binary=TF_ENRICHMENT_BINARY)
 @task(input_file=FILE_IN, output_file=FILE_OUT)
 def tf_enrichment(tmpdir=TMPDIR,

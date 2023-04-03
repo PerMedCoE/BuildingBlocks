@@ -9,17 +9,16 @@ from permedcoe import FILE_OUT
 from permedcoe import TMPDIR
 
 # Import container definition
-from export_solver_hdf5_BB.definitions import EXPORT_SOLVER_HDF5_ASSETS_PATH
-from export_solver_hdf5_BB.definitions import EXPORT_SOLVER_HDF5_CONTAINER
+from export_solver_hdf5_BB.definitions import CONTAINER
+from export_solver_hdf5_BB.definitions import ASSETS_PATH
 from export_solver_hdf5_BB.definitions import COMPUTING_UNITS
 
 # Globals
-EXPORT_SOLVER_HDF5_BINARY = os.path.join(EXPORT_SOLVER_HDF5_ASSETS_PATH,
-                                         "export_solver_hdf5.sh")
+EXPORT_SOLVER_HDF5_BINARY = os.path.join(ASSETS_PATH, "export_solver_hdf5.sh")
 
 
 @constraint(computing_units=COMPUTING_UNITS)
-@container(engine="SINGULARITY", image=EXPORT_SOLVER_HDF5_CONTAINER)
+@container(engine="SINGULARITY", image=CONTAINER)
 @binary(binary=EXPORT_SOLVER_HDF5_BINARY)
 @task(sif=FILE_IN, measurements=FILE_IN, inputs=FILE_IN, output_file=FILE_OUT)
 def export(tmpdir=TMPDIR,

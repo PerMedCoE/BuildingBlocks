@@ -10,18 +10,16 @@ from permedcoe import DIRECTORY_OUT
 from permedcoe import TMPDIR
 
 # Import single container and assets definitions
-from single_cell_processing_BB.definitions import SINGLE_CELL_ASSETS_PATH
-from single_cell_processing_BB.definitions import SINGLE_CELL_PROCESSING_CONTAINER
+from single_cell_processing_BB.definitions import CONTAINER
+from single_cell_processing_BB.definitions import ASSETS_PATH
 from single_cell_processing_BB.definitions import COMPUTING_UNITS
 
 # Globals
-SINGLE_CELL_PROCESSING_BINARY = os.path.join(
-    SINGLE_CELL_ASSETS_PATH, "single_cell_processing_individual.sh"
-)
+SINGLE_CELL_PROCESSING_BINARY = os.path.join(ASSETS_PATH, "single_cell_processing_individual.sh")
 
 
 @constraint(computing_units=COMPUTING_UNITS)
-@container(engine="SINGULARITY", image=SINGLE_CELL_PROCESSING_CONTAINER)
+@container(engine="SINGULARITY", image=CONTAINER)
 @binary(binary=SINGLE_CELL_PROCESSING_BINARY)
 @task(
     p_file=FILE_IN,

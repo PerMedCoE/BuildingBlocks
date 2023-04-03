@@ -11,17 +11,17 @@ from permedcoe import DIRECTORY_OUT
 from permedcoe import TMPDIR
 
 # Import single container and assets definitions
-from PhysiBoSS_BB.definitions import PHYSIBOSS_ASSETS_PATH
-from PhysiBoSS_BB.definitions import PHYSIBOSS_CONTAINER
+from PhysiBoSS_BB.definitions import CONTAINER
+from PhysiBoSS_BB.definitions import ASSETS_PATH
 from PhysiBoSS_BB.definitions import COMPUTING_UNITS
 
 # Globals# Globals
-PHYSIBOSS_BINARY = os.path.join(PHYSIBOSS_ASSETS_PATH, "PhysiBoSS.sh")
-PHYSIBOSS_MODEL_BINARY = os.path.join(PHYSIBOSS_ASSETS_PATH, "PhysiBoSS_model.sh")
+PHYSIBOSS_BINARY = os.path.join(ASSETS_PATH, "PhysiBoSS.sh")
+PHYSIBOSS_MODEL_BINARY = os.path.join(ASSETS_PATH, "PhysiBoSS_model.sh")
 
 
 @constraint(computing_units=COMPUTING_UNITS)
-@container(engine="SINGULARITY", image=PHYSIBOSS_CONTAINER)
+@container(engine="SINGULARITY", image=CONTAINER)
 @binary(binary=PHYSIBOSS_MODEL_BINARY)
 @task(
     model_dir=DIRECTORY_IN,
@@ -54,7 +54,7 @@ def physiboss_model(
 
 
 @constraint(computing_units=COMPUTING_UNITS)
-@container(engine="SINGULARITY", image=PHYSIBOSS_CONTAINER)
+@container(engine="SINGULARITY", image=CONTAINER)
 @binary(binary=PHYSIBOSS_BINARY)
 @task(
     bnd_file=FILE_IN,
