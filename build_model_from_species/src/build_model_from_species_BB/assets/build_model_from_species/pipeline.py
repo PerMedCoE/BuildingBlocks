@@ -42,47 +42,36 @@ if args.list_genes is not None:
         "/opt/FromSpeciesToMaBoSSModel/cache", os.path.join(workdir, "cache")
     )
 
+    if os.path.exists(os.path.join(workdir, "pickles")):
+        shutil.rmtree(os.path.join(workdir, "pickles"))
+
+    shutil.copytree(
+        "/opt/FromSpeciesToMaBoSSModel/pickles", os.path.join(workdir, "pickles")
+    )
+
     from pypath.share import settings
 
     settings.setup(basedir=workdir) 
     settings.setup(cachedir=os.path.join(workdir, "cache"))
+    settings.setup(pickle_dir=os.path.join(workdir, "pickles"))
     settings.setup(log_verbosity=0)
 
-    from pypath.legacy import main as legacy
-    pw_legacy = legacy.PyPath()
-
-    import pypath_functions as pf
-
-    # source = ["signor"]
-    pickle_file = "/opt/FromSpeciesToMaBoSSModel/network.pickle"
-    graph = pf.load_network_from_pickle(pw_legacy, pickle_file)
-
+    from pypath import omnipath
+    from pypath_wrapper import Wrap_net
+    m = omnipath.db.pickle_path('network')
+    w = Wrap_net(m)
+    
     # Import a list of genes from a file
     genes = pd.read_csv(list_genes_file)
     gene_list = []
     for gene in genes.values:
         gene_list.append(str(gene[0]))
 
-
-    # gene_dict = pf.generate_dict(gene_list, pw_legacy)
-
-    # We start by associating the uniprot IDs from a gene list
-
-    sources = gene_list
-    uniprot_dict = pf.generate_dict(sources,pw_legacy)
-    # The subgraph is built
-
-    subg1 = graph.induced_subgraph([pw_legacy.vs.find(name = uniprot_dict[e]) for e in uniprot_dict.keys()])
-
-    # According to the depth f search (distance between two nodes), we can search in the databases all the possible paths of length==depth 
-    # and add all the nodes found in the graph (this can take some time depending on the depth)
-
-    connected_dict = pf.complete_connection(subg1, uniprot_dict, 2, pw_legacy)
-    subg2 = graph.induced_subgraph([pw_legacy.vs.find(name = connected_dict[e]) for e in connected_dict.keys()])
-
-
-    pf.write_bnet(subg2, connected_dict, name=os.path.join(workdir, "model.bnet"))
-
+    distance = 2
+    net = w.extract_subnet(gene_list, distance, complete_connections=True)
+    
+    net.write_bnet(file_name=os.path.join(workdir, "model.bnet"))
+    
     model = maboss.loadBNet(os.path.join(workdir, "model.bnet"))
     for node in model.network:
         model.network[node].set_rate("$u_" + str(node), "$d_" + str(node))
