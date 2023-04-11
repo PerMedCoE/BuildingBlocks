@@ -22,7 +22,7 @@ PERSONALIZE_CELLLINE_BINARY = os.path.join(ASSETS_PATH, "personalize_cellline.sh
 # @constraint(computing_units=COMPUTING_UNITS)
 @container(engine="SINGULARITY", image=CONTAINER)
 @binary(binary=PERSONALIZE_PATIENT_BINARY)
-@task(norm_data=FILE_IN, cells=FILE_IN, model_output_dir=DIRECTORY_OUT, personalized_result=FILE_OUT, ko=FILE_IN)
+@task(norm_data=FILE_IN, cells=FILE_IN, model_output_dir=DIRECTORY_OUT, personalized_result=FILE_OUT, ko=FILE_IN, model_prefix=FILE_OUT)
 def personalize_patient(tmpdir=TMPDIR,
                         norm_data_flag="-e", norm_data=None,
                         cells_flag="-c", cells=None,
