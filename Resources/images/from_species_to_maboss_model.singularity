@@ -12,61 +12,79 @@ name: pypath_env
 channels:
   - colomoto
   - conda-forge
-
+  
 dependencies:
-  - python==3.9.9
-  - pip
-  - cairo
-  - maboss
-  - pycairo
-  - pycurl
-  - python-igraph
+  - python=3.10
+  - pip=23.0.1
+  - jupyter=1.0.0
+  - python-igraph=0.10.3
+  - pycairo=1.23.0
+  - libcurl=8.0.1
+  - maboss==2.5.2
   - pip:
-    - pysftp
-    - omnipath
-    - pypath-omnipath
-    - maboss
-    - pyyaml
+    - bcrypt==4.0.1
+    - boltons==23.0.0
+    - charset-normalizer==3.1.0
+    - contourpy==1.0.7
+    - cryptography==40.0.1
+    - cycler==0.11.0
+    - dill==0.3.6
+    - et-xmlfile==1.1.0
+    - face==20.1.1
+    - fonttools==4.39.3
+    - future==0.18.3
+    - glom==23.3.0
+    - kiwisolver==1.4.4
+    - lxml==4.9.2
+    - matplotlib==3.7.1
+    - numpy==1.24.2
+    - openpyxl==3.1.2
+    - pandas==1.5.3
+    - paramiko==3.1.0
+    - pillow==9.5.0
+    - pycurl==7.45.2
+    - pynacl==1.5.0
+    - pyparsing==3.0.9
+    - pypath-omnipath==0.14.44
+    - pyreadr==0.4.7
+    - pysftp==0.2.9
+    - pytz==2023.3
+    - rdata==0.9
+    - requests==2.28.2
+    - scipy==1.10.1
+    - sqlparse==0.4.3
+    - tabulate==0.9.0
+    - timeloop==1.0.2
+    - tqdm==4.65.0
+    - urllib3==1.26.15
+    - xarray==2023.3.0
+    - xlrd==2.0.1
+    - pypath-omnipath==0.14.44
+    - maboss==0.8.4
 """ > /opt/FromSpeciesToMaBoSSModel/pypath_env.yml
+   DEBIAN_FRONTEND=noninteractive apt-get update -y
+   DEBIAN_FRONTEND=noninteractive apt-get install -y gcc
    /opt/conda/bin/mamba env create -f /opt/FromSpeciesToMaBoSSModel/pypath_env.yml
    echo """
 import os, sys
 
-def main(cache_path, pickle_path):
-    os.chdir('/opt/FromSpeciesToMaBoSSModel')
-    os.makedirs(cache_path)
+def main(cache_dir, pickle_dir):
+    from pypath import omnipath
+    from pypath.resources import network as netres
     from pypath.share import settings
-
-    settings.setup(cachedir=(cache_path)) # ==> actual cache folder to use with legacy.main
-    # settings.setup(progressbars = True)
-
-    #importing legacy, which is the 'old' version of pypath, the only one (for now), with the graph object implemented
-    from pypath.legacy import main as legacy
-
-    #initialization of the 'old' PyPath object
-    pw_legacy = legacy.PyPath()
-
-    # Instead of loading the databases using steps, I prefer loading the activity flow networks with literature references
-    # (you can look at the possible datasets at: https://workflows.omnipathdb.org/pypath_guide.html#network-resources)
-
-    for database in legacy.data_formats.omnipath.keys():
-
-        if database in ['hprd', 'hprd_p', 'cellinker']:
-            continue
-        try:
-            print(database, ' : ', legacy.data_formats.omnipath[database])
-            lst={database: legacy.data_formats.omnipath[database]}
-            pw_legacy.init_network(lst)
-        except Exception as inst:
-            print('Error for '+database)
-
-    # Save the network
-
-    pw_legacy.save_to_pickle(pickle_path)
-
+    
+    os.chdir('/opt/FromSpeciesToMaBoSSModel')
+    #setting the cache directory
+    os.makedirs(cache_dir)
+    os.makedirs(pickle_dir)
+    settings.setup(cachedir = cache_dir, pickle_dir = pickle_dir)
+    
+    omnipath.db.param['network_mod'] = 'network' 
+    omnipath.db.param['network_args'] = {'resources': netres.pathway['signor']} # <-- insert in the dict the pathway
+    m = omnipath.db.get_db('network')
     return 0
 
 if __name__ == '__main__':
     sys.exit(main(*sys.argv[1:]))
 """ > /opt/FromSpeciesToMaBoSSModel/download_database.py
-   /opt/conda/envs/pypath_env/bin/python /opt/FromSpeciesToMaBoSSModel/download_database.py /opt/FromSpeciesToMaBoSSModel/cache /opt/FromSpeciesToMaBoSSModel/network.pickle
+   /opt/conda/envs/pypath_env/bin/python /opt/FromSpeciesToMaBoSSModel/download_database.py /opt/FromSpeciesToMaBoSSModel/cache /opt/FromSpeciesToMaBoSSModel/pickles
