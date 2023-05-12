@@ -16,6 +16,25 @@
                 "format": "file",
                 "description": "CSV file containing invasion data"
             }
+        ],
+        "generate_plots": [
+            {
+                "type": "input",
+                "name": "simulations_path",
+                "format": "str",
+                "description": "Path of the simulation results"
+            },{
+                "type": "input",
+                "name": "parameter_sets",
+                "format": "file",
+                "description": "CSV file containing parameter values to sample"
+            },
+            {
+                "type": "output",
+                "name": "plot_directory",
+                "format": "str",
+                "description": "Oath of the folder containing final plots"
+            }
         ]
     }
 }
