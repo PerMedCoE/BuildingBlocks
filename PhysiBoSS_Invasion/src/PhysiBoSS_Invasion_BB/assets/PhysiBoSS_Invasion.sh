@@ -89,9 +89,9 @@ else
   rm -rf output/*
 fi
 # Execution
-cat "${SCRIPT_DIR}/${physiboss_folder}/data/PhysiCell_settings_2D.xml"
+cat "${physiboss_folder}/data/PhysiCell_settings_2D.xml"
 
-myproj "${SCRIPT_DIR}/${physiboss_folder}/data/PhysiCell_settings_2D.xml" > ${out_file} 2> ${err_file}
+myproj "${physiboss_folder}/data/PhysiCell_settings_2D.xml" > ${out_file} 2> ${err_file}
 # Move results to the final directory
 if [ ! -d ${results_dir} ]
 then
