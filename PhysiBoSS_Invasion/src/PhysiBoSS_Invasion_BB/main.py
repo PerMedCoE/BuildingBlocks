@@ -69,6 +69,7 @@ def invoke(arguments, config):
     tmpdir = arguments.tmpdir
     # Building block invocation
     physiboss_invasion(
+        parameter_set=parameter_set,
         repetition=repetition,
         out_file=out_file,
         err_file=err_file,
