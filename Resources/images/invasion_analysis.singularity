@@ -8,7 +8,7 @@ Stage: build
 %post
     DEBIAN_FRONTEND=noninteractive apt-get update -y
     DEBIAN_FRONTEND=noninteractive apt-get install -y python3 python3-pip
-    pip install seaborn numpy matplotlib pandas networkx
+    pip install seaborn numpy matplotlib pandas networkx scipy
     pip install permedcoe
     ln -s /usr/bin/python3 /usr/bin/python
 
