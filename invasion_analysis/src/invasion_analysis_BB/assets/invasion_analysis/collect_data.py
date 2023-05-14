@@ -70,14 +70,14 @@ std_clusters = []
 std_ratios = []
 std_cells_in_cluster = []
 for i, _ in enumerate(singles[0]):
-    avg_singles.append(np.mean([single[i] for single in singles]))
-    avg_clusters.append(np.mean([cluster[i] for cluster in clusters]))
-    avg_ratios.append(np.mean([ratio[i] for ratio in ratios]))
-    avg_cells_in_cluster.append(np.mean([cell_in_cluster[i] for cell_in_cluster in cells_in_cluster]))
-    std_singles.append(np.std([single[i] for single in singles]))
-    std_clusters.append(np.std([cluster[i] for cluster in clusters]))
-    std_ratios.append(np.std([ratio[i] for ratio in ratios]))
-    std_cells_in_cluster.append(np.std([cell_in_cluster[i] for cell_in_cluster in cells_in_cluster]))
+    avg_singles.append(np.mean([single[i] for single in singles if i < len(single)]))
+    avg_clusters.append(np.mean([cluster[i] for cluster in clusters if i < len(cluster)]))
+    avg_ratios.append(np.mean([ratio[i] for ratio in ratios if i < len(ratio)]))
+    avg_cells_in_cluster.append(np.mean([cell_in_cluster[i] for cell_in_cluster in cells_in_cluster if i < len(cell_in_cluster)]))
+    std_singles.append(np.std([single[i] for single in singles if i < len(single)]))
+    std_clusters.append(np.std([cluster[i] for cluster in clusters if i < len(cluster)]))
+    std_ratios.append(np.std([ratio[i] for ratio in ratios  if i < len(ratio)]))
+    std_cells_in_cluster.append(np.std([cell_in_cluster[i] for cell_in_cluster in cells_in_cluster if i < len(cell_in_cluster)]))
 
 
 data = {

@@ -10,7 +10,6 @@ if len(sys.argv) < 2:
     print("Please specify name for the output")
     sys.exit(1)
 
-print(sys.argv)
 simulations_path = sys.argv[1]
 parameters_file = sys.argv[2]
 plots_directory = sys.argv[3]
@@ -20,6 +19,9 @@ print("- simulations path : %s" % simulations_path)
 print("- parameters set : %s" % parameters_file)
 print("- plots directory : %s" % plots_directory)
 
+def sigmoid(x, y0, ymax, k, x0):
+        y = y0 + ymax / (1 + np.exp(-k*(x-x0)))
+        return y
 
 
 
@@ -52,28 +54,42 @@ for parameter in parameters_data.keys():
     fig, ax = plt.subplots(1, figsize=(5,3), dpi=500)
 
     fields = ['single', 'cells_in_cluster']#, 'ratio']
-    for field in fields:
+    for i, field in enumerate(fields):
         # ax.errorbar(df.columns, df.loc[field, :], df.loc['error_%s' % field],fmt='.', label=field)
-        ax.errorbar(df.columns, df.loc[field, :], df.loc['error_%s' % field], alpha=.75, fmt=':', capsize=3, capthick=1)
+        ax.errorbar(df.columns, df.loc[field, :], df.loc['error_%s' % field], alpha=.75, fmt=':', capsize=3, capthick=1,label=field,color="C%d" % i)
         data = {
             'x': df.columns,
             'y1': [y - e for y, e in zip(df.loc[field, :], df.loc['error_%s' % field])],
             'y2': [y + e for y, e in zip(df.loc[field, :], df.loc['error_%s' % field])]}
-        plt.fill_between(**data, alpha=.25)
+        plt.fill_between(**data, alpha=.25,label='_nolegend_',color="C%d" % i)
+        
+        from scipy.optimize import curve_fit
+        popt, pcov = curve_fit(sigmoid, df.columns, df.loc[field, :], p0=[df.loc[field,0], df.loc[field,:].iloc[-1], 1, 1], maxfev=1000000)
 
-    fig.legend(["Single cells", "Cells in clusters"])
+        yfit = [sigmoid(xdatum, *popt) for xdatum in df.columns]
+        ax.plot(df.columns, yfit,color="C%d" % i)
+    
+
+    fig.legend()
     fig.savefig(os.path.join(plots_directory, "%s.png" % parameter))
     
     fig, ax = plt.subplots(1, figsize=(5,3), dpi=500)
 
     field = "ratio"
-    ax.errorbar(df.columns, df.loc[field, :], df.loc['error_%s' % field], alpha=.75, fmt=':', capsize=3, capthick=1)
+    ax.errorbar(df.columns, df.loc[field, :], df.loc['error_%s' % field], alpha=.75, fmt=':', capsize=3, capthick=1,label=field,color="C0")
     data = {
         'x': df.columns,
         'y1': [y - e for y, e in zip(df.loc[field, :], df.loc['error_%s' % field])],
         'y2': [y + e for y, e in zip(df.loc[field, :], df.loc['error_%s' % field])]}
-    plt.fill_between(**data, alpha=.25)
+    plt.fill_between(**data, alpha=.25,label='_nolegend_',color="C0")
 
-    fig.legend(["Single cells", "Cells in clusters"])
+    
+    from scipy.optimize import curve_fit
+    popt, pcov = curve_fit(sigmoid, df.columns, df.loc[field, :], p0=[df.loc[field,0], df.loc[field,:].iloc[-1], 1, 1], maxfev=1000000)
+
+    yfit = [sigmoid(xdatum, *popt) for xdatum in df.columns]
+    ax.plot(df.columns, yfit, color="C0")
+    
+    fig.legend()
     fig.savefig(os.path.join(plots_directory, "%s_ratio.png" % parameter))
 print("Done")
