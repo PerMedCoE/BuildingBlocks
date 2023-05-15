@@ -58,19 +58,21 @@ ls -l ${tmpdir}
 echo "--------------------------------------"
 
 # Update the number of threads
-sed -i "s/<omp_num_threads>6/<omp_num_threads>${parallel}/g" "${physiboss_folder}/config/PhysiCell_settings.xml"
+sed -i "s/<omp_num_threads>8/<omp_num_threads>${parallel}/g" "${physiboss_folder}/config/PhysiCell_settings.xml"
 echo "USING:"
 grep "omp_num_threads" "${physiboss_folder}/config/PhysiCell_settings.xml"
 
 # Update the maxtime
 sed -i "s/<max_time units=\"min\">14400<\/max_time> <\!-- 5 days \* 24 h \* 60 min -->/<max_time units=\"min\">${max_time}<\/max_time>/g" "${physiboss_folder}/config/PhysiCell_settings.xml"
 sed -i "s/<max_time units=\"min\">8640<\/max_time> <\!-- 5 days \* 24 h \* 60 min -->/<max_time units=\"min\">${max_time}<\/max_time>/g" "${physiboss_folder}/config/PhysiCell_settings.xml"
+sed -i "s/<max_time units=\"min\">21600<\/max_time> <\!-- 8640, 5 days \* 24 h \* 60 min -->/<max_time units=\"min\">${max_time}<\/max_time>/g" "${physiboss_folder}/config/PhysiCell_settings.xml"
+
 echo "MAX TIME:"
 grep "max_time" "${physiboss_folder}/config/PhysiCell_settings.xml"
 
 # Prepare patient execution
-cp ${bnd_file} ${physiboss_folder}/config/boolean_network/personalized_epithelial_cell.bnd
-cp ${cfg_file} ${physiboss_folder}/config/boolean_network/personalized_epithelial_cell.cfg
+cp ${bnd_file} ${physiboss_folder}/config/boolean_network/epithelial_cell_2.bnd
+cp ${cfg_file} ${physiboss_folder}/config/boolean_network/epithelial_cell_2.cfg
 
 # Execute PhysiBoss
 # Prepare output folder (hardcoded into config.xml)
@@ -83,7 +85,7 @@ else
 fi
 
 # Execution
-myproj > ${out_file} 2> ${err_file}
+COVID19 > ${out_file} 2> ${err_file}
 # Move results to the final directory
 if [ ! -d ${results_dir} ]
 then

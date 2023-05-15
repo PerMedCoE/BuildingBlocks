@@ -18,7 +18,7 @@ from PhysiBoSS_BB.definitions import COMPUTING_UNITS
 # Globals# Globals
 PHYSIBOSS_BINARY = os.path.join(ASSETS_PATH, "PhysiBoSS.sh")
 PHYSIBOSS_MODEL_BINARY = os.path.join(ASSETS_PATH, "PhysiBoSS_model.sh")
-
+PHYSIBOSS_ANALYSE_REPLICATES_BINARY = os.path.join(ASSETS_PATH, "PhysiBoSS_analyse_replicates.sh")
 
 @constraint(computing_units=COMPUTING_UNITS)
 @container(engine="SINGULARITY", image=CONTAINER)
@@ -37,7 +37,7 @@ def physiboss_model(
     out_file=None,
     err_file=None,
     results_dir=None,
-    parallel=COMPUTING_UNITS,
+    parallel=8,
     max_time=8640,
     tmpdir=TMPDIR
 ):
@@ -51,6 +51,39 @@ def physiboss_model(
     """
     # Empty function since it represents a binary execution:
     pass
+
+
+
+@constraint(computing_units=COMPUTING_UNITS)
+@container(engine="SINGULARITY", image=CONTAINER)
+@binary(binary=PHYSIBOSS_ANALYSE_REPLICATES_BINARY)
+@task(
+    replicates_folder=DIRECTORY_IN,
+    out_file=FILE_OUT,
+    err_file=FILE_OUT,
+    results_dir=DIRECTORY_OUT,
+)
+def physiboss_analyse_replicates(
+    replicates=1,
+    replicates_folder=DIRECTORY_IN,
+    prefix="prefix", 
+    out_file=None,
+    err_file=None,
+    results_dir=None,
+    parallel=8,
+    tmpdir=TMPDIR
+):
+    """
+    Performs the PhysiCell + MaBoSS analysis.
+
+    The Definition is equal to:
+        ./physiboss_analyse_replicates.sh <replicates> <replicates_folder> <prefix> \
+                                          <out_file> <err_file> <results_dir> <parallel> <tmpdir>
+    """
+    # Empty function since it represents a binary execution:
+    pass
+
+
 
 
 @constraint(computing_units=COMPUTING_UNITS)
