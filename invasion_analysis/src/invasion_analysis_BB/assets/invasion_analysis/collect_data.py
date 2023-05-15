@@ -12,12 +12,12 @@ if len(sys.argv) < 3:
     print("Please specify name for the output")
     sys.exit(1)
 
-print("USING: ", sys.argv[1])
+print("Analysis invasion : ")
 
 physi_output = sys.argv[1]
+print("- Simulations output directory : %s" % physi_output)
 file_csv = sys.argv[2]
-print(physi_output)
-print(file_csv)
+print("- Output data file : %s" % file_csv)
 singles = []
 clusters = []
 ratios = []
@@ -88,4 +88,4 @@ df = pd.DataFrame(data)
 
 df.to_csv(file_csv, index=True, header=True)
 
-print("GENERATED: ", file_csv)
+print("Done")
