@@ -8,7 +8,7 @@ here = pathlib.Path(__file__).parent.resolve()
 long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
-    name="PhysiBoSS_Invasion_BB",
+    name="PhysiBoSS_invasion_BB",
     version="0.0.4",
     description="This package provides the PhysiBoSS Invasion Building Block",
     long_description=long_description,
@@ -43,16 +43,16 @@ setup(
     # If there are data files included in your packages that need to be
     # installed, specify them here.
     package_data={
-        "PhysiBoSS_Invasion_BB": ["assets/*",
-                         "definition.json"],
+        "PhysiBoSS_invasion_BB": ["assets/*",
+                                  "definition.json"],
     },
     entry_points={
         "console_scripts": [
-            "PhysiBoSS_Invasion_BB=PhysiBoSS_Invasion_BB.__main__:main",
+            "PhysiBoSS_invasion_BB=PhysiBoSS_invasion_BB.__main__:main",
         ],
     },
     project_urls={
         "Bug Reports": "https://github.com/PerMedCoE/BuildingBlocks/issues",
-        "Source": "https://github.com/PerMedCoE/BuildingBlocks/tree/main/PhysiBoSS_Invasion",
+        "Source": "https://github.com/PerMedCoE/BuildingBlocks/tree/main/PhysiBoSS_invasion",
     },
 )

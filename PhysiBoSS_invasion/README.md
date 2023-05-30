@@ -48,7 +48,7 @@ This package provides an automatic installation script:
 
 ### Usage
 
-The `PhysiBoSS_Invasion` package provides a clear interface that allows
+The `PhysiBoSS_invasion` package provides a clear interface that allows
 it to be used with multiple workflow managers (e.g. PyCOMPSs, NextFlow and
 Snakemake).
 
@@ -61,7 +61,7 @@ The command line is:
 ```bash
 PHYSIBOSS_INVASION_ASSETS=$(python3 -c "import PhysiBoSS_BB; import os; print(os.path.dirname(PhysiBoSS_BB.__file__))")
 
-PhysiBoSS_Invasion_BB -d \
+PhysiBoSS_invasion_BB -d \
       --mount_points ${PHYSIBOSS_INVASION_ASSETS}/assets/:${PHYSIBOSS_INVASION_ASSETS}/assets/ \
       --repetition <repetition> \
       --out_file <out_file> \
