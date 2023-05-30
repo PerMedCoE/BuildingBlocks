@@ -5,9 +5,9 @@ NOTE: Do not modify this file unless you want to change the name
 
 import os
 from permedcoe import invoker
-from PhysiBoSS_Invasion_BB.main import invoke
-from PhysiBoSS_Invasion_BB.definitions import ASSETS_PATH
-from PhysiBoSS_Invasion_BB.definitions import BB_SOURCE_PATH
+from PhysiBoSS_invasion_BB.main import invoke
+from PhysiBoSS_invasion_BB.definitions import ASSETS_PATH
+from PhysiBoSS_invasion_BB.definitions import BB_SOURCE_PATH
 
 
 def main():

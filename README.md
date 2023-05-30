@@ -44,7 +44,7 @@ This repository contains the **Building Blocks** developed within the **HPC/Exas
 
     This building block performs a multiscale simulation of a population of cells using PhysiBoSS.
 
-9. [**PhysiBoSS_Invasion**](PhysiBoSS_Invasion/)
+9. [**PhysiBoSS_invasion**](PhysiBoSS_invasion/)
 
     This building block is used to perform a multiscale simulation of a population of cells using PhysiBoSS.
 
