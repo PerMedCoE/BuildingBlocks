@@ -37,10 +37,10 @@ def invasion_analysis(tmpdir=TMPDIR,
 @binary(binary=INVASION_PLOTTING_BINARY)
 @task(simulations_path=DIRECTORY_IN, parameter_sets=FILE_IN, plot_directory=DIRECTORY_OUT)
 def invasion_generate_plots(tmpdir=TMPDIR,
-                      simulations_path=None,
-                      parameter_sets=None,
-                      plot_directory=None
-                      ):
+                            simulations_path=None,
+                            parameter_sets=None,
+                            plot_directory=None
+                            ):
     # The Definition is equal to:
     #    INVASION_PLOTTING_BINARY <simulations_path> <parameter_sets> <plot_directory>
     # Empty function since it represents a binary execution:
@@ -57,21 +57,20 @@ def invoke(arguments, config):
     Returns:
         None
     """
-    
+
     if arguments.mode == "generate_plots":
         tmpdir = arguments.tmpdir
         simulations_path = arguments.simulations_path
         parameter_sets = arguments.parameter_sets
         plot_directory = arguments.plot_directory
-        invasion_generate_plots(tmpdir=tmpdir, 
+        invasion_generate_plots(tmpdir=tmpdir,
                                 simulations_path=simulations_path,
-                                parameter_sets=parameter_sets, 
+                                parameter_sets=parameter_sets,
                                 plot_directory=plot_directory)
     else:
-
         tmpdir = arguments.tmpdir
         physiboss_result_path = arguments.physiboss_result_path
         output_data = arguments.output_data
         invasion_analysis(tmpdir=tmpdir,
-                        physiboss_result_path=physiboss_result_path,
-                        output_data=output_data)
+                          physiboss_result_path=physiboss_result_path,
+                          output_data=output_data)

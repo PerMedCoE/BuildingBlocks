@@ -33,11 +33,11 @@ with open(parameters_file, 'r') as psets:
         # print(raw_pset)
         for value in raw_pset[1:]:
             parameters_sets.append((raw_pset[0].strip(), float(value.strip())))
-    
+
 parameters_data = {}
 
 for i_set, parameter_set in enumerate(parameters_sets):
-    
+
     parameter, value = parameter_set
     data_file = os.path.join(simulations_path, "parameter_%d" % i_set, "invasion_analysis", "data.csv")
     df = pd.read_csv(data_file)
@@ -46,11 +46,11 @@ for i_set, parameter_set in enumerate(parameters_sets):
         parameters_data[parameter] = {value: values}
     else:
         parameters_data[parameter].update({value: values})
-    
+
 for parameter in parameters_data.keys():
     df = pd.DataFrame(parameters_data[parameter])
-    
-        
+
+
     fig, ax = plt.subplots(1, figsize=(5,3), dpi=500)
 
     fields = ['single', 'cells_in_cluster']#, 'ratio']
@@ -62,17 +62,21 @@ for parameter in parameters_data.keys():
             'y1': [y - e for y, e in zip(df.loc[field, :], df.loc['error_%s' % field])],
             'y2': [y + e for y, e in zip(df.loc[field, :], df.loc['error_%s' % field])]}
         plt.fill_between(**data, alpha=.25,label='_nolegend_',color="C%d" % i)
-        
+
         from scipy.optimize import curve_fit
         popt, pcov = curve_fit(sigmoid, df.columns, df.loc[field, :], p0=[df.loc[field,0], df.loc[field,:].iloc[-1], 1, 1], maxfev=1000000)
 
         yfit = [sigmoid(xdatum, *popt) for xdatum in df.columns]
         ax.plot(df.columns, yfit,color="C%d" % i)
-    
 
     fig.legend()
+    try:
+        os.makedirs(plots_directory)
+    except FileExistsError:
+        # directory already exists
+        pass
     fig.savefig(os.path.join(plots_directory, "%s.png" % parameter))
-    
+
     fig, ax = plt.subplots(1, figsize=(5,3), dpi=500)
 
     field = "ratio"
@@ -83,13 +87,12 @@ for parameter in parameters_data.keys():
         'y2': [y + e for y, e in zip(df.loc[field, :], df.loc['error_%s' % field])]}
     plt.fill_between(**data, alpha=.25,label='_nolegend_',color="C0")
 
-    
     from scipy.optimize import curve_fit
     popt, pcov = curve_fit(sigmoid, df.columns, df.loc[field, :], p0=[df.loc[field,0], df.loc[field,:].iloc[-1], 1, 1], maxfev=1000000)
 
     yfit = [sigmoid(xdatum, *popt) for xdatum in df.columns]
     ax.plot(df.columns, yfit, color="C0")
-    
+
     fig.legend()
     fig.savefig(os.path.join(plots_directory, "%s_ratio.png" % parameter))
 print("Done")

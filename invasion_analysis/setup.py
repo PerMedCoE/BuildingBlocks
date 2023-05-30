@@ -44,8 +44,8 @@ setup(
     # installed, specify them here.
     package_data={
         "invasion_analysis_BB": ["assets/*",
-                                        "assets/invasion_analysis/*",
-                                        "definition.json"],
+                                 "assets/invasion_analysis/*",
+                                 "definition.json"],
     },
     entry_points={
         "console_scripts": [
