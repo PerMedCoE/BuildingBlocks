@@ -1,18 +1,16 @@
 #!/usr/bin/env bash
 tmpdir=$1
-simulations_path=$2
-parameter_set=$3
-plot_directory=$4
-
-shift 1
+parameter_set=$2
+plot_directory=$3
+shift 3
+simulations_paths=$@
 
 echo "--------------------------------------------"
 echo "Running InvasionPlotting.sh"
 echo "Parameters:"
-echo " - simulations path = ${simulations_path}"
 echo " - parameter set = ${parameter_set}"
 echo " - plots directory = ${plot_directory}"
-echo " - Rest of parameters = $@"
+echo " - simulations path = ${simulations_paths}"
 echo "--------------------------------------------"
 
 CURRENT_DIR=$(pwd)
@@ -31,8 +29,7 @@ fi
 
 # Copy all modifiable files to working directory
 cp ${SCRIPTS_DIR}/generate_plots.py ./
-# cp ${SCRIPTS_DIR}/utils.py ./
 
-python generate_plots.py ${simulations_path} ${parameter_set} ${plot_directory}
+python generate_plots.py ${parameter_set} ${plot_directory} ${simulations_paths}
 
 cd ${CURRENT_DIR}

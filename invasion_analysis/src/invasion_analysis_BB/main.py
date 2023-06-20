@@ -23,33 +23,28 @@ INVASION_PLOTTING_BINARY = os.path.join(ASSETS_PATH, "InvasionPlotting.sh")
 
 @container(engine="SINGULARITY", image=CONTAINER)
 @binary(binary=INVASION_ANALYSIS_BINARY)
-@task(physiboss_result_path=DIRECTORY_IN, output_data=FILE_OUT)
-def invasion_analysis(tmpdir=TMPDIR,
-                      physiboss_result_path=None,
-                      output_data=None
-                      ):
+@task(output_data=FILE_OUT, varargs_type=DIRECTORY_IN)
+def invasion_analysis(tmpdir=TMPDIR, output_data=None, *args):
     # The Definition is equal to:
-    #    INVASION_ANALYSIS_BINARY <output_bnd_file> <output_cfg_file> --list-genes <input_file>
+    #    INVASION_ANALYSIS_BINARY <tmpdir> <output_data> *<physiboss_final_net_result_path>
     # Empty function since it represents a binary execution:
     pass
+
 
 @container(engine="SINGULARITY", image=CONTAINER)
 @binary(binary=INVASION_PLOTTING_BINARY)
-@task(simulations_path=DIRECTORY_IN, parameter_sets=FILE_IN, plot_directory=DIRECTORY_OUT)
-def invasion_generate_plots(tmpdir=TMPDIR,
-                            simulations_path=None,
-                            parameter_sets=None,
-                            plot_directory=None
-                            ):
+@task(parameter_sets=FILE_IN, plot_directory=DIRECTORY_OUT, varargs_type=FILE_IN)
+def invasion_generate_plots(
+    tmpdir=TMPDIR, parameter_sets=None, plot_directory=None, *args
+):
     # The Definition is equal to:
-    #    INVASION_PLOTTING_BINARY <simulations_path> <parameter_sets> <plot_directory>
+    #    INVASION_PLOTTING_BINARY <tmpdir> <analysis_paths> <parameter_sets> <plot_directory>
     # Empty function since it represents a binary execution:
     pass
 
 
-
 def invoke(arguments, config):
-    """ Common interface.
+    """Common interface.
 
     Args:
         arguments (args): Building Block parsed arguments.
@@ -60,17 +55,14 @@ def invoke(arguments, config):
 
     if arguments.mode == "generate_plots":
         tmpdir = arguments.tmpdir
-        simulations_path = arguments.simulations_path
         parameter_sets = arguments.parameter_sets
         plot_directory = arguments.plot_directory
-        invasion_generate_plots(tmpdir=tmpdir,
-                                simulations_path=simulations_path,
-                                parameter_sets=parameter_sets,
-                                plot_directory=plot_directory)
+        analysis_paths = list(arguments.analysis_paths.split(" "))
+        invasion_generate_plots(tmpdir, parameter_sets, plot_directory, *analysis_paths)
     else:
         tmpdir = arguments.tmpdir
-        physiboss_result_path = arguments.physiboss_result_path
         output_data = arguments.output_data
-        invasion_analysis(tmpdir=tmpdir,
-                          physiboss_result_path=physiboss_result_path,
-                          output_data=output_data)
+        physiboss_final_net_result_path = list(
+            arguments.physiboss_final_net_result_path.split(" ")
+        )
+        invasion_analysis(tmpdir, output_data, *physiboss_final_net_result_path)
