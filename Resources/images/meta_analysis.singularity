@@ -8,7 +8,7 @@ Stage: build
 %post
     apt-get update -y
     #DEBIAN_FRONTEND=noninteractive apt-get install -yq r-base libhdf5-dev libhdf5-103-1 libxml2-dev libssl-dev libcurl4-openssl-dev
-    DEBIAN_FRONTEND=noninteractive apt-get install -yq r-base libhdf5-dev libxml2-dev libssl-dev libcurl4-openssl-dev
+    DEBIAN_FRONTEND=noninteractive apt-get install -yq r-base libhdf5-dev libxml2-dev libssl-dev libcurl4-openssl-dev python3 python3-pip 
     echo "install.packages('pacman', repos='http://cran.us.r-project.org')" | Rscript --vanilla  -
     echo "install.packages('devtools')" | Rscript  -
 
@@ -16,6 +16,8 @@ Stage: build
 
     echo "install.packages('rmatio')" | Rscript  -
     echo "install.packages('XML')" | Rscript  -
+
+    pip3 install pandas numpy scipy matplotlib seaborn
 
 %runscript
     exec /bin/bash "$@"

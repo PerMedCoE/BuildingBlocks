@@ -7,7 +7,8 @@ err_file=$4
 results_dir=$5
 parallel=$6
 max_time=$7
-tmpdir=$8
+final_net_dir=$8
+tmpdir=$9
 
 echo "--------------------------------------------"
 echo "Running PhysiBoSS.sh"
@@ -19,6 +20,7 @@ echo " - err_file = ${err_file}"
 echo " - results_dir = ${results_dir}"
 echo " - parallel = ${parallel}"
 echo " - max_time = ${max_time}"
+echo " - final_net_dir = ${final_net_dir}"
 echo " - tmpdir = ${tmpdir}"
 echo "--------------------------------------------"
 
@@ -97,6 +99,20 @@ fi
 ls ${results_dir}
 mv output/* ${results_dir}/.
 ls ${results_dir}
+
+# Move final net files
+if [ ! -d ${final_net_dir} ]
+then
+  mkdir -p ${final_net_dir}
+else
+  rm -rf ${final_net_dir}/*
+fi
+mv ${results_dir}/final_net*.csv ${final_net_dir}/.
+
+echo "------- Moved final net csv files -------"
+ls ${final_net_dir}
+
+# Get out bin folder
 cd ..
 
 # Clean

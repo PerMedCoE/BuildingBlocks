@@ -26,6 +26,7 @@ PHYSIBOSS_INVASION_BINARY = os.path.join(ASSETS_PATH, "PhysiBoSS_invasion.sh")
     out_file=FILE_OUT,
     err_file=FILE_OUT,
     results_dir=DIRECTORY_OUT,
+    final_net_dir=DIRECTORY_OUT,
 )
 def physiboss_invasion(
     parameter_set=None,
@@ -35,7 +36,8 @@ def physiboss_invasion(
     results_dir=None,
     parallel=8,
     max_time=8640,
-    tmpdir=TMPDIR
+    final_net_dir=None,
+    tmpdir=TMPDIR,
 ):
     """
     Performs the PhysiCell + MaBoSS analysis.
@@ -49,6 +51,7 @@ def physiboss_invasion(
             <results_dir> \
             <computing_units> \
             <max_time> \
+            <final_net_dir> \
             <tmpdir>
     """
     # Empty function since it represents a binary execution:
@@ -72,6 +75,7 @@ def invoke(arguments, config):
     out_file = arguments.out_file
     err_file = arguments.err_file
     results_dir = arguments.results_dir
+    final_net_dir = arguments.final_net_dir
     tmpdir = arguments.tmpdir
     # Building block invocation
     physiboss_invasion(
@@ -82,5 +86,6 @@ def invoke(arguments, config):
         results_dir=results_dir,
         parallel=parallel,
         max_time=max_time,
-        tmpdir=tmpdir
+        final_net_dir=final_net_dir,
+        tmpdir=tmpdir,
     )

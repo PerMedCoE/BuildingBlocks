@@ -1,13 +1,15 @@
 import networkx as nx
+
 # import xml.etree.ElementTree as ET
+
 
 def split_col(net_df):
     for col in net_df.columns:
-        if col != 'ID':
+        if col != "ID":
             i = 0
             for list_id in net_df[col]:
                 if type(list_id) == str:
-                    id_list = [x for x in list_id.split('/')]
+                    id_list = [x for x in list_id.split("/")]
                     id_list.pop(-1)
                     id_list = [int(x) for x in id_list]
                     net_df.at[i, col] = id_list
@@ -24,12 +26,12 @@ def split_col(net_df):
 def create_graph(net_df, column_name):
     G = nx.Graph()
 
-    for node in net_df['ID']:
+    for node in net_df["ID"]:
         G.add_node(node)
     G.number_of_nodes()
 
     i = 0
-    for node1 in net_df['ID']:
+    for node1 in net_df["ID"]:
         # print(net_df[' neighID'][node1])
         if net_df[column_name][i] != None:
             for node2 in net_df[column_name][i]:
@@ -112,9 +114,9 @@ def count_cell_in_cluster(G):
             single = single + 1
         else:
             size = size + len(net.nodes())
-    if size==0 and single ==0:
+    if size == 0 and single == 0:
         ratio_single_cluster = 0
     else:
-        ratio_single_cluster = (size/(size + single)) * 100
+        ratio_single_cluster = (size / (size + single)) * 100
 
     return [ratio_single_cluster, size]

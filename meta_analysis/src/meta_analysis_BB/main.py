@@ -43,7 +43,8 @@ def meta_analysis(tmpdir=TMPDIR,
                            -p <model_prefix> \
                            -k <ko_file> \
                            -r <repetitions> \
-                           -v <verbose>
+                           -v <verbose> \
+                           -z <results>
     """
     # Empty function since it represents a binary execution:
     pass

@@ -6,9 +6,9 @@
         "default": [
             {
                 "type": "input",
-                "name": "physiboss_result_path",
+                "name": "physiboss_final_net_result_path",
                 "format": "str",
-                "description": "Path of the PhysiBoSS result to analyse"
+                "description": "Paths of the PhysiBoSS net result folders to analyse"
             },
             {
                 "type": "output",
@@ -20,9 +20,9 @@
         "generate_plots": [
             {
                 "type": "input",
-                "name": "simulations_path",
+                "name": "analysis_paths",
                 "format": "str",
-                "description": "Path of the simulation results"
+                "description": "Paths of the simulation results (final net csvs folders)"
             },{
                 "type": "input",
                 "name": "parameter_sets",
@@ -33,7 +33,7 @@
                 "type": "output",
                 "name": "plot_directory",
                 "format": "str",
-                "description": "Oath of the folder containing final plots"
+                "description": "Path of the folder containing final plots"
             }
         ]
     }

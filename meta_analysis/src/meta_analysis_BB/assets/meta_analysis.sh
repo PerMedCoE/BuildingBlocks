@@ -25,10 +25,7 @@ else
     cd ${tmpdir}
 fi
 
-# Copy all modifiable files to working directory
-cp ${SCRIPTS_DIR}/meta_analysis.R ./
-cp ${SCRIPTS_DIR}/physi_eval_utils.R ./
-
-Rscript ./meta_analysis.R $@
+cd ${CURRENT_DIR}
+python3 ${SCRIPT_DIR}/meta_analysis.py $@
 
 cd $CURRENT_DIR

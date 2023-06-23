@@ -44,6 +44,12 @@
                 "name": "results_dir",
                 "format": "folder",
                 "description": "Results directory"
+            },
+            {
+                "type": "output",
+                "name": "final_net_dir",
+                "format": "folder",
+                "description": "Final net results directory"
             }
         ]
     }
