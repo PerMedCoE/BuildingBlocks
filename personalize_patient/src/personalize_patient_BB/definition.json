@@ -19,7 +19,7 @@
             {
                 "type": "input",
                 "name": "model_prefix",
-                "format": "str",
+                "format": "folder",
                 "description": "Prefix that describes the model"
             },
             {
