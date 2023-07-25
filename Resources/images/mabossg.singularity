@@ -1,0 +1,19 @@
+Bootstrap: docker
+From: nvidia/cuda:11.6.2-devel-ubuntu20.04
+Stage: build
+%post
+    apt-get update -y
+    DEBIAN_FRONTEND=noninteractive apt-get install -y ninja-build wget make flex bison tar git libssl-dev python3 python3-pip
+    pip3 install ply maboss pandas
+    wget https://github.com/Kitware/CMake/releases/download/v3.25.2/cmake-3.25.2.tar.gz
+    tar -xvf cmake-3.25.2.tar.gz
+    cd cmake-3.25.2 && ./configure --parallel=`nproc` && make -j `nproc` && make install
+    rm -fr cmake-3.25.2*
+    (cd /usr/local; mkdir scm; cd scm; git clone https://github.com/sysbio-curie/MaBoSS-env-2.0.git -b v2.4.1; cd MaBoSS-env-2.0/engine/src; make install -j `nproc`; make MAXNODES=128 install -j `nproc`; make MAXNODES=256 install -j `nproc`; make MAXNODES=512 install -j `nproc`;)
+    (cd /usr/local/bin; ln -s /usr/local/scm/MaBoSS-env-2.0/engine/pub/* .)
+    cd /opt/
+    git clone https://github.com/sysbio-curie/MaBoSSG
+    cd MaBoSSG
+    git checkout uc2_version
+    rm -fr .git
+    
