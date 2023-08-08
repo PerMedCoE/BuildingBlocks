@@ -28,7 +28,7 @@ fi
 # Copy all modifiable files to working directory
 cp ${SCRIPTS_DIR}/functions.py ./
 cp ${SCRIPTS_DIR}/pipeline.py ./
-cp ${SCRIPTS_DIR}/pypath_functions.py ./
+cp ${SCRIPTS_DIR}/pypath_wrapper.py ./
 
 python pipeline.py "$@"
 
