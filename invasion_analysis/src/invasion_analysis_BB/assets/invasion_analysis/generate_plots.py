@@ -89,7 +89,7 @@ def main(parameters_file, plots_directory, simulations_paths):
                 df.columns,
                 df.loc[field, :],
                 p0=[df.loc[field, 0], df.loc[field, :].iloc[-1], 1, 1],
-                maxfev=1000000,
+                maxfev=1000000000,
             )
 
             yfit = [sigmoid(xdatum, *popt) for xdatum in df.columns]
@@ -131,7 +131,7 @@ def main(parameters_file, plots_directory, simulations_paths):
             df.columns,
             df.loc[field, :],
             p0=[df.loc[field, 0], df.loc[field, :].iloc[-1], 1, 1],
-            maxfev=1000000,
+            maxfev=1000000000,
         )
 
         yfit = [sigmoid(xdatum, *popt) for xdatum in df.columns]
