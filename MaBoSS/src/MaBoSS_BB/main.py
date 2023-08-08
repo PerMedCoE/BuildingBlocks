@@ -21,7 +21,7 @@ MABOSS_SENSITIVIY_ANALYSIS_BINARY = os.path.join(ASSETS_PATH, "MaBoSS_sensitivit
 
 
 @constraint(computing_units=COMPUTING_UNITS)
-@container(engine="SINGULARITY", image=MABOSS_CONTAINER)
+@container(engine="SINGULARITY", image=MABOSS_SENSITIVITY_CONTAINER)
 @binary(binary=MABOSS_BINARY)
 @task(data_folder=DIRECTORY_IN, ko_file=FILE_OUT)
 def MaBoSS_analysis(
