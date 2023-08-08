@@ -21,7 +21,7 @@ INVASION_ANALYSIS_BINARY = os.path.join(ASSETS_PATH, "InvasionAnalysis.sh")
 INVASION_PLOTTING_BINARY = os.path.join(ASSETS_PATH, "InvasionPlotting.sh")
 
 
-@container(engine="SINGULARITY", image=CONTAINER)
+@container(engine="SINGULARITY", image=CONTAINER, options="--cleanenv")
 @binary(binary=INVASION_ANALYSIS_BINARY)
 @task(output_data=FILE_OUT, varargs_type=DIRECTORY_IN)
 def invasion_analysis(tmpdir=TMPDIR, output_data=None, *args):
@@ -31,7 +31,7 @@ def invasion_analysis(tmpdir=TMPDIR, output_data=None, *args):
     pass
 
 
-@container(engine="SINGULARITY", image=CONTAINER)
+@container(engine="SINGULARITY", image=CONTAINER, options="--cleanenv")
 @binary(binary=INVASION_PLOTTING_BINARY)
 @task(parameter_sets=FILE_IN, plot_directory=DIRECTORY_OUT, varargs_type=FILE_IN)
 def invasion_generate_plots(
