@@ -40,6 +40,12 @@ cd8_results = np.zeros((len(genes)*len(patients), max_timestep-start_timestep))
 epi_traces = np.zeros((len(genes)*len(patients)*args.repetitions, max_timestep-start_timestep))
 cd8_traces = np.zeros((len(genes)*len(patients)*args.repetitions, max_timestep-start_timestep))
 
+try:
+    os.makedirs(args.result)
+except FileExistsError:
+    # Result directory already exists
+    pass
+
 for i_patient, patient in enumerate(patients):
     patient_path = os.path.join(args.out_dir, patient)
     patient_data_path = os.path.join(patient_path, "physiboss_replicates_analysis")
