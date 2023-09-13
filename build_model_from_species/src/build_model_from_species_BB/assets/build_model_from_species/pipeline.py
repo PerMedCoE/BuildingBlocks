@@ -34,20 +34,20 @@ if args.list_genes is not None:
     os.makedirs(workdir, exist_ok=True)
 
     os.chdir(workdir)
+ 
+    # if os.path.exists(os.path.join(workdir, "cache")):
+    #     shutil.rmtree(os.path.join(workdir, "cache"))
 
-    if os.path.exists(os.path.join(workdir, "cache")):
-        shutil.rmtree(os.path.join(workdir, "cache"))
+    # shutil.copytree(
+    #     os.path.join(os.path.dirname(os.path.realpath(__file__)), "cache"), os.path.join(workdir, "cache")
+    # )
 
-    shutil.copytree(
-        "/opt/FromSpeciesToMaBoSSModel/cache", os.path.join(workdir, "cache")
-    )
+    # if os.path.exists(os.path.join(workdir, "pickles")):
+    #     shutil.rmtree(os.path.join(workdir, "pickles"))
 
-    if os.path.exists(os.path.join(workdir, "pickles")):
-        shutil.rmtree(os.path.join(workdir, "pickles"))
-
-    shutil.copytree(
-        "/opt/FromSpeciesToMaBoSSModel/pickles", os.path.join(workdir, "pickles")
-    )
+    # shutil.copytree(
+    #     os.path.join(os.path.dirname(os.path.realpath(__file__)), "pickles"), os.path.join(workdir, "pickles")
+    # )
 
     from pypath.share import settings
 

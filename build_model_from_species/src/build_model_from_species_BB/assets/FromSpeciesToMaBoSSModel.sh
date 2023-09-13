@@ -30,6 +30,10 @@ cp ${SCRIPTS_DIR}/functions.py ./
 cp ${SCRIPTS_DIR}/pipeline.py ./
 cp ${SCRIPTS_DIR}/pypath_wrapper.py ./
 
+unzip ${SCRIPTS_DIR}/cache.zip -d .
+mkdir ./pickles
+unzip ${SCRIPTS_DIR}/pickle.zip -d ./pickles
+
 python pipeline.py "$@"
 
 cd ${CURRENT_DIR}

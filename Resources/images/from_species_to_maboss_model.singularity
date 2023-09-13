@@ -59,32 +59,8 @@ dependencies:
     - urllib3==1.26.15
     - xarray==2023.3.0
     - xlrd==2.0.1
-    - pypath-omnipath==0.14.44
     - maboss==0.8.4
 """ > /opt/FromSpeciesToMaBoSSModel/pypath_env.yml
    DEBIAN_FRONTEND=noninteractive apt-get update -y
-   DEBIAN_FRONTEND=noninteractive apt-get install -y gcc
+   DEBIAN_FRONTEND=noninteractive apt-get install -y gcc unzip
    /opt/conda/bin/mamba env create -f /opt/FromSpeciesToMaBoSSModel/pypath_env.yml
-   echo """
-import os, sys
-
-def main(cache_dir, pickle_dir):
-    from pypath import omnipath
-    from pypath.resources import network as netres
-    from pypath.share import settings
-    
-    os.chdir('/opt/FromSpeciesToMaBoSSModel')
-    #setting the cache directory
-    os.makedirs(cache_dir)
-    os.makedirs(pickle_dir)
-    settings.setup(cachedir = cache_dir, pickle_dir = pickle_dir)
-    
-    omnipath.db.param['network_mod'] = 'network' 
-    omnipath.db.param['network_args'] = {'resources': netres.pathway['signor']} # <-- insert in the dict the pathway
-    m = omnipath.db.get_db('network')
-    return 0
-
-if __name__ == '__main__':
-    sys.exit(main(*sys.argv[1:]))
-""" > /opt/FromSpeciesToMaBoSSModel/download_database.py
-   /opt/conda/envs/pypath_env/bin/python /opt/FromSpeciesToMaBoSSModel/download_database.py /opt/FromSpeciesToMaBoSSModel/cache /opt/FromSpeciesToMaBoSSModel/pickles
