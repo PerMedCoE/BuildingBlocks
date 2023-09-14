@@ -1,6 +1,6 @@
-# High-throughput Mutant Analysis Building Block
+# High-throughput Mutant Analysis Building Block using NVIDIA GPU accelerators
 
-This package provides the High-throughput Mutant Analysis **Building Block (BB)**.
+This package provides the High-throughput Mutant Analysis **Building Block (BB)** using NVIDIA GPU accelerators.
 
 ## Table of Contents
 
@@ -17,7 +17,7 @@ This package provides the High-throughput Mutant Analysis **Building Block (BB)*
 
 ## Description
 
-This building block uses MaBoSSG to screen all the possible knockouts of a given Boolean model. It produces a candidate gene list formatted as a text file (single gene per row). More information on MaBoSSG can be found in [Stoll G. et al. (2017)](https://academic.oup.com/bioinformatics/article-lookup/doi/10.1093/bioinformatics/btx123) and in the [MaBoSSG GitHub repository](https://github.com/maboss-bkmc/MaBoSSG-env-2.0).
+This building block uses MaBoSSG (the version of MaBoSS for NVIDIA GPU accelerators) to screen all the possible knockouts of a given Boolean model. It produces a candidate gene list formatted as a text file (single gene per row). More information on MaBoSSG can be found in the [MaBoSSG GitHub repository](https://github.com/sysbio-curie/MaBoSSG).
 
 ## User instructions
 
@@ -26,6 +26,7 @@ This building block uses MaBoSSG to screen all the possible knockouts of a given
 - Python >= 3.6
 - [Singularity](https://singularity.lbl.gov/docs-installation)
 - `permedcoe` base package: `python3 -m pip install permedcoe`
+- NVIDIA drivers >= 450.80.02
 
 In addition to the dependencies, it is necessary to generate the associated
 singularity images ([`MaBoSSG.singularity`](../Resources/images/MaBoSSG.singularity) and
@@ -60,10 +61,10 @@ application, or through the command line for other workflow managers
 The command line is:
 
 ```bash
-MABOSS_ASSETS=$(python3 -c "import MaBoSSG_BB; import os; print(os.path.dirname(MaBoSSG_BB.__file__))")
+MABOSSG_ASSETS=$(python3 -c "import MaBoSSG_BB; import os; print(os.path.dirname(MaBoSSG_BB.__file__))")
 
 MaBoSSG_BB -d \
-    --mount_point ${MABOSS_ASSETS}/assets:${MABOSS_ASSETS}/assets,<working_directory>:<working_directory> \
+    --mount_point ${MABOSSG_ASSETS}/assets:${MABOSSG_ASSETS}/assets,<working_directory>:<working_directory> \
     default \
     --model <model> \
     --data_folder <data_folder> \
@@ -87,10 +88,10 @@ Alternatively, it can be used to perform sensitivity analysis:
 The command line is:
 
 ```bash
-MABOSS_ASSETS=$(python3 -c "import MaBoSSG_BB; import os; print(os.path.dirname(MaBoSSG_BB.__file__))")
+MABOSSG_ASSETS=$(python3 -c "import MaBoSSG_BB; import os; print(os.path.dirname(MaBoSSG_BB.__file__))")
 
 MaBoSSG_BB -d \
-    --mount_point ${MABOSS_ASSETS}/assets:${MABOSS_ASSETS}/assets,<working_directory>:<working_directory> \
+    --mount_point ${MABOSSG_ASSETS}/assets:${MABOSSG_ASSETS}/assets,<working_directory>:<working_directory> \
     sensitivity \
     --model_folder <model_folder> \
     --genes_druggable <genes_druggable> \
