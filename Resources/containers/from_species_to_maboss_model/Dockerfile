@@ -1,5 +1,11 @@
 FROM localhost/mambaforge:latest
 
+RUN apt-get --quiet update && \
+    DEBIAN_FRONTEND=noninteractive \
+    apt-get install --assume-yes --no-install-recommends \
+        "gcc" \
+   rm -rf /var/lib/apt/lists/*
+
 ARG CONDA_ENV=pypath
 ENV PATH=/opt/conda/envs/$CONDA_ENV/bin:$PATH
 
