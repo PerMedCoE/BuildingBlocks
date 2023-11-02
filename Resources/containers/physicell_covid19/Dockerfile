@@ -27,12 +27,10 @@ RUN wget --no-hsts --quiet "https://github.com/sysbio-curie/MaBoSS-env-2.0/relea
     unzip -o MaBoSS-linux64.zip -d /usr/local/bin/ && \
     rm MaBoSS-linux64.zip
 
-# TODO: Vincent will lock this version when he has updated the code
-RUN git clone https://github.com/vincent-noel/COVID19.git \
-        /usr/local/src/covid19 && \
+RUN git clone --branch v6 --single-branch https://github.com/vincent-noel/COVID19.git /usr/local/src/covid19 && \
     rm -rf /usr/local/src/covid19/.git && \
-    (cd /usr/local/src/covid19/PhysiCell && sed -i 's/COVID19/myproj/g' Makefile && make ;) && \
-    ln -sf /usr/local/src/covid19/PhysiCell/myproj /usr/local/bin/myproj
+    (cd /usr/local/src/covid19/PhysiCell && make ;) && \
+    ln -sf /usr/local/src/covid19/PhysiCell/COVID19 /usr/local/bin/COVID19
 
 COPY ./install.R /opt/install.R
 RUN Rscript --vanilla /opt/install.R
