@@ -1,37 +1,19 @@
 import os, sys
 
-def main(cache_path, pickle_path):
-    os.chdir('/opt/FromSpeciesToMaBoSSModel')
-    os.makedirs(cache_path)
+def main(cache_dir, pickle_dir):
+    from pypath import omnipath
+    from pypath.resources import network as netres
     from pypath.share import settings
-
-    settings.setup(cachedir=(cache_path)) # ==> actual cache folder to use with legacy.main
-    # settings.setup(progressbars = True)
-
-    #importing legacy, which is the 'old' version of pypath, the only one (for now), with the graph object implemented
-    from pypath.legacy import main as legacy
-
-    #initialization of the 'old' PyPath object
-    pw_legacy = legacy.PyPath()
-
-    # Instead of loading the databases using steps, I prefer loading the activity flow networks with literature references
-    # (you can look at the possible datasets at: https://workflows.omnipathdb.org/pypath_guide.html#network-resources)
-
-    for database in legacy.data_formats.omnipath.keys():
-
-        if database in ['hprd', 'hprd_p', 'cellinker']:
-            continue
-        try:
-            print(database, ' : ', legacy.data_formats.omnipath[database])
-            lst={database: legacy.data_formats.omnipath[database]}
-            pw_legacy.init_network(lst)
-        except Exception as inst:
-            print('Error for '+database)
-
-    # Save the network
-
-    pw_legacy.save_to_pickle(pickle_path)
-
+    
+    os.chdir('/opt/FromSpeciesToMaBoSSModel')
+    #setting the cache directory
+    os.makedirs(cache_dir)
+    os.makedirs(pickle_dir)
+    settings.setup(cachedir = cache_dir, pickle_dir = pickle_dir)
+    
+    omnipath.db.param['network_mod'] = 'network' 
+    omnipath.db.param['network_args'] = {'resources': netres.pathway['signor']} # <-- insert in the dict the pathway
+    m = omnipath.db.get_db('network')
     return 0
 
 if __name__ == '__main__':
