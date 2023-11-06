@@ -11,7 +11,6 @@ from permedcoe import TMPDIR
 
 # Import single container and assets definitions
 from MaBoSS_BB.definitions import MABOSS_CONTAINER
-from MaBoSS_BB.definitions import MABOSS_SENSITIVITY_CONTAINER
 from MaBoSS_BB.definitions import ASSETS_PATH
 from MaBoSS_BB.definitions import COMPUTING_UNITS
 
@@ -21,7 +20,7 @@ MABOSS_SENSITIVIY_ANALYSIS_BINARY = os.path.join(ASSETS_PATH, "MaBoSS_sensitivit
 
 
 @constraint(computing_units=COMPUTING_UNITS)
-@container(engine="SINGULARITY", image=MABOSS_SENSITIVITY_CONTAINER)
+@container(engine="SINGULARITY", image=MABOSS_CONTAINER)
 @binary(binary=MABOSS_BINARY)
 @task(data_folder=DIRECTORY_IN, ko_file=FILE_OUT)
 def MaBoSS_analysis(
@@ -39,7 +38,7 @@ def MaBoSS_analysis(
 
 
 @constraint(computing_units=COMPUTING_UNITS)
-@container(engine="SINGULARITY", image=MABOSS_SENSITIVITY_CONTAINER)
+@container(engine="SINGULARITY", image=MABOSS_CONTAINER)
 @binary(binary=MABOSS_SENSITIVIY_ANALYSIS_BINARY)
 @task(
     model_folder=DIRECTORY_IN,
