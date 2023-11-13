@@ -17,21 +17,21 @@ sudo apt-get install --yes buildah
 Building images
 
 ```sh
-buildah build --tag "maboss:latest" "maboss/"
+buildah build --tag <name>:latest <directory>
 ```
 
 Pushing images to GitHub container registry
 
 ```sh
-buildah login ghcr.io -u "permedcoe"  # supply an access token
-buildah tag "localhost/maboss:latest" "ghcr.io/permedcoe/maboss:latest"
-buildah push "ghcr.io/permedcoe/maboss:latest"
+buildah login -u permedcoe ghcr.io  # supply an access token
+buildah tag localhost/<name>:latest ghcr.io/permedcoe/<name>:latest
+buildah push ghcr.io/permedcoe/<name>:latest
 ```
 
 Pulling images with Apptainer (or Singularity)
 
 ```sh
-apptainer pull "maboss-latest.sif" "ghcr.io/permedcoe/maboss:latest"
+apptainer pull <name>-latest.sif ghcr.io/permedcoe/<name>:latest
 ```
 
 
