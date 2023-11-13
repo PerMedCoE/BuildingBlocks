@@ -10,7 +10,7 @@ The structure of the container files consists of a directory with the container 
 
 
 ## Building images
-We use Ubuntu 22.04 for building these images.
+We use Ubuntu 22.04 for building the container images.
 
 ```sh
 sudo apt-get update
