@@ -22,7 +22,7 @@ RUN apt-get --quiet update && \
     rm -rf /var/lib/apt/lists/* && \
     ln -sf /usr/bin/python3 /usr/bin/python
 
-ARG MABOSS_VERSION=2.4.1
+ARG MABOSS_VERSION=2.5.2
 RUN wget --no-hsts --quiet "https://github.com/sysbio-curie/MaBoSS-env-2.0/releases/download/v${MABOSS_VERSION}/MaBoSS-linux64.zip" && \
     unzip -o MaBoSS-linux64.zip -d /usr/local/bin/ && \
     rm MaBoSS-linux64.zip
