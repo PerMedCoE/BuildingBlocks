@@ -1,4 +1,8 @@
-FROM ubuntu:22.04
+# ubuntu:22.04
+FROM rocker/r-ver:4.3.2
+
+COPY ./install.R /opt/install.R
+RUN Rscript /opt/install.R
 
 RUN apt-get --quiet update && \
     DEBIAN_FRONTEND=noninteractive \
@@ -12,11 +16,6 @@ RUN apt-get --quiet update && \
         make \
         wget \
         unzip \
-        r-base \
-        r-base-dev \
-        libxml2-dev \
-        libssl-dev \
-        libcurl4-openssl-dev \
         python3 \
         python3-dev && \
     rm -rf /var/lib/apt/lists/* && \
@@ -31,6 +30,3 @@ RUN git clone --branch v6 --single-branch https://github.com/vincent-noel/COVID1
     rm -rf /usr/local/src/covid19/.git && \
     (cd /usr/local/src/covid19/PhysiCell && make ;) && \
     ln -sf /usr/local/src/covid19/PhysiCell/COVID19 /usr/local/bin/COVID19
-
-COPY ./install.R /opt/install.R
-RUN Rscript --vanilla /opt/install.R
