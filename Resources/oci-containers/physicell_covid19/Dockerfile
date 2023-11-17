@@ -1,8 +1,8 @@
 # ubuntu:22.04
 FROM rocker/r-ver:4.3.2
 
-COPY ./install.R /opt/install.R
-RUN Rscript /opt/install.R
+COPY ./install.sh /opt/install.sh
+RUN /opt/install.sh
 
 RUN apt-get --quiet update && \
     DEBIAN_FRONTEND=noninteractive \
