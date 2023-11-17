@@ -41,7 +41,13 @@ fi
 # Do a copy of PhysiBoSS folder for the current execution
 user=$(whoami)
 physiboss_folder="${tmpdir}/PhysiBoSS_${repetition}_${user}"
-cp -r /usr/local/scm/Invasion_model_PhysiBoSS/ ${physiboss_folder}
+if [ -d "/usr/local/scm/Invasion_model_PhysiBoSS/" ]; then
+  echo "Using /usr/local/scm/Invasion_model_PhysiBoSS/ folder"
+  cp -r /usr/local/scm/Invasion_model_PhysiBoSS/ ${physiboss_folder}
+else
+  echo "Using /usr/local/src/Invasion_model_PhysiBoSS/ folder"
+  cp -r /usr/local/src/Invasion_model_PhysiBoSS/ ${physiboss_folder}
+fi
 chmod -R 755 ${physiboss_folder}
 echo "COPY OF PhysiBoSS:"
 echo "${physiboss_folder}"

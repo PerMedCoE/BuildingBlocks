@@ -25,6 +25,10 @@ else
     cd ${tmpdir}
 fi
 
-Rscript --vanilla /opt/omnipath.R $@
+if [ -f "/opt/omnipath.R" ]; then
+    Rscript --vanilla /opt/omnipath.R $@
+else
+    Rscript --vanilla /usr/local/bin/omnipath $@
+fi
 
 cd $CURRENT_DIR

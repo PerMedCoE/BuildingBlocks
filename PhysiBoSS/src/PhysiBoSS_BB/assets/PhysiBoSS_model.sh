@@ -46,7 +46,13 @@ cfg_file=${model_dir}/${prefix}.cfg
 # Do a copy of PhysiBoSS folder for the current execution
 user=$(whoami)
 physiboss_folder="${tmpdir}/PhysiBoSS_${sample}_${prefix}_${repetition}_${user}"
-cp -r /usr/local/scm/COVID19/PhysiCell ${physiboss_folder}
+if [ -d "/usr/local/scm/COVID19/PhysiCell" ]; then
+  echo "Using /usr/local/scm/COVID19/PhysiCell folder"
+  cp -r /usr/local/scm/COVID19/PhysiCell ${physiboss_folder}
+else
+  echo "Using /usr/local/src/covid19/PhysiCell folder"
+  cp -r /usr/local/src/covid19/PhysiCell ${physiboss_folder}
+fi
 chmod -R 755 ${physiboss_folder}
 echo "COPY OF PhysiBoSS:"
 echo "${physiboss_folder}"

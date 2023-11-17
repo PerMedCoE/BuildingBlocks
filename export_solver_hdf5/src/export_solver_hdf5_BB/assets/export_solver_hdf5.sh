@@ -25,6 +25,10 @@ else
     cd ${tmpdir}
 fi
 
-Rscript --vanilla /opt/export.R $@
+if [ -f "/opt/export.R" ]; then
+    Rscript --vanilla /opt/export.R $@
+else
+    Rscript --vanilla /usr/local/bin/export $@
+fi
 
 cd $CURRENT_DIR

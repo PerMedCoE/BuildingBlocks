@@ -25,6 +25,10 @@ else
     cd ${tmpdir}
 fi
 
-/opt/conda/bin/python /opt/ml.py $@
+if [ -f "/opt/conda/envs/ml_jax/bin/python" ]; then
+    /opt/conda/envs/ml_jax/bin/python /opt/ml.py $@
+else
+    /opt/conda/bin/python /opt/ml.py $@
+fi
 
 cd $CURRENT_DIR

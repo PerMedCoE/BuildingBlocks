@@ -25,6 +25,10 @@ else
     cd ${tmpdir}
 fi
 
-/opt/miniconda/bin/python /opt/carnival/carnivalpy/carnival.py $@
+if [ -f "/opt/miniconda/bin/python" ]; then
+    /opt/miniconda/bin/python /opt/carnival/carnivalpy/carnival.py $@
+else
+    /opt/conda/envs/carnivalpy/bin/python /opt/carnival/carnivalpy/carnival.py $@
+fi
 
 cd $CURRENT_DIR

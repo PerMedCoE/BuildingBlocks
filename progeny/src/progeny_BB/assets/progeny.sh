@@ -25,6 +25,10 @@ else
     cd ${tmpdir}
 fi
 
-Rscript --vanilla /opt/progeny.R $@
+if [ -f "/opt/progeny.R" ]; then
+    Rscript --vanilla /opt/progeny.R $@
+else
+    Rscript --vanilla /usr/local/bin/progeny $@
+fi
 
 cd $CURRENT_DIR
