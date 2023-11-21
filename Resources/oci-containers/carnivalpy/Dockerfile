@@ -10,6 +10,8 @@ RUN mamba env create --quiet --name "$CONDA_ENV" --file /opt/env.yml && \
     find /opt/conda/ -follow -type f -name '*.a' -delete && \
     find /opt/conda/ -follow -type f -name '*.pyc' -delete
 
+COPY ./carnivalpy/carnival.py /opt/carnival/carnivalpy/carnival.py
+COPY ./carnivalpy/export.R /opt/carnival/carnivalpy/export.R
 COPY ./scripts/carnivalpy.sh /opt/carnivalpy.sh
 COPY ./scripts/export.R /opt/export.R
 COPY ./scripts/feature_merge.py /usr/local/bin/feature_merger
