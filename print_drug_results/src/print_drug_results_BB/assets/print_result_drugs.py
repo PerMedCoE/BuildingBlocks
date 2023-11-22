@@ -29,9 +29,6 @@ for cell_line in cell_lines:
     mutants = mutants.union(set(list(result.keys())))
     targets = targets.union(set(list(list(result.values())[0].keys())))
 
-print("mutants: " + str(mutants))
-print("targets: " + str(targets))
-
 dfs = {}
 for target in targets:
     dfs.update({
@@ -40,9 +37,6 @@ for target in targets:
             list(mutants), list(cell_lines)
         )
     })
-
-print("dfs: " + str(dfs))
-print(dfs.keys())
 
 for cell_line in cell_lines:
     result_path = os.path.join(args.result_folder, cell_line, "sensitivity.json")
@@ -58,7 +52,7 @@ if not os.path.exists(args.report_folder):
     os.makedirs(args.report_folder, exist_ok=True)
 
 for target, df in dfs.items():
-    plt.figure(figsize=(10,5),dpi=100)
+    plt.figure(figsize=(8, int(df.shape[0]/4)),dpi=200, layout="tight") 
     ax = plt.axes()
     seaborn.heatmap(df, ax = ax, annot=True)
 
