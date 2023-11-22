@@ -2,7 +2,7 @@ FROM localhost/mambaforge:latest
 
 RUN apt-get --quiet update && \
     DEBIAN_FRONTEND=noninteractive \
-    apt-get install --assume-yes --no-install-recommends "gcc" "libc-dev" && \
+    apt-get install --assume-yes --no-install-recommends "gcc" "unzip" "libc-dev" && \
     rm -rf /var/lib/apt/lists/*
 
 ARG CONDA_ENV=pypath
