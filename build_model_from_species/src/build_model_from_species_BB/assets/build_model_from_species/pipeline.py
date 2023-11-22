@@ -67,7 +67,7 @@ if args.list_genes is not None:
     for gene in genes.values:
         gene_list.append(str(gene[0]))
 
-    distance = 2
+    distance = 1
     net = w.extract_subnet(gene_list, distance, complete_connections=True)
     
     net.write_bnet(file_name=os.path.join(workdir, "model.bnet"))
