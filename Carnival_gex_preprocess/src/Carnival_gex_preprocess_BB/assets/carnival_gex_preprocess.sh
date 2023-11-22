@@ -25,6 +25,10 @@ else
     cd ${tmpdir}
 fi
 
-Rscript --vanilla /opt/preprocess.R $@
+if [ -f "/opt/preprocess.R" ]; then
+    Rscript --vanilla /opt/preprocess.R $@
+else
+    Rscript --vanilla /usr/local/bin/preprocess $@
+fi
 
 cd $CURRENT_DIR

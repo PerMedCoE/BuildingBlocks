@@ -25,6 +25,10 @@ else
     cd ${tmpdir}
 fi
 
-/opt/miniconda/bin/python /opt/feature_merge.py  $@
+if [ -f "/opt/feature_merge.py" ]; then
+    /opt/miniconda/bin/python /opt/feature_merge.py  $@
+else
+    /opt/conda/bin/python /usr/local/bin/feature_merger $@
+fi
 
 cd $CURRENT_DIR

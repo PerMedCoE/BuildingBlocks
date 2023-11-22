@@ -25,6 +25,10 @@ else
     cd ${tmpdir}
 fi
 
-Rscript --vanilla /opt/tf_enrichment.R $@
+if [ -f "/opt/tf_enrichment.R" ]; then
+    Rscript --vanilla /opt/tf_enrichment.R $@
+else
+    Rscript --vanilla /usr/local/bin/tf_enrichment $@
+fi
 
 cd $CURRENT_DIR
