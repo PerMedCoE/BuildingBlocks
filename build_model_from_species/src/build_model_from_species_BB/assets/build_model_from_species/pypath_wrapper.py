@@ -26,15 +26,15 @@ class Wrap_net(Network):
         """
         new_net = Wrap_net()
 
-        verified_genes = []
-        for node in list_of_nodes:
-            try:
-                uniprot = list(mapping.map_name(node, 'genesymbol', 'uniprot'))
-                genesymbol = list(mapping.map_name(uniprot[0], 'uniprot', 'genesymbol'))
-                new_net.add_node(self.entity(genesymbol[0]))
-                verified_genes.append(genesymbol[0])
-            except:
-                print("Couldn't process the gene %s" % node, file=sys.stderr) 
+        verified_genes = list_of_nodes
+        # for node in list_of_nodes:
+        #     # try:
+        #         uniprot = list(mapping.map_name(node, 'genesymbol', 'uniprot'))
+        #         genesymbol = list(mapping.map_name(uniprot[0], 'uniprot', 'genesymbol'))
+        #         new_net.add_node(self.entity(genesymbol[0]))
+        #         verified_genes.append(genesymbol[0])
+        #     # except:
+        #         # print("Couldn't process the gene %s" % node, file=sys.stderr) 
          
         #to add a check if the node is in the database/node has a good name/ uniprot correspondance
         @staticmethod

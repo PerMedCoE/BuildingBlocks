@@ -122,7 +122,7 @@ def print_results(dfs, report_folder):
         os.makedirs(report_folder, exist_ok=True)
 
     for target, df in dfs.items():
-        plt.figure(figsize=(10,5),dpi=100)
+        plt.figure(figsize=(8, int(df.shape[0]/4)),dpi=200, layout="tight")
         ax = plt.axes()
         seaborn.heatmap(df, ax = ax, annot=True)
 
