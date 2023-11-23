@@ -1,0 +1,53 @@
+{
+    "short_description": "Inference of transcription factor analysis from differential expression analysis",
+    "long_description": "Inference of transcription factor analysis from differential expression analysis by using DecoupleR tool. It also includes Progreny results as a preliminary results to be used on CARNIVAL",
+    "use_description": "long",
+    "parameters": {
+        "default": [
+            {
+                "type": "input",
+                "name": "exp",
+                "format": "file",
+                "description": "Normalized expression file"
+            },
+            {
+                "type": "input",
+                "name": "metadata",
+                "format": "file",
+                "description": "Sample metadata"
+            },
+            {
+                "type": "input",
+                "name": "dea",
+                "format": "file",
+                "description": "Differential expression analysis"
+            },
+            {
+                "type": "input",
+                "name": "group",
+                "format": "str",
+                "description": "Group variable"
+            },
+            {
+                "type": "input",
+                "name": "treatment",
+                "format": "str",
+                "description": "Label of treated subgroup"
+            },
+            {
+                "type": "input",
+                "name": "control",
+                "format": "str",
+                "description": "Label of control subgroup"
+            },
+            {
+                "type": "input",
+                "name": "outdir",
+                "format": "folder",
+                "description": "Output folder"
+            }
+        ]
+    }
+}
+
+
