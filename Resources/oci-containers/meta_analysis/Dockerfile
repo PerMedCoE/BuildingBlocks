@@ -14,3 +14,13 @@ RUN apt-get --quiet update && \
 
 COPY ./install.R /opt/install.R
 RUN Rscript --vanilla /opt/install.R
+
+RUN apt-get --quiet update && \
+    DEBIAN_FRONTEND=noninteractive \
+    apt-get install --assume-yes --no-install-recommends \
+        "python3" \
+        "python3-pip" && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY ./requirements.txt /opt/requirements.txt
+RUN pip3 install --no-cache-dir -f /opt/requirements.txt
