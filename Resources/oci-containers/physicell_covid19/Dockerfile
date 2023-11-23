@@ -17,7 +17,8 @@ RUN apt-get --quiet update && \
         wget \
         unzip \
         python3 \
-        python3-dev && \
+        python3-dev \
+        python3-pip && \
     rm -rf /var/lib/apt/lists/* && \
     ln -sf /usr/bin/python3 /usr/bin/python
 
@@ -30,3 +31,5 @@ RUN git clone --branch v6 --single-branch https://github.com/vincent-noel/COVID1
     rm -rf /usr/local/src/covid19/.git && \
     (cd /usr/local/src/covid19/PhysiCell && make ;) && \
     ln -sf /usr/local/src/covid19/PhysiCell/COVID19 /usr/local/bin/COVID19
+    
+RUN pip install pandas numpy scipy matplotlib seaborn
