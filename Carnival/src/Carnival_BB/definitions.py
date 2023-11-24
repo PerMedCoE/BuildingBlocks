@@ -8,6 +8,6 @@ BB_SOURCE_PATH=os.path.dirname(os.path.abspath(__file__))
 # Update the following lines:
 #  - Assets folder within the Building Block
 ASSETS_PATH = None
-#  - Container definition for COBREXA Building Block
+#  - Container definition for Carbuvak Building Block
 CONTAINER_NAME = "signaling_solvers.sif"
 CONTAINER = os.path.join(CONTAINER_PATH, CONTAINER_NAME)
