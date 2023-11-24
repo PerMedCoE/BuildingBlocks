@@ -1,10 +1,8 @@
-FROM ubuntu:22.04
+FROM rocker/r-ver:4.3.2
 
 RUN apt-get --quiet update && \
     DEBIAN_FRONTEND=noninteractive \
     apt-get install --assume-yes --no-install-recommends \
-        r-base \
-        r-base-dev \
         libhdf5-dev \
         libxml2-dev \
         libssl-dev \
@@ -21,4 +19,5 @@ RUN apt-get --quiet update && \
     rm -rf /var/lib/apt/lists/*
 
 COPY ./install.R /opt/install.R
-RUN Rscript --vanilla /opt/install.R
+RUN Rscript /opt/install.R && \
+    rm -rf /tmp/downloaded_packages
