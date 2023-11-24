@@ -56,3 +56,4 @@ apptainer exec <name>.sif <command>
 - https://jcristharif.com/conda-docker-tips.html
 - https://cloud.r-project.org/bin/linux/ubuntu/
 - https://github.com/conda-forge/miniforge-images
+- https://github.com/rocker-org/rocker-versioned2
