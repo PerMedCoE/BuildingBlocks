@@ -33,6 +33,12 @@ fi
 # Copy all modifiable files to working directory
 cp ${SCRIPTS_DIR}/analysis.py ./
 
+if [ -z ${PYTHONHOME+x} ]; then
+    echo "No PYTHONHOME set"
+else
+    unset PYTHONHOME
+fi
+
 python3 analysis.py ${projectname} ${data_folder} ${ko_file} ${parallel}
 
 cd ${CURRENT_DIR}

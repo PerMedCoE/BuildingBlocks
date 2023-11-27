@@ -28,6 +28,12 @@ fi
 # Copy all modifiable files to working directory
 cp ${SCRIPTS_DIR}/sensitivity_analysis.py ./
 
+if [ -z ${PYTHONHOME+x} ]; then
+    echo "No PYTHONHOME set"
+else
+    unset PYTHONHOME
+fi
+
 python3 sensitivity_analysis.py $@
 
 cd ${CURRENT_DIR}

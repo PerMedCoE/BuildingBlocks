@@ -26,6 +26,13 @@ else
 fi
 
 cd ${CURRENT_DIR}
+
+if [ -z ${PYTHONHOME+x} ]; then
+    echo "No PYTHONHOME set"
+else
+    unset PYTHONHOME
+fi
+
 python3 ${SCRIPT_DIR}/meta_analysis.py $@
 
 cd $CURRENT_DIR
