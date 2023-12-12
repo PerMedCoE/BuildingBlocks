@@ -1,5 +1,3 @@
-import os
-
 # Decorator imports
 from permedcoe import constraint       # To define constraints needs (e.g. number of cores)
 from permedcoe import container        # To define container related needs
@@ -19,9 +17,9 @@ from permedcoe import get_environment  # Get variables from invocation (tmpdir, 
 from permedcoe import TMPDIR           # Default tmpdir key
 
 # Import single container and assets definitions
-from cll_prepare_data.definitions import ASSETS_PATH  # binary could be in this folder
-from cll_prepare_data.definitions import CONTAINER
-from cll_prepare_data.definitions import COMPUTING_UNITS
+from cll_network_inference.definitions import ASSETS_PATH  # binary could be in this folder
+from cll_network_inference.definitions import CONTAINER
+from cll_network_inference.definitions import COMPUTING_UNITS
 
 
 def function_name(*args, **kwargs):
@@ -38,43 +36,27 @@ def function_name(*args, **kwargs):
     # TODO: (optional) Pure python code calling to PyCOMPSs tasks (that can be defined in this file or in another).
 
 
-# Globals
-# CLL_PREPARE_DATA_BINARY = "cd /home/permed; Rscript /home/permed/prepare_data.R" #os.path.join(ASSETS_PATH, "cll_prepare_data.sh")
-CLL_PREPARE_DATA_BINARY = os.path.join(ASSETS_PATH, "run.sh")
-
-
-# @constraint(computing_units=COMPUTING_UNITS)
 @container(engine="SINGULARITY", image=CONTAINER)
-@binary(binary=CLL_PREPARE_DATA_BINARY)
-@task(exp=FILE_IN,
-      metadata=FILE_IN,
-      xref=FILE_IN,
-      outdir=DIRECTORY_IN)
-def cll_prepare_data(
-                  #tmpdir=TMPDIR,
-                  exp_flag='-e', exp=None,
-                  metadata_flag='-m', metadata=None,                  
-                  xref_flag='-x', xref=None, 
-                  group_flag='-g', group=None,
-                  treatment_flag='-t', treatment=None,
-                  control_flag='-c', control=None,
-                  batch_flag='-b', batch="T",
-                  outdir_flag='-o', outdir=None):
-    """
-    Prepare RNA-Seq data for downstream analysis.
+@binary(binary="cp")                                        # TODO: Define the binary to be used (can be within ASSETS_PATH (e.g. my_binary.sh)).
+@task(input_file=FILE_IN, output_file=FILE_OUT)             # TODO: Define the inputs and output parameters.
+def building_block_task(                                    # TODO: Define a representative task name.
+    input_file=None,                                        # TODO: Define the binary parameters.
+    output_file=None,                                       # TODO: Define the binary parameters.
+    verbose="-v"):                                          # TODO: Define the binary parameters.
+    # TODO: Add tmpdir=TMPDIR if the tmpdir will be used by the asset script.
+    """Summary.
 
     The Definition is equal to:
-        assets/run.sh <tmpdir> \
-                           -e <exp> \
-                           -m <metadata> \
-                           -x <xref> \                           
-                           -g <group> \
-                           -t <treatment> \
-                           -c <control> \
-                           -b <batch> \
-                           -o <outdir> 
+       cp <input_file> <output_file> -v
+    Empty function since it represents a binary execution:
+
+    :param input_file: Input file description, defaults to None
+    :type input_file: str, optional
+    :param verbose: Verbose description, defaults to "-v"
+    :type verbose: str, optional
+    # :param tmpdir: Temporary directory, defaults to TMPDIR
+    # :type tmpdir: str, optional
     """
-    # Empty function since it represents a binary execution:
     pass
 
 
@@ -83,17 +65,22 @@ def invoke(arguments, config):
 
     Args:
         arguments (args): Building Block parsed arguments.
-        config (dict): Configuration dictionary (not used).
+        config (dict): Configuration dictionary.
     Returns:
         None
     """
-   
-    # Building block invocation
-    cll_prepare_data(exp=arguments.exp,
-                  metadata=arguments.metadata,
-                  xref=arguments.xref,
-                  group=arguments.group,
-                  treatment=arguments.treatment,
-                  control=arguments.control,
-                  batch=arguments.batch,
-                  outdir=arguments.outdir)
+    # TODO: Define the arguments required by the Building Block in definition.json file.
+
+    # TODO: Declare how to run the binary specification (convert config into building_block_task call).
+    # Sample config parameter get:
+    #     operation = config["operation"]
+    # Then operation can be used to tune the building_block_task parameters or even be a parameter.
+    # Sample permedcoe environment get:
+    #     env_vars = get_environment()
+    # Retrieves the extra flags from permedcoe.
+    input_file = arguments.model
+    output_file = arguments.result
+    # tmpdir = arguments.tmpdir
+    building_block_task(input_file=input_file,
+                        output_file=output_file)
+                        # tmpdir=tmpdir)

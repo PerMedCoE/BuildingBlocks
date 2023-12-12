@@ -1,0 +1,39 @@
+{
+    "short_description": "Inference of contextualize signaling network from TF activities",
+    "long_description": "Inference of contextualize signaling network from TF activities using CARNIVAL",
+    "use_description": "long",
+    "parameters": {
+        "default": [
+            {
+                "type": "input",
+                "name": "cplex_bin",
+                "format": "str",
+                "description": "CPLEX binary path"
+            },
+            {
+                "type": "input",
+                "name": "activities",
+                "format": "file",
+                "description": "TF inferred activities file"
+            },
+            {
+                "type": "input",
+                "name": "omnipath_database",
+                "format": "file",
+                "description": "Pre-fetched Omnipath database"
+            },
+            {
+                "type": "output",
+                "name": "outdir",
+                "format": "folder",
+                "description": "Output folder"
+            },
+            {
+                "type": "output",
+                "name": "sif",
+                "format": "file",
+                "description": "Inferred network (in sif format)"
+            }
+        ]
+    }
+}

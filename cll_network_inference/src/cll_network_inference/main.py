@@ -1,3 +1,5 @@
+
+
 import os
 
 # Decorator imports
@@ -18,11 +20,10 @@ from permedcoe import Arguments        # Arguments definition
 from permedcoe import get_environment  # Get variables from invocation (tmpdir, processes, gpus, memory)
 from permedcoe import TMPDIR           # Default tmpdir key
 
-# Import single container and assets definitions
-from cll_prepare_data.definitions import ASSETS_PATH  # binary could be in this folder
-from cll_prepare_data.definitions import CONTAINER
-from cll_prepare_data.definitions import COMPUTING_UNITS
-
+# Import single container and assets definitions"
+from cll_network_inference.definitions import ASSETS_PATH  # binary could be in this folder
+from cll_network_inference.definitions import CONTAINER
+from cll_network_inference.definitions import COMPUTING_UNITS
 
 def function_name(*args, **kwargs):
     """Extended python interface:
@@ -39,42 +40,30 @@ def function_name(*args, **kwargs):
 
 
 # Globals
-# CLL_PREPARE_DATA_BINARY = "cd /home/permed; Rscript /home/permed/prepare_data.R" #os.path.join(ASSETS_PATH, "cll_prepare_data.sh")
-CLL_PREPARE_DATA_BINARY = os.path.join(ASSETS_PATH, "run.sh")
+CLL_NETWORK_INFERENCE_BINARY = os.path.join(ASSETS_PATH, "run.sh")
 
 
 # @constraint(computing_units=COMPUTING_UNITS)
 @container(engine="SINGULARITY", image=CONTAINER)
-@binary(binary=CLL_PREPARE_DATA_BINARY)
-@task(exp=FILE_IN,
-      metadata=FILE_IN,
-      xref=FILE_IN,
-      outdir=DIRECTORY_IN)
-def cll_prepare_data(
-                  #tmpdir=TMPDIR,
-                  exp_flag='-e', exp=None,
-                  metadata_flag='-m', metadata=None,                  
-                  xref_flag='-x', xref=None, 
-                  group_flag='-g', group=None,
-                  treatment_flag='-t', treatment=None,
-                  control_flag='-c', control=None,
-                  batch_flag='-b', batch="T",
-                  outdir_flag='-o', outdir=None):
+@binary(binary=CLL_NETWORK_INFERENCE_BINARY)
+@task(activities=FILE_IN, omnipath_database=FILE_IN, outdir=DIRECTORY_OUT, sif=FILE_OUT)
+def cll_network_inference(
+                  cplex_bin_flag='-c', cplex_bin=None, 
+                  activities_flag='-a', activities=None, 
+                  omnipath_database_flag='-z', omnipath_database=None, 
+                  outdir_flag='-o', outdir=None, 
+                  sif_flag='-s', sif=None):
     """
-    Prepare RNA-Seq data for downstream analysis.
+    Inference of contextualize signaling network from TF activities
 
     The Definition is equal to:
-        assets/run.sh <tmpdir> \
-                           -e <exp> \
-                           -m <metadata> \
-                           -x <xref> \                           
-                           -g <group> \
-                           -t <treatment> \
-                           -c <control> \
-                           -b <batch> \
-                           -o <outdir> 
+        assets/run.sh 
+                  -c  cplex_bin \ 
+                  -a  activities \ 
+                  -z  omnipath_database \ 
+                  -o  outdir \ 
+                  -s  sif
     """
-    # Empty function since it represents a binary execution:
     pass
 
 
@@ -87,13 +76,13 @@ def invoke(arguments, config):
     Returns:
         None
     """
-   
+    
     # Building block invocation
-    cll_prepare_data(exp=arguments.exp,
-                  metadata=arguments.metadata,
-                  xref=arguments.xref,
-                  group=arguments.group,
-                  treatment=arguments.treatment,
-                  control=arguments.control,
-                  batch=arguments.batch,
-                  outdir=arguments.outdir)
+    cll_network_inference(
+                  cplex_bin=arguments.cplex_bin, 
+                  activities=arguments.activities, 
+                  omnipath_database=arguments.omnipath_database, 
+                  outdir=arguments.outdir, 
+                  sif=arguments.sif)
+
+

@@ -6,9 +6,9 @@
         "default": [
             {
                 "type": "input",
-                "name": "exp_file",
+                "name": "exp",
                 "format": "file",
-                "description": "Normalized expression file"
+                "description": "Expression file"
             },
             {
                 "type": "input",
@@ -47,7 +47,7 @@
                 "description": "Batch variable"
             },
             {
-                "type": "input",
+                "type": "output",
                 "name": "outdir",
                 "format": "folder",
                 "description": "Output folder"

@@ -1,3 +1,5 @@
+
+
 import os
 
 # Decorator imports
@@ -18,11 +20,10 @@ from permedcoe import Arguments        # Arguments definition
 from permedcoe import get_environment  # Get variables from invocation (tmpdir, processes, gpus, memory)
 from permedcoe import TMPDIR           # Default tmpdir key
 
-# Import single container and assets definitions
-from cll_prepare_data.definitions import ASSETS_PATH  # binary could be in this folder
-from cll_prepare_data.definitions import CONTAINER
-from cll_prepare_data.definitions import COMPUTING_UNITS
-
+# Import single container and assets definitions"
+from cll_combine_models.definitions import ASSETS_PATH  # binary could be in this folder
+from cll_combine_models.definitions import CONTAINER
+from cll_combine_models.definitions import COMPUTING_UNITS
 
 def function_name(*args, **kwargs):
     """Extended python interface:
@@ -39,42 +40,28 @@ def function_name(*args, **kwargs):
 
 
 # Globals
-# CLL_PREPARE_DATA_BINARY = "cd /home/permed; Rscript /home/permed/prepare_data.R" #os.path.join(ASSETS_PATH, "cll_prepare_data.sh")
-CLL_PREPARE_DATA_BINARY = os.path.join(ASSETS_PATH, "run.sh")
+CLL_COMBINE_MODELS_BINARY = os.path.join(ASSETS_PATH, "run.sh")
 
 
 # @constraint(computing_units=COMPUTING_UNITS)
 @container(engine="SINGULARITY", image=CONTAINER)
-@binary(binary=CLL_PREPARE_DATA_BINARY)
-@task(exp=FILE_IN,
-      metadata=FILE_IN,
-      xref=FILE_IN,
-      outdir=DIRECTORY_IN)
-def cll_prepare_data(
-                  #tmpdir=TMPDIR,
-                  exp_flag='-e', exp=None,
-                  metadata_flag='-m', metadata=None,                  
-                  xref_flag='-x', xref=None, 
-                  group_flag='-g', group=None,
-                  treatment_flag='-t', treatment=None,
-                  control_flag='-c', control=None,
-                  batch_flag='-b', batch="T",
+@binary(binary=CLL_COMBINE_MODELS_BINARY)
+@task(runs=DIRECTORY_IN, metadata=FILE_IN, outdir=DIRECTORY_OUT)
+def cll_combine_models(
+                  runs_flag='-r', runs=None, 
+                  metadata_flag='-m', metadata=None, 
+                  group_flag='-g', group=None, 
                   outdir_flag='-o', outdir=None):
     """
-    Prepare RNA-Seq data for downstream analysis.
+    Combine boolean models analysis from different patients
 
     The Definition is equal to:
-        assets/run.sh <tmpdir> \
-                           -e <exp> \
-                           -m <metadata> \
-                           -x <xref> \                           
-                           -g <group> \
-                           -t <treatment> \
-                           -c <control> \
-                           -b <batch> \
-                           -o <outdir> 
+        assets/run.sh 
+                  -r  runs \ 
+                  -m  metadata \ 
+                  -g  group \ 
+                  -o  outdir
     """
-    # Empty function since it represents a binary execution:
     pass
 
 
@@ -87,13 +74,12 @@ def invoke(arguments, config):
     Returns:
         None
     """
-   
+    
     # Building block invocation
-    cll_prepare_data(exp=arguments.exp,
-                  metadata=arguments.metadata,
-                  xref=arguments.xref,
-                  group=arguments.group,
-                  treatment=arguments.treatment,
-                  control=arguments.control,
-                  batch=arguments.batch,
+    cll_combine_models(
+                  runs=arguments.runs, 
+                  metadata=arguments.metadata, 
+                  group=arguments.group, 
                   outdir=arguments.outdir)
+
+

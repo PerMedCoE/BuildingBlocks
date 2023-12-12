@@ -1,0 +1,33 @@
+{
+    "short_description": "Combine boolean models analysis from different patients",
+    "long_description": "Combine boolean models analysis from different patients, applying hierchical clustering and random forest classifiers to evaluate patient stratification",
+    "use_description": "long",
+    "parameters": {
+        "default": [
+            {
+                "type": "input",
+                "name": "runs",
+                "format": "folder",
+                "description": "Folder containing group and patient boolean models runs"
+            },
+            {
+                "type": "input",
+                "name": "metadata",
+                "format": "file",
+                "description": "Sample metadata"
+            },
+            {
+                "type": "input",
+                "name": "group",
+                "format": "str",
+                "description": "Group variable"
+            },
+            {
+                "type": "output",
+                "name": "outdir",
+                "format": "folder",
+                "description": "Output folder"
+            }
+        ]
+    }
+}

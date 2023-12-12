@@ -1,3 +1,5 @@
+
+
 import os
 
 # Decorator imports
@@ -18,11 +20,10 @@ from permedcoe import Arguments        # Arguments definition
 from permedcoe import get_environment  # Get variables from invocation (tmpdir, processes, gpus, memory)
 from permedcoe import TMPDIR           # Default tmpdir key
 
-# Import single container and assets definitions
-from cll_prepare_data.definitions import ASSETS_PATH  # binary could be in this folder
-from cll_prepare_data.definitions import CONTAINER
-from cll_prepare_data.definitions import COMPUTING_UNITS
-
+# Import single container and assets definitions"
+from cll_run_boolean_model.definitions import ASSETS_PATH  # binary could be in this folder
+from cll_run_boolean_model.definitions import CONTAINER
+from cll_run_boolean_model.definitions import COMPUTING_UNITS
 
 def function_name(*args, **kwargs):
     """Extended python interface:
@@ -39,42 +40,30 @@ def function_name(*args, **kwargs):
 
 
 # Globals
-# CLL_PREPARE_DATA_BINARY = "cd /home/permed; Rscript /home/permed/prepare_data.R" #os.path.join(ASSETS_PATH, "cll_prepare_data.sh")
-CLL_PREPARE_DATA_BINARY = os.path.join(ASSETS_PATH, "run.sh")
+CLL_RUN_BOOLEAN_MODEL_BINARY = os.path.join(ASSETS_PATH, "run.sh")
 
 
 # @constraint(computing_units=COMPUTING_UNITS)
 @container(engine="SINGULARITY", image=CONTAINER)
-@binary(binary=CLL_PREPARE_DATA_BINARY)
-@task(exp=FILE_IN,
-      metadata=FILE_IN,
-      xref=FILE_IN,
-      outdir=DIRECTORY_IN)
-def cll_prepare_data(
-                  #tmpdir=TMPDIR,
-                  exp_flag='-e', exp=None,
-                  metadata_flag='-m', metadata=None,                  
-                  xref_flag='-x', xref=None, 
-                  group_flag='-g', group=None,
-                  treatment_flag='-t', treatment=None,
-                  control_flag='-c', control=None,
-                  batch_flag='-b', batch="T",
+@binary(binary=CLL_RUN_BOOLEAN_MODEL_BINARY)
+@task(sif=FILE_IN, bnd=FILE_IN, cfg=FILE_IN, outdir=DIRECTORY_OUT)
+def cll_run_boolean_model(
+                  sif_flag='-s', sif=None, 
+                  bnd_flag='-b', bnd=None, 
+                  cfg_flag='-c', cfg=None, 
+                  id_flag='-i', id=None, 
                   outdir_flag='-o', outdir=None):
     """
-    Prepare RNA-Seq data for downstream analysis.
+    Run personalised boolean models
 
     The Definition is equal to:
-        assets/run.sh <tmpdir> \
-                           -e <exp> \
-                           -m <metadata> \
-                           -x <xref> \                           
-                           -g <group> \
-                           -t <treatment> \
-                           -c <control> \
-                           -b <batch> \
-                           -o <outdir> 
+        assets/run.sh 
+                  -s  sif \ 
+                  -b  bnd \ 
+                  -c  cfg \ 
+                  -i  id \ 
+                  -o  outdir
     """
-    # Empty function since it represents a binary execution:
     pass
 
 
@@ -87,13 +76,13 @@ def invoke(arguments, config):
     Returns:
         None
     """
-   
+    
     # Building block invocation
-    cll_prepare_data(exp=arguments.exp,
-                  metadata=arguments.metadata,
-                  xref=arguments.xref,
-                  group=arguments.group,
-                  treatment=arguments.treatment,
-                  control=arguments.control,
-                  batch=arguments.batch,
+    cll_run_boolean_model(
+                  sif=arguments.sif, 
+                  bnd=arguments.bnd, 
+                  cfg=arguments.cfg, 
+                  id=arguments.id, 
                   outdir=arguments.outdir)
+
+

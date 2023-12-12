@@ -6,7 +6,7 @@
         "default": [
             {
                 "type": "input",
-                "name": "exp",
+                "name": "norm_exp",
                 "format": "file",
                 "description": "Normalized expression file"
             },
@@ -42,9 +42,27 @@
             },
             {
                 "type": "input",
+                "name": "collectri_database",
+                "format": "file",
+                "description": "Pre-fetched Collectri database"
+            },
+            {
+                "type": "input",
+                "name": "progeny_database",
+                "format": "file",
+                "description": "Pre-fetched Progreny database"
+            },
+            {
+                "type": "output",
                 "name": "outdir",
                 "format": "folder",
                 "description": "Output folder"
+            },
+            {
+                "type": "output",
+                "name": "activities",
+                "format": "file",
+                "description": "Output TFs infered activities file"
             }
         ]
     }
