@@ -73,6 +73,12 @@ sed -i "s/<interval units=\"min\">10<\/interval>/<interval units=\"min\">${max_t
 echo "Sampling interval:"
 grep "interval" "${physiboss_folder}/data/PhysiCell_settings_2D.xml"
 
+# Update the random seed
+# <random_seed type="int" units="dimensionless" description="change seed of the simulation">0</random_seed> 
+sed -i "s/description=\"change seed of the simulation\">0<\/random_seed>/description=\"change seed of the simulation\">${repetition}<\/random_seed>/g" "${physiboss_folder}/data/PhysiCell_settings_2D.xml"
+echo "Random seed:"
+grep "random_seed" "${physiboss_folder}/data/PhysiCell_settings_2D.xml"
+
 while read -r line || [ -n "$line" ]
 do
   param=$(echo ${line} | cut -f1 -d,)
