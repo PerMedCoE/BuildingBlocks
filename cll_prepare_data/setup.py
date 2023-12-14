@@ -8,15 +8,22 @@ here = pathlib.Path(__file__).parent.resolve()
 long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
-    name="cll_prepare_data",
+    name="cll_prepare_data_BB",
     version="0.0.1",
     description="This package provides the cll_prepare_data Building Block",
     long_description_content_type="text/markdown",
     long_description=long_description,
-    url="TO_BE_DEFINED",
-    author="Author",
-    author_email="author@example.com",
+    url="https://github.com/PerMedCoE/BuildingBlocks",
+    author="PerMedCoE Project",
+    author_email="infoPerMedCoE@bsc.es",
     classifiers=[
+        "Development Status :: 5 - Production/Stable",
+        "License :: OSI Approved :: Apache Software License",
+        "Intended Audience :: Science/Research",
+        "Operating System :: Unix",
+        "Operating System :: POSIX :: Linux",
+        "Topic :: Scientific/Engineering :: Bio-Informatics",
+        "Topic :: Scientific/Engineering :: Medical Science Apps.",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
@@ -24,34 +31,28 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3 :: Only",
-        "Development Status :: 1 - Planning",
-        "Intended Audience :: Science/Research",
-        "Operating System :: Unix",
-        "Operating System :: POSIX :: Linux",
-        "Topic :: Scientific/Engineering :: Bio-Informatics",
-        "Topic :: Scientific/Engineering :: Medical Science Apps.",
     ],
-    keywords="BuildingBlock, cll_prepare_data",
+    keywords="BuildingBlock, PerMedCoE, cll_prepare_data",
     package_dir={"": "src"},
     packages=find_packages(where="src"),
     python_requires=">=3.6, <4",
-    install_requires=["permedcoe>=0.0.8"],
+    install_requires=["permedcoe>=0.0.11"],
     extras_require={
         "dev": ["check-manifest"],
     },
     # If there are data files included in your packages that need to be
     # installed, specify them here.
     package_data={
-        "cll_prepare_data": ["assets/*",
-                     "definition.json"],
+        "cll_prepare_data_BB": ["assets/*",
+                                "definition.json"],
     },
     entry_points={
         "console_scripts": [
-            "cll_prepare_data=cll_prepare_data.__main__:main",
+            "cll_prepare_data_BB=cll_prepare_data_BB.__main__:main",
         ],
     },
     project_urls={
-        "Bug Reports": "TO_BE_DEFINED",
-        "Source": "TO_BE_DEFINED",
+        "Bug Reports": "https://github.com/PerMedCoE/BuildingBlocks/issues",
+        "Source": "https://github.com/PerMedCoE/BuildingBlocks/tree/main/cll_prepare_data",
     },
 )
