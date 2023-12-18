@@ -32,34 +32,25 @@ def main(physiboss_final_net_folders, file_csv):
     cells_in_cluster = []
 
     for replicate in physiboss_final_net_folders:
-        list_of_file = []
-
-        for file in os.listdir(replicate):
-            if file.startswith("final_net"):
-                list_of_file.append(file)
-
-        list_of_file.sort()
-        list_of_file.remove(list_of_file[0])
-
+        
         single = []
         cluster = []
         ratio = []
         cell_in_cluster = []
 
-        for file in list_of_file:
-            path = os.path.join(replicate, file)
-            net_df = pd.read_csv(path)
-            utils.split_col(net_df)
+        path = os.path.join(replicate, "final_net.csv")
+        net_df = pd.read_csv(path)
+        utils.split_col(net_df)
 
-            I = utils.create_graph(net_df, " neighID")
-            comp_x = utils.count_component(I)[0]
-            comp_y = utils.count_component(I)[1]
-            comp_z = utils.count_cell_in_cluster(I)[0]
-            comp_w = utils.count_cell_in_cluster(I)[1]
-            single.append(comp_x)
-            cluster.append(comp_y)
-            ratio.append(comp_z)
-            cell_in_cluster.append(comp_w)
+        I = utils.create_graph(net_df, " neighID")
+        comp_x = utils.count_component(I)[0]
+        comp_y = utils.count_component(I)[1]
+        comp_z = utils.count_cell_in_cluster(I)[0]
+        comp_w = utils.count_cell_in_cluster(I)[1]
+        single.append(comp_x)
+        cluster.append(comp_y)
+        ratio.append(comp_z)
+        cell_in_cluster.append(comp_w)
 
         singles.append(single)
         clusters.append(cluster)
