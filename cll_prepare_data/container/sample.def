@@ -1,0 +1,5 @@
+BootStrap: library
+From: ubuntu:20.04
+
+%post
+    apt-get -y update

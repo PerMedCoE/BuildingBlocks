@@ -1,0 +1,59 @@
+{
+    "short_description": "This building block prepares rna-seq data to downstream analysis",
+    "long_description": "This building block prepares rna-seq data to downstream analysis, such as DecoupleR, CARNIVAL or MaBoSS, with the goal of obtaining a signalling network representing main differences between two groups.",
+    "use_description": "long",
+    "parameters": {
+        "default": [
+            {
+                "type": "input",
+                "name": "exp",
+                "format": "file",
+                "description": "Expression file"
+            },
+            {
+                "type": "input",
+                "name": "metadata",
+                "format": "file",
+                "description": "Sample metadata"
+            },
+            {
+                "type": "input",
+                "name": "group",
+                "format": "str",
+                "description": "Group variable"
+            },
+            {
+                "type": "input",
+                "name": "treatment",
+                "format": "str",
+                "description": "Label of treated subgroup"
+            },
+            {
+                "type": "input",
+                "name": "control",
+                "format": "str",
+                "description": "Label of control subgroup"
+            },
+            {
+                "type": "input",
+                "name": "xref",
+                "format": "file",
+                "description": "Xref translation file"
+            },
+            {
+                "type": "input",
+                "name": "batch",
+                "format": "str",
+                "description": "Batch variable"
+            },
+            {
+                "type": "output",
+                "name": "outdir",
+                "format": "folder",
+                "description": "Output folder"
+            }
+        ]
+    }
+}
+
+

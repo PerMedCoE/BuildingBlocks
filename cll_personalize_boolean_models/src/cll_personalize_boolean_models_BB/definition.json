@@ -1,0 +1,39 @@
+{
+    "short_description": "Personalize boolean models",
+    "long_description": "Personalize boolean models based on group and patient-specific transcriptional profiles",
+    "use_description": "long",
+    "parameters": {
+        "default": [
+            {
+                "type": "input",
+                "name": "sif",
+                "format": "file",
+                "description": "Inferred network (in sif format)"
+            },
+            {
+                "type": "input",
+                "name": "norm_exp",
+                "format": "file",
+                "description": "Normalized expression file"
+            },
+            {
+                "type": "input",
+                "name": "metadata",
+                "format": "file",
+                "description": "Sample metadata"
+            },
+            {
+                "type": "input",
+                "name": "group",
+                "format": "str",
+                "description": "Group variable"
+            },
+            {
+                "type": "output",
+                "name": "outdir",
+                "format": "folder",
+                "description": "Output folder"
+            }
+           ]
+    }
+}

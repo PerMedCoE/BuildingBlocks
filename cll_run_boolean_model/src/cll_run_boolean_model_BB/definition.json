@@ -1,0 +1,39 @@
+{
+    "short_description": "Run personalised boolean models",
+    "long_description": "Run personalised boolean models at group and patient level",
+    "use_description": "long",
+    "parameters": {
+        "default": [
+            {
+                "type": "input",
+                "name": "sif",
+                "format": "file",
+                "description": "Inferred network (in sif format)"
+            },
+            {
+                "type": "input",
+                "name": "bnd",
+                "format": "file",
+                "description": "BND boolean model file"
+            },
+            {
+                "type": "input",
+                "name": "cfg",
+                "format": "file",
+                "description": "CFG file describing group of patient personalised rates"
+            },
+            {
+                "type": "input",
+                "name": "id",
+                "format": "str",
+                "description": "Selected group/patient id"
+            },
+            {
+                "type": "output",
+                "name": "outdir",
+                "format": "folder",
+                "description": "Output folder"
+            }
+        ]
+    }
+}
