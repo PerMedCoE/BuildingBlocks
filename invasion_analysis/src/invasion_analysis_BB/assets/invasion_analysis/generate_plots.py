@@ -55,7 +55,7 @@ def main(parameters_file, plots_directory, simulations_paths):
     for parameter in parameters_data.keys():
         df = pd.DataFrame(parameters_data[parameter])
 
-        fig, ax = plt.subplots(1, figsize=(5, 3), dpi=500)
+        fig, ax = plt.subplots(1, figsize=(5, 3), dpi=500, tight_layout=True)
 
         fields = ["single", "cells_in_cluster"]  # , 'ratio']
         for i, field in enumerate(fields):
@@ -94,7 +94,9 @@ def main(parameters_file, plots_directory, simulations_paths):
 
             yfit = [sigmoid(xdatum, *popt) for xdatum in df.columns]
             ax.plot(df.columns, yfit, color="C%d" % i)
-
+        plt.xlabel("%s value" % parameter)
+        plt.ylabel("population size (cells)")
+            
         fig.legend()
         try:
             os.makedirs(plots_directory)
@@ -103,7 +105,7 @@ def main(parameters_file, plots_directory, simulations_paths):
             pass
         fig.savefig(os.path.join(plots_directory, "%s.png" % parameter))
 
-        fig, ax = plt.subplots(1, figsize=(5, 3), dpi=500)
+        fig, ax = plt.subplots(1, figsize=(5, 3), dpi=500, tight_layout=True)
 
         field = "ratio"
         ax.errorbar(
@@ -136,7 +138,8 @@ def main(parameters_file, plots_directory, simulations_paths):
 
         yfit = [sigmoid(xdatum, *popt) for xdatum in df.columns]
         ax.plot(df.columns, yfit, color="C0")
-
+        plt.xlabel("%s value" % parameter)
+        plt.ylabel("collective migration (% of cells)")
         fig.legend()
         fig.savefig(os.path.join(plots_directory, "%s_ratio.png" % parameter))
     print("Done")

@@ -83,9 +83,7 @@ while read -r line || [ -n "$line" ]
 do
   param=$(echo ${line} | cut -f1 -d,)
   value=$(echo ${line} | cut -f2 -d,)
-  sed -i -E "s|>.*</${param}|>${value}</${param}>|" "${physiboss_folder}/data/PhysiCell_settings_2D.xml"
-  echo "${param}: "
-  grep "${param}" "${physiboss_folder}/data/PhysiCell_settings_2D.xml"
+  python3 ${SCRIPTS_DIR}/modify_param.py "${physiboss_folder}/data/PhysiCell_settings_2D.xml" "${physiboss_folder}/data/PhysiCell_settings_2D.xml" ${param} ${value}
 done < "${parameter_set}"
 
 # # Prepare patient execution

@@ -11,8 +11,12 @@ RUN apt-get --quiet update && \
         gcc \
         g++ \
         make \
-        wget && \
+        wget \
+        python3-pip && \
     rm -rf /var/lib/apt/lists/*
+
+COPY ./requirements-freeze.txt /opt/requirements.txt
+RUN pip3 install --no-cache-dir -r /opt/requirements.txt
 
 RUN git clone https://github.com/sysbio-curie/Invasion_model_PhysiBoSS.git /usr/local/src/Invasion_model_PhysiBoSS && \
     rm -rf /usr/local/src/Invasion_model_PhysiBoSS/.git && \
