@@ -64,6 +64,106 @@
                 "format": "folder",
                 "description": "Results directory"
             }
+        ],
+        "physiboss_model": [
+            {
+                "type": "input",
+                "name": "sample",
+                "format": "str",
+                "description": "Patient's identifier"
+            },
+            {
+                "type": "input",
+                "name": "repetition",
+                "format": "int",
+                "description": "Number of repetition to be performed"
+            },
+            {
+                "type": "input",
+                "name": "prefix",
+                "format": "str",
+                "description": "Name of the model"
+            },
+            {
+                "type": "input",
+                "name": "model_dir",
+                "format": "folder",
+                "description": "Model directory"
+            },
+            {
+                "type": "output",
+                "name": "out_file",
+                "format": "file",
+                "description": "Main output of the PhysiBoSS run"
+            },
+            {
+                "type": "output",
+                "name": "err_file",
+                "format": "file",
+                "description": "Error output of the PhysiBoSS run"
+            },
+            {
+                "type": "output",
+                "name": "results_dir",
+                "format": "folder",
+                "description": "Results directory"
+            },
+            {
+                "type": "input",
+                "name": "parallel",
+                "format": "int",
+                "description": "Internal parallelism"
+            },
+            {
+                "type": "input",
+                "name": "max_time",
+                "format": "int",
+                "description": "PhysiBoSS simulation maximum time"
+            }
+        ],
+        "analyse_replicates": [
+            {
+                "type": "input",
+                "name": "replicates",
+                "format": "int",
+                "description": "Number of replicates"
+            },
+            {
+                "type": "input",
+                "name": "replicates_folder",
+                "format": "folder",
+                "description": "Replicates folder"
+            },
+            {
+                "type": "input",
+                "name": "prefix",
+                "format": "str",
+                "description": "Name of the model"
+            },
+            {
+                "type": "output",
+                "name": "out_file",
+                "format": "file",
+                "description": "Main output of the PhysiBoSS run"
+            },
+            {
+                "type": "output",
+                "name": "err_file",
+                "format": "file",
+                "description": "Error output of the PhysiBoSS run"
+            },
+            {
+                "type": "output",
+                "name": "results_dir",
+                "format": "folder",
+                "description": "Results directory"
+            },
+            {
+                "type": "input",
+                "name": "parallel",
+                "format": "int",
+                "description": "Internal parallelism"
+            }
         ]
     }
 }

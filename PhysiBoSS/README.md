@@ -11,6 +11,9 @@ This package provides the PhysiBoSS **Building Block (BB)**.
     - [Requirements](#requirements)
     - [Installation](#installation)
     - [Usage](#usage)
+      - [Default](#default)
+      - [physiboss\_model](#physiboss_model)
+      - [analyse\_replicates](#analyse_replicates)
     - [Uninstall](#uninstall)
   - [License](#license)
   - [Contact](#contact)
@@ -27,7 +30,7 @@ This building block is used to perform a multiscale simulation of a population o
 - [Singularity](https://singularity.lbl.gov/docs-installation)
 - `permedcoe` base package: `python3 -m pip install permedcoe`
 
-In addtion to the dependencies, it is necessary to generate the associated
+In addition to the dependencies, it is necessary to generate the associated
 singularity image ([`PhysiCell-COVID19.singularity`](../Resources/images/PhysiCell-COVID19.singularity)),
 located in the **Resources** folder of this repository.
 
@@ -56,13 +59,20 @@ It can be imported from python and invoked directly from a **PyCOMPSs**
 application, or through the command line for other workflow managers
 (e.g. Snakemake and NextFlow).
 
+Supports 3 different operations modes:
+
+- default
+- physiboss_model
+- analyse_replicates
+
+#### Default
+
 The command line is:
 
 ```bash
-PHYSIBOSS_ASSETS=$(python3 -c "import PhysiBoSS_BB; import os; print(os.path.dirname(PhysiBoSS_BB.__file__))")
-
 PhysiBoSS_BB -d \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/,<working_directory>:<working_directory> \
+    --tmpdir PhysiBoSS_wd \
+    default \
     --sample <sample> \
     --repetition <repetition> \
     --prefix <prefix> \
@@ -70,7 +80,9 @@ PhysiBoSS_BB -d \
     --cfg_file <cfg_file> \
     --out_file <out_file> \
     --err_file <err_file> \
-    --working_directory <working_directory>
+    --results_file <results_file> \
+    --parallel <parallel> \
+    --max_time <max_time>
 ```
 
 Where the parameters are:
@@ -88,6 +100,71 @@ Where the parameters are:
 | Output | --err_file          | \<err_file>          | File    | Error output of the PhysiBoSS run    |
 | Output | --results_dir       | \<results_dir>       | Folder  | Results directory                    |
 | Output | --working_directory | \<working_directory> | Folder  | Working directory (temporary files)  |
+
+
+#### physiboss_model
+
+The command line is:
+
+```bash
+PhysiBoSS_BB -d \
+    --tmpdir PhysiBoSS_wd \
+    physiboss_model \
+    --sample <sample> \
+    --repetition <repetition> \
+    --prefix <prefix> \
+    --model_dir <model_dir> \
+    --out_file <out_file> \
+    --err_file <err_file> \
+    --results_file <results_file> \
+    --parallel <parallel> \
+    --max_time <max_time>
+```
+
+Where the parameters are:
+
+|        | Flag                | Parameter            | Type    | Description                          |
+|--------|---------------------|----------------------|---------|--------------------------------------|
+| Input  | --sample            | \<sample>            | String  | Patient's identifier                 |
+| Input  | --repetition        | \<repetition>        | Integer | Number of repetition to be performed |
+| Input  | --prefix            | \<prefix>            | String  | Name of the model                    |
+| Input  | --model_dir         | \<model_dir>         | Folder  | Model directory                      |
+| Output | --out_file          | \<out_file>          | File    | Main output of the PhysiBoSS run     |
+| Output | --err_file          | \<err_file>          | File    | Error output of the PhysiBoSS run    |
+| Output | --results_dir       | \<results_dir>       | Folder  | Results directory                    |
+| Input  | --parallel          | \<parallel>          | Integer | Internal parallelism                 |
+| Input  | --max_time          | \<max_time>          | Integer | PhysiBoSS simulation maximum time    |
+
+
+#### analyse_replicates
+
+The command line is:
+
+```bash
+PhysiBoSS_BB -d \
+    --tmpdir PhysiBoSS_wd \
+    analyse_replicates \
+    --replicates <replicates> \
+    --replicates_folder <replicates_folder> \
+    --prefix <prefix> \
+    --out_file <out_file> \
+    --err_file <err_file> \
+    --results_dir <results_dir> \
+    --parallel <parallel>
+```
+
+Where the parameters are:
+
+|        | Flag                | Parameter            | Type    | Description                          |
+|--------|---------------------|----------------------|---------|--------------------------------------|
+| Input  | --replicates        | \<replicates>        | Integer | Number of replicates                 |
+| Input  | --replicates_folder | \<replicates_folder> | Folder  | Replicates folder                    |
+| Input  | --prefix            | \<prefix>            | String  | Name of the model                    |
+| Output | --out_file          | \<out_file>          | File    | Main output of the PhysiBoSS run     |
+| Output | --err_file          | \<err_file>          | File    | Error output of the PhysiBoSS run    |
+| Output | --results_dir       | \<results_dir>       | Folder  | Results directory                    |
+| Input  | --parallel          | \<parallel>          | Integer | Internal parallelism                 |
+
 
 ### Uninstall
 

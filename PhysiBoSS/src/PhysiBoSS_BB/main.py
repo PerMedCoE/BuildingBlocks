@@ -66,7 +66,7 @@ def physiboss_model(
 def physiboss_analyse_replicates(
     replicates=1,
     replicates_folder=DIRECTORY_IN,
-    prefix="prefix", 
+    prefix="prefix",
     out_file=None,
     err_file=None,
     results_dir=None,
@@ -82,7 +82,6 @@ def physiboss_analyse_replicates(
     """
     # Empty function since it represents a binary execution:
     pass
-
 
 
 
@@ -130,29 +129,76 @@ def invoke(arguments, config):
     Returns:
         None
     """
-    # Process parameters
-    sample = arguments.sample
-    repetition = arguments.repetition
-    prefix = arguments.prefix
-    bnd_file = arguments.bnd_file
-    cfg_file = arguments.cfg_file
-    parallel = arguments.parallel
-    max_time = arguments.max_time
-    out_file = arguments.out_file
-    err_file = arguments.err_file
-    results_dir = arguments.results_dir
-    tmpdir = arguments.tmpdir
-    # Building block invocation
-    physiboss(
-        sample=sample,
-        repetition=repetition,
-        prefix=prefix,
-        bnd_file=bnd_file,
-        cfg_file=cfg_file,
-        out_file=out_file,
-        err_file=err_file,
-        results_dir=results_dir,
-        parallel=parallel,
-        max_time=max_time,
-        tmpdir=tmpdir
-    )
+    if arguments.mode == "analyse_replicates":
+        # Process parameters
+        replicates = arguments.replicates
+        replicates_folder = arguments.replicates_folder
+        prefix = arguments.prefix
+        out_file = arguments.out_file
+        err_file = arguments.err_file
+        results_dir = arguments.results_dir
+        parallel = arguments.parallel
+        tmpdir = arguments.tmpdir
+        # Building block invocation
+        physiboss_analyse_replicates(
+            replicates=replicates,
+            replicates_folder=replicates_folder,
+            prefix=prefix,
+            out_file=out_file,
+            err_file=err_file,
+            results_dir=results_dir,
+            parallel=parallel,
+            tmpdir=tmpdir
+        )
+    elif arguments.mode == "physiboss_model":
+        # Process parameters
+        sample = arguments.sample
+        repetition = arguments.repetition
+        prefix = arguments.prefix
+        model_dir = arguments.model_dir
+        out_file = arguments.out_file
+        err_file = arguments.err_file
+        results_dir = arguments.results_dir
+        parallel = arguments.parallel
+        max_time = arguments.max_time
+        tmpdir = arguments.tmpdir
+        # Building block invocation
+        physiboss_model(
+            sample=sample,
+            repetition=repetition,
+            prefix=prefix,
+            model_dir=model_dir,
+            out_file=out_file,
+            err_file=err_file,
+            results_dir=results_dir,
+            parallel=parallel,
+            max_time=max_time,
+            tmpdir=tmpdir
+        )
+    else:
+        # Process parameters
+        sample = arguments.sample
+        repetition = arguments.repetition
+        prefix = arguments.prefix
+        bnd_file = arguments.bnd_file
+        cfg_file = arguments.cfg_file
+        parallel = arguments.parallel
+        max_time = arguments.max_time
+        out_file = arguments.out_file
+        err_file = arguments.err_file
+        results_dir = arguments.results_dir
+        tmpdir = arguments.tmpdir
+        # Building block invocation
+        physiboss(
+            sample=sample,
+            repetition=repetition,
+            prefix=prefix,
+            bnd_file=bnd_file,
+            cfg_file=cfg_file,
+            out_file=out_file,
+            err_file=err_file,
+            results_dir=results_dir,
+            parallel=parallel,
+            max_time=max_time,
+            tmpdir=tmpdir
+        )
