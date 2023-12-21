@@ -28,7 +28,7 @@ This building block is responsible for building patient-specific boolean models 
 - [Singularity](https://singularity.lbl.gov/docs-installation)
 - `permedcoe` base package: `python3 -m pip install permedcoe`
 
-In addtion to the dependencies, it is necessary to generate the associated
+In addition to the dependencies, it is necessary to generate the associated
 singularity image ([`cll_personalize_boolean_models.singularity`](../Resources/images/cll_personalize_boolean_models.singularity)),
 located in the **Resources** folder of this repository.
 
@@ -60,27 +60,25 @@ application, or through the command line for other workflow managers
 The command line is:
 
 ```bash
-CLL_PERSONALIZE_BOOLEAN_MODELS_ASSETS=$(python3 -c "import cll_personalize_boolean_models_BB; import os; print(os.path.dirname(cll_personalize_boolean_models_BB.__file__))")
-
 cll_personalize_boolean_models_BB -d \
-    --mount_point ${CLL_PERSONALIZE_BOOLEAN_MODELS_ASSETS}/assets:${CLL_PERSONALIZE_BOOLEAN_MODELS_ASSETS}/assets,<working_directory>:<working_directory> \
+    --tmpdir <working_directory> \
     --sif <sif> \
     --norm_exp <norm_exp> \
     --metadata <metadata> \
     --group <group> \
-    --outdir <outdir> \
-    --working_directory <working_directory>
+    --outdir <outdir>
 ```
 
 Where the parameters are:
 
-|        | Flag       | Parameter   | Type   | Description                      |
-|--------|------------|-------------|--------|----------------------------------|
-| Input  | --sif      | \<sif>      | File   | Inferred network (in sif format) |
-| Input  | --norm_exp | \<norm_exp> | File   | Normalized expression file       |
-| Input  | --metadata | \<metadata> | File   | Sample metadata                  |
-| Input  | --group    | \<group>    | String | Group variable                   |
-| Output | --outdir   | \<outdir>   | Folder | Output folder                    |
+|        | Flag       | Parameter            | Type   | Description                         |
+|--------|------------|----------------------|--------|-------------------------------------|
+|        | --tmpdir   | \<working_directory> | Folder | Working directory (temporary files) |
+| Input  | --sif      | \<sif>               | File   | Inferred network (in sif format)    |
+| Input  | --norm_exp | \<norm_exp>          | File   | Normalized expression file          |
+| Input  | --metadata | \<metadata>          | File   | Sample metadata                     |
+| Input  | --group    | \<group>             | String | Group variable                      |
+| Output | --outdir   | \<outdir>            | Folder | Output folder                       |
 
 
 ### Uninstall

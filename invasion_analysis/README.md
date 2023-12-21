@@ -27,7 +27,7 @@ This building block extracts quantifications about type of invasion from a physi
 - [Singularity](https://singularity.lbl.gov/docs-installation)
 - `permedcoe` base package: `python3 -m pip install permedcoe`
 
-In addtion to the dependencies, it is necessary to generate the associated
+In addition to the dependencies, it is necessary to generate the associated
 singularity image ([`InvasionAnalysis.singularity`](../Resources/images/InvasionAnalysis.singularity)),
 located in the **Resources** folder of this repository.
 
@@ -59,22 +59,19 @@ application, or through the command line for other workflow managers
 The command line is:
 
 ```bash
-INVASION_ANALYSIS_ASSETS=$(python3 -c "import invasion_analysis_BB; import os; print(os.path.dirname(invasion_analysis_BB.__file__))")
-
 invasion_analysis_BB -d \
-    --mount_point ${INVASION_ANALYSIS_ASSETS}/assets:${INVASION_ANALYSIS_ASSETS}/assets \
+    --tmpdir <working_directory> \
     --physiboss_result_path <physiboss_result_path> \
-    --output_data <output_data> \
-    --working_directory <working_directory>
+    --output_data <output_data>
 ```
 
 Where the parameters are:
 
 |        | Flag                     | Parameter                | Type    | Description                             |
 |--------|--------------------------|--------------------------|---------|-----------------------------------------|
+|        | --tmpdir                 | \<working_directory>     | Folder  | Working directory (temporary files)     |
 | Input  | --physiboss_result_path  | \<physiboss_result_path> | File    | Path of the PhysiBoSS result to analyse |
 | Output | --output_data            | \<output_data>           | File    | Path of the CSV file to generate        |
-| Output | --working_directory      | \<working_directory>     | Folder  | Working directory (temporary files)     |
 
 ### Uninstall
 

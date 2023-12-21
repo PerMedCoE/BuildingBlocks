@@ -28,7 +28,7 @@ This building block involves network inference with CARNIVAL, leveraging Omnipat
 - [Singularity](https://singularity.lbl.gov/docs-installation)
 - `permedcoe` base package: `python3 -m pip install permedcoe`
 
-In addtion to the dependencies, it is necessary to generate the associated
+In addition to the dependencies, it is necessary to generate the associated
 singularity image ([`cll_network_inference.singularity`](../Resources/images/cll_network_inference.singularity)),
 located in the **Resources** folder of this repository.
 
@@ -60,27 +60,25 @@ application, or through the command line for other workflow managers
 The command line is:
 
 ```bash
-CLL_NETWORK_INFERENCE_ASSETS=$(python3 -c "import cll_network_inference_BB; import os; print(os.path.dirname(cll_network_inference_BB.__file__))")
-
 cll_network_inference_BB -d \
-    --mount_point ${CLL_NETWORK_INFERENCE_ASSETS}/assets:${CLL_NETWORK_INFERENCE_ASSETS}/assets,<working_directory>:<working_directory> \
+    --tmpdir <working_directory> \
     --cplex_bin <cplex_bin> \
     --activities <activities> \
     --omnipath_database <omnipath_database> \
     --outdir <outdir> \
-    --sif <sif> \
-    --working_directory <working_directory>
+    --sif <sif>
 ```
 
 Where the parameters are:
 
-|        | Flag                | Parameter            | Type   | Description                      |
-|--------|---------------------|----------------------|--------|----------------------------------|
-| Input  | --cplex_bin         | \<cplex_bin>         | String | CPLEX binary path                |
-| Input  | --activities        | \<activities>        | File   | TF inferred activities file      |
-| Input  | --omnipath_database | \<omnipath_database> | File   | Pre-fetched Omnipath database    |
-| Output | --outdir            | \<outdir>            | Folder | Output folder                    |
-| Output | --sif               | \<sif>               | File   | Inferred network (in sif format) |
+|        | Flag                | Parameter            | Type   | Description                         |
+|--------|---------------------|----------------------|--------|-------------------------------------|
+|        | --tmpdir            | \<working_directory> | Folder | Working directory (temporary files) |
+| Input  | --cplex_bin         | \<cplex_bin>         | String | CPLEX binary path                   |
+| Input  | --activities        | \<activities>        | File   | TF inferred activities file         |
+| Input  | --omnipath_database | \<omnipath_database> | File   | Pre-fetched Omnipath database       |
+| Output | --outdir            | \<outdir>            | Folder | Output folder                       |
+| Output | --sif               | \<sif>               | File   | Inferred network (in sif format)    |
 
 ### Uninstall
 

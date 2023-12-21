@@ -59,30 +59,27 @@ application, or through the command line for other workflow managers
 The command line is:
 
 ```bash
-CARNIVALPY_ASSETS=$(python3 -c "import CarnivalPy_BB; import os; print(os.path.dirname(CarnivalPy_BB.__file__))")
-
 CarnivalPy_BB -d \
-    --mount_point ${CARNIVALPY_ASSETS}/assets:${CARNIVALPY_ASSETS}/assets,<working_directory>:<working_directory> \
+    --tmpdir <working_directory> \
     --path <path> \
     --penalty <penalty> \
     --solver <solver> \
     --tol <tol> \
     --maxtime <maxtime> \
-    --export <export> \
-    --working_directory <working_directory>
+    --export <export>
 ```
 
 Where the parameters are:
 
 |        | Flag                | Parameter            | Type   | Description                                                                                   |
 |--------|---------------------|----------------------|--------|-----------------------------------------------------------------------------------------------|
+|        | --tmpdir            | \<working_directory> | Folder | Working directory (temporary files)                                                           |
 | Input  | --path              | \<path>              | File   | Path containing a `sif.csv` file, a `measurements.csv` file, and `perturbations.csv` file.    |
 | Input  | --penalty           | \<penalty>           | Float  | Penalty value for sparsity (penalty for the number of nodes in the final result). E.g 0.0001. |
 | Input  | --solver            | \<solver>            | String | Name of the solver to be used: gurobi, cplex, cbc, gurobi_mip, glpk. Any solver supported by Python-MIP and [PICOS](https://picos-api.gitlab.io/picos/introduction.html) can be passed. |
 | Input  | --tol               | \<tol>               | Float  | MIP Gap tolerance.                                                                            |
 | Input  | --maxtime           | \<maxtime>           | Int    | Max time in seconds.                                                                          |
 | Output | --export            | \<export>            | File   | Path to the file to be exported with the solution                                             |
-| Output | --working_directory | \<working_directory> | Folder | Working directory (temporary files)                                                           |
 
 ### Uninstall
 

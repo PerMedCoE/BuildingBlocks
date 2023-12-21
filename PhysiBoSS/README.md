@@ -71,7 +71,7 @@ The command line is:
 
 ```bash
 PhysiBoSS_BB -d \
-    --tmpdir PhysiBoSS_wd \
+    --tmpdir <working_directory> \
     default \
     --sample <sample> \
     --repetition <repetition> \
@@ -89,6 +89,7 @@ Where the parameters are:
 
 |        | Flag                | Parameter            | Type    | Description                          |
 |--------|---------------------|----------------------|---------|--------------------------------------|
+|        | --tmpdir            | \<working_directory> | Folder  | Working directory (temporary files)  |
 | Input  | --sample            | \<sample>            | String  | Patient's identifier                 |
 | Input  | --repetition        | \<repetition>        | Integer | Number of repetition to be performed |
 | Input  | --prefix            | \<prefix>            | String  | Name of the model                    |
@@ -99,7 +100,6 @@ Where the parameters are:
 | Output | --out_file          | \<out_file>          | File    | Main output of the PhysiBoSS run     |
 | Output | --err_file          | \<err_file>          | File    | Error output of the PhysiBoSS run    |
 | Output | --results_dir       | \<results_dir>       | Folder  | Results directory                    |
-| Output | --working_directory | \<working_directory> | Folder  | Working directory (temporary files)  |
 
 
 #### physiboss_model
@@ -125,6 +125,7 @@ Where the parameters are:
 
 |        | Flag                | Parameter            | Type    | Description                          |
 |--------|---------------------|----------------------|---------|--------------------------------------|
+|        | --tmpdir            | \<working_directory> | Folder  | Working directory (temporary files)  |
 | Input  | --sample            | \<sample>            | String  | Patient's identifier                 |
 | Input  | --repetition        | \<repetition>        | Integer | Number of repetition to be performed |
 | Input  | --prefix            | \<prefix>            | String  | Name of the model                    |
@@ -157,6 +158,7 @@ Where the parameters are:
 
 |        | Flag                | Parameter            | Type    | Description                          |
 |--------|---------------------|----------------------|---------|--------------------------------------|
+|        | --tmpdir            | \<working_directory> | Folder  | Working directory (temporary files)  |
 | Input  | --replicates        | \<replicates>        | Integer | Number of replicates                 |
 | Input  | --replicates_folder | \<replicates_folder> | Folder  | Replicates folder                    |
 | Input  | --prefix            | \<prefix>            | String  | Name of the model                    |

@@ -59,10 +59,8 @@ application, or through the command line for other workflow managers
 The command line is:
 
 ```bash
-CARNIVAL_GEX_PREPROCESS_ASSETS=$(python3 -c "import Carnival_gex_preprocess_BB; import os; print(os.path.dirname(Carnival_gex_preprocess_BB.__file__))")
-
 Carnival_gex_preprocess_BB -d \
-    --mount_point ${CARNIVAL_GEX_PREPROCESS_ASSETS}/assets:${CARNIVAL_GEX_PREPROCESS_ASSETS}/assets, <working_directory>:<working_directory> \
+    --tmpdir <working_directory> \
     --input_file <input_file> \
     --col_genes <col_genes> \
     --scale <scale> \
@@ -70,14 +68,14 @@ Carnival_gex_preprocess_BB -d \
     --tsv <tsv> \
     --remove <remove> \
     --verbose <verbose> \
-    --output_file <output_file> \
-    --working_directory <working_directory>
+    --output_file <output_file>
 ```
 
 Where the parameters are:
 
 |        | Flag                | Parameter            | Type   | Description                                                              |
 |--------|---------------------|----------------------|--------|--------------------------------------------------------------------------|
+|        | --tmpdir            | \<working_directory> | Folder | Working directory (temporary files)                                      |
 | Input  | --input_file        | \<input_file>        | File   | csv/url with the GDSC gene expression data                               |
 | Input  | --col_genes         | \<col_genes>         | String | Name of the column containing the gene symbols. Default = `GENE_SYMBOLS` |
 | Input  | --scale             | \<scale>             | String | Normalize genes across samples (TRUE/FALSE)                              |
@@ -86,7 +84,6 @@ Where the parameters are:
 | Input  | --remove            | \<remove>            | String | Remove the given substring from columns. Default = `.DATA`               |
 | Input  | --verbose           | \<verbose>           | String | Verbose output (TRUE/FALSE)                                              |
 | Output | --output_file       | \<output_file>       | File   | Processed csv file                                                       |
-| Output | --working_directory | \<working_directory> | Folder | Working directory (temporary files)                                      |
 
 Here is an example from https://github.com/saezlab/permedcoe/blob/master/containers/workflow_bb.sh preprocessing GDSC data:
 

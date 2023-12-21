@@ -59,10 +59,8 @@ application, or through the command line for other workflow managers
 The command line is:
 
 ```bash
-CARNIVAL_FEATURE_MERGER_ASSETS=$(python3 -c "import Carnival_feature_merger_BB; import os; print(os.path.dirname(Carnival_feature_merger_BB.__file__))")
-
 Carnival_feature_merger_BB -d \
-    --mount_point ${CARNIVAL_FEATURE_MERGER_ASSETS}/assets:${CARNIVAL_FEATURE_MERGER_ASSETS}/assets,<working_directory>:<working_directory> \
+    --tmpdir <working_directory> \
     --input_dir <input_dir> \
     --feature_file <feature_file> \
     --merge_csv_file <merge_csv_file> \
@@ -76,13 +74,13 @@ Where the parameters are:
 
 |        | Flag                | Parameter            | Type   | Description                                                                                             |
 |--------|---------------------|----------------------|--------|---------------------------------------------------------------------------------------------------------|
+|        | --tmpdir            | \<working_directory> | Folder | Working directory (temporary files)                                                                     |
 | Input  | --input_dir         | \<input_dir>         | Folder | Path containing the folders with the samples. Name of the folders are used for the name of the samples  |
 | Input  | --feature_file      | \<feature_file>      | File   | File containing a list of features. If provided, only those features are retrieved from solutions       |
 | Input  | --merge_csv_file    | \<merge_csv_file>    | File   | If provided, join the merged features into the given file                                               |
 | Input  | --merge_csv_index   | \<merge_csv_index>   | File   | Column ID used as the index for the data (default: `sample`)                                            |
 | Input  | --merge_csv_prefix  | \<merge_csv_prefix>  | File   | Prefix for the merged features                                                                          |
 | Output | --output_file       | \<output_file>       | File   | Output file with the features, where rows are samples and columns features                              |
-| Output | --working_directory | \<working_directory> | Folder | Working directory (temporary files)                                                                     |
 
 An example of how to use this connected with the rest of the building blocks is available at https://github.com/saezlab/permedcoe/blob/master/containers/workflow_bb.sh
 

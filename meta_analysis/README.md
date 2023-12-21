@@ -29,7 +29,7 @@ With this information, the building block can be used to assess the degree of un
 - [Singularity](https://singularity.lbl.gov/docs-installation)
 - `permedcoe` base package: `python3 -m pip install permedcoe`
 
-In addtion to the dependencies, it is necessary to generate the associated
+In addition to the dependencies, it is necessary to generate the associated
 singularity image ([`meta_analysis.singularity`](../Resources/images/meta_analysis.singularity)),
 located in the **Resources** folder of this repository.
 
@@ -61,24 +61,22 @@ application, or through the command line for other workflow managers
 The command line is:
 
 ```bash
-META_ANALISIS_ASSETS=$(python3 -c "import meta_analysis_BB; import os; print(os.path.dirname(meta_analysis_BB.__file__))")
-
 meta_analysis_BB -d \
-    --mount_point ${META_ANALISIS_ASSETS}/assets:${META_ANALISIS_ASSETS}/assets,<working_directory>:<working_directory> \
+    --tmpdir <working_directory> \
     --meta_file <meta_file> \
     --out_dir <out_dir> \
     --model_prefix <model_prefix> \
     --ko_file <ko_file> \
     --reps <reps> \
     --verbose <verbose> \
-    --result_folder <result_folder> \
-    --working_directory <working_directory>
+    --result_folder <result_folder>
 ```
 
 Where the parameters are:
 
 |        | Flag                | Parameter            | Type   | Description                                         |
 |--------|---------------------|----------------------|--------|-----------------------------------------------------|
+|        | --tmpdir            | \<working_directory> | Folder | Working directory (temporary files)                 |
 | Input  | --meta_file         | \<meta_file>         | File   | Sample information                                  |
 | Input  | --out_dir           | \<out_dir>           | Folder | Simulations output folder                           |
 | Input  | --model_prefix      | \<model_prefix>      | String | Prefix of the boolean model used in the simulations |
@@ -86,7 +84,6 @@ Where the parameters are:
 | Input  | --reps              | \<reps>              | Int    | Number of replicas                                  |
 | Input  | --verbose           | \<verbose>           | String | Verbose level                                       |
 | Output | --result_folder     | \<result_folder>     | Folder | Output folder                                       |
-| Output | --working_directory | \<working_directory> | Folder | Working directory (temporary files)                 |
 
 ### Uninstall
 

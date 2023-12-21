@@ -27,7 +27,7 @@ This package provides the print_drug_results **Building Block (BB)**.
 - [Singularity](https://singularity.lbl.gov/docs-installation)
 - `permedcoe` base package: `python3 -m pip install permedcoe`
 
-In addtion to the dependencies, it is necessary to generate the associated
+In addition to the dependencies, it is necessary to generate the associated
 singularity images ([`print_drug_results.singularity`](../Resources/images/print_drug_results.singularity),
 located in the **Resources** folder of this repository.
 
@@ -59,22 +59,19 @@ application, or through the command line for other workflow managers
 The command line is:
 
 ```bash
-PRINT_DRUG_RESULTS_ASSETS=$(python3 -c "import print_drug_results_BB; import os; print(os.path.dirname(print_drug_results_BB.__file__))")
-
 print_drug_results_BB -d \
-    --mount_point ${PRINT_DRUG_RESULTS_ASSETS}/assets:${PRINT_DRUG_RESULTS_ASSETS}/assets,<working_directory>:<working_directory> \
+    --tmpdir <working_directory> \
     --results_folder <results_folder> \
-    --reports_folder <reports_folder> \
-    --working_directory <working_directory>
+    --reports_folder <reports_folder>
 ```
 
 Where the parameters are:
 
 |        | Flag                | Parameter            | Type   | Description                         |
 |--------|---------------------|----------------------|--------|-------------------------------------|
+|        | --tmpdir            | \<working_directory> | Folder | Working directory (temporary files) |
 | Input  | --results_folder    | \<input_file>        | File   | Results folder                      |
 | Output | --reports_folder    | \<reports_folder>    | File   | Reports folder                      |
-| Output | --working_directory | \<working_directory> | Folder | Working directory (temporary files) |
 
 ### Uninstall
 

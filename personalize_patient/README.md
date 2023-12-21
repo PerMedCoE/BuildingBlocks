@@ -30,7 +30,7 @@ Another option of this building block is to personalise a given MaBoSS model usi
 - [Singularity](https://singularity.lbl.gov/docs-installation)
 - `permedcoe` base package: `python3 -m pip install permedcoe`
 
-In addtion to the dependencies, it is necessary to generate the associated
+In addition to the dependencies, it is necessary to generate the associated
 singularity image ([`PhysiCell-COVID19.singularity`](../Resources/images/PhysiCell-COVID19.singularity)),
 located in the **Resources** folder of this repository.
 
@@ -62,10 +62,8 @@ application, or through the command line for other workflow managers
 The command line is:
 
 ```bash
-PERSONALIZE_PATIENT_ASSETS=$(python3 -c "import personalize_patient_BB; import os; print(os.path.dirname(personalize_patient_BB.__file__))")
-
 personalize_patient_BB -d \
-    --mount_points ${PERSONALIZE_PATIENT_ASSETS}/assets/:${PERSONALIZE_PATIENT_ASSETS}/assets/,<working_directory>:<working_directory> \
+    --tmpdir <working_directory> \
     default \
     --norm_data <norm_data> \
     --cells <cells> \
@@ -73,14 +71,14 @@ personalize_patient_BB -d \
     --t <t> \
     --ko_file <ko_file> \
     --model_ouput_dir <model_ouput_dir> \
-    --personalized_result <personalized_result> \
-    --working_directory <working_directory>
+    --personalized_result <personalized_result>
 ```
 
 Where the parameters are:
 
 |        | Flag                  | Parameter              | File   | Description                                                                      |
 |--------|-----------------------|------------------------|--------|----------------------------------------------------------------------------------|
+|        | --tmpdir              | \<working_directory>   | Folder | Working directory (temporary files)                                              |
 | Input  | --norm_data           | \<norm_data>           | File   | tsv of the normalized RNAseq data                                                |
 | Input  | --cells               | \<cells>               | File   | tsv of the different patients to be analyzed with their clinical information     |
 | Input  | --model_prefix        | \<model_prefix>        | String | Prefix that describes the model                                                  |
@@ -88,17 +86,14 @@ Where the parameters are:
 | Input  | --ko_file             | \<ko_file>             | File   | File result of the "High-throughput mutant analysis" (aka MaBoSS) building block |
 | Output | --model_output_dir    | \<model_output_dir>    | Folder | Folder where the results will be located                                         |
 | Output | --personalized_result | \<personalized_result> | File   | Personalisation summary file                                                     |
-| Output | --working_directory   | \<working_directory>   | Folder | Working directory (temporary files)                                              |
 
 Alternatively, it can be used to perform patient personalize cellline:
 
 The command line is:
 
 ```bash
-PERSONALIZE_PATIENT_ASSETS=$(python3 -c "import personalize_patient_BB; import os; print(os.path.dirname(personalize_patient_BB.__file__))")
-
 personalize_patient_BB -d \
-    --mount_points ${PERSONALIZE_PATIENT_ASSETS}/assets/:${PERSONALIZE_PATIENT_ASSETS}/assets/,<working_directory>:<working_directory> \
+    --tmpdir <working_directory> \
     uc2 \
     --expression <expression> \
     --cnv <cnv> \
@@ -106,14 +101,14 @@ personalize_patient_BB -d \
     --cell_type <cell_type> \
     --model_bnd <model_bnd> \
     --model_cfg <model_cfg> \
-    --model_output_dir <model_ouput_dir> \
-    --working_directory <working_directory>
+    --model_output_dir <model_ouput_dir>
 ```
 
 Where the parameters are:
 
 |        | Flag                | Parameter            | File   | Description                                            |
 |--------|---------------------|----------------------|--------|--------------------------------------------------------|
+|        | --tmpdir            | \<working_directory> | Folder | Working directory (temporary files)                    |
 | Input  | --expression        | \<expression>        | File   | Expression data file                                   |
 | Input  | --cnv               | \<cnv>               | File   | Copy number variation file                             |
 | Input  | --mutation          | \<mutation>          | File   | Mutation file                                          |
@@ -121,7 +116,6 @@ Where the parameters are:
 | Input  | --model_bnd         | \<model_bnd>         | File   | BND file of the MaBoSS model to personalize            |
 | Input  | --model_cfg         | \<model_cfg>         | File   | CFG file of the MaBoSS model to personalize            |
 | Output | --model_output_dir  | \<model_output_dir>  | Folder | Folder where the results will be located               |
-| Output | --working_directory | \<working_directory> | Folder | Working directory (temporary files)                    |
 
 
 ### Uninstall

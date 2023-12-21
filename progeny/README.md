@@ -59,10 +59,8 @@ application, or through the command line for other workflow managers
 The command line is:
 
 ```bash
-PROGENY_ASSETS=$(python3 -c "import progeny_BB; import os; print(os.path.dirname(progeny_BB.__file__))")
-
 progeny_BB -d \
-    --mount_point ${PROGENY_ASSETS}/assets:${PROGENY_ASSETS}/assets,<working_directory>:<working_directory> \
+    --tmpdir <working_directory> \
     --input_file <input_file> \
     --organism <organism> \
     --ntop <ntop> \
@@ -73,14 +71,14 @@ progeny_BB -d \
     --perms <perms> \
     --zscore <zscore> \
     --verbose <verbose>\
-    --output_file <output_file> \
-    --working_directory <working_directory>
+    --output_file <output_file>
 ```
 
 Where the parameters are:
 
 |        | Flag                | Parameter            | Type    | Description                                                                 |
 |--------|---------------------|----------------------|---------|-----------------------------------------------------------------------------|
+|        | --tmpdir            | \<working_directory> | Folder  | Working directory (temporary files)                                         |
 | Input  | --input_file        | \<input_file>        | File    | CSV with gene expression data, where rows are genes and columns are samples |
 | Input  | --organism          | \<organism>          | String  | Human/Mouse                                                                 |
 | Input  | --ntop              | \<ntop>              | Integer | Number of top genes used to estimate pathway activities                     |
@@ -92,7 +90,6 @@ Where the parameters are:
 | Input  | --zscore            | \<zscore>            | String  | If True, the z-scores will be returned for the pathway activity estimations. Else, the function returns a normalized z-score value between -1 and 1 |
 | Input  | --verbose           | \<verbose>           | String  | Verbose output (TRUE/FALSE)                                                 |
 | Output | --output_file       | \<output_file>       | File    | File with the results containing pathway activities                         |
-| Output | --working_directory | \<working_directory> | Folder  | Working directory (temporary files)                                         |
 
 ### Uninstall
 

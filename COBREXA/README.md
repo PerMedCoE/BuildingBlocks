@@ -64,10 +64,7 @@ application, or through the command line for other workflow managers
 The command line is:
 
 ```bash
-COBREXA_ASSETS=$(python3 -c "import COBREXA_BB; import os; print(os.path.dirname(COBREXA_BB.__file__))")
-
 COBREXA_BB -d \
-    --mount_point ${COBREXA_ASSETS}/assets:${COBREXA_ASSETS}/assets \
     --verbose <verbose> \
     --input_xml <input_xml> \
     --output_txt <output_txt>

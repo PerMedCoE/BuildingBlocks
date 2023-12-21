@@ -61,10 +61,8 @@ application, or through the command line for other workflow managers
 The command line is:
 
 ```bash
-ML_JAX_DRUG_PREDICTION_ASSETS=$(python3 -c "import ml_jax_drug_prediction_BB; import os; print(os.path.dirname(ml_jax_drug_prediction_BB.__file__))")
-
 ml_jax_drug_prediction_BB -d \
-    --mount_point ${ML_JAX_DRUG_PREDICTION_ASSETS}/assets:${ML_JAX_DRUG_PREDICTION_ASSETS}/assets,<working_directory>:<working_directory> \
+    --tmpdir <working_directory> \
     --input_file <input_file> \
     --drug_features <drug_features> \
     --cell_features <cell_features> \
@@ -74,14 +72,14 @@ ml_jax_drug_prediction_BB -d \
     --latent_size <latent_size> \
     --test_drugs <test_drugs> \
     --test_cells <test_cells> \
-    --output_file <output_file> \
-    --working_directory <working_directory>
+    --output_file <output_file>
 ```
 
 Where the parameters are:
 
 |        | Flag                | Parameter            | Type    | Description                                                                                                   |
 |--------|---------------------|----------------------|---------|---------------------------------------------------------------------------------------------------------------|
+|        | --tmpdir            | \<working_directory> | Folder  | Working directory (temporary files)    |
 | Input  | --input_file        | \<input_file>        | File    | CSV with the matrix to predict (e.g IC50 drug/cell responses) for training (see [this example](https://raw.githubusercontent.com/saezlab/Macau_project_1/master/DATA/IC50)). If the file is a .npz file, then the model is imported and this is run in inference mode for predictions. If `.x` is provided, the example file is used for training a model. |
 | Input  | --drug_features     | \<drug_features>     | File    | CSV with row features (e.g drug targets). See [this example](https://raw.githubusercontent.com/saezlab/Macau_project_1/master/DATA/target). If `.x` is provided, the example file is used. |
 | Input  | --cell_features     | \<cell_features>     | File    | CSV with col features (e.g cell features). See [this example](https://raw.githubusercontent.com/saezlab/Macau_project_1/master/DATA/progeny11). If `.x` is provided, the example file is used. |
@@ -92,7 +90,6 @@ Where the parameters are:
 | Input  | --test_drugs        | \<test_drugs>        | String  | If row features are provided, this is the proportion of samples removed from training for validation. E.g 0.2.  |
 | Input  | --test_cells        | \<test_cells>        | String  | If col features are provided, this is the proportion of samples removed from training for validation. E.g 0.2. |
 | Output | --output_file       | \<output_file>       | File    | npz file with the trained model if in training mode, or csv file with prediction results.                      |
-| Output | --working_directory | \<working_directory> | Folder  | Working directory (temporary files)   |
 
 
 Training example (using example data files) that builds a trained `model.npz`:

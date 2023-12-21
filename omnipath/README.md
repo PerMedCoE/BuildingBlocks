@@ -59,22 +59,19 @@ application, or through the command line for other workflow managers
 The command line is:
 
 ```bash
-OMNIPATH_ASSETS=$(python3 -c "import omnipath_BB; import os; print(os.path.dirname(omnipath_BB.__file__))")
-
 omnipath_BB -d \
-    --mount_point ${OMNIPATH_ASSETS}/assets:${OMNIPATH_ASSETS}/assets,<working_directory>:<working_directory> \
+    --tmpdir <working_directory> \
     --verbose <verbose> \
-    --output_file <output_file> \
-    --working_directory <working_directory>
+    --output_file <output_file>
 ```
 
 Where the parameters are:
 
-|        | Flag                | Parameter            | Type   | Description                         |
-|--------|---------------------|----------------------|--------|-------------------------------------|
-| Input  | --verbose           | \<verbose>           | String | If debug or not (True | False )     |
-| Output | --output_file       | \<output_file>       | String | File with the exported PKN data     |
-| Output | --working_directory | \<working_directory> | Folder | Working directory (temporary files) |
+|        | Flag                | Parameter            | Type   | Description                          |
+|--------|---------------------|----------------------|--------|--------------------------------------|
+|        | --tmpdir            | \<working_directory> | Folder  | Working directory (temporary files) |
+| Input  | --verbose           | \<verbose>           | String | If debug or not (True | False )      |
+| Output | --output_file       | \<output_file>       | String | File with the exported PKN data      |
 
 ### Uninstall
 

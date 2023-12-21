@@ -27,7 +27,7 @@ This building block performs automatic network construction using OmniPath and p
 - [Singularity](https://singularity.lbl.gov/docs-installation)
 - `permedcoe` base package: `python3 -m pip install permedcoe`
 
-In addtion to the dependencies, it is necessary to generate the associated
+In addition to the dependencies, it is necessary to generate the associated
 singularity image ([`FromSpeciesToMaBoSSModel.singularity`](../Resources/images/FromSpeciesToMaBoSSModel.singularity)),
 located in the **Resources** folder of this repository.
 
@@ -59,26 +59,23 @@ application, or through the command line for other workflow managers
 The command line is:
 
 ```bash
-BUILD_MODEL_FROM_SPECIES_ASSETS=$(python3 -c "import build_model_from_species_BB; import os; print(os.path.dirname(build_model_from_species_BB.__file__))")
-
 build_model_from_species_BB -d \
-    --mount_point ${BUILD_MODEL_FROM_SPECIES_ASSETS}/assets:${BUILD_MODEL_FROM_SPECIES_ASSETS}/assets,<working_directory>:<working_directory> \
-    --build_model_from <genes | sif>
+    --tmpdir <working_directory> \
+    --build_model_from <genes | sif> \
     --input_file <input_file> \
     --output_bnd_file <output_bnd_file> \
-    --output_cfg_file <output_cfg_file> \
-    --working_directory <working_directory>
+    --output_cfg_file <output_cfg_file>
 ```
 
 Where the parameters are:
 
 |        | Flag                | Parameter            | Type    | Description                            |
 |--------|---------------------|----------------------|---------|----------------------------------------|
+|        | --tmpdir            | \<working_directory> | Folder  | Working directory (temporary files)    |
 | Input  | --build_model_from  | \<genes|sif>         | String  | Build model from genes or sif          |
 | Input  | --input_file        | \<input_file>        | File    | List of genes as a CSV file            |
 | Output | --output_bnd_file   | \<output_bnd_file>   | File    | BND file of the generated MaBoSS model |
 | Output | --output_cfg_file   | \<output_cfg_file>   | File    | CFG file of the generated MaBoSS model |
-| Output | --working_directory | \<working_directory> | Folder  | Working directory (temporary files)    |
 
 ### Uninstall
 

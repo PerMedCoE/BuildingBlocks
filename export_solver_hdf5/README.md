@@ -59,28 +59,25 @@ application, or through the command line for other workflow managers
 The command line is:
 
 ```bash
-EXPORT_SOLVER_HDF5_ASSETS=$(python3 -c "import export_solver_hdf5_BB; import os; print(os.path.dirname(export_solver_hdf5_BB.__file__))")
-
 export_solver_hdf5_BB -d \
-    --mount_point ${EXPORT_SOLVER_HDF5_ASSETS}/assets:${EXPORT_SOLVER_HDF5_ASSETS}/assets,<working_directory>:<working_directory> \
+    --tmpdir <working_directory> \
     --sif <sif> \
     --measurements <measurements> \
     --inputs <inputs> \
     --verbose <verbose> \
-    --output_file <output_file> \
-    --working_directory <working_directory>
+    --output_file <output_file>
 ```
 
 Where the parameters are:
 
 |        | Flag                | Parameter            | Type   | Description                                       |
 |--------|---------------------|----------------------|--------|---------------------------------------------------|
+|        | --tmpdir            | \<working_directory> | Folder | Working directory (temporary files)               |
 | Input  | --sif               | \<sif>               | File   | The sif csv file containing the signaling network |
 | Input  | --measurements      | \<measurements>      | String | The measurements csv with the TFs and weights     |
 | Input  | --inputs            | \<inputs>            | File   | The csv file with the input protein targets       |
 | Input  | --verbose           | \<verbose>           | String | Verbose output (TRUE/FALSE)                       |
 | Output | --output_file       | \<output_file>       | File   | The final HDF5 file.                              |
-| Output | --working_directory | \<working_directory> | Folder | Working directory (temporary files)               |
 
 
 An example with toy data from here https://github.com/saezlab/permedcoe/tree/master/containers/toolset/scripts/examples/export would be:

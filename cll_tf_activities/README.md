@@ -28,7 +28,7 @@ This building block entails the inference of transcription factor (TF) activitie
 - [Singularity](https://singularity.lbl.gov/docs-installation)
 - `permedcoe` base package: `python3 -m pip install permedcoe`
 
-In addtion to the dependencies, it is necessary to generate the associated
+In addition to the dependencies, it is necessary to generate the associated
 singularity image ([`cll_tf_activities.singularity`](../Resources/images/cll_tf_activities.singularity)),
 located in the **Resources** folder of this repository.
 
@@ -60,10 +60,8 @@ application, or through the command line for other workflow managers
 The command line is:
 
 ```bash
-CLL_TF_ACTIVITIES_ASSETS=$(python3 -c "import cll_tf_activities_BB; import os; print(os.path.dirname(cll_tf_activities_BB.__file__))")
-
 cll_tf_activities_BB -d \
-    --mount_point ${CLL_TF_ACTIVITIES_ASSETS}/assets:${CLL_TF_ACTIVITIES_ASSETS}/assets,<working_directory>:<working_directory> \
+    --tmpdir <working_directory> \
     --norm_exp <norm_exp> \
     --metadata <metadata> \
     --dea <dea> \
@@ -73,24 +71,24 @@ cll_tf_activities_BB -d \
     --collectri_database <collectri_database> \
     --progeny_database <progeny_database> \
     --outdir <outdir> \
-    --activities <activities> \
-    --working_directory <working_directory>
+    --activities <activities>
 ```
 
 Where the parameters are:
 
-|        | Flag                 | Parameter             | Type   | Description                        |
-|--------|----------------------|-----------------------|--------|------------------------------------|
-| Input  | --norm_exp           | \<norm_exp>           | File   | Normalized expression file         |
-| Input  | --metadata           | \<metadata>           | File   | Sample metadata                    |
-| Input  | --dea                | \<dea>                | File   | Differential expression analysis   |
-| Input  | --group              | \<group>              | String | Group variable                     |
-| Input  | --treatment          | \<treatment>          | String | Label of treated subgroup          |
-| Input  | --control            | \<control>            | String | Label of control subgroup          |
-| Input  | --collectri_database | \<collectri_database> | File   | Pre-fetched Collectri database     |
-| Input  | --progeny_database   | \<progeny_database>   | File   | Pre-fetched Progreny database      |
-| Output | --outdir             | \<outdir>             | Folder | Output folder                      |
-| Output | --activities         | \<activities>         | File   | Output TFs infered activities file |
+|        | Flag                 | Parameter             | Type   | Description                         |
+|--------|----------------------|-----------------------|--------|-------------------------------------|
+|        | --tmpdir             | \<working_directory>  | Folder | Working directory (temporary files) |
+| Input  | --norm_exp           | \<norm_exp>           | File   | Normalized expression file          |
+| Input  | --metadata           | \<metadata>           | File   | Sample metadata                     |
+| Input  | --dea                | \<dea>                | File   | Differential expression analysis    |
+| Input  | --group              | \<group>              | String | Group variable                      |
+| Input  | --treatment          | \<treatment>          | String | Label of treated subgroup           |
+| Input  | --control            | \<control>            | String | Label of control subgroup           |
+| Input  | --collectri_database | \<collectri_database> | File   | Pre-fetched Collectri database      |
+| Input  | --progeny_database   | \<progeny_database>   | File   | Pre-fetched Progreny database       |
+| Output | --outdir             | \<outdir>             | Folder | Output folder                       |
+| Output | --activities         | \<activities>         | File   | Output TFs infered activities file  |
 
 
 ### Uninstall

@@ -28,7 +28,7 @@ This building block involves an in-house script for the primary analysis of the 
 - [Singularity](https://singularity.lbl.gov/docs-installation)
 - `permedcoe` base package: `python3 -m pip install permedcoe`
 
-In addtion to the dependencies, it is necessary to generate the associated
+In addition to the dependencies, it is necessary to generate the associated
 singularity image ([`cll_prepare_data.singularity`](../Resources/images/cll_prepare_data.singularity)),
 located in the **Resources** folder of this repository.
 
@@ -60,10 +60,8 @@ application, or through the command line for other workflow managers
 The command line is:
 
 ```bash
-CLL_PREPARE_DATA_ASSETS=$(python3 -c "import cll_prepare_data_BB; import os; print(os.path.dirname(cll_prepare_data_BB.__file__))")
-
 cll_prepare_data_BB -d \
-    --mount_point ${CLL_PREPARE_DATA_ASSETS}/assets:${CLL_PREPARE_DATA_ASSETS}/assets,<working_directory>:<working_directory> \
+    --tmpdir <working_directory> \
     --exp <exp> \
     --metadata <metadata> \
     --group <group> \
@@ -71,22 +69,22 @@ cll_prepare_data_BB -d \
     --control <control> \
     --xref <xref> \
     --batch <batch> \
-    --outdir <outdir> \
-    --working_directory <working_directory>
+    --outdir <outdir>
 ```
 
 Where the parameters are:
 
-|        | Flag        | Parameter    | Type   | Description               |
-|--------|-------------|--------------|--------|---------------------------|
-| Input  | --exp       | \<exp>       | File   | Expression file           |
-| Input  | --metadata  | \<metadata>  | File   | Sample metadata           |
-| Input  | --group     | \<group>     | String | Group variable            |
-| Input  | --treatment | \<treatment> | String | Label of treated subgroup |
-| Input  | --control   | \<control>   | String | Label of control subgroup |
-| Input  | --xref      | \<xref>      | File   | Xref translation file     |
-| Input  | --batch     | \<batch>     | String | Batch variable            |
-| Output | --outdir    | \<outdir>    | Folder | Output folder             |
+|        | Flag        | Parameter            | Type   | Description                         |
+|--------|-------------|----------------------|--------|-------------------------------------|
+|        | --tmpdir    | \<working_directory> | Folder | Working directory (temporary files) |
+| Input  | --exp       | \<exp>               | File   | Expression file                     |
+| Input  | --metadata  | \<metadata>          | File   | Sample metadata                     |
+| Input  | --group     | \<group>             | String | Group variable                      |
+| Input  | --treatment | \<treatment>         | String | Label of treated subgroup           |
+| Input  | --control   | \<control>           | String | Label of control subgroup           |
+| Input  | --xref      | \<xref>              | File   | Xref translation file               |
+| Input  | --batch     | \<batch>             | String | Batch variable                      |
+| Output | --outdir    | \<outdir>            | Folder | Output folder                       |
 
 
 ### Uninstall

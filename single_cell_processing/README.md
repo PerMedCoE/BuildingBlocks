@@ -29,7 +29,7 @@ Finally, cells are clustered using graph-based techniques and annotated to their
 - [Singularity](https://singularity.lbl.gov/docs-installation)
 - `permedcoe` base package: `python3 -m pip install permedcoe`
 
-In addtion to the dependencies, it is necessary to generate the associated
+In addition to the dependencies, it is necessary to generate the associated
 singularity image ([`single_cell.singularity`](../Resources/images/single_cell.singularity)),
 located in the **Resources** folder of this repository.
 
@@ -61,10 +61,8 @@ application, or through the command line for other workflow managers
 The command line is:
 
 ```bash
-SINGLE_CELL_ASSETS=$(python3 -c "import single_cell_processing_BB; import os; print(os.path.dirname(single_cell_processing_BB.__file__))")
-
 single_cell_processing_BB -d \
-    --mount_points ${SINGLE_CELL_ASSETS}/assets/:${SINGLE_CELL_ASSETS}/assets/,<working_directory>:<working_directory> \
+    --tmpdir <working_directory> \
     --p_id <p_id> \
     --p_group <p_group> \
     --p_file <p_file> \
@@ -73,14 +71,14 @@ single_cell_processing_BB -d \
     --raw_data <raw_data> \
     --scaled_data <scaled_data> \
     --cells_metadata <cells_metadata> \
-    --outdir <outdir> \
-    --working_directory <working_directory>
+    --outdir <outdir>
 ```
 
 Where the parameters are:
 
 |        | Flag                | Parameter            | Type    | Description                         |
 |--------|---------------------|----------------------|---------|-------------------------------------|
+|        | --tmpdir            | \<working_directory> | Folder  | Working directory (temporary files) |
 | Input  | --p_id              | \<p_id>              | String  | Patient ID                          |
 | Input  | --p_group           | \<p_group>           | String  | Patient's group label               |
 | Input  | --p_file            | \<p_file>            | File    | scRNA-Seq patient's counts          |
@@ -90,7 +88,6 @@ Where the parameters are:
 | Output | --scaled_data       | \<scaled_data>       | File    | Scaled counts output filename       |
 | Output | --cells_metadata    | \<cells_metadata>    | File    | Cells' metadata output filename     |
 | Output | --outdir            | \<outdir>            | Folder  | Output folder                       |
-| Output | --working_directory | \<working_directory> | Folder  | Working directory (temporary files) |
 
 ### Uninstall
 

@@ -4,7 +4,7 @@ This package provides the PhysiBoSS Invasion **Building Block (BB)**.
 
 ## Table of Contents
 
-- [PhysiBoSS Invasion Building Block](#physiboss-building-block)
+- [PhysiBoSS Invasion Building Block](#physiboss-invasion-building-block)
   - [Table of Contents](#table-of-contents)
   - [Description](#description)
   - [User instructions](#user-instructions)
@@ -27,7 +27,7 @@ This building block is used to perform a multiscale simulation of a population o
 - [Singularity](https://singularity.lbl.gov/docs-installation)
 - `permedcoe` base package: `python3 -m pip install permedcoe`
 
-In addtion to the dependencies, it is necessary to generate the associated
+In addition to the dependencies, it is necessary to generate the associated
 singularity image ([`PhysiCell-Invasion.singularity`](../Resources/images/PhysiCell-Invasion.singularity)),
 located in the **Resources** folder of this repository.
 
@@ -59,10 +59,8 @@ application, or through the command line for other workflow managers
 The command line is:
 
 ```bash
-PHYSIBOSS_INVASION_ASSETS=$(python3 -c "import PhysiBoSS_BB; import os; print(os.path.dirname(PhysiBoSS_BB.__file__))")
-
 PhysiBoSS_invasion_BB -d \
-      --mount_points ${PHYSIBOSS_INVASION_ASSETS}/assets/:${PHYSIBOSS_INVASION_ASSETS}/assets/ \
+      --tmpdir <working_directory> \
       --repetition <repetition> \
       --out_file <out_file> \
       --err_file <err_file>
@@ -70,14 +68,15 @@ PhysiBoSS_invasion_BB -d \
 
 Where the parameters are:
 
-|        | Flag          | Parameter      | Type    | Description                          |
-|--------|---------------|----------------|---------|--------------------------------------|
-| Input  | --repetition  | \<repetition>  | Integer | Number of repetition to be performed |
-| Input  | --parallel    | \<parallel>    | Integer | Internal parallelism                 |
-| Input  | --max_time    | \<max_time>    | Integer | PhysiBoSS simulation maximum time    |
-| Output | --out_file    | \<out_file>    | File    | Main output of the PhysiBoSS run     |
-| Output | --err_file    | \<err_file>    | File    | Error output of the PhysiBoSS run    |
-| Output | --results_dir | \<results_dir> | Folder  | Results directory                    |
+|        | Flag          | Parameter            | Type    | Description                          |
+|--------|---------------|----------------------|---------|--------------------------------------|
+|        | --tmpdir      | \<working_directory> | Folder | Working directory (temporary files)   |
+| Input  | --repetition  | \<repetition>        | Integer | Number of repetition to be performed |
+| Input  | --parallel    | \<parallel>          | Integer | Internal parallelism                 |
+| Input  | --max_time    | \<max_time>          | Integer | PhysiBoSS simulation maximum time    |
+| Output | --out_file    | \<out_file>          | File    | Main output of the PhysiBoSS run     |
+| Output | --err_file    | \<err_file>          | File    | Error output of the PhysiBoSS run    |
+| Output | --results_dir | \<results_dir>       | Folder  | Results directory                    |
 
 ### Uninstall
 
