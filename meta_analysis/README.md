@@ -1,10 +1,10 @@
-# Meta-analysis of PysiBoSS Output Building Block
+# Meta-analysis of PhysiBoSS Output Building Block
 
 This package provides the Meta-analysis of PhysiBoSS Output **Building Block (BB)**.
 
 ## Table of Contents
 
-- [Meta-analysis of PysiBoSS Output Building Block](#meta-analysis-of-pysiboss-output-building-block)
+- [Meta-analysis of PhysiBoSS Output Building Block](#meta-analysis-of-pysiboss-output-building-block)
   - [Table of Contents](#table-of-contents)
   - [Description](#description)
   - [User instructions](#user-instructions)
