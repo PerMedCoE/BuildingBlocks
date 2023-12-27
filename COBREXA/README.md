@@ -16,7 +16,7 @@ This package provides the COBREXA **Building Block (BB)**.
 
 ## Description
 
-[TODO: ADD DESCRIPTION]
+COBREXA is a toolkit for working with large constraint-based metabolic models, and running very large numbers of analysis tasks on these models in parallel. Its main purpose is to make the methods of Constraint-based Reconstruction and Analysis (COBRA) scale to problem sizes that require the use of huge computer clusters and HPC environments, which allows them to be realistically applied to pre-exascale-sized models.
 
 ## User instructions
 
