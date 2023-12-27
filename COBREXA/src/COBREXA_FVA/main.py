@@ -9,9 +9,9 @@ from permedcoe import FILE_IN
 from permedcoe import FILE_OUT
 
 # Import single container and assets definitions
-from COBREXA_BB.definitions import CONTAINER
-from COBREXA_BB.definitions import ASSETS_PATH
-from COBREXA_BB.definitions import COMPUTING_UNITS
+from COBREXA_FVA.definitions import CONTAINER
+from COBREXA_FVA.definitions import ASSETS_PATH
+from COBREXA_FVA.definitions import COMPUTING_UNITS
 
 # Globals
 COBREXA_BINARY = os.path.join(ASSETS_PATH, "fva.jl")
@@ -31,7 +31,7 @@ def COBREXA_analysis(
     Produces the output txt file.
 
     The Definition is equal to:
-        julia --project=/project <cobrexa_binary> <debug_flag> <input_xml> <output_txt>
+        julia --project=/project <cobrexa_binary> <debug_flag> <input_sbml> <output_txt>
     """
     # Empty function since it represents a binary execution:
     pass
@@ -47,7 +47,7 @@ def invoke(arguments, config):
         None
     """
     # Process parameters
-    input_file_xml = arguments.input_xml
+    input_file_xml = arguments.input_sbml
     output_file_txt = arguments.output_txt
     verbose = arguments.verbose == "true"
     if verbose:

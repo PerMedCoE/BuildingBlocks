@@ -8,9 +8,9 @@ here = pathlib.Path(__file__).parent.resolve()
 long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
-    name="COBREXA_BB",
-    version="0.0.4",
-    description="This package provides the COBREXA Building Block",
+    name="COBREXA_FVA",
+    version="0.1.0",
+    description="This package provides the COBREXA FVA Building Block",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/PerMedCoE/BuildingBlocks",
@@ -43,13 +43,13 @@ setup(
     # If there are data files included in your packages that need to be
     # installed, specify them here.
     package_data={
-        "COBREXA_BB": ["assets/*",
+        "COBREXA_FVA": ["assets/*",
                        "assets/COBREXA/*",
                        "definition.json"],
     },
     entry_points={
         "console_scripts": [
-            "COBREXA_BB=COBREXA_BB.__main__:main",
+            "COBREXA_FVA=COBREXA_FVA.__main__:main",
         ],
     },
     project_urls={
