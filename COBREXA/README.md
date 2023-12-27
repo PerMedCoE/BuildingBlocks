@@ -1,6 +1,6 @@
-# COBREXA Building Block
+# COBREXA FVA Building Block
 
-This package provides the COBREXA **Building Block (BB)**.
+This package provides the COBREXA Flux Variability Analysis (FVA) **Building Block (BB)**. Use this BB to analyze the viable feasibility and optimality ranges of your metabolic models.
 
 ## Table of Contents
 
@@ -17,6 +17,8 @@ This package provides the COBREXA **Building Block (BB)**.
 ## Description
 
 COBREXA is a toolkit for working with large constraint-based metabolic models, and running very large numbers of analysis tasks on these models in parallel. Its main purpose is to make the methods of Constraint-based Reconstruction and Analysis (COBRA) scale to problem sizes that require the use of huge computer clusters and HPC environments, which allows them to be realistically applied to pre-exascale-sized models.
+
+This building block runs Flux Variability Analysis (FVA) on a given model. The analysis computes a feasible range of fluxes that may go through each reaction in the model while the model is in near-optimal state (in particular, constrained to the minimum of 99% of the flux through the objective function). This gives a relatively good overview of what the model is capable of, in particular allowing to enumerate the under-definedness and redundancy present in the main model pathways.
 
 ## User instructions
 
@@ -64,9 +66,9 @@ application, or through the command line for other workflow managers
 The command line is:
 
 ```bash
-COBREXA_BB -d \
+COBREXA_FVA -d \
     --verbose <verbose> \
-    --input_xml <input_xml> \
+    --input_sbml <input_sbml> \
     --output_txt <output_txt>
 ```
 
@@ -75,8 +77,8 @@ Where the parameters are:
 |        | Flag          | Parameter      | Type      | Description                                           |
 |--------|---------------|----------------|-----------|-------------------------------------------------------|
 | Input  | --verbose     | \<verbose>     | Boolean   | Enable or disable debug mode (true | false)           |
-| Input  | --input_xml   | \<input_xml>   | File      | Input xml file                                        |
-| Output | --output_txt  | \<output_txt>  | File      | Output txt file                                       |
+| Input  | --input_sbml  | \<input_sbml>  | File      | Input SBML file (internally XML-formatted)            |
+| Output | --output_txt  | \<output_txt>  | File      | Output text file                                      |
 
 
 ### Uninstall

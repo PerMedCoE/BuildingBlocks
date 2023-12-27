@@ -5,9 +5,9 @@ NOTE: Do not modify this file unless you want to change the name
 
 import os
 from permedcoe import invoker
-from COBREXA_BB.main import invoke
-from COBREXA_BB.definitions import ASSETS_PATH
-from COBREXA_BB.definitions import BB_SOURCE_PATH
+from COBREXA_FVA.main import invoke
+from COBREXA_FVA.definitions import ASSETS_PATH
+from COBREXA_FVA.definitions import BB_SOURCE_PATH
 
 
 def main():

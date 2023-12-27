@@ -12,7 +12,7 @@
             },
             {
                 "type": "input",
-                "name": "input_xml",
+                "name": "input_sbml",
                 "format": "file",
                 "description": "Input xml file"
             },
