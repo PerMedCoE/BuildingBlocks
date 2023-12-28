@@ -14,7 +14,7 @@ This repository contains the **Building Blocks** developed within the **HPC/Exas
 
 1. [**COBREXA**](COBREXA/)
 
-    [TODO: ADD DESCRIPTION]
+   This package provides the COBREXA Flux Variability Analysis (FVA) Building Block (BB). Use this BB to analyze the viable feasibility and optimality ranges of your metabolic models.
 
 2. [**Carnival**](Carnival/)
 
