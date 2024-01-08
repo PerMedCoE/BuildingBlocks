@@ -4,7 +4,7 @@ This package provides the High-throughput Mutant Analysis **Building Block (BB)*
 
 ## Table of Contents
 
-- [High-throughput Mutant Analysis Building Block](#high-throughput-mutant-analysis-building-block)
+- [High-throughput Mutant Analysis Building Block using NVIDIA GPU accelerators](#high-throughput-mutant-analysis-building-block-using-nvidia-gpu-accelerators)
   - [Table of Contents](#table-of-contents)
   - [Description](#description)
   - [User instructions](#user-instructions)
@@ -58,57 +58,26 @@ It can be imported from python and invoked directly from a **PyCOMPSs**
 application, or through the command line for other workflow managers
 (e.g. Snakemake and NextFlow).
 
-The command line is:
+The command line to perform sensitivity analysis is:
 
 ```bash
-MABOSSG_ASSETS=$(python3 -c "import MaBoSSG_BB; import os; print(os.path.dirname(MaBoSSG_BB.__file__))")
-
 MaBoSSG_BB -d \
-    --mount_point ${MABOSSG_ASSETS}/assets:${MABOSSG_ASSETS}/assets,<working_directory>:<working_directory> \
-    default \
-    --model <model> \
-    --data_folder <data_folder> \
-    --parallel <parallel> \
-    --ko_file <ko_file> \
-    --working_directory <working_directory>
-```
-
-Where the parameters are:
-
-|        | Flag                | Parameter            | Type   | Description                                           |
-|--------|---------------------|----------------------|--------|-------------------------------------------------------|
-| Input  | --model             | \<model>             | String | Name of the model                                     |
-| Input  | --data_folder       | \<data_folder>       | Folder | Folder where the model files are located              |
-| Input  | --parallel          | \<parallel>          | Int    | Internal parallelism                                  |
-| Output | --ko_file           | \<ko_file>           | File   | Name of the output file with the knock-out candidates |
-| Output | --working_directory | \<working_directory> | Folder | Working directory (temporary files)                   |
-
-Alternatively, it can be used to perform sensitivity analysis:
-
-The command line is:
-
-```bash
-MABOSSG_ASSETS=$(python3 -c "import MaBoSSG_BB; import os; print(os.path.dirname(MaBoSSG_BB.__file__))")
-
-MaBoSSG_BB -d \
-    --mount_point ${MABOSSG_ASSETS}/assets:${MABOSSG_ASSETS}/assets,<working_directory>:<working_directory> \
-    sensitivity \
+    --tmpdir <working_directory> \
     --model_folder <model_folder> \
     --genes_druggable <genes_druggable> \
     --genes_target <genes_target> \
-    --result_file <result_file> \
-    --working_directory <working_directory>
+    --result_file <result_file>
 ```
 
 Where the parameters are:
 
 |        | Flag                | Parameter            | Type   | Description                         |
 |--------|---------------------|----------------------|--------|-------------------------------------|
+|        | --tmpdir            | \<working_directory> | Folder | Working directory (temporary files)                   |
 | Input  | --model_folder      | \<model_folder>      | Folder | Folder that contains the model      |
 | Input  | --genes_druggable   | \<genes_druggable>   | String | Druggable genes                     |
 | Input  | --genes_target      | \<genes_target>      | String | Target genes                        |
 | Output | --result_file       | \<result_file>       | File   | Result file path                    |
-| Output | --working_directory | \<working_directory> | Folder | Working directory (temporary files) |
 
 ### Uninstall
 

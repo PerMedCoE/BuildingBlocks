@@ -8,14 +8,12 @@ from permedcoe import DIRECTORY_IN
 from permedcoe import FILE_IN
 from permedcoe import FILE_OUT
 from permedcoe import TMPDIR
-from permedcoe.base import set_debug
 
 # Import single container and assets definitions
 from MaBoSSG_BB.definitions import MABOSSG_CONTAINER
 from MaBoSSG_BB.definitions import ASSETS_PATH
 from MaBoSSG_BB.definitions import COMPUTING_UNITS
 
-set_debug(True)
 # Globals
 MABOSSG_SENSITIVIY_ANALYSIS_BINARY = os.path.join(ASSETS_PATH, "MaBoSSG_sensitivity_analysis.sh")
 

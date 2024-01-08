@@ -44,9 +44,9 @@ setup(
     # installed, specify them here.
     package_data={
         "MaBoSSG_BB": ["assets/*",
-                      "assets/MaBoSSG_analysis/*",
-                      "assets/MaBoSSG_sensitivity_analysis/*",
-                      "definition.json"],
+                       "assets/MaBoSSG_analysis/*",
+                       "assets/MaBoSSG_sensitivity_analysis/*",
+                       "definition.json"],
     },
     entry_points={
         "console_scripts": [

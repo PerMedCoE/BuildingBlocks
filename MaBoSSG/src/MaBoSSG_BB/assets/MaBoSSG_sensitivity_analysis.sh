@@ -46,7 +46,8 @@ python3 gen/generator.py --runtime-variables ${path_models}/mutable_model.bnd ${
 
 if [ -d ./build ]; then
     rm -fr ./build
-fi  
+fi
+
 cmake -DCMAKE_BUILD_TYPE=Release -B build .
 cmake --build build
 
