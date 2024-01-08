@@ -64,6 +64,8 @@ This repository contains the **Building Blocks** developed within the **HPC/Exas
 
     This building block uses MaBoSS to screen all the possible knock outs of a given Boolean model.
 
+    * There is also a GPU enabled version of this building block using MaBoSSG for sensitivity analysis ([**MaBoSSG**](MaBoSSG/)).
+
 14. [**PhysiBoSS**](PhysiBoSS/)
 
     This building block performs a multiscale simulation of a population of cells using PhysiBoSS.
