@@ -48,10 +48,10 @@ user=$(whoami)
 physiboss_folder="${tmpdir}/PhysiBoSS_${sample}_${prefix}_${repetition}_${user}"
 if [ -d "/usr/local/scm/COVID19/PhysiCell" ]; then
   echo "Using /usr/local/scm/COVID19/PhysiCell folder"
-  cp -r /usr/local/scm/COVID19/PhysiCell ${physiboss_folder}
+  cp -rL /usr/local/scm/COVID19/PhysiCell ${physiboss_folder}
 else
   echo "Using /usr/local/src/covid19/PhysiCell folder"
-  cp -r /usr/local/src/covid19/PhysiCell ${physiboss_folder}
+  cp -rL /usr/local/src/covid19/PhysiCell ${physiboss_folder}
 fi
 chmod -R 755 ${physiboss_folder}
 echo "COPY OF PhysiBoSS:"

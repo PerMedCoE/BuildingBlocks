@@ -43,10 +43,10 @@ user=$(whoami)
 physiboss_folder="${tmpdir}/PhysiBoSS_${repetition}_${user}"
 if [ -d "/usr/local/scm/Invasion_model_PhysiBoSS/" ]; then
   echo "Using /usr/local/scm/Invasion_model_PhysiBoSS/ folder"
-  cp -r /usr/local/scm/Invasion_model_PhysiBoSS/ ${physiboss_folder}
+  cp -rL /usr/local/scm/Invasion_model_PhysiBoSS/ ${physiboss_folder}
 else
   echo "Using /usr/local/src/Invasion_model_PhysiBoSS/ folder"
-  cp -r /usr/local/src/Invasion_model_PhysiBoSS/ ${physiboss_folder}
+  cp -rL /usr/local/src/Invasion_model_PhysiBoSS/ ${physiboss_folder}
 fi
 chmod -R 755 ${physiboss_folder}
 echo "COPY OF PhysiBoSS:"
@@ -74,7 +74,7 @@ echo "Sampling interval:"
 grep "interval" "${physiboss_folder}/data/PhysiCell_settings_2D.xml"
 
 # Update the random seed
-# <random_seed type="int" units="dimensionless" description="change seed of the simulation">0</random_seed> 
+# <random_seed type="int" units="dimensionless" description="change seed of the simulation">0</random_seed>
 sed -i "s/description=\"change seed of the simulation\">0<\/random_seed>/description=\"change seed of the simulation\">${repetition}<\/random_seed>/g" "${physiboss_folder}/data/PhysiCell_settings_2D.xml"
 echo "Random seed:"
 grep "random_seed" "${physiboss_folder}/data/PhysiCell_settings_2D.xml"
