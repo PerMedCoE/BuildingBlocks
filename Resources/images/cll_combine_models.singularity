@@ -1,0 +1,42 @@
+BootStrap: debootstrap
+OSVersion: jammy
+MirrorURL: http://archive.ubuntu.com/ubuntu/
+Include: bash
+
+%post
+  sed -i 's/main/main restricted universe/g' /etc/apt/sources.list
+  apt-get update
+
+  # Install R, python, java and other required libraries
+  apt-get install -y build-essential r-base-core libcurl4-openssl-dev libssl-dev libxml2-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev libtiff5-dev
+  apt-get clean
+
+  # Install required R packages
+  R --slave -e 'install.packages("klaR", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("randomForest", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("caret", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("tidyverse", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("diptest", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("mclust", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("moments", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("pheatmap", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("RColorBrewer", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("dplyr", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("tibble", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("tidyr", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("reshape2", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("openssl", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("optparse", repos = "http://cran.us.r-project.org")'
+  
+%files
+  combine_models.R /home/permed/combine_models.R
+  
+%test
+  #!/bin/sh
+  echo "No tests"
+
+
+%runscript
+  #!/bin/bash
+  cd /home/permed
+  Rscript combine_models.R $@

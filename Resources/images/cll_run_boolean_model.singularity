@@ -1,0 +1,42 @@
+BootStrap: debootstrap
+OSVersion: jammy
+MirrorURL: http://archive.ubuntu.com/ubuntu/
+Include: bash
+
+%post
+  sed -i 's/main/main restricted universe/g' /etc/apt/sources.list
+  apt-get update
+
+  # Install R
+  apt-get install -y build-essential libcurl4-openssl-dev libssl-dev libxml2-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev libtiff5-dev python3.9 wget flex bison python3-pip
+  apt-get clean
+
+  #mkdir /home/permed
+  cd /home/permed
+  wget https://github.com/sysbio-curie/MaBoSS-env-2.0/archive/refs/heads/master.tar.gz
+  tar -xzvf master.tar.gz
+  cd MaBoSS-env-2.0-master/engine/src/ 
+  make install
+
+  # Install required python packages
+  pip install pandas
+  pip install numpy
+  pip install matplotlib
+  pip install argparse
+#  pip install os
+  pip install maboss
+
+  
+%files
+  run_boolean_model.py /home/permed/run_boolean_model.py
+  
+%test
+  #!/bin/sh
+  echo "No tests"
+
+
+%runscript
+  #!/bin/bash
+  export PATH=$PATH:/home/permed/MaBoSS-env-2.0-master/engine/src
+  cd /home/permed
+  python3 run_boolean_model.py $@

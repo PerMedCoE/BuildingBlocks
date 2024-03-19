@@ -1,0 +1,48 @@
+BootStrap: debootstrap
+OSVersion: jammy
+MirrorURL: http://archive.ubuntu.com/ubuntu/
+Include: bash
+
+%post
+  sed -i 's/main/main restricted universe/g' /etc/apt/sources.list
+  apt-get update
+
+  # Install R
+  apt-get install -y build-essential r-base-core libcurl4-openssl-dev libssl-dev libxml2-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev libtiff5-dev
+  # libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev
+
+  apt-get clean
+
+  # Install required R packages
+  R --slave -e 'install.packages("textshaping", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("ragg", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("pkgdown", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("devtools", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'devtools::install_github("saezlab/decoupleR")'
+  R --slave -e 'devtools::install_github("saezlab/OmnipathR")'
+  R --slave -e 'install.packages("pheatmap", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("BiocManager", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'BiocManager::install("limma")'
+  R --slave -e 'install.packages("openssl", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("optparse", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("dplyr", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("tibble", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("tidyr", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("ggplot2", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("ggrepel", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("reshape2", repos = "http://cran.us.r-project.org")'
+  
+%files
+  tf_activities.R /home/permed/tf_activities.R
+  decoupler_utils.R /home/permed/decoupler_utils.R
+  my_mlm.R /home/permed/my_mlm.R
+
+%test
+  #!/bin/sh
+  echo "this should be a test"
+
+
+%runscript
+  #!/bin/bash
+  cd /home/permed
+  Rscript tf_activities.R $@

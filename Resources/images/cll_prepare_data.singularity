@@ -1,0 +1,36 @@
+BootStrap: debootstrap
+OSVersion: jammy
+MirrorURL: http://archive.ubuntu.com/ubuntu/
+Include: bash
+
+%post
+  sed -i 's/main/main restricted universe/g' /etc/apt/sources.list
+  apt-get update
+
+  # Install R
+  apt-get install -y r-base-core libcurl4-openssl-dev libssl-dev libxml2-dev
+  apt-get clean
+
+  # Install required R packages
+  R --slave -e 'install.packages("pheatmap", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("BiocManager", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("openssl", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'BiocManager::install("KEGGREST")'
+  R --slave -e 'BiocManager::install("DESeq2")'
+  R --slave -e 'BiocManager::install("sva")'
+  R --slave -e 'BiocManager::install("vsn")'
+  R --slave -e 'install.packages("optparse", repos = "http://cran.us.r-project.org")'
+
+%files
+  prepare_data.R /home/permed/prepare_data.R
+  prepare_data_utils.R /home/permed/prepare_data_utils.R
+
+%test
+  #!/bin/sh
+  echo "this should be a test"
+
+%runscript
+  #!/bin/bash
+  cd /home/permed
+  Rscript prepare_data.R $@
+

@@ -1,0 +1,41 @@
+BootStrap: debootstrap
+OSVersion: jammy
+MirrorURL: http://archive.ubuntu.com/ubuntu/
+Include: bash
+
+%post
+  sed -i 's/main/main restricted universe/g' /etc/apt/sources.list
+  apt-get update
+
+  # Install R, python, java and other required libraries
+  apt-get install -y build-essential r-base-core libcurl4-openssl-dev libssl-dev libxml2-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev libtiff5-dev openjdk-17-jdk python3.9
+  apt-get clean
+
+  # Install required R packages
+  R --slave -e 'install.packages("tidyverse", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("diptest", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("mclust", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("moments", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("pheatmap", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("dplyr", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("tibble", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("tidyr", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("reshape2", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("openssl", repos = "http://cran.us.r-project.org")'
+  R --slave -e 'install.packages("optparse", repos = "http://cran.us.r-project.org")'
+  
+%files
+  personalize_boolean_models.R /home/permed/personalize_boolean_models.R
+  profile.R /home/permed/profile.R
+  bioLQM-0.8-SNAPSHOT-jar-with-dependencies.jar /home/permed/bioLQM-0.8-SNAPSHOT-jar-with-dependencies.jar
+  sif2bnd.py /home/permed/sif2bnd.py
+  
+%test
+  #!/bin/sh
+  echo "No tests"
+
+
+%runscript
+  #!/bin/bash
+  cd /home/permed
+  Rscript personalize_boolean_models.R $@
